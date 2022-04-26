@@ -3,14 +3,17 @@
 footer {
   margin-top: 1000px;
   background-color: $background-header-color;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 
   .footer-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1600px;
-    height: 60px;
+    height: 70px;
   }
 
   .footer-year {
@@ -55,6 +58,4 @@ footer {
       filter: $logo-filter;
     }
   }
-
 }
-
