@@ -1,8 +1,9 @@
-@import '../../../shared/shared.scss';
+@import '../../../shared/styles/colors';
+@import '../../../shared/styles/font';
 
 footer {
   margin-top: 1000px;
-  background-color: $background-header-color;
+  background-color: $header-color;
   position: absolute;
   top: 0;
   left: 0;
@@ -30,13 +31,14 @@ footer {
     }
 
     .github-username {
+      @include subtitle ();
       color: $text-link;
       text-decoration: none;
       padding: 0 20px;
       transition: 0.3s;
 
       &:hover {
-        color: $hover-blue;
+        color: $text-hover;
       }
     }
   }

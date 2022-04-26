@@ -1,4 +1,6 @@
-@import '../../../shared/shared.scss';
+@import '../../../shared/styles/colors';
+@import '../../../shared/styles/font';
+
 
 .header-container {
   position: absolute;
@@ -8,12 +10,13 @@
   height: 70px;
   display: flex;
   align-items: center;
-  background-color: $background-header-color;
+  background-color: $header-color;
   color: white;
   font-weight: 600;
 
   a,
   a:visited {
+    @include subtitle ();
     margin: 0 16px;
     color: $text-link;
     text-decoration: none;

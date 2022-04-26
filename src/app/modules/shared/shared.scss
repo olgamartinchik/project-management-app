@@ -1,11 +1,27 @@
-$main-color: #d2f0ff;
-$background-main-color: #f0c8aa;
-$background-header-color: #eab389;
-$accent-color: #ff3214;
-$text-color: #000;
-$text-link: #8f6e76;
-$text-hover: #a7a1a7;
-$bg-footer: #121c1e;
-$hover-blue: #278d9f;
-$logo-filter: invert(57%) sepia(100%) saturate(329%) hue-rotate(141deg) brightness(89%)
-  contrast(90%);
+@font-face {
+  font-family: 'Forum';
+  font-weight: 400;
+  font-style: normal;
+  src: url(../../assets/fonts/Forum-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Old Standard';
+  font-weight: 400;
+  font-style: normal;
+  src: url(../../assets/fonts/OldStandard/OldStandardRegular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Old Standard';
+  font-weight: 400;
+  font-style: italic;
+  src: url(../../assets/fonts/OldStandard/OldStandardItalic.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Old Standard';
+  font-weight: bold;
+  font-style: normal;
+  src: url(../../assets/fonts/OldStandard/OldStandardBold.woff) format('woff');
+}

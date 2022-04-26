@@ -1,7 +1,7 @@
-@import '../../../shared/shared.scss';
+@import '../../../shared/styles/_colors';
 
 .main-container {
-  background-color: $background-main-color;
+  background-color: $main-color;
   margin-top: 70px;
   height: 950px;
   position: relative;
