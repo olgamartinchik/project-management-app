@@ -1,0 +1,41 @@
+@import '../../../shared/shared.scss';
+
+.header-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: $background-header-color;
+  color: white;
+  font-weight: 600;
+
+  a,
+  a:visited {
+    margin: 0 16px;
+    color: $text-link;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: $text-hover;
+  }
+
+}
+
+@media screen and (max-width: 575px) {
+  .header-container {
+    height: 80px;
+
+    a {
+      margin: 0 3px;
+    }
+
+    img {
+      display: none;
+    }
+  }
+}
+
