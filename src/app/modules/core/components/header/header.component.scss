@@ -12,16 +12,46 @@
   background-color: $header-color;
   color: white;
 
+
   a,
-  a:visited {
+  &:visited {
     @include subtitle();
     margin: 0 16px;
     color: $text-link;
     text-decoration: none;
+    &:hover {
+      color: $text-hover;
+      cursor: pointer;
+    }
   }
 
-  a:hover {
-    color: $text-hover;
+  .settings-language {
+
+    label {
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      background: #58565662;
+      border-radius: 4px;
+      padding: 5px;
+      margin: 0 5px 0 0;
+      font-size: 0;
+
+      &:hover {
+        color: $text-hover;
+        cursor: pointer;
+      }
+
+      span {
+        font-size: 1.25rem;
+      }
+
+      input {
+        height: 0;
+        width: 0;
+        visibility: hidden;
+      }
+    }
   }
 }
 
