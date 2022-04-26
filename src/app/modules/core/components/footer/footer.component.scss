@@ -31,7 +31,7 @@ footer {
     }
 
     .github-username {
-      @include subtitle ();
+      @include subtitle();
       color: $text-link;
       text-decoration: none;
       padding: 0 20px;
@@ -61,3 +61,6 @@ footer {
     }
   }
 }
+
+
+

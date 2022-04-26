@@ -1,7 +1,6 @@
 @import '../../../shared/styles/colors';
 @import '../../../shared/styles/font';
 
-
 .header-container {
   position: absolute;
   top: 0;
@@ -12,11 +11,10 @@
   align-items: center;
   background-color: $header-color;
   color: white;
-  font-weight: 600;
 
   a,
   a:visited {
-    @include subtitle ();
+    @include subtitle();
     margin: 0 16px;
     color: $text-link;
     text-decoration: none;
@@ -32,6 +30,7 @@
     height: 80px;
 
     a {
+      @include text();
       margin: 0 3px;
     }
 
