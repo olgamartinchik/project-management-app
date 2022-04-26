@@ -4,15 +4,9 @@ import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
 
-
 @NgModule({
-  declarations: [
-    MainComponent
-  ],
-  imports: [
-    CommonModule,
-    MainRoutingModule
-  ],
-  exports:[MainComponent]
+  declarations: [MainComponent],
+  imports: [CommonModule, MainRoutingModule],
+  exports: [MainComponent],
 })
-export class MainModule { }
+export class MainModule {}
