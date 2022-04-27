@@ -1,0 +1,8 @@
+@use '../../../shared/styles/colors';
+
+:host {
+  background-color: colors.$main-color;
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+}
