@@ -89,7 +89,7 @@
   top: 0;
   color: colors.$accent-color;
 
-  &.active + .change-language {
+  &:checked + .change-language {
     color: colors.$accent-color;
   }
 }
