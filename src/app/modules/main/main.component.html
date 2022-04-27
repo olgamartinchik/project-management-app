@@ -1,3 +1,10 @@
 <main>
-  <div class="wrapper">Hello</div>
+  <div class="wrapper">
+    <button (click)="switchLang()">lang</button>
+    <div>Hello</div>
+    <ng-container *transloco="let text">
+      <div>{{ 'hello' | transloco }}</div>
+      <div>{{ text('hello') }}</div>
+    </ng-container>
+  </div>
 </main>
