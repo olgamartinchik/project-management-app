@@ -7,7 +7,7 @@ import { TranslocoRootModule } from 'src/app/modules/transloco-root.module';
 
 @NgModule({
   declarations: [MainComponent],
-  imports: [CommonModule, MainRoutingModule,TranslocoRootModule],
+  imports: [CommonModule, MainRoutingModule, TranslocoRootModule],
   exports: [MainComponent],
 })
 export class MainModule {}

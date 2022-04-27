@@ -6,19 +6,18 @@ import { TranslocoService } from '@ngneat/transloco';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
-
 export class MainComponent {
-isEnLang:boolean=false
-constructor(private translocoService:TranslocoService){}
+  isEnLang: boolean = false;
 
-switchLang(){
-  if(this.isEnLang){
-    this.translocoService.setActiveLang('en')
-    this.isEnLang=false
-  }else{
-    this.translocoService.setActiveLang('ru')
-    this.isEnLang=true
+  constructor(private translocoService: TranslocoService) {}
+
+  switchLang() {
+    if (this.isEnLang) {
+      this.translocoService.setActiveLang('en');
+      this.isEnLang = false;
+    } else {
+      this.translocoService.setActiveLang('ru');
+      this.isEnLang = true;
+    }
   }
-
-}
 }
