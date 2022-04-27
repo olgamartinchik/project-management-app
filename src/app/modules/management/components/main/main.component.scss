@@ -1,13 +1,8 @@
-@import '../../../shared/styles/_colors';
+@use '../../../shared/styles/colors';
 
-.main-container {
-  background-color: $main-color;
-  margin-top: 70px;
-  height: 950px;
-  position: relative;
+:host {
+  background-color: colors.$main-color;
+  height: 100vh;
+  padding: 20px;
   display: flex;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
 }

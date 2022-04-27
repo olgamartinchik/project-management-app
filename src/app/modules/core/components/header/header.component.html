@@ -1,34 +1,29 @@
-<div class="header-container" role="banner">
+<header class="header">
   <img
-    width="40"
+    class="header-logo"
     alt="Angular Logo"
     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
   />
-  <div class="nav-section">
-    <a rel="noopener" href="/main" title="main">
-    <span>Главная страница</span>
-    </a>
-    <a rel="noopener" href="" title="start">
-      <span>Стартовая</span>
-    </a>
-    <a rel="noopener" href="" title="board">
-      <span>Рабочая доска</span>
-    </a>
-    <a rel="noopener" href="" title="registration">
-      <span>Регистрация</span>
-    </a>
-    <a rel="noopener" href="" title="search">
-      <span>Поиск</span>
-    </a>
-  </div>
+
+  <nav [class]="{ nav: true, 'nav-open': isNavOpen }">
+    <a class="nav-link" routerLink="/main" rel="noopener" title="main">Главная страница</a>
+    <a class="nav-link" routerLink="" rel="noopener" title="start">Стартовая</a>
+    <a class="nav-link" routerLink="" rel="noopener" title="board">Рабочая доска</a>
+    <a class="nav-link" routerLink="/auth" rel="noopener" title="auth">Вход/Регистрация</a>
+    <a class="nav-link" routerLink="" rel="noopener" title="search">Поиск</a>
+  </nav>
+
+  <button
+    [class]="{ 'nav-burger-button': true, active: isNavOpen }"
+    (click)="isNavOpen = !isNavOpen"
+    type="button"
+  ></button>
+
   <div class="settings-language">
-    <label class="change-language" for="en">
-      <span>EN</span>
-      <input type="radio" name="language" id="en">
-    </label>
-    <label class="change-language" for="ru">
-      <span>RU</span>
-      <input type="radio" name="language" id="ru">
-    </label>
+    <input class="radio-language" type="radio" name="language" id="ru" checked />
+    <label class="change-language" for="ru">RU</label>
+
+    <input class="radio-language" type="radio" name="language" id="en" />
+    <label class="change-language" for="en">EN</label>
   </div>
-</div>
+</header>
