@@ -1,10 +1,18 @@
 $main-color: #d2f0ff;
 $secondary-color: #f0c8aa;
 $accent-color: #ff3214;
+
+$header-color: #f5d4bc;
+
 $text-color: #333;
+$text-link: #8f6e76;
+$text-hover: #278d9f;
 
 $disabled-text: #666;
 $disabled-bg: #ccc;
 
 $valid-input: #4cbb17;
 $invalid-input: #eb2323;
+
+$logo-filter: invert(57%) sepia(100%) saturate(329%) hue-rotate(141deg) brightness(89%)
+  contrast(90%);

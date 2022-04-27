@@ -1,6 +1,11 @@
 :host {
-  max-width: 300px;
-  padding: 100px 0 0;
+  height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -9,14 +14,30 @@
 }
 
 .auth__3d-wrapper {
-  width: 300px;
-  height: 250px;
+  width: 400px;
+  height: 300px;
   display: flex;
   transform-style: preserve-3d;
-  transition: 1.5s cubic-bezier(0.1, 0.25, 0.4, 1.6);
+  transition: 1.2s cubic-bezier(0.1, 0.25, 0.4, 1.6);
   position: relative;
 }
 
-.checkbox:checked ~ .auth__3d-wrapper {
-  transform: rotateY(180deg);
+label {
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.checkbox {
+  margin: 0 0 20px;
+  visibility: hidden;
+
+  &:checked ~ .auth__3d-wrapper {
+    transform: rotateY(180deg);
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .auth__3d-wrapper {
+    width: 280px;
+  }
 }
