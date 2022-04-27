@@ -1,3 +1,10 @@
 {
-  "hello": "Hello"
+  "hello": "Hello",
+  "nav": {
+    "mainPage": "Main page",
+    "startPage": "Start page",
+    "workingBoard": "Working board",
+    "enter": "sign in/login",
+    "search": "Search"
+  }
 }
