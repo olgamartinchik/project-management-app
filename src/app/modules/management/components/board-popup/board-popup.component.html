@@ -3,13 +3,19 @@
   (click)="closePopup()"
   [class]="{ visible: (boardService.isBoardPopup$ | async) }"
 >
-  <form action="#" class="form" (click)="stopPropagation($event)">
+  <form
+    action="#"
+    class="form"
+    [formGroup]="boardForm!"
+    (click)="stopPropagation($event)"
+    (ngSubmit)="createBoard()"
+  >
     <div class="title-container">
       <label for="title-board" class="title">{{ 'mainPage.titleNewBoard' | transloco }}</label>
       <input type="text" class="input" id="title-board" />
     </div>
 
-    <button type="submit" class="button" (click)="closePopup()">
+    <button type="submit" class="button" [disabled]="boardForm!.invalid">
       {{ 'mainPage.createBtn' | transloco }}
     </button>
   </form>
