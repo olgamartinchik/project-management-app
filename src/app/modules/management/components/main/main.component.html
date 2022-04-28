@@ -2,15 +2,15 @@
   <div class="wrapper">
     <h1 class="title">{{ 'mainPage.h1' | transloco }}</h1>
     <div class="boards">
-      <div class="list-boards">
-        <app-board-card></app-board-card>
-        <app-board-card></app-board-card>
-        <app-board-card></app-board-card>
-        <app-board-card></app-board-card>
-      </div>
+      <app-board-card></app-board-card>
+      <app-board-card></app-board-card>
+      <app-board-card></app-board-card>
+      <app-board-card></app-board-card>
+
       <div class="board new-board" (click)="openPopup()">
         {{ 'mainPage.newBoard' | transloco }}
       </div>
+
       <app-board-popup></app-board-popup>
     </div>
   </div>

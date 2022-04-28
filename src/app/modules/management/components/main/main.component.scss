@@ -3,7 +3,7 @@
 
 :host {
   background-color: colors.$main-color;
-  // height: 100vh;
+  height: 80vh;
   padding: 20px;
   display: flex;
 }
@@ -25,13 +25,7 @@
   gap: 40px;
   flex-wrap: wrap;
   padding: 60px 0;
-}
-.list-boards {
-  width: 100%;
-  display: flex;
-  align-content: flex-start;
-  flex-wrap: wrap;
-  gap: 40px;
+  justify-content: space-evenly;
 }
 
 .new-board {
