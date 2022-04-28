@@ -9,6 +9,8 @@
   "mainPage": {
     "h1": "Your work board",
     "newBoard": "Create board",
-    "deleteBtn": "delete"
+    "deleteBtn": "delete",
+    "titleNewBoard": "Title",
+    "createBtn": "Create"
   }
 }

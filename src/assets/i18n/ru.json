@@ -9,6 +9,8 @@
   "mainPage": {
     "h1": "Ваши рабочие доски",
     "newBoard": "Создать доску",
-    "deleteBtn": "удалить"
+    "deleteBtn": "удалить",
+    "titleNewBoard": "Заголовок",
+    "createBtn": "Создать"
   }
 }

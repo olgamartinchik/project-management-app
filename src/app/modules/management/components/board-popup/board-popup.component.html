@@ -1,1 +1,16 @@
-<p>board-popup works!</p>
+<div
+  class="overlay"
+  (click)="closePopup()"
+  [class]="{ visible: (boardService.isBoardPopup$ | async) }"
+>
+  <form action="#" class="form" (click)="stopPropagation($event)">
+    <div class="title-container">
+      <label for="title-board" class="title">{{ 'mainPage.titleNewBoard' | transloco }}</label>
+      <input type="text" class="input" id="title-board" />
+    </div>
+
+    <button type="submit" class="button" (click)="closePopup()">
+      {{ 'mainPage.createBtn' | transloco }}
+    </button>
+  </form>
+</div>

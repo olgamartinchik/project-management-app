@@ -1,8 +1,15 @@
 import { Component } from '@angular/core';
+import { BoardService } from '../../services/board.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
-export class MainComponent {}
+export class MainComponent {
+  constructor(private boardService: BoardService) {}
+
+  openPopup() {
+    this.boardService.isBoardPopup$.next(true);
+  }
+}

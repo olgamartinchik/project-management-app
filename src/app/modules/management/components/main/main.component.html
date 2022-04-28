@@ -8,7 +8,10 @@
         <app-board-card></app-board-card>
         <app-board-card></app-board-card>
       </div>
-      <div class="board new-board">{{ 'mainPage.newBoard' | transloco }}</div>
+      <div class="board new-board" (click)="openPopup()">
+        {{ 'mainPage.newBoard' | transloco }}
+      </div>
+      <app-board-popup></app-board-popup>
     </div>
   </div>
 </main>
