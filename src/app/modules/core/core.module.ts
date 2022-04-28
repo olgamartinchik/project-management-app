@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { TranslocoRootModule } from '../transloco-root.module';
+import { TranslocoRootModule } from '../transloco/transloco-root.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
