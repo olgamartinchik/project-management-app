@@ -10,13 +10,13 @@
   flex-direction: column;
   position: relative;
   transform-style: preserve-3d;
-  perspective: 800px;
 }
 
 .auth__3d-wrapper {
-  width: 400px;
-  height: 300px;
+  width: 500px;
+  height: 500px;
   display: flex;
+  justify-content: center;
   transform-style: preserve-3d;
   transition: 1.2s cubic-bezier(0.1, 0.25, 0.4, 1.6);
   position: relative;

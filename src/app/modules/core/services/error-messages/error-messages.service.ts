@@ -1,0 +1,52 @@
+import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+
+import { MessageModel, PasswordMessagesModel } from './error-messages.services.models';
+
+@Injectable({ providedIn: 'root' })
+export class ErrorMessagesService {
+  public showMessages(form: FormGroup, name: string, messages: MessageModel): string {
+    const control = form.controls[name];
+    // если в input вводили данные и есть ошибка, то получаем название этой ошибки
+    const error = control.dirty && control.errors && Object.keys(control.errors)[0];
+    let message = '';
+
+    // если есть ошибка, то ищем совпадение в messages и возвращаем нужное сообщение
+    if (error) {
+      message = messages[error] || 'Unknown error';
+    }
+
+    return message;
+  }
+
+  public showPasswordErrors(
+    form: FormGroup,
+    name: string,
+    messages: MessageModel,
+  ): PasswordMessagesModel {
+    const result: PasswordMessagesModel = { main: '', recommendations: [] };
+    // вызываем метод showMessages и присваиваем свойству main текст основной ошибки
+    result.main = this.showMessages(form, name, messages);
+    const control = form.controls[name];
+
+    // если ошибка в слабом пароле, то в recommendations передаем ошибку, которая является массивом строк
+    if (result.main === "Your password isn't strong enough") {
+      result.recommendations = control.errors && control.errors['weakPasswordErrors'];
+    }
+
+    return result;
+  }
+
+  public showFormMessage(form: FormGroup, messages: MessageModel): string {
+    const error =
+      form.controls['confirmPassword'].dirty && form.errors && Object.keys(form.errors)[0];
+    let message = '';
+
+    // если есть ошибка, то ищем совпадение в messages и возвращаем нужное сообщение
+    if (error) {
+      message = messages[error] || 'Unknown error';
+    }
+
+    return message;
+  }
+}

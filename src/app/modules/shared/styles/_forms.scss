@@ -7,27 +7,47 @@
   margin: 0;
   background-color: colors.$secondary-color;
   transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @mixin auth-form {
+  max-width: 400px;
   width: 100%;
   padding: 0 20px;
-  transform: translate3d(0, 20px, 35px) perspective(100px);
+  transform: translate3d(0, 0, 30px) perspective(100px);
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
 }
 
-@mixin input {
+@mixin label {
   width: 100%;
   margin: 0 0 15px;
-  padding: 5px 5px 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin input {
+  width: 100%;
+  margin: 0;
+  padding: 8px;
   background-color: colors.$main-color;
   border: none;
   outline: none;
   box-sizing: border-box;
-  @include font.text(18px, 20px);
+  @include font.text(24px, 26px);
+  transition: 0.3s ease;
+
+  &.ng-dirty.ng-valid {
+    border-bottom: 2px solid colors.$valid;
+  }
+
+  &.ng-dirty.ng-invalid {
+    border-bottom: 2px solid colors.$invalid;
+  }
 
   &::placeholder {
     color: colors.$text-color;
@@ -38,15 +58,49 @@
   }
 }
 
+@mixin error-message {
+  margin: 5px 0 0 8px;
+  @include font.text(14px, 16px);
+  color: colors.$invalid;
+
+  &:empty {
+    margin: 0;
+  }
+}
+
+@mixin recommend-message {
+  margin: 10px 0 0;
+  @include font.text(14px, 14px);
+  color: colors.$invalid;
+  list-style-type: none;
+  position: relative;
+
+  // маркер списка
+  &::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background-color: colors.$invalid;
+    border-radius: 50%;
+    position: absolute;
+    top: calc(50% - 2px);
+    left: -10px;
+  }
+
+  &:first-of-type {
+    margin: 5px 0 0;
+  }
+}
+
 @mixin submit-button {
   width: auto;
   margin: 20px 0 0;
-  padding: 5px 20px;
+  padding: 8px 20px;
   box-sizing: border-box;
   border: 2px solid colors.$main-color;
   background-color: colors.$main-color;
 
-  @include font.text(20px, 20px);
+  @include font.text(24px, 26px);
   text-align: center;
   outline: none;
   cursor: pointer;

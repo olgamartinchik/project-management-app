@@ -9,8 +9,25 @@
   @include forms.auth-form;
 }
 
+.auth__label {
+  @include forms.label;
+}
+
 .auth__input {
   @include forms.input;
+}
+
+.auth__error-text {
+  @include forms.error-message;
+}
+
+.auth__recommend-list {
+  margin: 0;
+  padding: 0 0 0 20px;
+}
+
+.auth__recommend-item {
+  @include forms.recommend-message;
 }
 
 .auth__button {

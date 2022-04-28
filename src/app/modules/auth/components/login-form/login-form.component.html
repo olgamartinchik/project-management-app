@@ -1,6 +1,26 @@
-<form class="auth__form">
-  <input class="auth__input" type="text" placeholder="Login" />
-  <input class="auth__input" type="password" placeholder="Password" />
+<form class="auth__form" [formGroup]="loginForm" (submit)="submit()">
+  <label class="auth__label">
+    <input class="auth__input" formControlName="login" type="text" placeholder="Login" />
+    <p class="auth__error-text">
+      {{ errorService.showMessages(loginForm, 'login', messages.loginMessages) }}
+    </p>
+  </label>
 
-  <button class="auth__button" type="submit" disabled>Login</button>
+  <label class="auth__label">
+    <input class="auth__input" formControlName="password" type="password" placeholder="Password" />
+    <ng-container
+      *ngIf="
+        errorService.showPasswordErrors(loginForm, 'password', messages.passwordMessages) as error
+      "
+    >
+      <p class="auth__error-text">{{ error.main }}</p>
+      <ul class="auth__recommend-list">
+        <li class="auth__recommend-item" *ngFor="let recommend of error.recommendations">
+          {{ recommend }}
+        </li>
+      </ul>
+    </ng-container>
+  </label>
+
+  <button class="auth__button" type="submit" [disabled]="loginForm.invalid">Login</button>
 </form>

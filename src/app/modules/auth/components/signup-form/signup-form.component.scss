@@ -1,5 +1,4 @@
 @use '../../../shared/styles/colors';
-
 @use '../../../shared/styles/forms';
 
 :host {
@@ -14,8 +13,34 @@
   @include forms.auth-form;
 }
 
+.auth__label {
+  @include forms.label;
+}
+
 .auth__input {
   @include forms.input;
+}
+
+.auth__error-text {
+  @include forms.error-message;
+}
+
+.confirm-password.ng-dirty {
+  &.invalid {
+    border-bottom: 2px solid colors.$invalid;
+  }
+  &:not(.invalid) {
+    border-bottom: 2px solid colors.$valid;
+  }
+}
+
+.auth__recommend-list {
+  margin: 0;
+  padding: 0 0 0 20px;
+}
+
+.auth__recommend-item {
+  @include forms.recommend-message;
 }
 
 .auth__button {
