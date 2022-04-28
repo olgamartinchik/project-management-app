@@ -1,0 +1,47 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+
+.board,
+.board-title,
+.board-description {
+  transition: 0.4s ease-in-out;
+}
+.board {
+  position: relative;
+  flex-direction: column;
+  background-color: colors.$secondary-color;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: 0px 0px 4px 0px #777;
+
+  &:hover {
+    color: colors.$text-hover;
+    box-shadow: 0px 0px 7px 0px #777;
+    .board-title,
+    .board-description {
+      color: colors.$text-hover;
+    }
+  }
+}
+.board-title {
+  @include font.subtitle;
+}
+.board-description {
+  @include font.text;
+}
+.delete-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  @include font.text;
+  box-sizing: border-box;
+  opacity: 0.5;
+  padding: 5px;
+  width: 63px;
+  height: 30px;
+  text-align: center;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    opacity: 1;
+  }
+}
