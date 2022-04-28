@@ -34,13 +34,23 @@
       class="radio-language"
       type="radio"
       name="language"
-      id="ru"
       checked
-      (click)="switchLang()"
+      id="ru"
+      value="ru"
+      [(ngModel)]="lang"
+      (change)="switchLang()"
     />
     <label class="change-language" for="ru">RU</label>
 
-    <input class="radio-language" type="radio" name="language" id="en" (click)="switchLang()" />
+    <input
+      class="radio-language"
+      type="radio"
+      name="language"
+      id="en"
+      value="en"
+      [(ngModel)]="lang"
+      (change)="switchLang()"
+    />
     <label class="change-language" for="en">EN</label>
   </div>
 </header>
