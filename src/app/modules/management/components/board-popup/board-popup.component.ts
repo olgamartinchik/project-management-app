@@ -11,33 +11,30 @@ export class BoardPopupComponent {
   boardForm?: FormGroup;
 
   constructor(public boardService: BoardService, private fb: FormBuilder) {
-    this._createForm();
+    this.createForm();
   }
 
-  _createForm() {
+ private createForm() {
     this.boardForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
     });
   }
 
-  get _title() {
+ public get _title() {
     return this.boardForm?.get('title');
   }
 
-  closePopup() {
+ public closePopup() {
     this.boardService.isBoardPopup$.next(false);
+    this.boardForm?.reset();
   }
 
-  stopPropagation(event: Event) {
-    event.preventDefault();
+ public stopPropagation(event: Event) {
     event.stopPropagation();
   }
 
-  createBoard() {
-    console.log('click');
+ public createBoard() {
     this.boardService.isBoardPopup$.next(false);
-    this.boardService.isBoardPopup$.subscribe((val) => {
-      console.log('val', val);
-    });
+    this.boardForm?.reset();
   }
 }
