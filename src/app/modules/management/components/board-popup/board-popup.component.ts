@@ -14,26 +14,26 @@ export class BoardPopupComponent {
     this.createForm();
   }
 
- private createForm() {
+  private createForm() {
     this.boardForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
     });
   }
 
- public get _title() {
+  public get _title() {
     return this.boardForm?.get('title');
   }
 
- public closePopup() {
+  public closePopup() {
     this.boardService.isBoardPopup$.next(false);
     this.boardForm?.reset();
   }
 
- public stopPropagation(event: Event) {
+  public stopPropagation(event: Event) {
     event.stopPropagation();
   }
 
- public createBoard() {
+  public createBoard() {
     this.boardService.isBoardPopup$.next(false);
     this.boardForm?.reset();
   }

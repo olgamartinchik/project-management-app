@@ -7,13 +7,13 @@ import { TranslocoService } from '@ngneat/transloco';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
- public isNavOpen = false;
+  public isNavOpen = false;
 
- public lang: string='ru'
+  public lang: string = 'ru';
 
   constructor(private translocoService: TranslocoService) {}
 
- public switchLang() {
-      this.translocoService.setActiveLang(this.lang!);
+  public switchLang() {
+    this.translocoService.setActiveLang(this.lang!);
   }
 }

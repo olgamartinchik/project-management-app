@@ -12,8 +12,8 @@
     "deleteBtn": "удалить",
     "titleNewBoard": "Заголовок",
     "createBtn": "Создать",
-    "errorRequired":"Пожалуйста, введите заголовок",
-    "errorMinLength":"Заголовок слишком короткий",
-    "errorMaxLength":"Заголовок слишком длинный"
+    "errorRequired": "Пожалуйста, введите заголовок",
+    "errorMinLength": "Заголовок слишком короткий",
+    "errorMaxLength": "Заголовок слишком длинный"
   }
 }

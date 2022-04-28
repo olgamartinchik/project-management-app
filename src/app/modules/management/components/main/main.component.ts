@@ -9,7 +9,7 @@ import { BoardService } from '../../services/board.service';
 export class MainComponent {
   constructor(private boardService: BoardService) {}
 
-public  openPopup() {
+  public openPopup() {
     this.boardService.isBoardPopup$.next(true);
   }
 }

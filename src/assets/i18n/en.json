@@ -12,8 +12,8 @@
     "deleteBtn": "delete",
     "titleNewBoard": "Title",
     "createBtn": "Create",
-    "errorRequired":"Please enter a title",
-    "errorMinLength":"The title is too short",
-    "errorMaxLength":"The title is too long"
+    "errorRequired": "Please enter a title",
+    "errorMinLength": "The title is too short",
+    "errorMaxLength": "The title is too long"
   }
 }

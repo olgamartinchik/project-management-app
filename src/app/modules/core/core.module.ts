@@ -11,6 +11,6 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
   exports: [HeaderComponent, FooterComponent],
-  imports: [CommonModule, HttpClientModule, RouterModule, TranslocoRootModule, FormsModule ],
+  imports: [CommonModule, HttpClientModule, RouterModule, TranslocoRootModule, FormsModule],
 })
 export class CoreModule {}
