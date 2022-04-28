@@ -40,6 +40,7 @@
   flex-direction: column;
   gap: 20px;
   width: 90%;
+  height: 120px;
 }
 .title {
   @include font.subtitle;
@@ -67,4 +68,7 @@
     color: colors.$main-color;
     box-shadow: 0 0 40px 40px colors.$text-hover inset;
   }
+}
+.validate {
+  color: colors.$accent-color;
 }

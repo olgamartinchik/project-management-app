@@ -12,9 +12,16 @@
   >
     <div class="title-container">
       <label for="title-board" class="title">{{ 'mainPage.titleNewBoard' | transloco }}</label>
-      <input type="text" class="input" id="title-board" />
-    </div>
+      <input type="text" class="input" id="title-board" formControlName="title" required />
 
+      <div class="validate" *ngIf="_title?.invalid && (_title?.touched || _title?.dirty)">
+        <small *ngIf="_title?.errors?.['required']">Please enter a title</small>
+
+        <small *ngIf="_title?.errors?.['minlength']">The title is too short</small>
+
+        <small *ngIf="_title?.errors?.['maxlength']">The title is too long</small>
+      </div>
+    </div>
     <button type="submit" class="button" [disabled]="boardForm!.invalid">
       {{ 'mainPage.createBtn' | transloco }}
     </button>

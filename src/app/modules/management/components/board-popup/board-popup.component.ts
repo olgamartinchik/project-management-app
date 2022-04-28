@@ -16,7 +16,7 @@ export class BoardPopupComponent {
 
   _createForm() {
     this.boardForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
+      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
     });
   }
 
@@ -34,6 +34,10 @@ export class BoardPopupComponent {
   }
 
   createBoard() {
+    console.log('click');
     this.boardService.isBoardPopup$.next(false);
+    this.boardService.isBoardPopup$.subscribe((val) => {
+      console.log('val', val);
+    });
   }
 }
