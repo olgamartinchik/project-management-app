@@ -4,7 +4,6 @@ export interface FormMessagesModel {
   nameMessages: MessageModel;
   loginMessages: MessageModel;
   passwordMessages: MessageModel;
-  formMessages: MessageModel;
 }
 
 export const SIGNUP_MESSAGES: FormMessagesModel = {
@@ -24,8 +23,5 @@ export const SIGNUP_MESSAGES: FormMessagesModel = {
     required: 'Please enter a password',
     pattern: 'Use only latin letters, numbers and special characters',
     weakPasswordErrors: "Your password isn't strong enough",
-  },
-  formMessages: {
-    passwordMatch: "Passwords don't match",
   },
 };

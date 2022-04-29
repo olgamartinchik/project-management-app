@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { take } from 'rxjs';
 
 import { ValidationService } from '../../../core/services/validation/validation.service';
 import { CORRECT_CHAR } from '../../../core/services/validation/validate.service.constants';
 import { ErrorMessagesService } from '../../../core/services/error-messages/error-messages.service';
 import { FormMessagesModel, LOGIN_MESSAGES } from './login-form.components.messages';
+
+import { ApiService } from '../../../core/services/api/api.service';
+import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -18,7 +23,10 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private api: ApiService,
+    private authService: AuthService,
     private validation: ValidationService,
+    private router: Router,
     public errorService: ErrorMessagesService,
   ) {}
 
@@ -45,6 +53,17 @@ export class LoginFormComponent implements OnInit {
   }
 
   public submit(): void {
-    console.log(this.loginForm.value);
+    this.api
+      .login(this.loginForm.value)
+      .pipe(take(1))
+      .subscribe({
+        next: (res) => {
+          this.authService.saveToken(res.token);
+          this.router.navigate(['/main'], { replaceUrl: true });
+        },
+        error: (err) => {
+          this.loginForm.setErrors({ formError: err.error.message }, { emitEvent: true });
+        },
+      });
   }
 }

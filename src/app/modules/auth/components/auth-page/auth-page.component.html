@@ -1,9 +1,12 @@
 <div class="auth">
-  <label for="form-change">Смена формы</label>
-  <input class="checkbox" type="checkbox" id="form-change" />
+  <input class="auth__checkbox" id="authCheckbox" type="checkbox" (change)="changeForm()" />
+  <label class="auth__label" for="authCheckbox">
+    <p class="auth__text-label">Вход</p>
+    <p class="auth__text-label">Регистрация</p>
+  </label>
 
-  <div class="auth__3d-wrapper">
-    <app-login-form></app-login-form>
-    <app-signup-form></app-signup-form>
+  <div [class]="{ 'auth__3d-wrapper': true, active: !isLoginForm }">
+    <app-login-form #loginForm></app-login-form>
+    <app-signup-form #signupForm (submitingForm)="changeForm()"></app-signup-form>
   </div>
 </div>

@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { take } from 'rxjs';
 
 import { ValidationService } from '../../../core/services/validation/validation.service';
 import { CORRECT_CHAR } from '../../../core/services/validation/validate.service.constants';
 import { ErrorMessagesService } from '../../../core/services/error-messages/error-messages.service';
 import { FormMessagesModel, SIGNUP_MESSAGES } from './signup-form.components.messages';
+
+import { ApiService } from '../../../core/services/api/api.service';
 
 @Component({
   selector: 'app-signup-form',
@@ -12,12 +15,15 @@ import { FormMessagesModel, SIGNUP_MESSAGES } from './signup-form.components.mes
   styleUrls: ['./signup-form.component.scss'],
 })
 export class SignupFormComponent implements OnInit {
+  @Output() submitingForm = new EventEmitter<void>();
+
   signupForm!: FormGroup;
 
   public messages: FormMessagesModel = SIGNUP_MESSAGES;
 
   constructor(
     private fb: FormBuilder,
+    private api: ApiService,
     private validation: ValidationService,
     public errorService: ErrorMessagesService,
   ) {}
@@ -58,6 +64,22 @@ export class SignupFormComponent implements OnInit {
   }
 
   public submit(): void {
-    console.log(this.signupForm.value);
+    const data = {
+      name: this.signupForm.controls['name'].value,
+      login: this.signupForm.controls['login'].value,
+      password: this.signupForm.controls['password'].value,
+    };
+
+    this.api
+      .singup(data)
+      .pipe(take(1))
+      .subscribe({
+        next: () => {
+          this.submitingForm.emit();
+        },
+        error: (err) => {
+          this.signupForm.setErrors({ formError: err.error.message }, { emitEvent: true });
+        },
+      });
   }
 }

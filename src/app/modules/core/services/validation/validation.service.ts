@@ -8,6 +8,8 @@ export class ValidationService {
   public validatePasswordStrong({ value }: AbstractControl): ValidationErrors | null {
     const errors: string[] = [];
 
+    if (value === null) return null;
+
     // проверяем value по каждому параметру
     // при наличии ошибки, добавляем ее в массив
     if (!(value.length >= 8 && value.length <= 20)) {

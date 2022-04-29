@@ -22,5 +22,9 @@
     </ng-container>
   </label>
 
+  <p class="auth__error-text auth__error-text_place_form">
+    {{ loginForm.errors && loginForm.errors['formError'] }}
+  </p>
+
   <button class="auth__button" type="submit" [disabled]="loginForm.invalid">Login</button>
 </form>

@@ -41,9 +41,13 @@
       placeholder="Confirm password"
     />
     <p class="auth__error-text">
-      {{ errorService.showFormMessage(signupForm, messages.formMessages) }}
+      {{ errorService.showPasswordMatchMessage(signupForm) }}
     </p>
   </label>
+
+  <p class="auth__error-text auth__error-text_place_form">
+    {{ signupForm.errors && signupForm.errors['formError'] }}
+  </p>
 
   <button class="auth__button" type="submit" [disabled]="signupForm.invalid">Sign up</button>
 </form>

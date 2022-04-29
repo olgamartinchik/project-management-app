@@ -21,6 +21,12 @@
   @include forms.error-message;
 }
 
+.auth__error-text_place_form {
+  margin: 0;
+  font-size: 20px;
+  line-height: 25px;
+}
+
 .auth__recommend-list {
   margin: 0;
   padding: 0 0 0 20px;

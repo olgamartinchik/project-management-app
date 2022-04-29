@@ -37,16 +37,11 @@ export class ErrorMessagesService {
     return result;
   }
 
-  public showFormMessage(form: FormGroup, messages: MessageModel): string {
-    const error =
-      form.controls['confirmPassword'].dirty && form.errors && Object.keys(form.errors)[0];
-    let message = '';
-
-    // если есть ошибка, то ищем совпадение в messages и возвращаем нужное сообщение
-    if (error) {
-      message = messages[error] || 'Unknown error';
+  public showPasswordMatchMessage(form: FormGroup): string {
+    if (form.controls['confirmPassword'].dirty && form.errors && form.errors['passwordMatch']) {
+      return "Passwords don't match";
     }
 
-    return message;
+    return '';
   }
 }
