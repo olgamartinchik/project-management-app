@@ -4,7 +4,8 @@
     "startPage": "Start page",
     "workingBoard": "Working board",
     "enter": "sign in/login",
-    "search": "Search"
+    "search": "Search",
+    "createBoard": "Create board"
   },
   "mainPage": {
     "h1": "Your work board",
@@ -15,5 +16,9 @@
     "errorRequired": "Please enter a title",
     "errorMinLength": "The title is too short",
     "errorMaxLength": "The title is too long"
+  },
+  "ConfirmPopup": {
+    "title": "Are you sure?",
+    "button": "Delete"
   }
 }

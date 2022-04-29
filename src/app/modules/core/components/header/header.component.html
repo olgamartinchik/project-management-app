@@ -28,7 +28,7 @@
     (click)="isNavOpen = !isNavOpen"
     type="button"
   ></button>
-
+  <div class="new-board" (click)="openPopupCreateBoard()">{{ 'nav.createBoard' | transloco }}</div>
   <div class="settings-language">
     <input
       class="radio-language"
@@ -53,4 +53,6 @@
     />
     <label class="change-language" for="en">EN</label>
   </div>
+  <app-board-popup></app-board-popup>
+  <app-confirm-popup></app-confirm-popup>
 </header>

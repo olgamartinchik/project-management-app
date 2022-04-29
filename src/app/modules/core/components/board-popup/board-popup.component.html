@@ -11,16 +11,8 @@
     (ngSubmit)="createBoard()"
   >
     <div class="title-container">
-      <label for="title-board" class="title">{{
-        'mainPage.titleNewBoard' | transloco
-      }}</label>
-      <input
-        type="text"
-        class="input"
-        id="title-board"
-        formControlName="title"
-        required
-      />
+      <label for="title-board" class="title">{{ 'mainPage.titleNewBoard' | transloco }}</label>
+      <input type="text" class="input" id="title-board" formControlName="title" required />
 
       <div
         class="validate"

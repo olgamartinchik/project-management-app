@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map, take } from 'rxjs';
 
-import { BoardService } from '../../services/board.service';
-import { HttpBoardsService } from '../../services/http-boards.service';
+import { BoardService } from '../../services/boards/board.service';
+import { HttpBoardsService } from '../../services/boards/http-boards.service';
 
 @Component({
   selector: 'app-board-popup',
@@ -42,7 +42,6 @@ export class BoardPopupComponent {
 
   public createBoard() {
     this.boardService.isBoardPopup$.next(false);
-    // console.log('title', this.boardForm?.value.title);
     this.httpBoardsService
       .postBoard({ title: this.boardForm?.value.title })
       .pipe(

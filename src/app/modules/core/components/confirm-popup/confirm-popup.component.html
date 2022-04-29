@@ -1,0 +1,10 @@
+<div
+  class="overlay"
+  [class]="{ visible: (confirmService.isConfirmPopup$ | async) }"
+  (click)="closeConfirmPopup()"
+>
+  <div class="confirm-container" (click)="stopPropagation($event)">
+    <h4 class="title">{{ 'ConfirmPopup.title' | transloco }}</h4>
+    <button class="button" (click)="deleteItem()">{{ 'ConfirmPopup.button' | transloco }}</button>
+  </div>
+</div>

@@ -42,6 +42,7 @@
   text-align: center;
   transition: 0.3s ease-in-out;
   &:hover {
+    text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
     opacity: 1;
   }
 }

@@ -9,24 +9,21 @@
   font-family: 'Old Standard';
   font-weight: 400;
   font-style: normal;
-  src: url(../../../assets/fonts/OldStandard/OldStandardRegular.woff)
-    format('woff');
+  src: url(../../../assets/fonts/OldStandard/OldStandardRegular.woff) format('woff');
 }
 
 @font-face {
   font-family: 'Old Standard';
   font-weight: 400;
   font-style: italic;
-  src: url(../../../assets/fonts/OldStandard/OldStandardItalic.woff)
-    format('woff');
+  src: url(../../../assets/fonts/OldStandard/OldStandardItalic.woff) format('woff');
 }
 
 @font-face {
   font-family: 'Old Standard';
   font-weight: bold;
   font-style: normal;
-  src: url(../../../assets/fonts/OldStandard/OldStandardBold.woff)
-    format('woff');
+  src: url(../../../assets/fonts/OldStandard/OldStandardBold.woff) format('woff');
 }
 .board {
   display: flex;

@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { IBoard } from '../../model/board.model';
-import { BoardService } from '../../services/board.service';
-import { HttpBoardsService } from '../../services/http-boards.service';
+import { BoardService } from '../../../core/services/boards/board.service';
+import { HttpBoardsService } from '../../../core/services/boards/http-boards.service';
 
 @Component({
   selector: 'app-main',
@@ -14,7 +14,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   private unsubscribe$: Subject<void> = new Subject<void>();
 
-  constructor(private boardService: BoardService, public httpBoardsService: HttpBoardsService) {}
+  constructor(public boardService: BoardService, public httpBoardsService: HttpBoardsService) {}
 
   ngOnInit() {
     this.boardService.updateBoards();

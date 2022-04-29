@@ -6,13 +6,22 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { TranslocoRootModule } from '../transloco/transloco-root.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { INTERCEPTOR_PROVIDERS } from './interсeptors/providers';
+import { BoardPopupComponent } from './components/board-popup/board-popup.component';
+import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent],
+  declarations: [HeaderComponent, FooterComponent, BoardPopupComponent, ConfirmPopupComponent],
   exports: [HeaderComponent, FooterComponent],
-  imports: [CommonModule, HttpClientModule, RouterModule, TranslocoRootModule, FormsModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    RouterModule,
+    TranslocoRootModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [INTERCEPTOR_PROVIDERS],
 })
 export class CoreModule {}

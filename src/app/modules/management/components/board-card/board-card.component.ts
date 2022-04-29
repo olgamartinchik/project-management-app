@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { map, take } from 'rxjs';
 import { IBoard } from '../../model/board.model';
-import { BoardService } from '../../services/board.service';
-import { HttpBoardsService } from '../../services/http-boards.service';
+import { BoardService } from '../../../core/services/boards/board.service';
+import { HttpBoardsService } from '../../../core/services/boards/http-boards.service';
+import { ConfirmService } from 'src/app/modules/core/services/conform-popup/confirm.service';
 
 @Component({
   selector: 'app-board-card',
@@ -12,17 +12,13 @@ import { HttpBoardsService } from '../../services/http-boards.service';
 export class BoardCardComponent {
   @Input() boardData?: IBoard;
 
-  constructor(private httpBoardsService: HttpBoardsService, private boardService: BoardService) {}
+  constructor(
+    private httpBoardsService: HttpBoardsService,
+    public boardService: BoardService,
+    private confirmService: ConfirmService,
+  ) {}
 
-  deleteBoard() {
-    this.httpBoardsService
-      .deleteBoard(this.boardData!.id!)
-      .pipe(
-        take(1),
-        map(() => {
-          this.boardService.updateBoards();
-        }),
-      )
-      .subscribe();
+  public deleteBoard(): void {
+    this.confirmService.isConfirmPopup$.next(true);
   }
 }

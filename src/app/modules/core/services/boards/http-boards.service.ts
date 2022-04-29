@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IBoard } from '../model/board.model';
+import { IBoard } from '../../../../modules/management/model/board.model';
 
 @Injectable({
   providedIn: 'root',

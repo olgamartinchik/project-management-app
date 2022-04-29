@@ -4,7 +4,8 @@
     "startPage": "Стартовая",
     "workingBoard": "Рабочая доска",
     "enter": "Вход/Регистрация",
-    "search": "Поиск"
+    "search": "Поиск",
+    "createBoard": "Новая доска"
   },
   "mainPage": {
     "h1": "Ваши рабочие доски",
@@ -15,5 +16,9 @@
     "errorRequired": "Пожалуйста, введите заголовок",
     "errorMinLength": "Заголовок слишком короткий",
     "errorMaxLength": "Заголовок слишком длинный"
+  },
+  "ConfirmPopup": {
+    "title": "Вы уверенны?",
+    "button": "Удалить"
   }
 }
