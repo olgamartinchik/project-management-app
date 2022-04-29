@@ -12,13 +12,7 @@ import { INTERCEPTOR_PROVIDERS } from './interсeptors/providers';
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
   exports: [HeaderComponent, FooterComponent],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    RouterModule,
-    TranslocoRootModule,
-    FormsModule,
-  ],
+  imports: [CommonModule, HttpClientModule, RouterModule, TranslocoRootModule, FormsModule],
   providers: [INTERCEPTOR_PROVIDERS],
 })
 export class CoreModule {}

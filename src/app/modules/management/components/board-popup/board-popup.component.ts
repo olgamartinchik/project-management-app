@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { map, take } from 'rxjs';
 
 import { BoardService } from '../../services/board.service';
 import { HttpBoardsService } from '../../services/http-boards.service';
@@ -22,14 +23,7 @@ export class BoardPopupComponent {
 
   private createForm() {
     this.boardForm = this.fb.group({
-      title: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(100),
-        ],
-      ],
+      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
     });
   }
 
@@ -48,15 +42,17 @@ export class BoardPopupComponent {
 
   public createBoard() {
     this.boardService.isBoardPopup$.next(false);
-    console.log('title', this.boardForm?.value.title);
+    // console.log('title', this.boardForm?.value.title);
     this.httpBoardsService
-      .postBoard(this.boardForm?.value.title)
-      .subscribe((value) => {
-        console.log('value-post', value);
-      });
-    this.httpBoardsService.getBoards().subscribe((value) => {
-      console.log('value-get', value);
-    });
+      .postBoard({ title: this.boardForm?.value.title })
+      .pipe(
+        take(1),
+        map(() => {
+          this.boardService.updateBoards();
+        }),
+      )
+      .subscribe();
+
     this.boardForm?.reset();
   }
 }

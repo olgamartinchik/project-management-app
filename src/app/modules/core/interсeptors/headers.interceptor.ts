@@ -11,19 +11,15 @@ import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable()
 export class HeadersInterceptor implements HttpInterceptor {
-  intercept(
-    request: HttpRequest<unknown>,
-    next: HttpHandler,
-  ): Observable<HttpEvent<unknown>> {
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next
       .handle(
         request.clone({
-          // url:environment.apiUrl + request.url,
           headers: new HttpHeaders({
             Accept: 'application/json',
-            'Content-Type': 'application/json',
+            // 'Content-Type': '',
             Authorization:
-              `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjA1M2MxY2U2ZDA0MTFlMzVhYWNmMTEiLCJpYXQiOjE2NDQ3ODA5NzcsImV4cCI6MTY0NDc4NDU3N30.v-LkMsnZ1onaIqCLdnz-cLt3AFDahpVdMCmwCO1AfWc'}` ||
+              `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhNTZjNDJjOS1iODU5LTQ4MDQtOWQ1Mi01OTJmZWRiY2MwYjIiLCJsb2dpbiI6ImthdGVAZ21haWwiLCJpYXQiOjE2NTEyNDM1Nzh9.yNFvOJxmjkXBwmV5VlJVv6FZWcJ3a8bQk4bmRtGJ_Qw'}` ||
               '',
           }),
         }),
@@ -35,3 +31,5 @@ export class HeadersInterceptor implements HttpInterceptor {
       );
   }
 }
+
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhOWYyNDhiZi1iZjljLTQwYzAtYjI0MC1lMTY5MDU4N2I1NTciLCJsb2dpbiI6Im9seWFAbWFpbCIsImlhdCI6MTY1MTI0NDcyOH0.zkfjgaeIPyaXRBSGk2HinmWMW2Oj0X0iP6G_bsToD4o

@@ -9,18 +9,8 @@ import { BoardPopupComponent } from './components/board-popup/board-popup.compon
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    MainComponent,
-    MainPageComponent,
-    BoardCardComponent,
-    BoardPopupComponent,
-  ],
+  declarations: [MainComponent, MainPageComponent, BoardCardComponent, BoardPopupComponent],
   exports: [MainComponent],
-  imports: [
-    CommonModule,
-    ManagementRoutingModule,
-    TranslocoRootModule,
-    ReactiveFormsModule,
-  ],
+  imports: [CommonModule, ManagementRoutingModule, TranslocoRootModule, ReactiveFormsModule],
 })
 export class ManagementModule {}
