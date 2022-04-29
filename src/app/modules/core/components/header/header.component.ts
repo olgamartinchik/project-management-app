@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  isNavOpen = false;
+  public isNavOpen: boolean = false;
+
+  public disabled: boolean = true;
 }

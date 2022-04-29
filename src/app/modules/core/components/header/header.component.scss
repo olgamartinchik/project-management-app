@@ -48,6 +48,14 @@
   &.active {
     color: colors.$text-link-active;
   }
+
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
+    color: colors.$text-disabled;
+ }
+
+
 }
 
 .nav-burger-button {
