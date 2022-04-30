@@ -35,6 +35,7 @@
   top: 0;
   @include font.text;
   box-sizing: border-box;
+
   opacity: 0.5;
   padding: 5px;
   width: 63px;
@@ -42,6 +43,7 @@
   text-align: center;
   transition: 0.3s ease-in-out;
   &:hover {
+    color: colors.$accent-color;
     text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
     opacity: 1;
   }
