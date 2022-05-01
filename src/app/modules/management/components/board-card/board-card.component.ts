@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { IBoard } from '../../model/board.model';
 import { BoardService } from '../../../core/services/board.service';
 
@@ -8,6 +8,7 @@ import { ConfirmService } from 'src/app/modules/core/services/confirm.service';
   selector: 'app-board-card',
   templateUrl: './board-card.component.html',
   styleUrls: ['./board-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoardCardComponent {
   @Input() boardData?: IBoard;
@@ -17,7 +18,6 @@ export class BoardCardComponent {
   public deleteBoard(event: Event): void {
     event.preventDefault();
     event.stopPropagation();
-    console.log('boardData', this.boardData);
     this.confirmService.isConfirmPopup$.next(true);
   }
 }

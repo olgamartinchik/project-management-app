@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { IBoard } from '../../model/board.model';
 import { BoardService } from '../../../core/services/board.service';
@@ -8,6 +8,7 @@ import { HttpBoardsService } from '../../../core/services/http-boards.service';
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponent implements OnInit {
   public boards: IBoard[] = [];
