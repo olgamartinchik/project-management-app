@@ -14,7 +14,10 @@ export class BoardCardComponent {
 
   constructor(public boardService: BoardService, private confirmService: ConfirmService) {}
 
-  public deleteBoard(): void {
+  public deleteBoard(event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log('boardData', this.boardData);
     this.confirmService.isConfirmPopup$.next(true);
   }
 }
