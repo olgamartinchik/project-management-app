@@ -1,1 +1,2 @@
-export const URL = 'http://localhost:4200/api' || 'https://angular-management-app.netlify.app/api';
+export const URL = 'https://angular-management-app.netlify.app/api';
+// 'http://localhost:4200/api' ||
