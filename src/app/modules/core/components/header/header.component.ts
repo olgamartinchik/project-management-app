@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
-import { BoardService } from 'src/app/modules/core/services/boards/board.service';
+import { BoardService } from 'src/app/modules/core/services/board.service';
 
 @Component({
   selector: 'app-header',

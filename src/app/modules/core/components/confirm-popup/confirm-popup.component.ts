@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { map, take } from 'rxjs';
-import { BoardService } from '../../services/boards/board.service';
-import { HttpBoardsService } from '../../services/boards/http-boards.service';
-import { ConfirmService } from '../../services/conform-popup/confirm.service';
+import { BoardService } from '../../services/board.service';
+import { HttpBoardsService } from '../../services/http-boards.service';
+import { ConfirmService } from '../../services/confirm.service';
 
 @Component({
   selector: 'app-confirm-popup',
@@ -16,15 +16,15 @@ export class ConfirmPopupComponent {
     private httpBoardsService: HttpBoardsService,
   ) {}
 
-  closeConfirmPopup() {
+  public closeConfirmPopup(): void {
     this.confirmService.isConfirmPopup$.next(false);
   }
 
-  public stopPropagation(event: Event) {
+  public stopPropagation(event: Event): void {
     event.stopPropagation();
   }
 
-  deleteItem() {
+  public deleteItem(): void {
     this.boardService.board$.pipe(take(1)).subscribe((board) => {
       this.httpBoardsService
         .deleteBoard(board.id!)

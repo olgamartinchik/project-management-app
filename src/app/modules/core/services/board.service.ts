@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, take } from 'rxjs';
-import { IBoard } from '../../../management/model/board.model';
+import { IBoard } from '../../management/model/board.model';
 import { HttpBoardsService } from './http-boards.service';
 
 @Injectable({
@@ -15,12 +15,12 @@ export class BoardService {
 
   constructor(private httpBoardsService: HttpBoardsService) {}
 
-  updateBoards() {
+  public updateBoards(): void {
     this.httpBoardsService
       .getBoards()
       .pipe(take(1))
       .subscribe((boards) => {
-        this.allBoards$.next(boards);
+        this.allBoards$.next(boards as IBoard[]);
       });
   }
 }

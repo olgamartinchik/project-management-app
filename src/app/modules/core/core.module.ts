@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { INTERCEPTOR_PROVIDERS } from './interсeptors/providers';
 import { BoardPopupComponent } from './components/board-popup/board-popup.component';
 import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.component';
+import { HttpBoardsService } from './services/http-boards.service';
+import { ConfirmService } from './services/confirm.service';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, BoardPopupComponent, ConfirmPopupComponent],
@@ -22,6 +24,6 @@ import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [INTERCEPTOR_PROVIDERS],
+  providers: [INTERCEPTOR_PROVIDERS, HttpBoardsService, ConfirmService],
 })
 export class CoreModule {}

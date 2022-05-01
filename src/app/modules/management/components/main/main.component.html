@@ -3,7 +3,7 @@
     <h1 class="title">{{ 'mainPage.h1' | transloco }}</h1>
     <div class="boards">
       <app-board-card
-        *ngFor="let board of boards"
+        *ngFor="let board of boardService.allBoards$ | async"
         [boardData]="boardService.board$.next(board)!"
       ></app-board-card>
 

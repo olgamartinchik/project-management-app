@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map, take } from 'rxjs';
 
-import { BoardService } from '../../services/boards/board.service';
-import { HttpBoardsService } from '../../services/boards/http-boards.service';
+import { BoardService } from '../../services/board.service';
+import { HttpBoardsService } from '../../services/http-boards.service';
 
 @Component({
   selector: 'app-board-popup',
@@ -11,7 +11,7 @@ import { HttpBoardsService } from '../../services/boards/http-boards.service';
   styleUrls: ['./board-popup.component.scss'],
 })
 export class BoardPopupComponent {
-  boardForm?: FormGroup;
+  public boardForm?: FormGroup;
 
   constructor(
     public boardService: BoardService,
@@ -21,7 +21,7 @@ export class BoardPopupComponent {
     this.createForm();
   }
 
-  private createForm() {
+  private createForm(): void {
     this.boardForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
     });
@@ -31,16 +31,16 @@ export class BoardPopupComponent {
     return this.boardForm?.get('title');
   }
 
-  public closePopup() {
+  public closePopup(): void {
     this.boardService.isBoardPopup$.next(false);
     this.boardForm?.reset();
   }
 
-  public stopPropagation(event: Event) {
+  public stopPropagation(event: Event): void {
     event.stopPropagation();
   }
 
-  public createBoard() {
+  public createBoard(): void {
     this.boardService.isBoardPopup$.next(false);
     this.httpBoardsService
       .postBoard({ title: this.boardForm?.value.title })
