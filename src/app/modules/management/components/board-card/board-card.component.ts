@@ -14,8 +14,6 @@ import { ToggleScrollService } from 'src/app/modules/core/services/toggle-scroll
 export class BoardCardComponent {
   @Input() boardData?: IBoard;
 
-  @Input() index?: number;
-
   constructor(
     public boardService: BoardService,
     private confirmService: ConfirmService,
