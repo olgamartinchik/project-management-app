@@ -3,6 +3,7 @@ import { map, take } from 'rxjs';
 import { BoardService } from '../../services/board.service';
 import { HttpBoardsService } from '../../services/http-boards.service';
 import { ConfirmService } from '../../services/confirm.service';
+import { ToggleScrollService } from '../../services/toggle-scroll.service';
 
 @Component({
   selector: 'app-confirm-popup',
@@ -15,10 +16,12 @@ export class ConfirmPopupComponent {
     public boardService: BoardService,
     public confirmService: ConfirmService,
     private httpBoardsService: HttpBoardsService,
+    private toggleScrollService: ToggleScrollService,
   ) {}
 
   public closeConfirmPopup(): void {
     this.confirmService.isConfirmPopup$.next(false);
+    this.toggleScrollService.showScroll();
   }
 
   public stopPropagation(event: Event): void {
@@ -42,5 +45,6 @@ export class ConfirmPopupComponent {
     });
 
     this.confirmService.isConfirmPopup$.next(false);
+    this.toggleScrollService.showScroll();
   }
 }

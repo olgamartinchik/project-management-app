@@ -3,6 +3,7 @@
     <span class="delete-btn" (click)="deleteBoard($event)">{{
       'mainPage.deleteBtn' | transloco
     }}</span>
-    <h4 class="board-title">{{ (boardService.board$ | async)?.title }}</h4>
+    <h4 class="board-title">{{ index }}. {{ (boardService.board$ | async)?.title }}</h4>
+    <p>description</p>
   </div>
 </a>

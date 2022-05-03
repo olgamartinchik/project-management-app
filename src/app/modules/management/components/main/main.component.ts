@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+
 import { IBoard } from '../../model/board.model';
 import { BoardService } from '../../../core/services/board.service';
 import { HttpBoardsService } from '../../../core/services/http-boards.service';
+import { ToggleScrollService } from 'src/app/modules/core/services/toggle-scroll.service';
 
 @Component({
   selector: 'app-main',
@@ -13,15 +14,18 @@ import { HttpBoardsService } from '../../../core/services/http-boards.service';
 export class MainComponent implements OnInit {
   public boards: IBoard[] = [];
 
-  private unsubscribe$: Subject<void> = new Subject<void>();
-
-  constructor(public boardService: BoardService, public httpBoardsService: HttpBoardsService) {}
+  constructor(
+    public boardService: BoardService,
+    public httpBoardsService: HttpBoardsService,
+    private toggleScrollService: ToggleScrollService,
+  ) {}
 
   ngOnInit() {
     this.boardService.updateBoards();
   }
 
-  public openPopup(): void {
+  public openPopupNewBoard(): void {
     this.boardService.isBoardPopup$.next(true);
+    this.toggleScrollService.hiddenScroll();
   }
 }

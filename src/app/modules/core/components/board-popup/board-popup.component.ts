@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map, take } from 'rxjs';
 
 import { BoardService } from '../../services/board.service';
+import { ToggleScrollService } from '../../services/toggle-scroll.service';
 import { HttpBoardsService } from '../../services/http-boards.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class BoardPopupComponent {
     public boardService: BoardService,
     private fb: FormBuilder,
     private httpBoardsService: HttpBoardsService,
+    private toggleScrollService: ToggleScrollService,
   ) {
     this.createForm();
   }
@@ -33,6 +35,7 @@ export class BoardPopupComponent {
 
   public closePopup(): void {
     this.boardService.isBoardPopup$.next(false);
+    this.toggleScrollService.showScroll();
     this.boardForm?.reset();
   }
 
@@ -51,7 +54,7 @@ export class BoardPopupComponent {
         }),
       )
       .subscribe();
-
+    this.toggleScrollService.showScroll();
     this.boardForm?.reset();
   }
 }

@@ -3,11 +3,12 @@
     <h1 class="title">{{ 'mainPage.h1' | transloco }}</h1>
     <div class="boards">
       <app-board-card
-        *ngFor="let board of boardService.allBoards$ | async"
+        *ngFor="let board of boardService.allBoards$ | async; let ind = index"
         [boardData]="boardService.board$.next(board)! || board"
+        [index]="ind + 1"
       ></app-board-card>
 
-      <div class="board new-board" (click)="openPopup()">
+      <div class="board new-board" (click)="openPopupNewBoard()">
         {{ 'mainPage.newBoard' | transloco }}
       </div>
     </div>

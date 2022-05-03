@@ -12,6 +12,7 @@ import { BoardPopupComponent } from './components/board-popup/board-popup.compon
 import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.component';
 import { HttpBoardsService } from './services/http-boards.service';
 import { ConfirmService } from './services/confirm.service';
+import { ToggleScrollService } from './services/toggle-scroll.service';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, BoardPopupComponent, ConfirmPopupComponent],
@@ -24,6 +25,6 @@ import { ConfirmService } from './services/confirm.service';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [INTERCEPTOR_PROVIDERS, HttpBoardsService, ConfirmService],
+  providers: [INTERCEPTOR_PROVIDERS, HttpBoardsService, ConfirmService, ToggleScrollService],
 })
 export class CoreModule {}

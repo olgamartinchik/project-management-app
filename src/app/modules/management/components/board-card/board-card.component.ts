@@ -3,6 +3,7 @@ import { IBoard } from '../../model/board.model';
 import { BoardService } from '../../../core/services/board.service';
 
 import { ConfirmService } from 'src/app/modules/core/services/confirm.service';
+import { ToggleScrollService } from 'src/app/modules/core/services/toggle-scroll.service';
 
 @Component({
   selector: 'app-board-card',
@@ -13,11 +14,18 @@ import { ConfirmService } from 'src/app/modules/core/services/confirm.service';
 export class BoardCardComponent {
   @Input() boardData?: IBoard;
 
-  constructor(public boardService: BoardService, private confirmService: ConfirmService) {}
+  @Input() index?: number;
+
+  constructor(
+    public boardService: BoardService,
+    private confirmService: ConfirmService,
+    private toggleScrollService: ToggleScrollService,
+  ) {}
 
   public deleteBoard(event: Event): void {
     event.preventDefault();
     event.stopPropagation();
     this.confirmService.isConfirmPopup$.next(true);
+    this.toggleScrollService.hiddenScroll();
   }
 }
