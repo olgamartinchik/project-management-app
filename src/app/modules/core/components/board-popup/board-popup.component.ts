@@ -4,7 +4,7 @@ import { map, take } from 'rxjs';
 
 import { BoardService } from '../../services/board.service';
 import { ToggleScrollService } from '../../services/toggle-scroll.service';
-import { HttpBoardsService } from '../../services/http-boards.service';
+import { HttpService } from '../../services/http.service';
 
 @Component({
   selector: 'app-board-popup',
@@ -17,7 +17,7 @@ export class BoardPopupComponent {
   constructor(
     public boardService: BoardService,
     private fb: FormBuilder,
-    private httpBoardsService: HttpBoardsService,
+    private httpService: HttpService,
     private toggleScrollService: ToggleScrollService,
   ) {
     this.createForm();
@@ -45,7 +45,7 @@ export class BoardPopupComponent {
 
   public createBoard(): void {
     this.boardService.isBoardPopup$.next(false);
-    this.httpBoardsService
+    this.httpService
       .postBoard({ title: this.boardForm?.value.title })
       .pipe(
         take(1),

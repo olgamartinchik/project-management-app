@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, take } from 'rxjs';
 import { IBoard } from '../../management/model/board.model';
-import { HttpBoardsService } from './http-boards.service';
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +13,10 @@ export class BoardService {
 
   public board$ = new BehaviorSubject<IBoard>({ id: '', title: '' });
 
-  constructor(private httpBoardsService: HttpBoardsService) {}
+  constructor(private httpService: HttpService) {}
 
   public updateBoards(): void {
-    this.httpBoardsService
+    this.httpService
       .getBoards()
       .pipe(take(1))
       .subscribe((boards) => {

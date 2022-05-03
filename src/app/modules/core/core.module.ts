@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { INTERCEPTOR_PROVIDERS } from './interсeptors/providers';
 import { BoardPopupComponent } from './components/board-popup/board-popup.component';
 import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.component';
-import { HttpBoardsService } from './services/http-boards.service';
+import { HttpService } from './services/http.service';
 import { ConfirmService } from './services/confirm.service';
 import { ToggleScrollService } from './services/toggle-scroll.service';
 
@@ -25,6 +25,6 @@ import { ToggleScrollService } from './services/toggle-scroll.service';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [INTERCEPTOR_PROVIDERS, HttpBoardsService, ConfirmService, ToggleScrollService],
+  providers: [INTERCEPTOR_PROVIDERS, HttpService, ConfirmService, ToggleScrollService],
 })
 export class CoreModule {}

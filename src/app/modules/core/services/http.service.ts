@@ -5,7 +5,7 @@ import { IBoard } from '../../management/model/board.model';
 import { URL } from '../constants/constants';
 
 @Injectable()
-export class HttpBoardsService {
+export class HttpService {
   constructor(private http: HttpClient) {}
 
   postBoard(value: IBoard): Observable<IBoard> {
