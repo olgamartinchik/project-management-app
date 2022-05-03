@@ -1,4 +1,4 @@
-<a routerLink="">
+<a [routerLink]="['/board', boardData!.id!]">
   <div class="board" [id]="(boardService.board$ | async)?.id">
     <span class="delete-btn" (click)="deleteBoard($event)">{{
       'mainPage.deleteBtn' | transloco
