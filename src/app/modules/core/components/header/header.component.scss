@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   background-color: colors.$header-color;
+  z-index: 1000;
 }
 
 .header {
@@ -45,8 +46,10 @@
 }
 
 .nav-burger-button {
+  $line-height: 5px;
+
   width: 50px;
-  height: 6px;
+  height: $line-height;
   margin: 0;
   padding: 0;
   background-color: colors.$accent-color;
@@ -56,6 +59,45 @@
   position: relative;
   outline: none;
   display: none;
+  transition: background-color 0.1s 0.3s;
+
+  &::before,
+  &::after {
+    content: '';
+    width: 50px;
+    height: $line-height;
+    position: absolute;
+    left: 0;
+    background-color: colors.$accent-color;
+    border-radius: 20px;
+    transition: transform 0.3s, top 0.3s 0.3s;
+  }
+
+  &::before {
+    top: -12px;
+  }
+
+  &::after {
+    top: 12px;
+  }
+
+  &.active {
+    background-color: transparent;
+
+    &::before,
+    &::after {
+      top: 0;
+      transition: top 0.3s, transform 0.3s 0.3s;
+    }
+  }
+
+  &.active::before {
+    transform: rotate(-45deg);
+  }
+
+  &.active::after {
+    transform: rotate(45deg);
+  }
 }
 
 .settings-language {
@@ -127,43 +169,5 @@
 
   .nav-burger-button {
     display: block;
-
-    &::before,
-    &::after {
-      content: '';
-      width: 50px;
-      height: 6px;
-      position: absolute;
-      left: 0;
-      background-color: colors.$accent-color;
-      border-radius: 20px;
-      transition: top 0.3s 0.3s, transform 0.3s;
-    }
-
-    &::before {
-      top: -12px;
-    }
-
-    &::after {
-      top: 12px;
-    }
-
-    &.active {
-      background: transparent;
-
-      &::before,
-      &::after {
-        top: 0;
-        transition: top 0.3s, transform 0.3s 0.3s;
-      }
-    }
-
-    &.active::before {
-      transform: rotate(-45deg);
-    }
-
-    &.active::after {
-      transform: rotate(45deg);
-    }
   }
 }

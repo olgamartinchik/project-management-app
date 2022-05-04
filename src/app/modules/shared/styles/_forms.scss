@@ -4,18 +4,17 @@
 @mixin auth-block {
   width: 100%;
   height: 100%;
-  margin: 0;
+  padding: 20px 20px 0;
+  box-sizing: border-box;
   background-color: colors.$secondary-color;
   transform-style: preserve-3d;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
 @mixin auth-form {
   max-width: 400px;
   width: 100%;
-  padding: 0 20px;
   transform: translate3d(0, 0, 30px) perspective(100px);
   display: flex;
   flex-direction: column;
@@ -28,6 +27,10 @@
   margin: 0 0 15px;
   display: flex;
   flex-direction: column;
+
+  &:last-of-type {
+    margin: 0;
+  }
 }
 
 @mixin input {

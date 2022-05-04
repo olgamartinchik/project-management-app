@@ -1,12 +1,18 @@
 <div class="auth">
-  <input class="auth__checkbox" id="authCheckbox" type="checkbox" (change)="changeForm()" />
+  <input
+    class="auth__checkbox"
+    id="authCheckbox"
+    type="checkbox"
+    [(ngModel)]="isSignupForm"
+    (change)="resetForms()"
+  />
   <label class="auth__label" for="authCheckbox">
     <p class="auth__text-label">Вход</p>
     <p class="auth__text-label">Регистрация</p>
   </label>
 
-  <div [class]="{ 'auth__3d-wrapper': true, active: !isLoginForm }">
+  <div class="auth__3d-wrapper">
     <app-login-form #loginForm></app-login-form>
-    <app-signup-form #signupForm (submitingForm)="changeForm()"></app-signup-form>
+    <app-signup-form #signupForm (submitForm)="changeForm()"></app-signup-form>
   </div>
 </div>

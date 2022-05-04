@@ -3,7 +3,7 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 import { PASSWORD_REGEXP } from '../../constants/validation.service.constants';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class ValidationService {
   public validatePasswordStrong({ value }: AbstractControl): ValidationErrors | null {
     const errors: string[] = [];

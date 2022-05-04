@@ -1,4 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs';
 
@@ -15,11 +22,12 @@ import { ApiService } from '../../../core/services/api/api.service';
   selector: 'app-signup-form',
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignupFormComponent implements OnInit {
-  @Output() submitingForm = new EventEmitter<void>();
+  @Output() submitForm = new EventEmitter<void>();
 
-  signupForm!: FormGroup;
+  public signupForm!: FormGroup;
 
   public messages: FormMessagesModel = SIGNUP_MESSAGES;
 
@@ -27,6 +35,7 @@ export class SignupFormComponent implements OnInit {
     private fb: FormBuilder,
     private apiService: ApiService,
     private validationService: ValidationService,
+    private cdr: ChangeDetectorRef,
     public errorService: ErrorMessagesService,
   ) {}
 
@@ -65,6 +74,11 @@ export class SignupFormComponent implements OnInit {
     );
   }
 
+  public reset(): void {
+    this.signupForm.reset();
+    this.cdr.markForCheck();
+  }
+
   public submit(): void {
     const data = {
       name: this.signupForm.controls['name'].value,
@@ -77,10 +91,12 @@ export class SignupFormComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         next: () => {
-          this.submitingForm.emit();
+          this.submitForm.emit();
+          this.reset();
         },
         error: (err) => {
-          this.signupForm.setErrors({ formError: err.error.message }, { emitEvent: true });
+          this.signupForm.setErrors({ formError: err.error.message });
+          this.cdr.markForCheck();
         },
       });
   }

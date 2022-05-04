@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
@@ -17,6 +17,7 @@ import { AuthService } from '../../../core/services/auth/auth.service';
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginFormComponent implements OnInit {
   public loginForm!: FormGroup;
@@ -28,6 +29,7 @@ export class LoginFormComponent implements OnInit {
     private apiService: ApiService,
     private authService: AuthService,
     private validationService: ValidationService,
+    private cdr: ChangeDetectorRef,
     private router: Router,
     public errorService: ErrorMessagesService,
   ) {}
@@ -54,6 +56,11 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
+  public reset(): void {
+    this.loginForm.reset();
+    this.cdr.markForCheck();
+  }
+
   public submit(): void {
     this.apiService
       .login(this.loginForm.value)
@@ -64,7 +71,8 @@ export class LoginFormComponent implements OnInit {
           this.router.navigate(['/main'], { replaceUrl: true });
         },
         error: (err) => {
-          this.loginForm.setErrors({ formError: err.error.message }, { emitEvent: true });
+          this.loginForm.setErrors({ formError: err.error.message });
+          this.cdr.markForCheck();
         },
       });
   }

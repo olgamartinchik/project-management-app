@@ -2,7 +2,7 @@
 @use '../../../shared/styles/font';
 
 :host {
-  height: calc(100vh - 120px);
+  min-height: calc(100vh - 120px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,17 +11,17 @@
 .auth {
   display: flex;
   flex-direction: column;
-  position: relative;
+  align-items: center;
   transform-style: preserve-3d;
 }
 
 .auth__3d-wrapper {
   width: 500px;
-  height: 500px;
+  height: 520px;
   display: flex;
   justify-content: center;
   transform-style: preserve-3d;
-  transition: 1.2s cubic-bezier(0.1, 0.25, 0.4, 1.6);
+  transition: transform 1.2s cubic-bezier(0.1, 0.25, 0.4, 1.6);
   position: relative;
 
   &.active {
@@ -37,12 +37,16 @@
     transform: translateX(90px);
     width: 150px;
   }
+
+  &:checked ~ .auth__3d-wrapper {
+    transform: rotateY(180deg);
+  }
 }
 
 .auth__label {
   width: 250px;
   height: 50px;
-  margin: 0 auto 25px;
+  margin: 0 0 25px;
   padding: 0 15px;
   display: flex;
   align-items: center;
@@ -73,9 +77,9 @@
   @include font.text(25px, 25px);
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 550px) {
   .auth__3d-wrapper {
-    width: 280px;
-    height: 530px;
+    width: 90vw;
+    height: 550px;
   }
 }

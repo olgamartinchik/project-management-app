@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 
 import { LoginFormComponent } from '../login-form/login-form.component';
 import { SignupFormComponent } from '../signup-form/signup-form.component';
@@ -7,18 +7,21 @@ import { SignupFormComponent } from '../signup-form/signup-form.component';
   selector: 'app-auth-page',
   templateUrl: './auth-page.component.html',
   styleUrls: ['./auth-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthPageComponent {
   @ViewChild('loginForm') loginForm!: LoginFormComponent;
 
   @ViewChild('signupForm') signupForm!: SignupFormComponent;
 
-  public isLoginForm = true;
+  public isSignupForm = false;
 
   public changeForm(): void {
-    this.isLoginForm = !this.isLoginForm;
+    this.isSignupForm = !this.isSignupForm;
+  }
 
-    this.loginForm.loginForm.reset();
-    this.signupForm.signupForm.reset();
+  public resetForms(): void {
+    this.loginForm.reset();
+    this.signupForm.reset();
   }
 }

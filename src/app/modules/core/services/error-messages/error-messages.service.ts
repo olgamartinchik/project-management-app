@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 
 import { MessageModel, PasswordMessagesModel } from '../../models/error-messages.services.models';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class ErrorMessagesService {
   public showMessages(form: FormGroup, name: string, messages: MessageModel): string {
     const control = form.controls[name];
