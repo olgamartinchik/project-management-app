@@ -4,9 +4,11 @@ import { Router } from '@angular/router';
 import { take } from 'rxjs';
 
 import { ValidationService } from '../../../core/services/validation/validation.service';
-import { CORRECT_CHAR } from '../../../core/services/validation/validate.service.constants';
+import { CORRECT_CHAR } from '../../../core/constants/validation.service.constants';
 import { ErrorMessagesService } from '../../../core/services/error-messages/error-messages.service';
-import { FormMessagesModel, LOGIN_MESSAGES } from './login-form.components.messages';
+
+import { FormMessagesModel } from '../../models/login-form.component.models';
+import { LOGIN_MESSAGES } from '../../constants/login-form.component.constants';
 
 import { ApiService } from '../../../core/services/api/api.service';
 import { AuthService } from '../../../core/services/auth/auth.service';
@@ -23,9 +25,9 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private api: ApiService,
+    private apiService: ApiService,
     private authService: AuthService,
-    private validation: ValidationService,
+    private validationService: ValidationService,
     private router: Router,
     public errorService: ErrorMessagesService,
   ) {}
@@ -46,14 +48,14 @@ export class LoginFormComponent implements OnInit {
         [
           Validators.required,
           Validators.pattern(CORRECT_CHAR),
-          this.validation.validatePasswordStrong,
+          this.validationService.validatePasswordStrong,
         ],
       ],
     });
   }
 
   public submit(): void {
-    this.api
+    this.apiService
       .login(this.loginForm.value)
       .pipe(take(1))
       .subscribe({

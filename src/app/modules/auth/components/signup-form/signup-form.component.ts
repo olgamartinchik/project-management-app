@@ -3,9 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs';
 
 import { ValidationService } from '../../../core/services/validation/validation.service';
-import { CORRECT_CHAR } from '../../../core/services/validation/validate.service.constants';
+import { CORRECT_CHAR } from '../../../core/constants/validation.service.constants';
 import { ErrorMessagesService } from '../../../core/services/error-messages/error-messages.service';
-import { FormMessagesModel, SIGNUP_MESSAGES } from './signup-form.components.messages';
+
+import { FormMessagesModel } from '../../models/signup-form.component.models';
+import { SIGNUP_MESSAGES } from '../../constants/signup-form.component.constants';
 
 import { ApiService } from '../../../core/services/api/api.service';
 
@@ -23,8 +25,8 @@ export class SignupFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private api: ApiService,
-    private validation: ValidationService,
+    private apiService: ApiService,
+    private validationService: ValidationService,
     public errorService: ErrorMessagesService,
   ) {}
 
@@ -54,12 +56,12 @@ export class SignupFormComponent implements OnInit {
           [
             Validators.required,
             Validators.pattern(CORRECT_CHAR),
-            this.validation.validatePasswordStrong,
+            this.validationService.validatePasswordStrong,
           ],
         ],
         confirmPassword: ['', [Validators.required]],
       },
-      { validators: this.validation.validatePasswordMatch },
+      { validators: this.validationService.validatePasswordMatch },
     );
   }
 
@@ -70,7 +72,7 @@ export class SignupFormComponent implements OnInit {
       password: this.signupForm.controls['password'].value,
     };
 
-    this.api
+    this.apiService
       .singup(data)
       .pipe(take(1))
       .subscribe({

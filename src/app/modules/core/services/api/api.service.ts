@@ -2,16 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { environment } from 'src/environments/environment';
+
 import {
   LoginRequestModel,
   LoginResponseModel,
   SignupRequestModel,
   SignupResponseModel,
-} from './api.service.models';
+} from '../../models/api.service.models';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
-  private url = 'http://localhost:4200/api';
+  private url = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 

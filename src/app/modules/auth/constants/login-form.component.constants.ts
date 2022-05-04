@@ -1,9 +1,4 @@
-import { MessageModel } from '../../../core/services/error-messages/error-messages.services.models';
-
-export interface FormMessagesModel {
-  loginMessages: MessageModel;
-  passwordMessages: MessageModel;
-}
+import { FormMessagesModel } from '../models/login-form.component.models';
 
 export const LOGIN_MESSAGES: FormMessagesModel = {
   loginMessages: {

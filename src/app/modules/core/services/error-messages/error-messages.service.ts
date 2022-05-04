@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { MessageModel, PasswordMessagesModel } from './error-messages.services.models';
+import { MessageModel, PasswordMessagesModel } from '../../models/error-messages.services.models';
 
 @Injectable({ providedIn: 'root' })
 export class ErrorMessagesService {
