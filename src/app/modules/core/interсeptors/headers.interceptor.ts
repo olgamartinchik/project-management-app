@@ -11,7 +11,10 @@ import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable()
 export class HeadersInterceptor implements HttpInterceptor {
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  public intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler,
+  ): Observable<HttpEvent<unknown>> {
     // let headers=new HttpHeaders()
     // if(request.method!=='DELETE'){
     //        headers=headers.set('Content-Type', 'application/json')

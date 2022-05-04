@@ -14,11 +14,11 @@ export class HeaderComponent {
 
   constructor(private translocoService: TranslocoService, private boardService: BoardService) {}
 
-  public switchLang() {
+  public switchLang(): void {
     this.translocoService.setActiveLang(this.lang!);
   }
 
-  public openPopupCreateBoard() {
+  public openPopupCreateBoard(): void {
     this.boardService.isBoardPopup$.next(true);
   }
 }

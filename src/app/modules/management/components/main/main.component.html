@@ -5,7 +5,7 @@
     <div class="boards">
       <app-board-card
         *ngFor="let board of boardService.allBoards$ | async"
-        [boardData]="boardService.board$.next(board)! || board"
+        [boardData]="board"
       ></app-board-card>
 
       <div class="board new-board" (click)="openPopupNewBoard()">

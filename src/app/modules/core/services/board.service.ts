@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, take } from 'rxjs';
-import { IBoard } from '../../management/model/board.model';
+import { IBoard } from '../../management/model/IBoard.model';
 import { HttpService } from './http.service';
 
 @Injectable({
@@ -24,7 +24,7 @@ export class BoardService {
       });
   }
 
-  updateBoardById(id: string) {
+  public updateBoardById(id: string): void {
     this.board$
       .pipe(
         take(1),

@@ -7,7 +7,10 @@ import { NotificationService } from '../services/notification.service';
 export class CatchErrorInterceptor implements HttpInterceptor {
   constructor(private notificationService: NotificationService) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  public intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler,
+  ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error) => {
         console.log('error', error.message);

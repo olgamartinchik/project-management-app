@@ -24,7 +24,7 @@ export class BoardComponent implements OnInit {
     private httpService: HttpService,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.boardDataService.getAllColumn(this.id);
 
@@ -33,7 +33,7 @@ export class BoardComponent implements OnInit {
     // this.boardDataService.orderColumns!==0?this.count=this.boardDataService.orderColumns:this.count=0
   }
 
-  addColumn() {
+  public addColumn(): void {
     // this.httpService.postColumns(this.id,{title:'task',order:this.count++} ).subscribe()
     // this.httpService.deleteColumns(this.id,'dfdefc2c-60cf-4993-8a7d-d85bee52013d').subscribe()
     this.boardDataService.getAllColumn(this.id);

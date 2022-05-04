@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { IBoard } from '../../model/board.model';
+import { IBoard } from '../../model/IBoard.model';
 import { BoardService } from '../../../core/services/board.service';
 import { HttpService } from '../../../core/services/http.service';
 import { ToggleScrollService } from 'src/app/modules/core/services/toggle-scroll.service';
@@ -20,7 +20,7 @@ export class MainComponent implements OnInit {
     private toggleScrollService: ToggleScrollService,
   ) {}
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.boardService.updateBoards();
   }
 

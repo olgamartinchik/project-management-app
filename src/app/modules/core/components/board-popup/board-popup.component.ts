@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map, take } from 'rxjs';
 
 import { BoardService } from '../../services/board.service';
@@ -29,7 +29,7 @@ export class BoardPopupComponent {
     });
   }
 
-  public get _title() {
+  public get _title(): AbstractControl | null | undefined {
     return this.boardForm?.get('title');
   }
 

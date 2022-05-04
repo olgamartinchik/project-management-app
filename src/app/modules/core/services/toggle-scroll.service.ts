@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ToggleScrollService {
-  hiddenScroll() {
+  public hiddenScroll(): void {
     document.body.classList.add('modal-open');
   }
 
-  showScroll() {
+  public showScroll(): void {
     document.body.classList.remove('modal-open');
   }
 }

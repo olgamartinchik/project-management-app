@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { IBoard } from '../../model/board.model';
-import { BoardService } from '../../../core/services/board.service';
+import { IBoard } from '../../model/IBoard.model';
 
 import { ConfirmService } from 'src/app/modules/core/services/confirm.service';
 import { ToggleScrollService } from 'src/app/modules/core/services/toggle-scroll.service';
@@ -12,10 +11,9 @@ import { ToggleScrollService } from 'src/app/modules/core/services/toggle-scroll
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoardCardComponent {
-  @Input() boardData?: IBoard;
+  @Input() public boardData?: IBoard;
 
   constructor(
-    public boardService: BoardService,
     private confirmService: ConfirmService,
     private toggleScrollService: ToggleScrollService,
   ) {}

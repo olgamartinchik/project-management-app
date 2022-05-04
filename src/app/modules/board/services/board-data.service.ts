@@ -13,7 +13,7 @@ export class BoardDataService {
 
   constructor(private httpService: HttpService) {}
 
-  getAllColumn(id: string) {
+  public getAllColumn(id: string): void {
     this.httpService
       .getColumns(id)
       .pipe(take(1))
