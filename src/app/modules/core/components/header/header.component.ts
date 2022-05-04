@@ -9,7 +9,9 @@ import { TranslocoService } from '@ngneat/transloco';
 export class HeaderComponent {
   public isNavOpen = false;
 
-  public lang?: string = 'ru';
+  public disabled = true;
+
+  public lang: string = 'ru';
 
   constructor(private translocoService: TranslocoService) {}
 
