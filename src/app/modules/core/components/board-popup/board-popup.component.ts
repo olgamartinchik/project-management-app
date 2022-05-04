@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { map, take } from 'rxjs';
 
 import { BoardService } from '../../services/board.service';
@@ -12,7 +12,7 @@ import { HttpService } from '../../services/http.service';
   styleUrls: ['./board-popup.component.scss'],
 })
 export class BoardPopupComponent {
-  public boardForm?: FormGroup;
+  public title!: FormControl;
 
   constructor(
     public boardService: BoardService,
@@ -24,19 +24,18 @@ export class BoardPopupComponent {
   }
 
   private createForm(): void {
-    this.boardForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-    });
-  }
-
-  public get _title(): AbstractControl | null | undefined {
-    return this.boardForm?.get('title');
+    this.title = new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(100),
+    ]);
   }
 
   public closePopup(): void {
+    console.log('title', this.title.value);
     this.boardService.isBoardPopup$.next(false);
     this.toggleScrollService.showScroll();
-    this.boardForm?.reset();
+    this.title?.reset();
   }
 
   public stopPropagation(event: Event): void {
@@ -46,7 +45,7 @@ export class BoardPopupComponent {
   public createBoard(): void {
     this.boardService.isBoardPopup$.next(false);
     this.httpService
-      .postBoard({ title: this.boardForm?.value.title })
+      .postBoard({ title: this.title?.value })
       .pipe(
         take(1),
         map(() => {
@@ -55,6 +54,6 @@ export class BoardPopupComponent {
       )
       .subscribe();
     this.toggleScrollService.showScroll();
-    this.boardForm?.reset();
+    this.title?.reset();
   }
 }
