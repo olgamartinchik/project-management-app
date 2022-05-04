@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-header',
@@ -6,7 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  public isNavOpen: boolean = false;
+  public isNavOpen = false;
 
-  public disabled: boolean = true;
+  public disabled = true;
+
+  public lang: string = 'ru';
+
+  constructor(private translocoService: TranslocoService) {}
+
+  public switchLang() {
+    this.translocoService.setActiveLang(this.lang!);
+  }
 }
