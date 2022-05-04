@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-header',
@@ -7,5 +8,15 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  isNavOpen = false;
+  public isNavOpen = false;
+
+  public disabled = true;
+
+  public lang: string = 'ru';
+
+  constructor(private translocoService: TranslocoService) {}
+
+  public switchLang() {
+    this.translocoService.setActiveLang(this.lang!);
+  }
 }

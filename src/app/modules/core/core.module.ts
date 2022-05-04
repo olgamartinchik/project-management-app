@@ -7,9 +7,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 
+import { TranslocoRootModule } from '../transloco/transloco-root.module';
+
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
   exports: [HeaderComponent, FooterComponent],
-  imports: [CommonModule, RouterModule, FormsModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, RouterModule, TranslocoRootModule, FormsModule],
 })
 export class CoreModule {}
