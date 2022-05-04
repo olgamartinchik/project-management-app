@@ -12,7 +12,7 @@ import { ToggleScrollService } from 'src/app/modules/core/services/toggle-scroll
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoardCardComponent {
-  @Input() boardData?: IBoard;
+  @Input() public boardData!: IBoard;
 
   constructor(
     public boardService: BoardService,

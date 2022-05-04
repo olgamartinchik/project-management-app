@@ -70,8 +70,7 @@
               "browserTarget": "project-management-app:build:production"
             },
             "development": {
-              "browserTarget": "project-management-app:build:development",
-              "proxyConfig": "./proxy.conf.json"
+              "browserTarget": "project-management-app:build:development"
             }
           },
           "defaultConfiguration": "development"

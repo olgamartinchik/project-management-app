@@ -8,15 +8,15 @@ import { URL } from '../constants/constants';
 export class HttpService {
   constructor(private http: HttpClient) {}
 
-  postBoard(value: IBoard): Observable<IBoard> {
+  public postBoard(value: IBoard): Observable<IBoard> {
     return this.http.post<IBoard>(`${URL}/boards`, value);
   }
 
-  getBoards(): Observable<IBoard[]> {
+  public getBoards(): Observable<IBoard[]> {
     return this.http.get<IBoard[]>(`${URL}/boards`);
   }
 
-  deleteBoard(id: string): Observable<IBoard> {
+  public deleteBoard(id: string): Observable<IBoard> {
     return this.http.delete<IBoard>(`${URL}/boards/${id}`);
   }
 }
