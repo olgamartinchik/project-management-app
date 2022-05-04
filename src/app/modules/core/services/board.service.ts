@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, take } from 'rxjs';
+import { BehaviorSubject, map, take } from 'rxjs';
 import { IBoard } from '../../management/model/board.model';
 import { HttpService } from './http.service';
 
@@ -11,7 +11,7 @@ export class BoardService {
 
   public allBoards$ = new BehaviorSubject<IBoard[]>([]);
 
-  public board$ = new BehaviorSubject<IBoard>({ id: '', title: '' });
+  public board$ = new BehaviorSubject<IBoard>({} as IBoard);
 
   constructor(private httpService: HttpService) {}
 
@@ -22,5 +22,24 @@ export class BoardService {
       .subscribe((boards) => {
         this.allBoards$.next(boards as IBoard[]);
       });
+  }
+
+  updateBoardById(id: string) {
+    this.board$
+      .pipe(
+        take(1),
+        map((data) => {
+          if (Object.keys(data).length === 0) {
+            this.httpService
+              .getBoardsId(id)
+              .pipe(take(1))
+              .subscribe((board) => {
+                this.board$.next(board);
+              });
+          }
+          return data;
+        }),
+      )
+      .subscribe();
   }
 }

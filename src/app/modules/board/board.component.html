@@ -1,1 +1,14 @@
-<p>board works! {{ id }}</p>
+<main class="main">
+  <div class="wrapper">
+    <h1 class="title">{{ (boardService.board$ | async)!.title }}</h1>
+
+    <div class="columns-container">
+      <app-column-container
+        *ngFor="let column of boardDataService.allColumn$ | async"
+      ></app-column-container>
+      <button class="button" (click)="addColumn()">
+        + {{ 'BoardPage.addColBtn' | transloco }}
+      </button>
+    </div>
+  </div>
+</main>

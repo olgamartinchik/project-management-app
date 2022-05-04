@@ -13,3 +13,8 @@ interface ITaskBoardId {
 interface ITaskUserId {
   description: string;
 }
+export interface IColumn {
+  id?: string;
+  title: string;
+  order: number;
+}

@@ -20,5 +20,8 @@
   "ConfirmPopup": {
     "title": "Are you sure?",
     "button": "Delete"
+  },
+  "BoardPage": {
+    "addColBtn": "Add column"
   }
 }

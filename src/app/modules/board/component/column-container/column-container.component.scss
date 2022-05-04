@@ -1,0 +1,7 @@
+@use '../../../shared/styles/colors';
+.column-container {
+  background-color: colors.$column-color;
+  width: 272px;
+  min-height: 40px;
+  border-radius: 4px;
+}

@@ -1,1 +1,1 @@
-export const URL = 'http://localhost:4200/api';
+export const URL = 'https://guarded-scrubland-15781.herokuapp.com';
