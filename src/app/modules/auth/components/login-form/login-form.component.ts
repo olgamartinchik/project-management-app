@@ -31,7 +31,7 @@ export class LoginFormComponent implements OnInit {
     private validationService: ValidationService,
     private cdr: ChangeDetectorRef,
     private router: Router,
-    public errorService: ErrorMessagesService,
+    public errorMessagesService: ErrorMessagesService,
   ) {}
 
   public ngOnInit(): void {
@@ -77,7 +77,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   private handleApiError(errText: string): void {
-    this.errorService.setFormError(this.loginForm, errText, this.messages['api']);
+    this.errorMessagesService.setFormError(this.loginForm, errText, this.messages['api']);
     this.cdr.markForCheck();
   }
 }

@@ -7,7 +7,7 @@
       [placeholder]="'auth.namePlaceholder' | transloco"
     />
     <p class="auth__error-text">
-      {{ errorService.showMessages(signupForm, 'name', messages['name']) | transloco }}
+      {{ errorMessagesService.showMessages(signupForm, 'name', messages['name']) | transloco }}
     </p>
   </label>
 
@@ -19,7 +19,7 @@
       [placeholder]="'auth.loginPlaceholder' | transloco"
     />
     <p class="auth__error-text">
-      {{ errorService.showMessages(signupForm, 'login', messages['login']) | transloco }}
+      {{ errorMessagesService.showMessages(signupForm, 'login', messages['login']) | transloco }}
     </p>
   </label>
 
@@ -31,7 +31,13 @@
       [placeholder]="'auth.passwordPlaceholder' | transloco"
     />
     <ng-container
-      *ngIf="errorService.showPasswordErrors(signupForm, 'password', messages['password']) as error"
+      *ngIf="
+        errorMessagesService.showPasswordErrors(
+          signupForm,
+          'password',
+          messages['password']
+        ) as error
+      "
     >
       <p class="auth__error-text">{{ error.main | transloco }}</p>
       <ul class="auth__recommend-list">
@@ -54,7 +60,7 @@
       [placeholder]="'auth.confirmPasswordPlaceholder' | transloco"
     />
     <p class="auth__error-text">
-      {{ errorService.showPasswordMatchMessage(signupForm) | transloco }}
+      {{ errorMessagesService.showPasswordMatchMessage(signupForm) | transloco }}
     </p>
   </label>
 
