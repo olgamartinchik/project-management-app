@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 
+import { LangModel } from '../../models/lang.model';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -12,11 +14,11 @@ export class HeaderComponent {
 
   public disabled = true;
 
-  public lang: string = 'ru';
+  public lang: LangModel = 'ru';
 
   constructor(private translocoService: TranslocoService) {}
 
-  public switchLang() {
-    this.translocoService.setActiveLang(this.lang!);
+  public switchLang(): void {
+    this.translocoService.setActiveLang(this.lang);
   }
 }

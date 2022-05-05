@@ -13,19 +13,19 @@ export class ValidationService {
     // проверяем value по каждому параметру
     // при наличии ошибки, добавляем ее в массив
     if (!(value.length >= 8 && value.length <= 20)) {
-      errors.push('at least 8 and maximum 20 characters');
+      errors.push('passwordErrors.length');
     }
 
     if (!PASSWORD_REGEXP.uppercase.test(value) || !PASSWORD_REGEXP.lowercase.test(value)) {
-      errors.push('a mixture of both uppercase and lowercase letters');
+      errors.push('passwordErrors.bothCase');
     }
 
     if (!PASSWORD_REGEXP.digit.test(value)) {
-      errors.push('a mixture of letters and numbers');
+      errors.push('passwordErrors.number');
     }
 
     if (!PASSWORD_REGEXP.specialChar.test(value)) {
-      errors.push('inclusion of at least one special character, e.g., !@#?]');
+      errors.push('passwordErrors.specialChar');
     }
 
     // при наличии ошибок, возвращаем объект ValidationErrors, иначе null

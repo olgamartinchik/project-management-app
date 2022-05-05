@@ -1,3 +1,7 @@
+export interface FormMessagesModel {
+  [key: string]: MessageModel;
+}
+
 export interface MessageModel {
   [key: string]: string;
 }

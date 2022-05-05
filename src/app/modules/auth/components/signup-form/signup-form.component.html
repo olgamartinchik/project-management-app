@@ -1,29 +1,42 @@
 <form class="auth__form" [formGroup]="signupForm" (submit)="submit()">
   <label class="auth__label">
-    <input class="auth__input" formControlName="name" type="text" placeholder="Name" />
+    <input
+      class="auth__input"
+      formControlName="name"
+      type="text"
+      [placeholder]="'auth.namePlaceholder' | transloco"
+    />
     <p class="auth__error-text">
-      {{ errorService.showMessages(signupForm, 'name', messages.nameMessages) }}
+      {{ errorService.showMessages(signupForm, 'name', messages['name']) | transloco }}
     </p>
   </label>
 
   <label class="auth__label">
-    <input class="auth__input" formControlName="login" type="text" placeholder="Login" />
+    <input
+      class="auth__input"
+      formControlName="login"
+      type="text"
+      [placeholder]="'auth.loginPlaceholder' | transloco"
+    />
     <p class="auth__error-text">
-      {{ errorService.showMessages(signupForm, 'login', messages.loginMessages) }}
+      {{ errorService.showMessages(signupForm, 'login', messages['login']) | transloco }}
     </p>
   </label>
 
   <label class="auth__label">
-    <input class="auth__input" formControlName="password" type="password" placeholder="Password" />
+    <input
+      class="auth__input"
+      formControlName="password"
+      type="password"
+      [placeholder]="'auth.passwordPlaceholder' | transloco"
+    />
     <ng-container
-      *ngIf="
-        errorService.showPasswordErrors(signupForm, 'password', messages.passwordMessages) as error
-      "
+      *ngIf="errorService.showPasswordErrors(signupForm, 'password', messages['password']) as error"
     >
-      <p class="auth__error-text">{{ error.main }}</p>
+      <p class="auth__error-text">{{ error.main | transloco }}</p>
       <ul class="auth__recommend-list">
         <li class="auth__recommend-item" *ngFor="let recommend of error.recommendations">
-          {{ recommend }}
+          {{ recommend | transloco }}
         </li>
       </ul>
     </ng-container>
@@ -38,10 +51,10 @@
       }"
       formControlName="confirmPassword"
       type="password"
-      placeholder="Confirm password"
+      [placeholder]="'auth.confirmPasswordPlaceholder' | transloco"
     />
     <p class="auth__error-text">
-      {{ errorService.showPasswordMatchMessage(signupForm) }}
+      {{ errorService.showPasswordMatchMessage(signupForm) | transloco }}
     </p>
   </label>
 
@@ -49,5 +62,7 @@
     {{ signupForm.errors && signupForm.errors['formError'] }}
   </p>
 
-  <button class="auth__button" type="submit" [disabled]="signupForm.invalid">Sign up</button>
+  <button class="auth__button" type="submit" [disabled]="signupForm.invalid">
+    {{ 'auth.signupButton' | transloco }}
+  </button>
 </form>

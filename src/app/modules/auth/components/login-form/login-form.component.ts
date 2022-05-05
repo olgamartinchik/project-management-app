@@ -7,8 +7,8 @@ import { ValidationService } from '../../../core/services/validation/validation.
 import { CORRECT_CHAR } from '../../../core/constants/validation.service.constants';
 import { ErrorMessagesService } from '../../../core/services/error-messages/error-messages.service';
 
-import { FormMessagesModel } from '../../models/login-form.component.models';
-import { LOGIN_MESSAGES } from '../../constants/login-form.component.constants';
+import { FormMessagesModel } from 'src/app/modules/core/models/error-messages.services.models';
+import { FORM_ERROR_MESSAGES } from '../../constants/error-messages.constants';
 
 import { ApiService } from '../../../core/services/api/api.service';
 import { AuthService } from '../../../core/services/auth/auth.service';
@@ -22,7 +22,7 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 export class LoginFormComponent implements OnInit {
   public loginForm!: FormGroup;
 
-  public messages: FormMessagesModel = LOGIN_MESSAGES;
+  public messages: FormMessagesModel = FORM_ERROR_MESSAGES;
 
   constructor(
     private fb: FormBuilder,

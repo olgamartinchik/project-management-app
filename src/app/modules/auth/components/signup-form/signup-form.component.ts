@@ -13,8 +13,8 @@ import { ValidationService } from '../../../core/services/validation/validation.
 import { CORRECT_CHAR } from '../../../core/constants/validation.service.constants';
 import { ErrorMessagesService } from '../../../core/services/error-messages/error-messages.service';
 
-import { FormMessagesModel } from '../../models/signup-form.component.models';
-import { SIGNUP_MESSAGES } from '../../constants/signup-form.component.constants';
+import { FormMessagesModel } from 'src/app/modules/core/models/error-messages.services.models';
+import { FORM_ERROR_MESSAGES } from '../../constants/error-messages.constants';
 
 import { ApiService } from '../../../core/services/api/api.service';
 
@@ -25,11 +25,11 @@ import { ApiService } from '../../../core/services/api/api.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignupFormComponent implements OnInit {
-  @Output() submitForm = new EventEmitter<void>();
+  @Output() public submitForm = new EventEmitter<void>();
 
   public signupForm!: FormGroup;
 
-  public messages: FormMessagesModel = SIGNUP_MESSAGES;
+  public messages: FormMessagesModel = FORM_ERROR_MESSAGES;
 
   constructor(
     private fb: FormBuilder,

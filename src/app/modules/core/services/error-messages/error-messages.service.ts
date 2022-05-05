@@ -13,7 +13,7 @@ export class ErrorMessagesService {
 
     // если есть ошибка, то ищем совпадение в messages и возвращаем нужное сообщение
     if (error) {
-      message = messages[error] || 'Unknown error';
+      message = messages[error] || 'commonErrors.unknown';
     }
 
     return message;
@@ -30,7 +30,7 @@ export class ErrorMessagesService {
     const control = form.controls[name];
 
     // если ошибка в слабом пароле, то в recommendations передаем ошибку, которая является массивом строк
-    if (result.main === "Your password isn't strong enough") {
+    if (result.main === 'passwordErrors.weak') {
       result.recommendations = control.errors && control.errors['weakPasswordErrors'];
     }
 
@@ -39,7 +39,7 @@ export class ErrorMessagesService {
 
   public showPasswordMatchMessage(form: FormGroup): string {
     if (form.controls['confirmPassword'].dirty && form.errors && form.errors['passwordMatch']) {
-      return "Passwords don't match";
+      return 'passwordErrors.mismatch';
     }
 
     return '';

@@ -10,9 +10,9 @@ import { SignupFormComponent } from '../signup-form/signup-form.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthPageComponent {
-  @ViewChild('loginForm') loginForm!: LoginFormComponent;
+  @ViewChild('loginForm') private loginForm!: LoginFormComponent;
 
-  @ViewChild('signupForm') signupForm!: SignupFormComponent;
+  @ViewChild('signupForm') private signupForm!: SignupFormComponent;
 
   public isSignupForm = false;
 

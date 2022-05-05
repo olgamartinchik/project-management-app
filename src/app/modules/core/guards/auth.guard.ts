@@ -6,7 +6,7 @@ import { AuthService } from '../services/auth/auth.service';
 export class AuthGuard implements CanActivate, CanLoad {
   constructor(private authService: AuthService) {}
 
-  canActivate(): boolean {
+  public canActivate(): boolean {
     if (this.authService.getToken()) {
       return true;
     }
@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate, CanLoad {
     return false;
   }
 
-  canLoad(): boolean {
+  public canLoad(): boolean {
     if (this.authService.getToken()) {
       return true;
     }
