@@ -36,7 +36,7 @@ export class SignupFormComponent implements OnInit {
     private apiService: ApiService,
     private validationService: ValidationService,
     private cdr: ChangeDetectorRef,
-    public errorService: ErrorMessagesService,
+    public errorMessagesService: ErrorMessagesService,
   ) {}
 
   public ngOnInit(): void {
@@ -101,7 +101,7 @@ export class SignupFormComponent implements OnInit {
   }
 
   private handleApiError(errText: string): void {
-    this.errorService.setFormError(this.signupForm, errText, this.messages['api']);
+    this.errorMessagesService.setFormError(this.signupForm, errText, this.messages['api']);
     this.cdr.markForCheck();
   }
 }
