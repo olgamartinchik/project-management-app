@@ -31,7 +31,7 @@
   </label>
 
   <p class="auth__error-text auth__error-text_place_form">
-    {{ loginForm.errors && loginForm.errors['formError'] }}
+    {{ loginForm.errors && loginForm.errors['formError'] | transloco }}
   </p>
 
   <button class="auth__button" type="submit" [disabled]="loginForm.invalid">

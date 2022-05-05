@@ -39,5 +39,9 @@
   "commonErrors": {
     "pattern": "Use only latin letters, numbers and special characters",
     "unknown": "Unknown error"
+  },
+  "apiErrors": {
+    "forbidden": "User not found",
+    "conflict": "This login already exists"
   }
 }

@@ -18,4 +18,8 @@ export const FORM_ERROR_MESSAGES: FormMessagesModel = {
     weakPasswordErrors: 'passwordErrors.weak',
     pattern: 'commonErrors.pattern',
   },
+  api: {
+    forbidden: 'apiErrors.forbidden',
+    conflict: 'apiErrors.conflict',
+  },
 };

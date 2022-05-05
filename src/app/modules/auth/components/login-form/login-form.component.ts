@@ -70,10 +70,14 @@ export class LoginFormComponent implements OnInit {
           this.authService.saveToken(res.token);
           this.router.navigate(['/main'], { replaceUrl: true });
         },
-        error: (err) => {
-          this.loginForm.setErrors({ formError: err.error.message });
-          this.cdr.markForCheck();
+        error: (err: string) => {
+          this.handleApiError(err);
         },
       });
+  }
+
+  private handleApiError(errText: string): void {
+    this.errorService.setFormError(this.loginForm, errText, this.messages['api']);
+    this.cdr.markForCheck();
   }
 }

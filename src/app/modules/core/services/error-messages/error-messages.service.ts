@@ -44,4 +44,10 @@ export class ErrorMessagesService {
 
     return '';
   }
+
+  public setFormError(form: FormGroup, errText: string, messages: MessageModel): void {
+    const error = messages[errText.toLowerCase()] || 'commonErrors.unknown';
+
+    form.setErrors({ formError: error });
+  }
 }

@@ -94,10 +94,14 @@ export class SignupFormComponent implements OnInit {
           this.submitForm.emit();
           this.reset();
         },
-        error: (err) => {
-          this.signupForm.setErrors({ formError: err.error.message });
-          this.cdr.markForCheck();
+        error: (err: string) => {
+          this.handleApiError(err);
         },
       });
+  }
+
+  private handleApiError(errText: string): void {
+    this.errorService.setFormError(this.signupForm, errText, this.messages['api']);
+    this.cdr.markForCheck();
   }
 }

@@ -59,7 +59,7 @@
   </label>
 
   <p class="auth__error-text auth__error-text_place_form">
-    {{ signupForm.errors && signupForm.errors['formError'] }}
+    {{ signupForm.errors && signupForm.errors['formError'] | transloco }}
   </p>
 
   <button class="auth__button" type="submit" [disabled]="signupForm.invalid">
