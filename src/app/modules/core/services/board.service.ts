@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, take } from 'rxjs';
-import { IBoard } from '../../management/model/board.model';
+import { IBoard } from '../../management/model/IBoard.model';
 import { HttpService } from './http.service';
 
 @Injectable({

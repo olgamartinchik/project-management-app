@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { IBoard } from '../../model/board.model';
+import { IBoard } from '../../model/IBoard.model';
 import { BoardService } from '../../../core/services/board.service';
 
 import { ToggleScrollService } from 'src/app/modules/core/services/toggle-scroll.service';
