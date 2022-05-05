@@ -11,6 +11,7 @@ import { StoreModule } from '@ngrx/store';
 import { appState } from './redux/app.state';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BoardEffect } from './redux/effects/board.effect';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -33,7 +34,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
-    EffectsModule.forRoot(),
+    EffectsModule.forRoot([BoardEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent],

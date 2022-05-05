@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Validators, FormControl } from '@angular/forms';
 import { map, take } from 'rxjs';
-
+import { Store } from '@ngrx/store';
 import { BoardService } from '../../services/board.service';
 import { ToggleScrollService } from '../../services/toggle-scroll.service';
 import { HttpService } from '../../services/http.service';
+import { IAppState } from 'src/app/redux/state.model';
+import { updateAllBoards } from 'src/app/redux/actions/board.actions';
 
 @Component({
   selector: 'app-board-popup',
@@ -16,9 +18,9 @@ export class BoardPopupComponent {
 
   constructor(
     public boardService: BoardService,
-    private fb: FormBuilder,
     private httpService: HttpService,
     private toggleScrollService: ToggleScrollService,
+    private store: Store<IAppState>,
   ) {
     this.createForm();
   }
@@ -32,7 +34,6 @@ export class BoardPopupComponent {
   }
 
   public closePopup(): void {
-    console.log('title', this.title.value);
     this.boardService.isBoardPopup$.next(false);
     this.toggleScrollService.showScroll();
     this.title?.reset();
@@ -49,10 +50,11 @@ export class BoardPopupComponent {
       .pipe(
         take(1),
         map(() => {
-          this.boardService.updateBoards();
+          this.store.dispatch(updateAllBoards());
         }),
       )
       .subscribe();
+
     this.toggleScrollService.showScroll();
     this.title?.reset();
   }

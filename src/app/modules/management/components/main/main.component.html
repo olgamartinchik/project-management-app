@@ -4,7 +4,7 @@
 
     <div class="boards">
       <app-board-card
-        *ngFor="let board of boardService.allBoards$ | async"
+        *ngFor="let board of allBoards$ | async"
         [boardData]="boardService.board$.next(board)! || board"
       ></app-board-card>
 
