@@ -13,6 +13,8 @@ import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.
 import { HttpService } from './services/http.service';
 import { ConfirmService } from './services/confirm.service';
 import { ToggleScrollService } from './services/toggle-scroll.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, BoardPopupComponent, ConfirmPopupComponent],
@@ -24,6 +26,8 @@ import { ToggleScrollService } from './services/toggle-scroll.service';
     TranslocoRootModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    SharedModule,
   ],
   providers: [INTERCEPTOR_PROVIDERS, HttpService, ConfirmService, ToggleScrollService],
 })

@@ -5,21 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { CoreModule } from './modules/core/core.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './modules/shared/shared.module';
+
+//ngrx
 import { StoreModule } from '@ngrx/store';
-import { appState } from './redux/app.state';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BoardEffect } from './redux/effects/board.effect';
+import { appState } from './redux/app.state';
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    BrowserAnimationsModule,
-    SharedModule,
+
     StoreModule.forRoot(appState, {
       runtimeChecks: {
         strictStateImmutability: true,
