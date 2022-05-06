@@ -1,8 +1,69 @@
 @use '../../../shared/styles/colors';
 
-:host {
-  background-color: colors.$main-color;
-  height: 100vh;
-  padding: 20px;
-  display: flex;
+.DnD {
+  --padding: 20px;
+  --column-number: 6;
+  --column-width: calc(
+    100vw / var(--column-number) - (20px + var(--padding) / var(--column-number))
+  );
+
+  background-color: white;
+  height: calc(100vh - 130px);
+  padding: var(--padding);
+  box-sizing: border-box;
+  display: grid;
+  grid-template: 100% / var(--column-width);
+  grid-auto-flow: column;
+  grid-auto-columns: var(--column-width);
+  overflow-x: auto;
+  gap: 20px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drop-list-dragging :not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+@media screen and (max-width: 1600px) {
+  .DnD {
+    --column-number: 5;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .DnD {
+    --column-number: 4;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .DnD {
+    --column-number: 3;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .DnD {
+    --column-number: 2;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .DnD {
+    --column-number: 1;
+  }
 }

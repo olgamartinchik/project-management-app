@@ -1,0 +1,43 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+
+:host {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: colors.$main-color;
+  position: relative;
+  overflow-y: auto;
+}
+
+.column__title {
+  margin: 0;
+  padding: 10px 25px 10px 10px;
+  @include font.subtitle;
+}
+
+.column__delete-button {
+  margin: 0;
+  padding: 0;
+  @include font.title;
+  color: colors.$accent-color;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.column__content {
+  border-top: 2px solid colors.$text-color;
+  padding: 10px;
+}
+
+.task {
+  margin: 0 0 15px;
+  @include font.text;
+
+  &:last-of-type {
+    margin: 0;
+  }
+}

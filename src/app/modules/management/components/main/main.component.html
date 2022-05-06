@@ -1,1 +1,8 @@
-<p>main works!</p>
+<div
+  cdkDropList
+  cdkDropListOrientation="horizontal"
+  class="DnD"
+  (cdkDropListDropped)="drop($event)"
+>
+  <app-column cdkDrag *ngFor="let column of columns" [columnData]="column"> </app-column>
+</div>

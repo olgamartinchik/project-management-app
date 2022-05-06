@@ -9,18 +9,42 @@
     <a class="nav-link" routerLinkActive="active" routerLink="/main" rel="noopener" title="main">{{
       'nav.mainPage' | transloco
     }}</a>
-    <a class="nav-link" [class.disabled]="disabled ? true : null" routerLinkActive="active" routerLink="" rel="noopener" title="start">{{
-      'nav.startPage' | transloco
-    }}</a>
-    <a class="nav-link" [class.disabled]="disabled" routerLinkActive="active" routerLink="/board" rel="noopener" title="board">{{
-      'nav.workingBoard' | transloco
-    }}</a>
-    <a class="nav-link" [class.disabled]="disabled" routerLinkActive="active" routerLink="/auth" rel="noopener" title="auth">{{
-      'nav.enter' | transloco
-    }}</a>
-    <a class="nav-link" [class.disabled]="disabled" routerLinkActive="active" routerLink="/search" rel="noopener" title="search">{{
-      'nav.search' | transloco
-    }}</a>
+    <a
+      class="nav-link"
+      [class.disabled]="disabled ? true : null"
+      routerLinkActive="active"
+      routerLink=""
+      rel="noopener"
+      title="start"
+      >{{ 'nav.startPage' | transloco }}</a
+    >
+    <a
+      class="nav-link"
+      [class.disabled]="disabled"
+      routerLinkActive="active"
+      routerLink="/board"
+      rel="noopener"
+      title="board"
+      >{{ 'nav.workingBoard' | transloco }}</a
+    >
+    <a
+      class="nav-link"
+      [class.disabled]="disabled"
+      routerLinkActive="active"
+      routerLink="/auth"
+      rel="noopener"
+      title="auth"
+      >{{ 'nav.enter' | transloco }}</a
+    >
+    <a
+      class="nav-link"
+      [class.disabled]="disabled"
+      routerLinkActive="active"
+      routerLink="/search"
+      rel="noopener"
+      title="search"
+      >{{ 'nav.search' | transloco }}</a
+    >
   </nav>
 
   <button
