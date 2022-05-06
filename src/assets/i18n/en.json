@@ -22,6 +22,46 @@
     "button": "Delete"
   },
   "BoardPage": {
-    "addColBtn": "Add column"
+    "addColBtn": "Add column",
+    "button": "Delete",
+    "enter": "Signup/login",
+    "search": "Search"
+  },
+  "auth": {
+    "loginLabel": "Login",
+    "signupLabel": "Registration",
+    "loginPlaceholder": "Login",
+    "passwordPlaceholder": "Password",
+    "namePlaceholder": "Name",
+    "confirmPasswordPlaceholder": "Confirm password",
+    "loginButton": "Login",
+    "signupButton": "Sign up"
+  },
+  "nameErrors": {
+    "required": "Please enter a name",
+    "minlength": "The name is too short",
+    "maxlength": "The name is too long"
+  },
+  "loginErrors": {
+    "required": "Please enter a login",
+    "minlength": "The login is too short",
+    "maxlength": "The login is too long"
+  },
+  "passwordErrors": {
+    "required": "Please enter a password",
+    "mismatch": "Passwords don't match",
+    "weak": "Your password isn't strong enough",
+    "length": "at least 8 and maximum 20 characters",
+    "bothCase": "a mixture of both uppercase and lowercase letters",
+    "number": "a mixture of letters and numbers",
+    "specialChar": "inclusion of at least one special character, e.g., !@#?]"
+  },
+  "commonErrors": {
+    "pattern": "Use only latin letters, numbers and special characters",
+    "unknown": "Unknown error"
+  },
+  "apiErrors": {
+    "forbidden": "User not found",
+    "conflict": "This login already exists"
   }
 }

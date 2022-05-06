@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Validators, FormControl } from '@angular/forms';
 import { map, take } from 'rxjs';
-
+import { Store } from '@ngrx/store';
 import { BoardService } from '../../services/board.service';
 import { ToggleScrollService } from '../../services/toggle-scroll.service';
 import { HttpService } from '../../services/http.service';
+import { IAppState } from 'src/app/redux/state.model';
+import { updateAllBoards } from 'src/app/redux/actions/board.actions';
 
 @Component({
   selector: 'app-board-popup',
@@ -12,31 +14,29 @@ import { HttpService } from '../../services/http.service';
   styleUrls: ['./board-popup.component.scss'],
 })
 export class BoardPopupComponent {
-  public boardForm?: FormGroup;
+  public title!: FormControl;
 
   constructor(
     public boardService: BoardService,
-    private fb: FormBuilder,
     private httpService: HttpService,
     private toggleScrollService: ToggleScrollService,
+    private store: Store<IAppState>,
   ) {
     this.createForm();
   }
 
   private createForm(): void {
-    this.boardForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-    });
-  }
-
-  public get _title(): AbstractControl | null | undefined {
-    return this.boardForm?.get('title');
+    this.title = new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(100),
+    ]);
   }
 
   public closePopup(): void {
     this.boardService.isBoardPopup$.next(false);
     this.toggleScrollService.showScroll();
-    this.boardForm?.reset();
+    this.title?.reset();
   }
 
   public stopPropagation(event: Event): void {
@@ -46,15 +46,16 @@ export class BoardPopupComponent {
   public createBoard(): void {
     this.boardService.isBoardPopup$.next(false);
     this.httpService
-      .postBoard({ title: this.boardForm?.value.title })
+      .postBoard({ title: this.title?.value })
       .pipe(
         take(1),
         map(() => {
-          this.boardService.updateBoards();
+          this.store.dispatch(updateAllBoards());
         }),
       )
       .subscribe();
+
     this.toggleScrollService.showScroll();
-    this.boardForm?.reset();
+    this.title?.reset();
   }
 }

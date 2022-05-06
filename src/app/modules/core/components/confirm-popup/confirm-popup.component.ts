@@ -4,6 +4,10 @@ import { BoardService } from '../../services/board.service';
 import { HttpService } from '../../services/http.service';
 import { ConfirmService } from '../../services/confirm.service';
 import { ToggleScrollService } from '../../services/toggle-scroll.service';
+import { Store } from '@ngrx/store';
+import { IAppState } from 'src/app/redux/state.model';
+import { updateAllBoards } from 'src/app/redux/actions/board.actions';
+import { boardByIdSelect } from 'src/app/redux/selectors/board.selectors';
 
 @Component({
   selector: 'app-confirm-popup',
@@ -12,11 +16,14 @@ import { ToggleScrollService } from '../../services/toggle-scroll.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConfirmPopupComponent {
+  private board$ = this.store.select(boardByIdSelect);
+
   constructor(
     public boardService: BoardService,
     public confirmService: ConfirmService,
     private httpService: HttpService,
     private toggleScrollService: ToggleScrollService,
+    private store: Store<IAppState>,
   ) {}
 
   public closeConfirmPopup(): void {
@@ -32,13 +39,13 @@ export class ConfirmPopupComponent {
     //тк компонет должен быть универсальный, предлагаю в будущем проверять по роуту
     // страницу для выполнения действия
 
-    this.boardService.board$.pipe(take(1)).subscribe((board) => {
+    this.boardService.deleteBoard$.pipe(take(1)).subscribe((board) => {
       this.httpService
         .deleteBoard(board.id!)
         .pipe(
           take(1),
           map(() => {
-            this.boardService.updateBoards();
+            this.store.dispatch(updateAllBoards());
           }),
         )
         .subscribe();

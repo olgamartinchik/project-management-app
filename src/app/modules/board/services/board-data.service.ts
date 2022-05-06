@@ -1,6 +1,6 @@
 import { BehaviorSubject, take } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { IColumn } from '../../core/model/http.model';
+import { IColumn } from '../../core/model/ITask.model';
 import { HttpService } from '../../core/services/http.service';
 
 @Injectable({

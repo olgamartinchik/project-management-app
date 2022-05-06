@@ -8,9 +8,14 @@ import {
   HttpStatusCode,
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
+import { AuthService } from '../services/auth/auth.service';
 
 @Injectable()
 export class HeadersInterceptor implements HttpInterceptor {
+  private token: string | null = this.authService.getToken();
+
+  constructor(private authService: AuthService) {}
+
   public intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler,
@@ -24,9 +29,7 @@ export class HeadersInterceptor implements HttpInterceptor {
         request.clone({
           headers: new HttpHeaders({
             Accept: 'application/json',
-            Authorization:
-              `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhNTZjNDJjOS1iODU5LTQ4MDQtOWQ1Mi01OTJmZWRiY2MwYjIiLCJsb2dpbiI6ImthdGVAZ21haWwiLCJpYXQiOjE2NTEyNDM1Nzh9.yNFvOJxmjkXBwmV5VlJVv6FZWcJ3a8bQk4bmRtGJ_Qw'}` ||
-              '',
+            Authorization: `Bearer ${this.token}` || '',
           }),
         }),
       )
@@ -37,5 +40,3 @@ export class HeadersInterceptor implements HttpInterceptor {
       );
   }
 }
-
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhOWYyNDhiZi1iZjljLTQwYzAtYjI0MC1lMTY5MDU4N2I1NTciLCJsb2dpbiI6Im9seWFAbWFpbCIsImlhdCI6MTY1MTI0NDcyOH0.zkfjgaeIPyaXRBSGk2HinmWMW2Oj0X0iP6G_bsToD4o

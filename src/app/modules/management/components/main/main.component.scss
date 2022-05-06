@@ -3,10 +3,11 @@
 
 :host {
   background-color: colors.$main-color;
-  min-height: 77.5vh;
+  min-height: calc(100vh - 120px);
 
   padding: 20px;
   display: flex;
+  box-sizing: border-box;
 }
 .main {
   width: 100%;
@@ -26,7 +27,7 @@
   gap: 40px;
   flex-wrap: wrap;
   padding: 60px 0;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .new-board {
