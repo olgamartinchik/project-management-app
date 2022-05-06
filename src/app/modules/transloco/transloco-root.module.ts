@@ -33,7 +33,10 @@ export class TranslocoHttpLoader implements TranslocoLoader {
         prodMode: environment.production,
       }),
     },
-    { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader },
+    {
+      provide: TRANSLOCO_LOADER,
+      useClass: TranslocoHttpLoader,
+    },
   ],
 })
 export class TranslocoRootModule {}

@@ -155,7 +155,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 870px) {
   .nav {
     width: 100%;
     padding: 10px 0;
@@ -181,5 +181,16 @@
 
   .nav-burger-button {
     display: block;
+  }
+}
+.new-board {
+  @include font.text;
+  color: colors.$text-link;
+  transition: 0.4s ease-in-out;
+  cursor: pointer;
+  user-select: none;
+  &:hover {
+    text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+    color: colors.$text-hover;
   }
 }

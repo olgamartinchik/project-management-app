@@ -1,9 +1,25 @@
 {
-  "hello": "Hello",
   "nav": {
     "mainPage": "Main page",
     "startPage": "Start page",
     "workingBoard": "Working board",
+    "enter": "sign in/login",
+    "search": "Search",
+    "createBoard": "Create board"
+  },
+  "mainPage": {
+    "h1": "Your work board",
+    "newBoard": "Create board",
+    "deleteBtn": "delete",
+    "titleNewBoard": "Title",
+    "createBtn": "Create",
+    "errorRequired": "Please enter a title",
+    "errorMinLength": "The title is too short",
+    "errorMaxLength": "The title is too long"
+  },
+  "ConfirmPopup": {
+    "title": "Are you sure?",
+    "button": "Delete",
     "enter": "Signup/login",
     "search": "Search"
   },

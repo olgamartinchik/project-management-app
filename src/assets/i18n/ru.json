@@ -1,10 +1,25 @@
 {
-  "hello": "Привет",
   "nav": {
     "mainPage": "Главная страница",
     "startPage": "Стартовая",
     "workingBoard": "Рабочая доска",
     "enter": "Вход/Регистрация",
+    "search": "Поиск",
+    "createBoard": "Новая доска"
+  },
+  "mainPage": {
+    "h1": "Ваши рабочие доски",
+    "newBoard": "Создать доску",
+    "deleteBtn": "удалить",
+    "titleNewBoard": "Заголовок",
+    "createBtn": "Создать",
+    "errorRequired": "Пожалуйста, введите заголовок",
+    "errorMinLength": "Заголовок слишком короткий",
+    "errorMaxLength": "Заголовок слишком длинный"
+  },
+  "ConfirmPopup": {
+    "title": "Вы уверенны?",
+    "button": "Удалить",
     "search": "Поиск"
   },
   "auth": {

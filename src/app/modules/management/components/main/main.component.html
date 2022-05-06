@@ -1,1 +1,16 @@
-<p>main works!</p>
+<main class="main">
+  <div class="wrapper">
+    <h1 class="title">{{ 'mainPage.h1' | transloco }}</h1>
+
+    <div class="boards">
+      <app-board-card
+        *ngFor="let board of allBoards$ | async"
+        [boardData]="boardService.board$.next(board)! || board"
+      ></app-board-card>
+
+      <div class="board new-board" (click)="openPopupNewBoard()">
+        {{ 'mainPage.newBoard' | transloco }}
+      </div>
+    </div>
+  </div>
+</main>
