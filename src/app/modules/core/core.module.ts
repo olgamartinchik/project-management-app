@@ -19,9 +19,16 @@ import { BoardPopupComponent } from './components/board-popup/board-popup.compon
 import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, BoardPopupComponent, ConfirmPopupComponent],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    BoardPopupComponent,
+    ConfirmPopupComponent,
+    NavbarComponent,
+  ],
   exports: [HeaderComponent, FooterComponent],
 
   imports: [

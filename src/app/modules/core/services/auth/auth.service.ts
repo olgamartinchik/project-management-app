@@ -9,4 +9,8 @@ export class AuthService {
   public getToken(): string | null {
     return localStorage.getItem('authToken');
   }
+
+  public isLoggedIn(): boolean {
+    return this.getToken() !== null;
+  }
 }

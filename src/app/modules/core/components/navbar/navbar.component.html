@@ -1,0 +1,23 @@
+<nav [class]="{ nav: true, 'nav-open': isNavOpen }">
+  <a class="nav-link" routerLinkActive="active" routerLink="/main" rel="noopener" title="main">{{
+    'nav.mainPage' | transloco
+  }}</a>
+  <a class="nav-link" routerLinkActive="active" routerLink="/auth" rel="noopener" title="auth">{{
+    'nav.enter' | transloco
+  }}</a>
+  <a
+    class="nav-link"
+    [class.disabled]="disabled"
+    routerLinkActive="active"
+    routerLink="/search"
+    rel="noopener"
+    title="search"
+    >{{ 'nav.search' | transloco }}</a
+  >
+</nav>
+
+<button
+  [class]="{ 'nav-burger-button': true, active: isNavOpen }"
+  (click)="isNavOpen = !isNavOpen"
+  type="button"
+></button>
