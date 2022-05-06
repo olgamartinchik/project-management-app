@@ -5,7 +5,8 @@
     "startPage": "Стартовая",
     "workingBoard": "Рабочая доска",
     "enter": "Вход/Регистрация",
-    "search": "Поиск"
+    "search": "Поиск",
+    "account": "Личный кабинет"
   },
   "auth": {
     "loginLabel": "Вход",

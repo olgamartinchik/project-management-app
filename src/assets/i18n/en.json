@@ -5,7 +5,8 @@
     "startPage": "Start page",
     "workingBoard": "Working board",
     "enter": "Signup/login",
-    "search": "Search"
+    "search": "Search",
+    "account": "Personal account"
   },
   "auth": {
     "loginLabel": "Login",
