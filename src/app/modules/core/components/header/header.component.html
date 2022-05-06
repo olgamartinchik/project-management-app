@@ -54,16 +54,16 @@
     (click)="isNavOpen = !isNavOpen"
     type="button"
   ></button>
-
+  <div class="new-board" (click)="openPopupCreateBoard()">{{ 'nav.createBoard' | transloco }}</div>
   <div class="settings-language">
     <input
       class="radio-language"
       type="radio"
       name="language"
-      checked
       id="ru"
       value="ru"
       [(ngModel)]="lang"
+      checked
       (change)="switchLang()"
     />
     <label class="change-language" for="ru">RU</label>
@@ -79,4 +79,6 @@
     />
     <label class="change-language" for="en">EN</label>
   </div>
+  <app-board-popup></app-board-popup>
+  <app-confirm-popup></app-confirm-popup>
 </header>

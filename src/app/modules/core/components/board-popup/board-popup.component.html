@@ -1,0 +1,36 @@
+<div
+  class="overlay"
+  (click)="closePopup()"
+  [class]="{ visible: (boardService.isBoardPopup$ | async) }"
+>
+  <form class="form" (click)="stopPropagation($event)">
+    <div class="title-container">
+      <label for="title-board" class="title">{{ 'mainPage.titleNewBoard' | transloco }}</label>
+      <input type="text" class="input" id="title-board" [formControl]="title" required />
+
+      <div
+        class="validate"
+        *ngIf="
+          title?.invalid &&
+          (title?.touched || title?.dirty) &&
+          (boardService.isBoardPopup$ | async) === true
+        "
+      >
+        <small *ngIf="title?.errors?.['required']">{{
+          'mainPage.errorRequired' | transloco
+        }}</small>
+
+        <small *ngIf="title?.errors?.['minlength']">{{
+          'mainPage.errorMinLength' | transloco
+        }}</small>
+
+        <small *ngIf="title?.errors?.['maxlength']">{{
+          'mainPage.errorMaxLength' | transloco
+        }}</small>
+      </div>
+    </div>
+    <button type="submit" class="button" [disabled]="title!.invalid" (click)="createBoard()">
+      {{ 'mainPage.createBtn' | transloco }}
+    </button>
+  </form>
+</div>

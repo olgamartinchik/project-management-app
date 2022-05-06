@@ -1,0 +1,74 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+.overlay {
+  display: block;
+  position: fixed;
+  z-index: 2;
+  left: -300%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  transition: 0.5s ease-in-out;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.overlay.visible {
+  left: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 400px;
+  width: 100%;
+  height: 280px;
+  border-radius: 4px;
+  background-color: colors.$popup-color;
+  padding: 40px 20px;
+  cursor: default;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 90%;
+  height: 120px;
+}
+.title {
+  @include font.subtitle;
+}
+.input {
+  border: none;
+  width: 100%;
+  height: 34px;
+  padding-left: 10px;
+  @include font.text;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+}
+.button {
+  width: 110px;
+  height: 40px;
+  border-radius: 5px;
+  border: 3px solid colors.$text-hover;
+  @include font.text;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+
+  cursor: pointer;
+  &:hover {
+    color: colors.$main-color;
+    box-shadow: 0 0 40px 40px colors.$text-hover inset;
+  }
+}
+.validate {
+  color: colors.$accent-color;
+}

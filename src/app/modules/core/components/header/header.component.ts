@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
+import { BoardService } from 'src/app/modules/core/services/board.service';
 
 import { LangModel } from '../../models/lang.model';
 
@@ -16,9 +17,14 @@ export class HeaderComponent {
 
   public lang: LangModel = 'ru';
 
-  constructor(private translocoService: TranslocoService) {}
+  constructor(private translocoService: TranslocoService, private boardService: BoardService) {}
 
   public switchLang(): void {
+    this.translocoService.setActiveLang(this.lang!);
+  }
+
+  public openPopupCreateBoard(): void {
+    this.boardService.isBoardPopup$.next(true);
     this.translocoService.setActiveLang(this.lang);
   }
 }

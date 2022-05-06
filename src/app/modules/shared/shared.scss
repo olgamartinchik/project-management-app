@@ -25,3 +25,15 @@
   font-style: normal;
   src: url(../../../assets/fonts/OldStandard/OldStandardBold.woff) format('woff');
 }
+.board {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 150px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.modal-open {
+  overflow: hidden;
+}
