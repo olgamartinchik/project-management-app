@@ -1,0 +1,41 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/forms';
+
+:host {
+  @include forms.auth-block;
+}
+
+.auth__form {
+  @include forms.auth-form;
+}
+
+.auth__label {
+  @include forms.label;
+}
+
+.auth__input {
+  @include forms.input;
+}
+
+.auth__error-text {
+  @include forms.error-message;
+}
+
+.auth__error-text_place_form {
+  margin: 15px 0 0;
+  font-size: 20px;
+  line-height: 25px;
+}
+
+.auth__recommend-list {
+  margin: 0;
+  padding: 0 0 0 20px;
+}
+
+.auth__recommend-item {
+  @include forms.recommend-message;
+}
+
+.auth__button {
+  @include forms.submit-button;
+}

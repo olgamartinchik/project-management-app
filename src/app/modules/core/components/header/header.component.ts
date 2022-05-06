@@ -1,16 +1,21 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 import { BoardService } from 'src/app/modules/core/services/board.service';
+
+import { LangModel } from '../../models/lang.model';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   public isNavOpen = false;
 
-  public lang: string = 'ru';
+  public disabled = true;
+
+  public lang: LangModel = 'ru';
 
   constructor(private translocoService: TranslocoService, private boardService: BoardService) {}
 
@@ -20,5 +25,6 @@ export class HeaderComponent {
 
   public openPopupCreateBoard(): void {
     this.boardService.isBoardPopup$.next(true);
+    this.translocoService.setActiveLang(this.lang);
   }
 }

@@ -14,4 +14,5 @@ export const INTERCEPTOR_PROVIDERS: Provider[] = [
     useClass: CatchErrorInterceptor,
     multi: true,
   },
+  { provide: HTTP_INTERCEPTORS, useClass: CatchErrorInterceptor, multi: true },
 ];

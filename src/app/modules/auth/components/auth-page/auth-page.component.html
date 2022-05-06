@@ -1,0 +1,18 @@
+<div class="auth">
+  <input
+    class="auth__checkbox"
+    id="authCheckbox"
+    type="checkbox"
+    [(ngModel)]="isSignupForm"
+    (change)="resetForms()"
+  />
+  <label class="auth__label" for="authCheckbox">
+    <p class="auth__text-label">{{ 'auth.loginLabel' | transloco }}</p>
+    <p class="auth__text-label">{{ 'auth.signupLabel' | transloco }}</p>
+  </label>
+
+  <div class="auth__3d-wrapper">
+    <app-login-form #loginForm></app-login-form>
+    <app-signup-form #signupForm (submitForm)="changeForm()"></app-signup-form>
+  </div>
+</div>
