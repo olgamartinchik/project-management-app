@@ -8,9 +8,14 @@ import {
   HttpStatusCode,
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
+import { AuthService } from '../services/auth/auth.service';
 
 @Injectable()
 export class HeadersInterceptor implements HttpInterceptor {
+  private token: string | null = this.authService.getToken();
+
+  constructor(private authService: AuthService) {}
+
   public intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler,
@@ -24,9 +29,7 @@ export class HeadersInterceptor implements HttpInterceptor {
         request.clone({
           headers: new HttpHeaders({
             Accept: 'application/json',
-            Authorization:
-              `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmNDk2NDI4ZS01Y2NlLTRmNmQtYTVjZC0xMDIyNjMyMzJhZWIiLCJsb2dpbiI6ImxvbGFAbWFpbCIsImlhdCI6MTY1MTY5MzA2NX0.yc4N2JU8KJnwmjboNplr2xsAGpp8_wdkMz47cwiAh64'}` ||
-              '',
+            Authorization: `Bearer ${this.token}` || '',
           }),
         }),
       )

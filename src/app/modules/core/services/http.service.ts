@@ -2,21 +2,23 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IBoard } from '../../management/model/IBoard.model';
-import { URL } from '../constants/constants';
 
+import { environment } from 'src/environments/environment';
 @Injectable()
 export class HttpService {
+  private url = environment.apiUrl;
+
   constructor(private http: HttpClient) {}
 
   public postBoard(value: IBoard): Observable<IBoard> {
-    return this.http.post<IBoard>(`${URL}/boards`, value);
+    return this.http.post<IBoard>(`${this.url}/boards`, value);
   }
 
   public getBoards(): Observable<IBoard[]> {
-    return this.http.get<IBoard[]>(`${URL}/boards`);
+    return this.http.get<IBoard[]>(`${this.url}/boards`);
   }
 
   public deleteBoard(id: string): Observable<IBoard> {
-    return this.http.delete<IBoard>(`${URL}/boards/${id}`);
+    return this.http.delete<IBoard>(`${this.url}/boards/${id}`);
   }
 }
