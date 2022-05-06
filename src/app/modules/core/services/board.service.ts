@@ -8,5 +8,5 @@ import { IBoard } from '../../management/model/IBoard.model';
 export class BoardService {
   public isBoardPopup$ = new BehaviorSubject(false);
 
-  public board$ = new BehaviorSubject<IBoard>({ id: '', title: '' });
+  public deleteBoard$ = new BehaviorSubject<IBoard>({ id: '', title: '' });
 }

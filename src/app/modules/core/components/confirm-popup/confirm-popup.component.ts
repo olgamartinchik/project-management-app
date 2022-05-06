@@ -39,7 +39,7 @@ export class ConfirmPopupComponent {
     //тк компонет должен быть универсальный, предлагаю в будущем проверять по роуту
     // страницу для выполнения действия
 
-    this.boardService.board$.pipe(take(1)).subscribe((board) => {
+    this.boardService.deleteBoard$.pipe(take(1)).subscribe((board) => {
       this.httpService
         .deleteBoard(board.id!)
         .pipe(

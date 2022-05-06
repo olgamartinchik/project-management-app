@@ -27,6 +27,7 @@ export class BoardCardComponent {
   public deleteBoard(event: Event): void {
     event.preventDefault();
     event.stopPropagation();
+    this.boardService.deleteBoard$.next(this.boardData);
     this.confirmService.isConfirmPopup$.next(true);
     this.toggleScrollService.hiddenScroll();
   }
