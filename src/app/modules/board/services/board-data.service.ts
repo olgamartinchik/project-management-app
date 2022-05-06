@@ -9,8 +9,6 @@ import { HttpService } from '../../core/services/http.service';
 export class BoardDataService {
   public allColumn$ = new BehaviorSubject<IColumn[]>([]);
 
-  public orderColumns: number = 0;
-
   constructor(private httpService: HttpService) {}
 
   public getAllColumn(id: string): void {
@@ -20,7 +18,6 @@ export class BoardDataService {
       .subscribe((columns) => {
         this.allColumn$.next(columns);
         console.log('columns', columns);
-        this.orderColumns = +columns.length;
       });
   }
 }

@@ -6,9 +6,11 @@
       <app-column-container
         *ngFor="let column of boardDataService.allColumn$ | async"
       ></app-column-container>
-      <button class="button" (click)="addColumn()">
-        + {{ 'BoardPage.addColBtn' | transloco }}
-      </button>
+      <div>
+        <button class="button" (click)="addColumn()">
+          + {{ 'BoardPage.addColBtn' | transloco }}
+        </button>
+      </div>
     </div>
   </div>
 </main>

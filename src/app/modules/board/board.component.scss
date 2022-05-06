@@ -2,10 +2,11 @@
 @use '../shared/styles/font';
 :host {
   background-color: colors.$main-color;
-  min-height: 77.5vh;
+  height: calc(100vh - 120px);
 
   padding: 20px;
   display: flex;
+  box-sizing: border-box;
 }
 .main {
   width: 100%;
@@ -17,7 +18,10 @@
   display: flex;
   justify-content: flex-start;
   width: 100%;
+  height: calc(100vh - 214px);
+
   gap: 20px;
+  overflow-x: auto;
 }
 .button {
   width: 160px;
@@ -30,5 +34,22 @@
   &:hover {
     color: colors.$main-color;
     box-shadow: 0 0 40px 40px colors.$text-hover inset;
+  }
+}
+@media screen and (max-width: 320px) {
+  :host {
+    padding: 10px;
+  }
+}
+@media screen and (max-width: 768px) {
+  :host {
+    padding: 15px;
+    height: calc(100vh - 224px);
+  }
+  .columns-container {
+    height: calc(100vh - 307px);
+  }
+  .title {
+    font-size: 20px;
   }
 }

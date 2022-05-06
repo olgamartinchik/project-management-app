@@ -29,8 +29,8 @@ export class HttpService {
     return this.http.delete<IBoard>(`${URL}/boards/${id}`);
   }
 
-  public getColumns(id: string): Observable<IColumn[]> {
-    return this.http.get<IColumn[]>(`${URL}/boards/${id}/columns`);
+  public getColumns(idBoard: string): Observable<IColumn[]> {
+    return this.http.get<IColumn[]>(`${URL}/boards/${idBoard}/columns`);
   }
 
   public postColumns(id: string, value: IColumn): Observable<IColumn> {
