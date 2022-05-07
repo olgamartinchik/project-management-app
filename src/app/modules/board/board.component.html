@@ -1,11 +1,19 @@
 <main class="main">
   <div class="wrapper">
-    <h1 class="title">{{ (board$ | async)!.title }}</h1>
+    <input
+      type="text"
+      class="title"
+      [(ngModel)]="titleBoard"
+      (change)="changeTitleBoard()"
+      (keydown.enter)="looseFocus($event)"
+    />
 
     <div class="columns-container">
       <app-column-container *ngFor="let column of (board$ | async)!.columns"></app-column-container>
       <div>
-        <button class="button" (click)="addColumn()"></button>
+        <button class="button" (click)="addColumn()">
+          + {{ 'BoardPage.addColBtn' | transloco }}
+        </button>
       </div>
     </div>
   </div>

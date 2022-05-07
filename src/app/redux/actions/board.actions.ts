@@ -11,6 +11,7 @@ export const getBoardByIdFailed = createAction(
   '[BOARD DATA EFFECT] FETCHED  BOARD BY ID WAS FAILED',
   props<{ error: Error }>(),
 );
+export const updateBoard = createAction('[UPDATE BOARD] UPDATE BOARD BY ID');
 export const setBoardById = createAction('[SET BOARD ID] SET ID', props<{ idBoard: string }>());
 
 export const updateAllBoards = createAction('[UPDATE BOARDS] GET ALL BOARDS');

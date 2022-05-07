@@ -24,6 +24,10 @@ export class HttpService {
     return this.http.get<IBoard>(`${this.url}/boards/${id}`);
   }
 
+  public updateBoard(id: string, value: IBoard): Observable<IBoard> {
+    return this.http.put<IBoard>(`${this.url}/boards/${id}`, value);
+  }
+
   public deleteBoard(id: string): Observable<IBoard> {
     return this.http.delete<IBoard>(`${this.url}/boards/${id}`);
   }

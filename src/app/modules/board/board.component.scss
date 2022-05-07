@@ -13,6 +13,16 @@
 }
 .title {
   @include font.title;
+  margin: 10px auto;
+  display: flex;
+  border: 2px solid transparent;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  &:focus {
+    border: 2px solid colors.$text-hover;
+    border-radius: 4px;
+  }
 }
 .columns-container {
   display: flex;

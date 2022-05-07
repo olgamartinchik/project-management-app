@@ -26,4 +26,7 @@ export const boardReducer = createReducer(
   on(BoardActions.getBoardByIdFailed, (state, { error }) => {
     return { ...state, error };
   }),
+  on(BoardActions.updateBoard, (state) => {
+    return { ...state };
+  }),
 );
