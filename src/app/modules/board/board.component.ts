@@ -1,15 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, Subject, take, takeUntil } from 'rxjs';
-import { IColumn } from '../core/model/ITask.model';
+import { map, Observable, Subject, take, takeUntil } from 'rxjs';
 import { BoardService } from '../core/services/board.service';
 import { HttpService } from '../core/services/http.service';
 import { BoardDataService } from './services/board-data.service';
 import { IAppState } from 'src/app/redux/state.model';
 import { boardByIdSelect } from 'src/app/redux/selectors/board.selectors';
 import { setBoardById } from 'src/app/redux/actions/board.actions';
-import { IBoard } from '../core/models/IBoard.model';
+import { IBoard, IColumn } from '../core/models/IBoard.model';
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -18,7 +17,8 @@ import { IBoard } from '../core/models/IBoard.model';
 export class BoardComponent implements OnInit, OnDestroy {
   public idBoard: string = '';
 
-  private count: number = 1;
+  //временный count для создания контейнера
+  private count: number = 0;
 
   public columns?: IColumn[];
 
@@ -42,20 +42,25 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.store.dispatch(setBoardById({ idBoard: this.idBoard }));
     this.board$.pipe(takeUntil(this.unsubscribe$)).subscribe((board) => {
       this.titleBoard = board.title;
+      // console.log('updateBoard', board.columns)
     });
-
-    // this.boardService.updateBoardById(this.idBoard);
-    // this.httpService.getBoardsId(this.idBoard).subscribe((value) => console.log('value', value));
-    // this.boardDataService.orderColumns!==0?this.count=this.boardDataService.orderColumns:this.count=0
   }
 
   public addColumn(): void {
     this.httpService
+      //передаю дефолтные данные
       .postColumns(this.idBoard, { title: 'task', order: this.count++ })
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        map(() => {
+          this.store.dispatch(setBoardById({ idBoard: this.idBoard }));
+        }),
+      )
       .subscribe();
-    // this.httpService.deleteColumns(this.idBoard,'fb5907fd-d479-43e9-89b5-b8cf3f753672').subscribe()
+
     this.boardDataService.getAllColumn(this.idBoard);
+
+    this.store.dispatch(setBoardById({ idBoard: this.idBoard }));
   }
 
   public changeTitleBoard(): void {
@@ -63,10 +68,6 @@ export class BoardComponent implements OnInit, OnDestroy {
       .updateBoard(this.idBoard, { title: this.titleBoard })
       .pipe(take(1))
       .subscribe();
-    // this.store.dispatch(updateBoard());
-    // if(event.keyCode === 13){
-    //   event.target.blur()
-    // }
   }
 
   public looseFocus(event: Event): void {

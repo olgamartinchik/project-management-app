@@ -1,7 +1,7 @@
 import { BehaviorSubject, take } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { IColumn } from '../../core/model/ITask.model';
 import { HttpService } from '../../core/services/http.service';
+import { IColumn } from '../../core/models/IBoard.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class BoardDataService {
       .pipe(take(1))
       .subscribe((columns) => {
         this.allColumn$.next(columns);
-        console.log('columns', columns);
+        // console.log('columns', columns);
       });
   }
 }

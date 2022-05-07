@@ -1,7 +1,16 @@
 @use '../../../shared/styles/colors';
 .column-container {
+  position: relative;
   background-color: colors.$column-color;
   width: 272px;
-  min-height: 40px;
+  min-height: 100px;
   border-radius: 4px;
+}
+.delete-btn {
+  position: absolute;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+  right: 5px;
+  top: 5px;
 }

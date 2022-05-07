@@ -10,7 +10,6 @@ import {
   setBoardById,
   setBoards,
   updateAllBoards,
-  updateBoard,
 } from '../actions/board.actions';
 import { HttpService } from 'src/app/modules/core/services/http.service';
 import { IAppState } from '../state.model';
@@ -40,7 +39,7 @@ export class BoardEffect {
 
   public getBoard: Observable<Action> = createEffect(() => {
     return this.actions.pipe(
-      ofType(setBoardById || updateBoard),
+      ofType(setBoardById),
       withLatestFrom(this.store.select(idBoard)),
       switchMap(([, id]) =>
         this.httpService.getBoard(id).pipe(

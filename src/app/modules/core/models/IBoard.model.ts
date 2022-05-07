@@ -4,10 +4,10 @@ export interface IBoard {
   columns?: IColumn[];
 }
 export interface IColumn {
-  id: string;
-  title: string;
-  order: number;
-  tasks: ITasks[];
+  id?: string;
+  title?: string;
+  order?: number;
+  tasks?: ITasks[];
 }
 export interface ITasks {
   id: string;

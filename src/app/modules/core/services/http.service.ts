@@ -1,9 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IBoard } from '../models/IBoard.model';
-
-import { IColumn } from '../model/ITask.model';
+import { IBoard, IColumn } from '../models/IBoard.model';
 
 import { environment } from 'src/environments/environment';
 @Injectable()
