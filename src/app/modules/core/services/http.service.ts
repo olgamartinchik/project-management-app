@@ -20,6 +20,10 @@ export class HttpService {
     return this.http.get<IBoard[]>(`${this.url}/boards`);
   }
 
+  public getBoard(id: string): Observable<IBoard> {
+    return this.http.get<IBoard>(`${this.url}/boards/${id}`);
+  }
+
   public deleteBoard(id: string): Observable<IBoard> {
     return this.http.delete<IBoard>(`${this.url}/boards/${id}`);
   }

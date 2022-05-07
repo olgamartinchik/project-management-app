@@ -1,6 +1,6 @@
 <main class="main">
   <div class="wrapper">
-    <h1 class="title"></h1>
+    <h1 class="title">{{ (board$ | async)!.title }}</h1>
 
     <div class="columns-container">
       <app-column-container *ngFor="let column of (board$ | async)!.columns"></app-column-container>

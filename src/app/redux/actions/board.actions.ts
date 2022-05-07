@@ -7,6 +7,11 @@ export const getBoardById = createAction(
   '[BOARD DATA] GET  BOARD BY ID',
   props<{ boardById: IBoard }>(),
 );
+export const getBoardByIdFailed = createAction(
+  '[BOARD DATA EFFECT] FETCHED  BOARD BY ID WAS FAILED',
+  props<{ error: Error }>(),
+);
+export const setBoardById = createAction('[SET BOARD ID] SET ID', props<{ idBoard: string }>());
 
 export const updateAllBoards = createAction('[UPDATE BOARDS] GET ALL BOARDS');
 

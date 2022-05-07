@@ -8,6 +8,7 @@ import { HttpService } from '../core/services/http.service';
 import { BoardDataService } from './services/board-data.service';
 import { IAppState } from 'src/app/redux/state.model';
 import { boardByIdSelect } from 'src/app/redux/selectors/board.selectors';
+import { setBoardById } from 'src/app/redux/actions/board.actions';
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -33,6 +34,10 @@ export class BoardComponent implements OnInit {
   public ngOnInit(): void {
     this.idBoard = this.route.snapshot.params['id'];
     this.boardDataService.getAllColumn(this.idBoard);
+    this.store.dispatch(setBoardById({ idBoard: this.idBoard }));
+    this.board$.subscribe((board) => {
+      console.log('board', board);
+    });
 
     // this.boardService.updateBoardById(this.idBoard);
     // this.httpService.getBoardsId(this.idBoard).subscribe((value) => console.log('value', value));
