@@ -42,16 +42,14 @@ export class BoardCardComponent {
   }
 
   private deleteBoard = (): void => {
-    this.boardService.board$.pipe(take(1)).subscribe((board) => {
-      this.httpService
-        .deleteBoard(board.id!)
-        .pipe(
-          take(1),
-          map(() => {
-            this.store.dispatch(updateAllBoards());
-          }),
-        )
-        .subscribe();
-    });
+    this.httpService
+      .deleteBoard(this.boardData.id!)
+      .pipe(
+        take(1),
+        map(() => {
+          this.store.dispatch(updateAllBoards());
+        }),
+      )
+      .subscribe();
   };
 }
