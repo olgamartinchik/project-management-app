@@ -41,7 +41,8 @@
     "loginPlaceholder": "Login",
     "passwordPlaceholder": "Password",
     "confirmPasswordPlaceholder": "Confirm password",
-    "editButton": "Edit"
+    "editButton": "Edit",
+    "deleteButton": "Delete account"
   },
   "nameErrors": {
     "required": "Please enter a name",

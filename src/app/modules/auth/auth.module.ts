@@ -5,12 +5,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthRoutingModule } from './auth-routing.module';
 import { TranslocoRootModule } from '../transloco/transloco-root.module';
 
-import { ValidationService } from '../core/services/validation/validation.service';
-import { ErrorMessagesService } from '../core/services/error-messages/error-messages.service';
-
+// components
 import { AuthPageComponent } from './pages/auth-page/auth-page.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
+
+// services
+import { ValidationService } from '../core/services/validation/validation.service';
+import { ErrorMessagesService } from '../core/services/error-messages/error-messages.service';
 
 @NgModule({
   declarations: [AuthPageComponent, LoginFormComponent, SignupFormComponent],

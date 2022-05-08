@@ -2,4 +2,8 @@
   <app-profile [name]="user.name"></app-profile>
 
   <app-edit-form [currentUser]="user" (submitForm)="getUserData()"></app-edit-form>
+
+  <button class="account__button" (click)="confirmationDeleteUser()">
+    {{ 'account.deleteButton' | transloco }}
+  </button>
 </ng-container>

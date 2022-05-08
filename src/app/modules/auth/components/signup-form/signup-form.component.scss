@@ -50,5 +50,5 @@
 }
 
 .auth__button {
-  @include forms.submit-button;
+  @include forms.button;
 }

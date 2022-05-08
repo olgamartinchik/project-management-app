@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 
+// components
 import { LoginFormComponent } from '../../components/login-form/login-form.component';
 import { SignupFormComponent } from '../../components/signup-form/signup-form.component';
 

@@ -40,7 +40,8 @@
     "loginPlaceholder": "Логин",
     "passwordPlaceholder": "Пароль",
     "confirmPasswordPlaceholder": "Подтвердите пароль",
-    "editButton": "Редактировать"
+    "editButton": "Редактировать",
+    "deleteButton": "Удалить аккаунт"
   },
   "nameErrors": {
     "required": "Пожалуйста введите имя",

@@ -32,4 +32,8 @@ export class ApiService {
   public editUser(id: string, userData: SignupRequestModel): Observable<UserModel> {
     return this.http.put<UserModel>(`${this.url}/users/${id}`, userData);
   }
+
+  public deleteUser(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.url}/users/${id}`);
+  }
 }
