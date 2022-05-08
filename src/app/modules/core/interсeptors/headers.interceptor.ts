@@ -20,10 +20,6 @@ export class HeadersInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    // let headers=new HttpHeaders()
-    // if(request.method!=='DELETE'){
-    //        headers=headers.set('Content-Type', 'application/json')
-    // }
     return next
       .handle(
         request.clone({

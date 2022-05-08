@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from '../transloco/transloco-root.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //services
+import { LoaderService } from './services/loader.service';
 import { HttpService } from './services/http.service';
 import { ConfirmService } from './services/confirm.service';
 import { ToggleScrollService } from './services/toggle-scroll.service';
@@ -19,9 +20,16 @@ import { BoardPopupComponent } from './components/board-popup/board-popup.compon
 import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, BoardPopupComponent, ConfirmPopupComponent],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    BoardPopupComponent,
+    ConfirmPopupComponent,
+    LoaderComponent,
+  ],
   exports: [HeaderComponent, FooterComponent],
 
   imports: [
@@ -34,6 +42,12 @@ import { HeaderComponent } from './components/header/header.component';
     BrowserAnimationsModule,
     SharedModule,
   ],
-  providers: [INTERCEPTOR_PROVIDERS, HttpService, ConfirmService, ToggleScrollService],
+  providers: [
+    INTERCEPTOR_PROVIDERS,
+    HttpService,
+    LoaderService,
+    ConfirmService,
+    ToggleScrollService,
+  ],
 })
 export class CoreModule {}
