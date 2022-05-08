@@ -17,7 +17,6 @@ export class ConfirmPopupComponent {
 
   public confirm(): void {
     this.confirmService.confirmDelete();
-
     this.closeConfirmPopup();
   }
 
