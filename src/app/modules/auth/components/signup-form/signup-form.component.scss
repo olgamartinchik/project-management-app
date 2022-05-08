@@ -2,7 +2,7 @@
 @use '../../../shared/styles/forms';
 
 :host {
-  @include forms.auth-block;
+  @include forms.form-block;
   transform: rotateY(180deg);
   position: absolute;
   left: 0;
@@ -10,7 +10,7 @@
 }
 
 .auth__form {
-  @include forms.auth-form;
+  @include forms.form;
 }
 
 .auth__label {

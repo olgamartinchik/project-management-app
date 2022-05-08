@@ -5,6 +5,7 @@
     "workingBoard": "Working board",
     "enter": "sign in/login",
     "search": "Search",
+    "account": "Personal account",
     "createBoard": "Create board"
   },
   "mainPage": {
@@ -21,8 +22,7 @@
     "title": "Are you sure?",
     "button": "Delete",
     "enter": "Signup/login",
-    "search": "Search",
-    "account": "Personal account"
+    "search": "Search"
   },
   "auth": {
     "loginLabel": "Login",
@@ -33,6 +33,15 @@
     "confirmPasswordPlaceholder": "Confirm password",
     "loginButton": "Login",
     "signupButton": "Sign up"
+  },
+  "account": {
+    "title": "Welcome",
+    "subtitle": "Edit profile",
+    "namePlaceholder": "Name",
+    "loginPlaceholder": "Login",
+    "passwordPlaceholder": "Password",
+    "confirmPasswordPlaceholder": "Confirm password",
+    "editButton": "Edit"
   },
   "nameErrors": {
     "required": "Please enter a name",

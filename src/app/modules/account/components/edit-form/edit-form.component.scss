@@ -1,0 +1,52 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/forms';
+
+:host {
+  max-width: 500px;
+  padding: 20px;
+  @include forms.form-block;
+}
+
+.account__form {
+  @include forms.form;
+}
+
+.account__label {
+  @include forms.label;
+}
+
+.account__input {
+  @include forms.input;
+}
+
+.confirm-password.ng-dirty {
+  &.invalid {
+    border-bottom: 2px solid colors.$invalid;
+  }
+  &:not(.invalid) {
+    border-bottom: 2px solid colors.$valid;
+  }
+}
+
+.account__error-text {
+  @include forms.error-message;
+}
+
+.account__error-text_place_form {
+  margin: 15px 0 0;
+  font-size: 20px;
+  line-height: 25px;
+}
+
+.account__recommend-list {
+  margin: 0;
+  padding: 0 0 0 20px;
+}
+
+.account__recommend-item {
+  @include forms.recommend-message;
+}
+
+.account__button {
+  @include forms.submit-button;
+}

@@ -9,14 +9,17 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs';
 
+// services
+import { ApiService } from '../../../core/services/api/api.service';
 import { ValidationService } from '../../../core/services/validation/validation.service';
-import { CORRECT_CHAR } from '../../../core/constants/validation.service.constants';
 import { ErrorMessagesService } from '../../../core/services/error-messages/error-messages.service';
 
-import { FormMessagesModel } from 'src/app/modules/core/models/error-messages.services.models';
-import { FORM_ERROR_MESSAGES } from '../../constants/error-messages.constants';
+//models
+import { FormMessagesModel } from '../../../core/models/error-messages.services.models';
 
-import { ApiService } from '../../../core/services/api/api.service';
+// constants
+import { CORRECT_CHAR } from '../../../core/constants/validation.service.constants';
+import { FORM_ERROR_MESSAGES } from '../../../core/constants/error-messages.constants';
 
 @Component({
   selector: 'app-signup-form',
@@ -48,7 +51,7 @@ export class SignupFormComponent implements OnInit {
             Validators.required,
             Validators.pattern(CORRECT_CHAR),
             Validators.minLength(2),
-            Validators.maxLength(30),
+            Validators.maxLength(20),
           ],
         ],
         login: [
@@ -74,25 +77,25 @@ export class SignupFormComponent implements OnInit {
     );
   }
 
-  public reset(): void {
+  public resetForm(): void {
     this.signupForm.reset();
     this.cdr.markForCheck();
   }
 
   public submit(): void {
-    const data = {
+    const userData = {
       name: this.signupForm.controls['name'].value,
       login: this.signupForm.controls['login'].value,
       password: this.signupForm.controls['password'].value,
     };
 
     this.apiService
-      .singup(data)
+      .singup(userData)
       .pipe(take(1))
       .subscribe({
         next: () => {
           this.submitForm.emit();
-          this.reset();
+          this.resetForm();
         },
         error: (err: string) => {
           this.handleApiError(err);

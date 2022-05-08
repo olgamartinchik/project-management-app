@@ -33,6 +33,15 @@
     "loginButton": "Войти",
     "signupButton": "Зарегистрироваться"
   },
+  "account": {
+    "title": "Приветствуем",
+    "subtitle": "Редактировать профиль",
+    "namePlaceholder": "Имя",
+    "loginPlaceholder": "Логин",
+    "passwordPlaceholder": "Пароль",
+    "confirmPasswordPlaceholder": "Подтвердите пароль",
+    "editButton": "Редактировать"
+  },
   "nameErrors": {
     "required": "Пожалуйста введите имя",
     "minlength": "Имя слишком короткое",

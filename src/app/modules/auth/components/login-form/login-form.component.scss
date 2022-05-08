@@ -2,11 +2,11 @@
 @use '../../../shared/styles/forms';
 
 :host {
-  @include forms.auth-block;
+  @include forms.form-block;
 }
 
 .auth__form {
-  @include forms.auth-form;
+  @include forms.form;
 }
 
 .auth__label {

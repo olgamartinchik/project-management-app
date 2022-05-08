@@ -1,5 +1,9 @@
 :host {
   min-height: calc(100vh - 130px);
+  padding: 60px 20px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 }

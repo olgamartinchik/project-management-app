@@ -8,7 +8,7 @@ import { TranslocoRootModule } from '../transloco/transloco-root.module';
 import { ValidationService } from '../core/services/validation/validation.service';
 import { ErrorMessagesService } from '../core/services/error-messages/error-messages.service';
 
-import { AuthPageComponent } from './components/auth-page/auth-page.component';
+import { AuthPageComponent } from './pages/auth-page/auth-page.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
 

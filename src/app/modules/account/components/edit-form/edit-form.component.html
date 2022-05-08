@@ -1,1 +1,74 @@
-<p>edit-form works!</p>
+<form class="account__form" [formGroup]="editUserForm" (submit)="submit()">
+  <label class="account__label">
+    <input
+      class="account__input"
+      formControlName="name"
+      type="text"
+      [placeholder]="'account.namePlaceholder' | transloco"
+    />
+    <p class="account__error-text">
+      {{ errorMessagesService.showMessages(editUserForm, 'name', messages['name']) | transloco }}
+    </p>
+  </label>
+
+  <label class="account__label">
+    <input
+      class="account__input"
+      formControlName="login"
+      type="text"
+      [placeholder]="'account.loginPlaceholder' | transloco"
+    />
+    <p class="account__error-text">
+      {{ errorMessagesService.showMessages(editUserForm, 'login', messages['login']) | transloco }}
+    </p>
+  </label>
+
+  <label class="account__label">
+    <input
+      class="account__input"
+      formControlName="password"
+      type="password"
+      [placeholder]="'account.passwordPlaceholder' | transloco"
+    />
+    <ng-container
+      *ngIf="
+        errorMessagesService.showPasswordErrors(
+          editUserForm,
+          'password',
+          messages['password']
+        ) as error
+      "
+    >
+      <p class="account__error-text">{{ error.main | transloco }}</p>
+      <ul class="account__recommend-list">
+        <li class="account__recommend-item" *ngFor="let recommend of error.recommendations">
+          {{ recommend | transloco }}
+        </li>
+      </ul>
+    </ng-container>
+  </label>
+
+  <label class="account__label">
+    <input
+      [class]="{
+        account__input: true,
+        'confirm-password': true,
+        invalid: editUserForm.errors && editUserForm.errors['passwordMatch']
+      }"
+      formControlName="confirmPassword"
+      type="password"
+      [placeholder]="'account.confirmPasswordPlaceholder' | transloco"
+    />
+    <p class="account__error-text">
+      {{ errorMessagesService.showPasswordMatchMessage(editUserForm) | transloco }}
+    </p>
+  </label>
+
+  <p class="account__error-text account__error-text_place_form">
+    {{ editUserForm.errors && editUserForm.errors['formError'] | transloco }}
+  </p>
+
+  <button class="account__button" type="submit" [disabled]="editUserForm.invalid">
+    {{ 'account.editButton' | transloco }}
+  </button>
+</form>
