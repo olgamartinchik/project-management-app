@@ -34,6 +34,7 @@ export class BoardCardComponent {
   public confirmationDeleteBoard(event: Event): void {
     event.preventDefault();
     event.stopPropagation();
+
     this.confirmService.open(this.deleteBoard);
   }
 
