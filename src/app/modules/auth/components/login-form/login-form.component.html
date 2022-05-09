@@ -1,0 +1,46 @@
+<form class="auth__form" [formGroup]="loginForm" (submit)="submit()">
+  <label class="auth__label">
+    <input
+      class="auth__input"
+      formControlName="login"
+      type="text"
+      [placeholder]="'auth.loginPlaceholder' | transloco"
+    />
+    <p class="auth__error-text">
+      {{ errorMessagesService.showMessages(loginForm, 'login', messages['login']) | transloco }}
+    </p>
+  </label>
+
+  <label class="auth__label">
+    <input
+      class="auth__input"
+      formControlName="password"
+      type="password"
+      [placeholder]="'auth.passwordPlaceholder' | transloco"
+    />
+    <ng-container
+      *ngIf="
+        errorMessagesService.showPasswordErrors(
+          loginForm,
+          'password',
+          messages['password']
+        ) as error
+      "
+    >
+      <p class="auth__error-text">{{ error.main | transloco }}</p>
+      <ul class="auth__recommend-list">
+        <li class="auth__recommend-item" *ngFor="let recommend of error.recommendations">
+          {{ recommend | transloco }}
+        </li>
+      </ul>
+    </ng-container>
+  </label>
+
+  <p class="auth__error-text auth__error-text_place_form">
+    {{ loginForm.errors && loginForm.errors['formError'] | transloco }}
+  </p>
+
+  <button class="auth__button" type="submit" [disabled]="loginForm.invalid">
+    {{ 'auth.loginButton' | transloco }}
+  </button>
+</form>

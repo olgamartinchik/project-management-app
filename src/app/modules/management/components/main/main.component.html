@@ -1,8 +1,13 @@
-<div
-  cdkDropList
-  cdkDropListOrientation="horizontal"
-  class="DnD"
-  (cdkDropListDropped)="drop($event)"
->
-  <app-column cdkDrag *ngFor="let column of columns" [columnData]="column"> </app-column>
-</div>
+<main class="main">
+  <div class="wrapper">
+    <h1 class="title">{{ 'mainPage.h1' | transloco }}</h1>
+
+    <div class="boards">
+      <app-board-card *ngFor="let board of allBoards$ | async" [boardData]="board"></app-board-card>
+
+      <div class="board new-board" (click)="openPopupNewBoard()">
+        {{ 'mainPage.newBoard' | transloco }}
+      </div>
+    </div>
+  </div>
+</main>

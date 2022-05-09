@@ -1,10 +1,62 @@
 {
-  "hello": "Привет",
   "nav": {
     "mainPage": "Главная страница",
     "startPage": "Стартовая",
     "workingBoard": "Рабочая доска",
     "enter": "Вход/Регистрация",
+    "search": "Поиск",
+    "createBoard": "Новая доска"
+  },
+  "mainPage": {
+    "h1": "Ваши рабочие доски",
+    "newBoard": "Создать доску",
+    "deleteBtn": "удалить",
+    "titleNewBoard": "Заголовок",
+    "createBtn": "Создать",
+    "errorRequired": "Пожалуйста, введите заголовок",
+    "errorMinLength": "Заголовок слишком короткий",
+    "errorMaxLength": "Заголовок слишком длинный"
+  },
+  "ConfirmPopup": {
+    "title": "Вы уверенны?",
+    "button": "Удалить",
     "search": "Поиск"
+  },
+  "auth": {
+    "loginLabel": "Вход",
+    "signupLabel": "Регистрация",
+    "loginPlaceholder": "Логин",
+    "passwordPlaceholder": "Пароль",
+    "namePlaceholder": "Имя",
+    "confirmPasswordPlaceholder": "Подтвердите пароль",
+    "loginButton": "Войти",
+    "signupButton": "Зарегистрироваться"
+  },
+  "nameErrors": {
+    "required": "Пожалуйста введите имя",
+    "minlength": "Имя слишком короткое",
+    "maxlength": "Имя слишком длинное"
+  },
+  "loginErrors": {
+    "required": "Пожалуйста введите логин",
+    "minlength": "Логин слишком короткий",
+    "maxlength": "Логин слишком длинный"
+  },
+  "passwordErrors": {
+    "required": "Пожалуйста введите пароль",
+    "mismatch": "Пароли не совпадают",
+    "weak": "Ваш пароль недостаточно надежный",
+    "length": "не менее 8 и не более 20 символов",
+    "bothCase": "сочетание прописных и строчных букв",
+    "number": "сочетание цифр и букв",
+    "specialChar": "включение по крайней мере одного специального символа, например, !@#?]"
+  },
+  "commonErrors": {
+    "pattern": "Используйте латинский алфавит, цифры и специальные символы",
+    "unknown": "Неизвестная ошибка"
+  },
+  "apiErrors": {
+    "forbidden": "Пользователь не найден",
+    "conflict": "Данный логин занят"
   }
 }

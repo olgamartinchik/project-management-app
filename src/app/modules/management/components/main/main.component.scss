@@ -1,69 +1,43 @@
 @use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
 
-.DnD {
-  --padding: 20px;
-  --column-number: 6;
-  --column-width: calc(
-    100vw / var(--column-number) - (20px + var(--padding) / var(--column-number))
-  );
+:host {
+  background-color: colors.$main-color;
+  min-height: calc(100vh - 120px);
 
-  background-color: white;
-  height: calc(100vh - 130px);
-  padding: var(--padding);
+  padding: 20px;
+  display: flex;
   box-sizing: border-box;
-  display: grid;
-  grid-template: 100% / var(--column-width);
-  grid-auto-flow: column;
-  grid-auto-columns: var(--column-width);
-  overflow-x: auto;
-  gap: 20px;
+}
+.main {
+  width: 100%;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.title {
+  @include font.title;
+}
+.boards {
+  width: 100%;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 60px 0;
+  justify-content: center;
 }
 
-.cdk-drag-preview {
-  box-sizing: border-box;
-  border-radius: 4px;
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
-    0 3px 14px 2px rgba(0, 0, 0, 0.12);
-}
-
-.cdk-drag-placeholder {
-  opacity: 0;
-}
-
-.cdk-drag-animating {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.cdk-drop-list-dragging :not(.cdk-drag-placeholder) {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-@media screen and (max-width: 1600px) {
-  .DnD {
-    --column-number: 5;
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .DnD {
-    --column-number: 4;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  .DnD {
-    --column-number: 3;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .DnD {
-    --column-number: 2;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .DnD {
-    --column-number: 1;
+.new-board {
+  background-color: colors.$secondary-color;
+  @include font.text;
+  opacity: 0.5;
+  transition: 0.4s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.7;
+    color: colors.$text-hover;
   }
 }

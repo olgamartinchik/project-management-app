@@ -1,99 +1,50 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 
-interface ColumnModel {
-  id: string;
-  title: string;
-  order: number;
-  tasks: Task[];
-}
+import { BoardService } from '../../../core/services/board.service';
 
-interface Task {
-  title: string;
-}
+import { ToggleScrollService } from 'src/app/modules/core/services/toggle-scroll.service';
+import { Store } from '@ngrx/store';
+import { IAppState } from 'src/app/redux/state.model';
+import { setBoards } from 'src/app/redux/actions/board.actions';
+import { HttpService } from 'src/app/modules/core/services/http.service';
+import { boardsSelect } from 'src/app/redux/selectors/board.selectors';
+import { Observable, Subject, takeUntil } from 'rxjs';
+import { IBoard } from '../../model/IBoard.model';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainComponent {
-  public columns: ColumnModel[] = [
-    {
-      id: '08cc10f4-1aeb-4cce-9793-9fea8313b591',
-      title: 'Todo 1',
-      order: 0,
-      tasks: [
-        { title: 'do work' },
-        { title: 'do something' },
-        { title: 'do anything' },
-        { title: 'do work' },
-        { title: 'do something' },
-        { title: 'do anything' },
-        { title: 'do something' },
-        { title: 'do anything' },
-      ],
-    },
-    {
-      id: '08cc10f4-1aeb-4cce-9793-9fea8313b592',
-      title: 'Todo 2',
-      order: 1,
-      tasks: [{ title: 'do work' }, { title: 'do something' }, { title: 'do anything' }],
-    },
-    {
-      id: '08cc10f4-1aeb-4cce-9793-9fea8313b593',
-      title: 'Todo 3',
-      order: 2,
-      tasks: [{ title: 'do work' }, { title: 'do something' }, { title: 'do anything' }],
-    },
-    {
-      id: '08cc10f4-1aeb-4cce-9793-9fea8313b594',
-      title: 'Todo 4',
-      order: 3,
-      tasks: [{ title: 'do work' }, { title: 'do something' }, { title: 'do anything' }],
-    },
-    {
-      id: '08cc10f4-1aeb-4cce-9793-9fea8313b595',
-      title: 'Todo 5',
-      order: 4,
-      tasks: [{ title: 'do work' }, { title: 'do something' }, { title: 'do anything' }],
-    },
-    {
-      id: '08cc10f4-1aeb-4cce-9793-9fea8313b596',
-      title: 'Todo 6',
-      order: 5,
-      tasks: [{ title: 'do work' }, { title: 'do something' }, { title: 'do anything' }],
-    },
-    {
-      id: '08cc10f4-1aeb-4cce-9793-9fea8313b597',
-      title: 'Todo 7',
-      order: 6,
-      tasks: [{ title: 'do work' }, { title: 'do something' }, { title: 'do anything' }],
-    },
-  ];
+export class MainComponent implements OnInit, OnDestroy {
+  public allBoards$: Observable<IBoard[]> = this.store.select(boardsSelect);
 
-  public drop(event: CdkDragDrop<string[]>) {
-    // присваиваем новый order перемещенному элементу
-    this.columns[event.previousIndex].order = event.currentIndex;
+  private unsubscribe$: Subject<void> = new Subject<void>();
 
-    // если элемент сместили к началу, то для всех элементов
-    // от текущего индекса до предыдущего увеличиваем значение order
-    if (event.previousIndex - event.currentIndex > 0) {
-      for (let i = event.currentIndex; i < event.previousIndex; i++) {
-        this.columns[i].order = i + 1;
-      }
-    }
+  constructor(
+    public boardService: BoardService,
+    private toggleScrollService: ToggleScrollService,
+    private httpService: HttpService,
+    private store: Store<IAppState>,
+  ) {}
 
-    // если элемент сместили к концу, то для всех элементов
-    // от текущего индекса до предыдущего уменьшаем значение order
-    if (event.previousIndex - event.currentIndex < 0) {
-      for (let i = event.currentIndex; i > event.previousIndex; i--) {
-        this.columns[i].order = i - 1;
-      }
-    }
+  public ngOnInit(): void {
+    this.httpService
+      .getBoards()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((boards) => {
+        this.store.dispatch(setBoards({ boards }));
+      });
+  }
 
-    console.log(this.columns);
+  public openPopupNewBoard(): void {
+    this.boardService.isBoardPopup$.next(true);
+    this.toggleScrollService.hiddenScroll();
+  }
 
-    moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
+  public ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
