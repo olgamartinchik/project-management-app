@@ -12,20 +12,20 @@ import { AuthService } from '../services/auth/auth.service';
 
 @Injectable()
 export class HeadersInterceptor implements HttpInterceptor {
-  private token: string | null = this.authService.getToken();
-
   constructor(private authService: AuthService) {}
 
   public intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
+    const token = this.authService.getToken() as string;
+
     return next
       .handle(
         request.clone({
           headers: new HttpHeaders({
             Accept: 'application/json',
-            Authorization: `Bearer ${this.token}` || '',
+            Authorization: `Bearer ${token as string}` || '',
           }),
         }),
       )
