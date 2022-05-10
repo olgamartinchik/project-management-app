@@ -1,11 +1,12 @@
 <div
+  *ngIf="confirmService.confirmSubject$ | async as confirmSubject"
   class="overlay"
-  [class]="{ visible: (confirmService.isConfirmPopup$ | async) }"
+  [class]="{ overlay: true, visible: confirmSubject.isOpen }"
   (click)="closeConfirmPopup()"
 >
   <div class="confirm-container" (click)="stopPropagation($event)">
     <h4 class="title">{{ 'ConfirmPopup.title' | transloco }}</h4>
-    <button class="button" (click)="deleteItem()">
+    <button class="button" (click)="confirm()">
       {{ 'ConfirmPopup.button' | transloco }}
     </button>
   </div>

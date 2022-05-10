@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IBoard, IColumn } from '../models/IBoard.model';
+import { IBoard } from '../models/IBoard.model';
 
 import { environment } from 'src/environments/environment';
+import { IColumn } from '../models/IColumn.model';
 @Injectable()
 export class HttpService {
   private url = environment.apiUrl;

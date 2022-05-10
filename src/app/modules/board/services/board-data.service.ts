@@ -1,7 +1,7 @@
 import { BehaviorSubject, take } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpService } from '../../core/services/http.service';
-import { IColumn } from '../../core/models/IBoard.model';
+import { IColumn } from '../../core/models/IColumn.model';
 
 @Injectable({
   providedIn: 'root',
