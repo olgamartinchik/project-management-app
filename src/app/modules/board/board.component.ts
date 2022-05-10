@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map, Observable, Subject, take } from 'rxjs';
+import { map, Observable, Subject, take, takeUntil } from 'rxjs';
 import { BoardService } from '../core/services/board.service';
 import { HttpService } from '../core/services/http.service';
 import { BoardDataService } from './services/board-data.service';
@@ -41,10 +41,10 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.idBoard = this.route.snapshot.params['id'];
     this.boardDataService.getAllColumn(this.idBoard);
     this.store.dispatch(setBoardById({ idBoard: this.idBoard }));
-    // this.board$.pipe(takeUntil(this.unsubscribe$)).subscribe((board) => {
-    //   this.titleBoard = board.title;
-    //   // console.log('updateBoard', board.columns)
-    // });
+    this.board$.pipe(takeUntil(this.unsubscribe$)).subscribe((board) => {
+      this.titleBoard = board.title;
+      // console.log('updateBoard', board.columns)
+    });
   }
 
   public addColumn(): void {

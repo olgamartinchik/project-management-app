@@ -3,7 +3,6 @@
     <input
       type="text"
       class="title"
-      [value]="(board$ | async)!.title"
       [(ngModel)]="titleBoard"
       (change)="changeTitleBoard()"
       (keydown.enter)="looseFocus($event)"
