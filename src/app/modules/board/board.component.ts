@@ -8,23 +8,24 @@ import { BoardDataService } from './services/board-data.service';
 import { IAppState } from 'src/app/redux/state.model';
 import { boardByIdSelect } from 'src/app/redux/selectors/board.selectors';
 import { setBoardById } from 'src/app/redux/actions/board.actions';
-import { IBoard, IColumn } from '../core/models/IBoard.model';
+import { IBoard } from '../core/models/IBoard.model';
+import { IColumn } from '../core/models/IColumn.model';
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit, OnDestroy {
-  public idBoard: string = '';
+  public idBoard = '';
 
   //временный count для создания контейнера
-  private count: number = 0;
+  private count = 0;
 
   public columns?: IColumn[];
 
   public board$: Observable<IBoard> = this.store.select(boardByIdSelect);
 
-  public titleBoard!: string;
+  public titleBoard = '';
 
   private unsubscribe$: Subject<void> = new Subject<void>();
 

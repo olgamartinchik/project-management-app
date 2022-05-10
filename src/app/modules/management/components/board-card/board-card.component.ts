@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { IBoard } from '../../../core/models/IBoard.model';
-import { BoardService } from '../../../core/services/board.service';
 
 import { ConfirmService } from 'src/app/modules/core/services/confirm.service';
-import { ToggleScrollService } from 'src/app/modules/core/services/toggle-scroll.service';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/redux/state.model';
-import { getBoardById } from 'src/app/redux/actions/board.actions';
+import { getBoardById, updateAllBoards } from 'src/app/redux/actions/board.actions';
+import { map, take } from 'rxjs';
+import { HttpService } from 'src/app/modules/core/services/http.service';
 
 @Component({
   selector: 'app-board-card',
@@ -18,19 +18,29 @@ export class BoardCardComponent {
   @Input() public boardData!: IBoard;
 
   constructor(
-    private boardService: BoardService,
     private confirmService: ConfirmService,
-    private toggleScrollService: ToggleScrollService,
     private store: Store<IAppState>,
+    private httpService: HttpService,
   ) {}
 
-  public deleteBoard(event: Event): void {
+  public confirmationDeleteBoard(event: Event): void {
     event.preventDefault();
     event.stopPropagation();
-    this.boardService.deleteBoard$.next(this.boardData);
-    this.confirmService.isConfirmPopup$.next(true);
-    this.toggleScrollService.hiddenScroll();
+
+    this.confirmService.open(this.deleteBoard);
   }
+
+  private deleteBoard = (): void => {
+    this.httpService
+      .deleteBoard(this.boardData.id!)
+      .pipe(
+        take(1),
+        map(() => {
+          this.store.dispatch(updateAllBoards());
+        }),
+      )
+      .subscribe();
+  };
 
   public selectCard(): void {
     this.store.dispatch(getBoardById({ boardById: this.boardData }));

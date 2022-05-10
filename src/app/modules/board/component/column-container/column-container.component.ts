@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, take } from 'rxjs';
-import { IColumn } from 'src/app/modules/core/models/IBoard.model';
+import { IColumn } from 'src/app/modules/core/models/IColumn.model';
 import { HttpService } from 'src/app/modules/core/services/http.service';
 import { setBoardById } from 'src/app/redux/actions/board.actions';
 import { IAppState } from 'src/app/redux/state.model';
