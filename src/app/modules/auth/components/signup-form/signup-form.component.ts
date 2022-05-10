@@ -7,7 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { take } from 'rxjs';
+import { map, take } from 'rxjs';
 
 import { ValidationService } from '../../../core/services/validation/validation.service';
 import { CORRECT_CHAR } from '../../../core/constants/validation.service.constants';
@@ -17,6 +17,7 @@ import { FormMessagesModel } from 'src/app/modules/core/models/error-messages.se
 import { FORM_ERROR_MESSAGES } from '../../constants/error-messages.constants';
 
 import { ApiService } from '../../../core/services/api/api.service';
+import { AuthService } from 'src/app/modules/core/services/auth/auth.service';
 
 @Component({
   selector: 'app-signup-form',
@@ -37,6 +38,7 @@ export class SignupFormComponent implements OnInit {
     private validationService: ValidationService,
     private cdr: ChangeDetectorRef,
     public errorMessagesService: ErrorMessagesService,
+    private authService: AuthService,
   ) {}
 
   public ngOnInit(): void {
@@ -88,7 +90,12 @@ export class SignupFormComponent implements OnInit {
 
     this.apiService
       .singup(data)
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        map((userData) => {
+          this.authService.saveUserId(userData.id);
+        }),
+      )
       .subscribe({
         next: () => {
           this.submitForm.emit();

@@ -67,6 +67,7 @@ export class LoginFormComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         next: (res) => {
+          console.log('auth', res);
           this.authService.saveToken(res.token);
           this.router.navigate(['/main'], { replaceUrl: true });
         },
