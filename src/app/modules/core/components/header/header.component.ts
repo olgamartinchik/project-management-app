@@ -30,4 +30,8 @@ export class HeaderComponent {
     this.boardService.isBoardPopup$.next(true);
     this.translocoService.setActiveLang(this.lang);
   }
+
+  public logout(): void {
+    this.authService.logOut();
+  }
 }

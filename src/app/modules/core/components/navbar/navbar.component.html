@@ -1,12 +1,13 @@
 <nav [class]="{ nav: true, 'nav-open': isNavOpen }">
-  <a class="nav-link" routerLinkActive="active" routerLink="/main" rel="noopener" title="main">{{
+  <a class="nav-link" *ngIf="authService.isLoggedIn()" routerLinkActive="active" routerLink="/main" rel="noopener" title="main">{{
     'nav.mainPage' | transloco
   }}</a>
-  <a class="nav-link" routerLinkActive="active" routerLink="/auth" rel="noopener" title="auth">{{
+  <a class="nav-link" *ngIf="!authService.isLoggedIn()" routerLinkActive="active" routerLink="/auth" rel="noopener" title="auth">{{
     'nav.enter' | transloco
   }}</a>
   <a
     class="nav-link"
+    *ngIf="authService.isLoggedIn()"
     [class.disabled]="disabled"
     routerLinkActive="active"
     routerLink="/search"
@@ -14,6 +15,9 @@
     title="search"
     >{{ 'nav.search' | transloco }}</a
   >
+  <a class="nav-link" *ngIf="authService.isLoggedIn()" (click)="logout()">{{
+    'nav.logout' | transloco
+  }}</a>
 </nav>
 
 <button

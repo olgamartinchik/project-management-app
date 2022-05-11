@@ -5,7 +5,8 @@
     "workingBoard": "Рабочая доска",
     "enter": "Вход/Регистрация",
     "search": "Поиск",
-    "createBoard": "Новая доска"
+    "createBoard": "Новая доска",
+    "logout": "Выход"
   },
   "welcomePage": {
     "h2": "Над проектом работали:",

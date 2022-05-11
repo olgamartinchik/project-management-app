@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanLoad, Router } from '@angular/router';
+import { CanActivate, CanDeactivate, CanLoad, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard implements CanActivate, CanLoad {
+export class AuthGuard implements CanActivate, CanLoad, CanDeactivate<unknown> {
   constructor(private authService: AuthService, private router: Router) {}
 
   public canActivate(): boolean {
@@ -19,6 +19,14 @@ export class AuthGuard implements CanActivate, CanLoad {
       return true;
     }
 
+    return false;
+  }
+
+  public canDeactivate(): boolean {
+    if (confirm('Are you sure you want to exit?')) {
+      localStorage.removeItem('authToken');
+      return true;
+    }
     return false;
   }
 }

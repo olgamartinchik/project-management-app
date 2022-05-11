@@ -5,7 +5,8 @@
     "workingBoard": "Working board",
     "enter": "sign in/login",
     "search": "Search",
-    "createBoard": "Create board"
+    "createBoard": "Create board",
+    "logout": "Logout"
   },
   "welcomePage": {
     "h2": "The project was made by:",
