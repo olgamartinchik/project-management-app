@@ -1,7 +1,0 @@
-<h3 class="column__title">{{ columnData.title }}</h3>
-
-<button class="column__delete-button" type="button">X</button>
-
-<div cdkDropList (cdkDropListDropped)="drop($event)" class="column__content">
-  <p cdkDrag class="task" *ngFor="let task of columnData.tasks">{{ task.title }}</p>
-</div>

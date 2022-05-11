@@ -19,8 +19,10 @@
   },
   "ConfirmPopup": {
     "title": "Вы уверенны?",
-    "button": "Удалить",
-    "search": "Поиск"
+    "button": "Удалить"
+  },
+  "BoardPage": {
+    "addColBtn": "Добавить колонку"
   },
   "auth": {
     "loginLabel": "Вход",

@@ -19,9 +19,10 @@
   },
   "ConfirmPopup": {
     "title": "Are you sure?",
-    "button": "Delete",
-    "enter": "Signup/login",
-    "search": "Search"
+    "button": "Delete"
+  },
+  "BoardPage": {
+    "addColBtn": "Add column"
   },
   "auth": {
     "loginLabel": "Login",
