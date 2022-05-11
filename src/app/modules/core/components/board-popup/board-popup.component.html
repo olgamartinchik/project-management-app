@@ -3,33 +3,33 @@
   (click)="closePopup()"
   [class]="{ visible: (boardService.isBoardPopup$ | async) }"
 >
-  <form class="form" (click)="stopPropagation($event)">
+  <form class="form" (click)="stopPropagation($event)" [formGroup]="newBoardForm">
     <div class="title-container">
       <label for="title-board" class="title">{{ 'mainPage.titleNewBoard' | transloco }}</label>
-      <input type="text" class="input" id="title-board" [formControl]="title" required />
+      <input type="text" class="input" id="title-board" formControlName="title" />
 
       <div
         class="validate"
         *ngIf="
-          title?.invalid &&
-          (title?.touched || title?.dirty) &&
+          newBoardForm.controls['title'].invalid &&
+          (newBoardForm.controls['title'].touched || newBoardForm.controls['title'].dirty) &&
           (boardService.isBoardPopup$ | async) === true
         "
       >
-        <small *ngIf="title?.errors?.['required']">{{
+        <small *ngIf="newBoardForm.controls['title'].errors?.['required']">{{
           'mainPage.errorRequired' | transloco
         }}</small>
 
-        <small *ngIf="title?.errors?.['minlength']">{{
+        <small *ngIf="newBoardForm.controls['title'].errors?.['minlength']">{{
           'mainPage.errorMinLength' | transloco
         }}</small>
 
-        <small *ngIf="title?.errors?.['maxlength']">{{
+        <small *ngIf="newBoardForm.controls['title'].errors?.['maxlength']">{{
           'mainPage.errorMaxLength' | transloco
         }}</small>
       </div>
     </div>
-    <button type="submit" class="button" [disabled]="title!.invalid" (click)="createBoard()">
+    <button type="submit" class="button" [disabled]="newBoardForm.invalid" (click)="createBoard()">
       {{ 'mainPage.createBtn' | transloco }}
     </button>
   </form>

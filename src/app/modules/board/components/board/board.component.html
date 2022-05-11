@@ -1,8 +1,8 @@
 <main class="main">
   <div class="wrapper">
-    <input class="title" type="text" [value]="'BoardPage'" />
+    <input type="text" class="title" (keydown.enter)="looseFocus($event)" />
+
     <div class="columns-container">
-      <app-column [columnData]="{ id: 'id123', title: 'dsadsa', order: 1, tasks: [] }"></app-column>
       <div>
         <button class="button" (click)="addColumn()">
           + {{ 'BoardPage.addColBtn' | transloco }}

@@ -1,19 +1,21 @@
-import { IBoard } from '../modules/management/model/IBoard.model';
+import { BoardModel } from '../modules/core/models/board.model';
 
-export interface IBoardState {
-  boards: IBoard[];
-  boardById: IBoard | {};
+export interface BoardModelState {
+  boards: BoardModel[];
+  boardById: BoardModel;
+  idBoard: string;
   error: Error | null;
 }
 
-export const initialBoardState: IBoardState = {
+export const initialBoardState: BoardModelState = {
   boards: [],
-  boardById: {},
+  boardById: {} as BoardModel,
+  idBoard: '',
   error: null,
 };
 
 export interface IAppState {
-  boardState: IBoardState;
+  boardState: BoardModelState;
 }
 export const initialAppState: IAppState = {
   boardState: initialBoardState,

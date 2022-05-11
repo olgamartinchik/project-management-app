@@ -1,12 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { map, take } from 'rxjs';
 import { BoardService } from '../../services/board.service';
-import { HttpService } from '../../services/http.service';
+import { ApiService } from '../../services/api/api.service';
 import { ConfirmService } from '../../services/confirm.service';
 import { ToggleScrollService } from '../../services/toggle-scroll.service';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/redux/state.model';
-import { updateAllBoards } from 'src/app/redux/actions/board.actions';
 import { boardByIdSelect } from 'src/app/redux/selectors/board.selectors';
 
 @Component({
@@ -21,7 +19,7 @@ export class ConfirmPopupComponent {
   constructor(
     public boardService: BoardService,
     public confirmService: ConfirmService,
-    private httpService: HttpService,
+    private apiService: ApiService,
     private toggleScrollService: ToggleScrollService,
     private store: Store<IAppState>,
   ) {}
@@ -36,22 +34,6 @@ export class ConfirmPopupComponent {
   }
 
   public deleteItem(): void {
-    //тк компонет должен быть универсальный, предлагаю в будущем проверять по роуту
-    // страницу для выполнения действия
-
-    this.boardService.deleteBoard$.pipe(take(1)).subscribe((board) => {
-      this.httpService
-        .deleteBoard(board.id!)
-        .pipe(
-          take(1),
-          map(() => {
-            this.store.dispatch(updateAllBoards());
-          }),
-        )
-        .subscribe();
-    });
-
-    this.confirmService.isConfirmPopup$.next(false);
-    this.toggleScrollService.showScroll();
+    console.log('delete');
   }
 }

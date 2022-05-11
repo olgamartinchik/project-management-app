@@ -6,10 +6,10 @@ import { ToggleScrollService } from 'src/app/modules/core/services/toggle-scroll
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/redux/state.model';
 import { setBoards } from 'src/app/redux/actions/board.actions';
-import { HttpService } from 'src/app/modules/core/services/http.service';
+import { ApiService } from 'src/app/modules/core/services/api/api.service';
 import { boardsSelect } from 'src/app/redux/selectors/board.selectors';
 import { Observable, Subject, takeUntil } from 'rxjs';
-import { IBoard } from '../../model/IBoard.model';
+import { BoardModel } from '../../../core/models/board.model';
 
 @Component({
   selector: 'app-main',
@@ -18,19 +18,19 @@ import { IBoard } from '../../model/IBoard.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponent implements OnInit, OnDestroy {
-  public allBoards$: Observable<IBoard[]> = this.store.select(boardsSelect);
+  public allBoards$: Observable<BoardModel[]> = this.store.select(boardsSelect);
 
   private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(
     public boardService: BoardService,
     private toggleScrollService: ToggleScrollService,
-    private httpService: HttpService,
+    private apiService: ApiService,
     private store: Store<IAppState>,
   ) {}
 
   public ngOnInit(): void {
-    this.httpService
+    this.apiService
       .getBoards()
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((boards) => {

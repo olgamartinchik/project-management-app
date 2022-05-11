@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { IBoard } from '../../model/IBoard.model';
+import { BoardModel } from '../../../core/models/board.model';
 import { BoardService } from '../../../core/services/board.service';
 
 import { ConfirmService } from 'src/app/modules/core/services/confirm.service';
@@ -15,7 +15,7 @@ import { getBoardById } from 'src/app/redux/actions/board.actions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoardCardComponent {
-  @Input() public boardData!: IBoard;
+  @Input() public boardData!: BoardModel;
 
   constructor(
     public boardService: BoardService,
@@ -27,7 +27,6 @@ export class BoardCardComponent {
   public deleteBoard(event: Event): void {
     event.preventDefault();
     event.stopPropagation();
-    this.boardService.deleteBoard$.next(this.boardData);
     this.confirmService.isConfirmPopup$.next(true);
     this.toggleScrollService.hiddenScroll();
   }

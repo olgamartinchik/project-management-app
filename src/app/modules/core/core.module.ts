@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from '../transloco/transloco-root.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //services
-import { HttpService } from './services/http.service';
 import { ConfirmService } from './services/confirm.service';
 import { ToggleScrollService } from './services/toggle-scroll.service';
 import { INTERCEPTOR_PROVIDERS } from './interсeptors/providers';
@@ -34,6 +33,6 @@ import { HeaderComponent } from './components/header/header.component';
     BrowserAnimationsModule,
     SharedModule,
   ],
-  providers: [INTERCEPTOR_PROVIDERS, HttpService, ConfirmService, ToggleScrollService],
+  providers: [INTERCEPTOR_PROVIDERS, ConfirmService, ToggleScrollService],
 })
 export class CoreModule {}
