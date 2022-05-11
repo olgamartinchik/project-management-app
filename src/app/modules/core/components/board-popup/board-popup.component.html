@@ -1,34 +1,38 @@
 <div
-  class="overlay"
+  [class]="{ overlay: true, visible: (boardPopupService.isBoardPopupOpen$ | async) }"
   (click)="closePopup()"
-  [class]="{ visible: (boardService.isBoardPopup$ | async) }"
 >
   <form class="form" (click)="stopPropagation($event)" [formGroup]="newBoardForm">
-    <div class="title-container">
-      <label for="title-board" class="title">{{ 'mainPage.titleNewBoard' | transloco }}</label>
-      <input type="text" class="input" id="title-board" formControlName="title" />
+    <label class="board-popup__label">
+      <input
+        class="board-popup__input"
+        formControlName="title"
+        type="text"
+        [placeholder]="'boardPopup.titlePlaceholder' | transloco"
+      />
+      <p class="board-popup__error-text">
+        {{
+          errorMessagesService.showMessages(newBoardForm, 'title', messages['title']) | transloco
+        }}
+      </p>
+    </label>
 
-      <div
-        class="validate"
-        *ngIf="
-          newBoardForm.controls['title'].invalid &&
-          (newBoardForm.controls['title'].touched || newBoardForm.controls['title'].dirty) &&
-          (boardService.isBoardPopup$ | async) === true
-        "
+    <label class="board-popup__label">
+      <textarea
+        class="board-popup__input board-popup__textarea"
+        formControlName="description"
+        type="text"
+        [placeholder]="'boardPopup.descriptionPlaceholder' | transloco"
       >
-        <small *ngIf="newBoardForm.controls['title'].errors?.['required']">{{
-          'mainPage.errorRequired' | transloco
-        }}</small>
+      </textarea>
+      <p class="board-popup__error-text">
+        {{
+          errorMessagesService.showMessages(newBoardForm, 'description', messages['description'])
+            | transloco
+        }}
+      </p>
+    </label>
 
-        <small *ngIf="newBoardForm.controls['title'].errors?.['minlength']">{{
-          'mainPage.errorMinLength' | transloco
-        }}</small>
-
-        <small *ngIf="newBoardForm.controls['title'].errors?.['maxlength']">{{
-          'mainPage.errorMaxLength' | transloco
-        }}</small>
-      </div>
-    </div>
     <button type="submit" class="button" [disabled]="newBoardForm.invalid" (click)="createBoard()">
       {{ 'mainPage.createBtn' | transloco }}
     </button>

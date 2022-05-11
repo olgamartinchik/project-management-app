@@ -22,6 +22,10 @@
     "title": "Are you sure?",
     "button": "Delete"
   },
+  "boardPopup": {
+    "titlePlaceholder": "Title",
+    "descriptionPlaceholder": "Description"
+  },
   "BoardPage": {
     "addColBtn": "Add column"
   },
@@ -63,6 +67,16 @@
     "bothCase": "a mixture of both uppercase and lowercase letters",
     "number": "a mixture of letters and numbers",
     "specialChar": "inclusion of at least one special character, e.g., !@#?]"
+  },
+  "titleErrors": {
+    "required": "Please enter a title",
+    "minlength": "The title is too short",
+    "maxlength": "The title is too long"
+  },
+  "descriptionErrors": {
+    "required": "Please enter a description",
+    "minlength": "The description is too short",
+    "maxlength": "The description is too long"
   },
   "commonErrors": {
     "pattern": "Use only latin letters, numbers and special characters",

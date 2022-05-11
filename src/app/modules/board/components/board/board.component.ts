@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, takeUntil } from 'rxjs';
-import { BoardService } from '../../../core/services/board.service';
+import { BoardPopupService } from '../../../core/services/board-popup.service';
 import { ApiService } from '../../../core/services/api/api.service';
 import { IAppState } from 'src/app/redux/state.model';
 import { boardByIdSelect } from 'src/app/redux/selectors/board.selectors';
@@ -30,7 +30,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    public boardService: BoardService,
+    public boardPopupService: BoardPopupService,
     private apiService: ApiService,
     private store: Store<IAppState>,
   ) {}

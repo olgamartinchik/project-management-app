@@ -3,17 +3,17 @@ import { map, take } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 // services
-import { BoardService } from '../../../core/services/board.service';
+import { BoardPopupService } from '../../../core/services/board-popup.service';
 import { ConfirmService } from '../../../core/services/confirm.service';
 import { ApiService } from '../../../core/services/api/api.service';
+
+// ngrx
+import { getBoardById } from '../../../../redux/actions/board.actions';
+import { updateAllBoards } from '../../../../redux/actions/board.actions';
 
 // models
 import { BoardModel } from '../../../core/models/board.model';
 import { IAppState } from '../../../../redux/state.model';
-
-// ngrx
-import { getBoardById } from 'src/app/redux/actions/board.actions';
-import { updateAllBoards } from 'src/app/redux/actions/board.actions';
 
 @Component({
   selector: 'app-board-card',
@@ -25,7 +25,7 @@ export class BoardCardComponent {
   @Input() public boardData!: BoardModel;
 
   constructor(
-    public boardService: BoardService,
+    public boardPopupService: BoardPopupService,
     private confirmService: ConfirmService,
     private store: Store<IAppState>,
     private apiService: ApiService,

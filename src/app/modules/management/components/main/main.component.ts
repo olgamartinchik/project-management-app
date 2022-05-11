@@ -1,15 +1,18 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-
-import { BoardService } from '../../../core/services/board.service';
-
-import { ToggleScrollService } from 'src/app/modules/core/services/toggle-scroll.service';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable, take } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { IAppState } from 'src/app/redux/state.model';
-import { setBoards } from 'src/app/redux/actions/board.actions';
-import { ApiService } from 'src/app/modules/core/services/api/api.service';
-import { boardsSelect } from 'src/app/redux/selectors/board.selectors';
-import { Observable, Subject, takeUntil } from 'rxjs';
+
+//  services
+import { ApiService } from '../../../core/services/api/api.service';
+import { BoardPopupService } from '../../../core/services/board-popup.service';
+
+// ngrx
+import { setBoards } from '../../../../redux/actions/board.actions';
+import { boardsSelect } from '../../../../redux/selectors/board.selectors';
+
+// models
 import { BoardModel } from '../../../core/models/board.model';
+import { IAppState } from '../../../../redux/state.model';
 
 @Component({
   selector: 'app-main',
@@ -17,14 +20,11 @@ import { BoardModel } from '../../../core/models/board.model';
   styleUrls: ['./main.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainComponent implements OnInit, OnDestroy {
+export class MainComponent implements OnInit {
   public allBoards$: Observable<BoardModel[]> = this.store.select(boardsSelect);
 
-  private unsubscribe$: Subject<void> = new Subject<void>();
-
   constructor(
-    public boardService: BoardService,
-    private toggleScrollService: ToggleScrollService,
+    public boardPopupService: BoardPopupService,
     private apiService: ApiService,
     private store: Store<IAppState>,
   ) {}
@@ -32,19 +32,13 @@ export class MainComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.apiService
       .getBoards()
-      .pipe(takeUntil(this.unsubscribe$))
+      .pipe(take(1))
       .subscribe((boards) => {
         this.store.dispatch(setBoards({ boards }));
       });
   }
 
-  public openPopupNewBoard(): void {
-    this.boardService.isBoardPopup$.next(true);
-    this.toggleScrollService.hiddenScroll();
-  }
-
-  public ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+  public openBoardPopup(): void {
+    this.boardPopupService.open();
   }
 }

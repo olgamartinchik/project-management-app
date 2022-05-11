@@ -1,10 +1,11 @@
 @use '../../../shared/styles/colors';
 @use '../../../shared/styles/font';
-:host {
-  background-color: colors.$main-color;
-  height: calc(100vh - 120px);
+@use '../../../shared/styles/components';
 
+:host {
+  height: components.$page-height;
   padding: 20px;
+  background-color: colors.$main-color;
   display: flex;
   box-sizing: border-box;
 }
@@ -46,6 +47,7 @@
     box-shadow: 0 0 40px 40px colors.$text-hover inset;
   }
 }
+
 ::-webkit-scrollbar {
   width: 20px;
 }
@@ -61,6 +63,7 @@
   background-clip: content-box;
   background-color: colors.$text-disabled;
 }
+
 @media screen and (max-width: 320px) {
   :host {
     padding: 10px;

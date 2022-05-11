@@ -1,54 +1,69 @@
 @use '../../../shared/styles/colors';
 @use '../../../shared/styles/font';
+@use '../../../shared//styles/components';
 
 .board,
-.board-title,
-.board-description {
+.board__title {
   transition: 0.4s ease-in-out;
 }
+
 .board {
-  position: relative;
+  width: 100%;
+  height: 150px;
+  padding: 30px 10px 10px;
+
+  display: flex;
   flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+
+  border-radius: 5px;
   background-color: colors.$board-color;
-  padding: 10px;
-  cursor: pointer;
   box-shadow: 0px 0px 4px 0px #777;
+  text-decoration: none;
+  cursor: pointer;
 
   &:hover {
-    color: colors.$text-hover;
     box-shadow: 0px 0px 7px 0px #777;
-    .board-title,
-    .board-description {
+
+    .board__title {
       color: colors.$text-hover;
     }
   }
 }
-.board-title {
+
+.board__title {
+  margin: 0 0 20px;
+  text-align: center;
   @include font.subtitle;
 }
-.submit {
-  @include font.text;
+
+.board__description {
+  margin: 0;
+  @include font.text(18px, 20px);
+  overflow-y: auto;
+
+  @include components.scrollbar(colors.$disabled-bg, colors.$text-disabled);
 }
-.delete-btn {
+
+.board__delete-button {
+  width: 60px;
+  padding: 5px 0 0;
   position: absolute;
   right: 0;
   top: 0;
-  @include font.text;
-  box-sizing: border-box;
+  border: none;
+  background-color: transparent;
 
-  opacity: 0.5;
-  padding: 5px;
-  width: 63px;
-  height: 30px;
+  @include font.text;
   text-align: center;
+  opacity: 0.5;
+  cursor: pointer;
   transition: 0.3s ease-in-out;
+
   &:hover {
     color: colors.$accent-color;
     text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
     opacity: 1;
   }
-}
-a {
-  text-decoration: none;
-  cursor: default;
 }

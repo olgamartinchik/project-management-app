@@ -5,9 +5,9 @@
     <div class="boards">
       <app-board-card *ngFor="let board of allBoards$ | async" [boardData]="board"></app-board-card>
 
-      <div class="board new-board" (click)="openPopupNewBoard()">
+      <button class="board new-board" (click)="openBoardPopup()">
         {{ 'mainPage.newBoard' | transloco }}
-      </div>
+      </button>
     </div>
   </div>
 </main>

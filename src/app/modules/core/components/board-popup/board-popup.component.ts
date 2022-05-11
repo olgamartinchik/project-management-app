@@ -1,61 +1,72 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { map, take } from 'rxjs';
+import { take, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { BoardService } from '../../services/board.service';
-import { ToggleScrollService } from '../../services/toggle-scroll.service';
+
+// services
+import { BoardPopupService } from '../../services/board-popup.service';
 import { ApiService } from '../../services/api/api.service';
-import { IAppState } from 'src/app/redux/state.model';
-import { updateAllBoards } from 'src/app/redux/actions/board.actions';
+import { ErrorMessagesService } from '../../services/error-messages/error-messages.service';
+
+// ngrx
+import { updateAllBoards } from '../../../../redux/actions/board.actions';
+
+// models
+import { IAppState } from '../../../../redux/state.model';
+import { FormMessagesModel } from '../../models/error-messages.services.models';
+
+// constants
+import { FORM_ERROR_MESSAGES } from '../../constants/error-messages.constants';
 
 @Component({
   selector: 'app-board-popup',
   templateUrl: './board-popup.component.html',
   styleUrls: ['./board-popup.component.scss'],
 })
-export class BoardPopupComponent {
+export class BoardPopupComponent implements OnInit {
   public newBoardForm!: FormGroup;
 
+  public messages: FormMessagesModel = FORM_ERROR_MESSAGES;
+
   constructor(
-    public boardService: BoardService,
+    public boardPopupService: BoardPopupService,
+    public errorMessagesService: ErrorMessagesService,
     private fb: FormBuilder,
     private apiService: ApiService,
-    private toggleScrollService: ToggleScrollService,
     private store: Store<IAppState>,
-  ) {
+  ) {}
+
+  public ngOnInit(): void {
     this.createForm();
   }
 
-  private createForm(): void {
-    this.newBoardForm = this.fb.group({
-      title: ['', Validators.required, Validators.minLength(3), Validators.maxLength(100)],
-      description: ['', Validators.required, Validators.minLength(3), Validators.maxLength(100)],
-    });
+  public closePopup(): void {
+    this.boardPopupService.close();
+    this.newBoardForm.reset();
   }
 
-  public closePopup(): void {
-    this.boardService.isBoardPopup$.next(false);
-    this.toggleScrollService.showScroll();
-    this.newBoardForm.reset();
+  public createBoard(): void {
+    this.apiService
+      .postBoard(this.newBoardForm.value)
+      .pipe(
+        take(1),
+        tap(() => {
+          this.store.dispatch(updateAllBoards());
+        }),
+      )
+      .subscribe();
+
+    this.closePopup();
   }
 
   public stopPropagation(event: Event): void {
     event.stopPropagation();
   }
 
-  public createBoard(): void {
-    this.boardService.isBoardPopup$.next(false);
-    this.apiService
-      .postBoard(this.newBoardForm.value)
-      .pipe(
-        take(1),
-        map(() => {
-          this.store.dispatch(updateAllBoards());
-        }),
-      )
-      .subscribe();
-
-    this.toggleScrollService.showScroll();
-    this.newBoardForm.reset();
+  private createForm(): void {
+    this.newBoardForm = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
+    });
   }
 }

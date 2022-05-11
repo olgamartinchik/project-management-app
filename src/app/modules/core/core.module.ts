@@ -1,4 +1,3 @@
-//modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -6,11 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+//modules
 import { SharedModule } from '../shared/shared.module';
 import { TranslocoRootModule } from '../transloco/transloco-root.module';
 
 //services
 import { ToggleScrollService } from './services/toggle-scroll.service';
+import { ErrorMessagesService } from './services/error-messages/error-messages.service';
 import { INTERCEPTOR_PROVIDERS } from './interсeptors/providers';
 
 //components
@@ -33,6 +34,6 @@ import { FooterComponent } from './components/footer/footer.component';
     BrowserAnimationsModule,
     SharedModule,
   ],
-  providers: [INTERCEPTOR_PROVIDERS, ToggleScrollService],
+  providers: [INTERCEPTOR_PROVIDERS, ToggleScrollService, ErrorMessagesService],
 })
 export class CoreModule {}
