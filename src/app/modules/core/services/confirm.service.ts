@@ -5,11 +5,11 @@ import { ToggleScrollService } from './toggle-scroll.service';
 
 import { ConfirmSubject } from '../models/confirm.service.models';
 
-import { INITIAL_VALUE } from '../constants/confirm.service.constants';
+import { CONFIRM_SERVICE_INITIAL_VALUE } from '../constants/confirm.service.constants';
 
 @Injectable({ providedIn: 'root' })
 export class ConfirmService {
-  public confirmSubject$ = new BehaviorSubject<ConfirmSubject>(INITIAL_VALUE);
+  public confirmSubject$ = new BehaviorSubject<ConfirmSubject>(CONFIRM_SERVICE_INITIAL_VALUE);
 
   constructor(private toggleScrollService: ToggleScrollService) {}
 
