@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, take } from 'rxjs';
@@ -11,6 +11,8 @@ import { IAppState } from 'src/app/redux/state.model';
   selector: 'app-column-container',
   templateUrl: './column-container.component.html',
   styleUrls: ['./column-container.component.scss'],
+
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ColumnContainerComponent implements OnInit {
   @Input() public column!: IColumn;

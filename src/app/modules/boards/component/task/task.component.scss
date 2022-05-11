@@ -1,6 +1,8 @@
 @use '../../../shared/styles/colors';
 @use '../../../shared/styles/font';
 .task-container {
+  display: flex;
+  flex-direction: column;
   width: inherit;
   box-sizing: border-box;
 
@@ -8,9 +10,18 @@
   border-radius: 4px;
   background-color: white;
   margin: 5px;
+  padding: 5px;
   cursor: pointer;
   transition: 0.3s ease-in-out;
   &:hover {
     background-color: colors.$hover-task-color;
   }
+}
+.title {
+  @include font.subtitle;
+  margin: 2px;
+}
+.subtitle {
+  @include font.text;
+  margin: 2px;
 }

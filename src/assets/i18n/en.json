@@ -26,7 +26,12 @@
     "addColBtn": "Add column",
     "button": "Delete",
     "enter": "Signup/login",
-    "search": "Search"
+    "search": "Search",
+    "createTask": "responsible",
+    "performers": "performers",
+    "newTaskBtn": "create task",
+    "tittleTask": "Title",
+    "descriptionTask": "Description"
   },
   "auth": {
     "loginLabel": "Login",

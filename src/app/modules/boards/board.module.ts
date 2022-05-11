@@ -7,11 +7,21 @@ import { BoardComponent } from './component/board-component/board.component';
 import { SharedModule } from '../shared/shared.module';
 import { ColumnContainerComponent } from './component/column-container/column-container.component';
 import { TranslocoRootModule } from '../transloco/transloco-root.module';
-import { FormsModule } from '@angular/forms';
-import { TaskComponent } from '../board/component/task/task.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TaskComponent } from './component/task/task.component';
+import { NewTaskComponent } from './component/new-task/new-task.component';
+import { ErrorMessagesService } from '../core/services/error-messages/error-messages.service';
 
 @NgModule({
-  declarations: [BoardComponent, ColumnContainerComponent, TaskComponent],
-  imports: [CommonModule, FormsModule, BoardRoutingModule, SharedModule, TranslocoRootModule],
+  declarations: [BoardComponent, ColumnContainerComponent, TaskComponent, NewTaskComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BoardRoutingModule,
+    SharedModule,
+    TranslocoRootModule,
+  ],
+  providers: [ErrorMessagesService],
 })
 export class BoardModule {}

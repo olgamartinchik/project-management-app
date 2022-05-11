@@ -1,0 +1,21 @@
+<div class="overlay">
+  <form action="#" class="form" [formGroup]="taskForm" (ngSubmit)="createTask()">
+    <div class="title-container">
+      <label for="title-task" class="title">{{ 'BoardPage.tittleTask' | transloco }}</label>
+      <input type="text" class="input" id="title-task" formControlName="title" />
+      <label for="description-task" class="title">{{
+        'BoardPage.descriptionTask' | transloco
+      }}</label>
+      <input type="text" class="input" id="description-task" formControlName="description" />
+      <div class="validate">
+        {{
+          errorMessagesService.showMessages(taskForm, 'description', messages['description'])
+            | transloco
+        }}
+      </div>
+    </div>
+    <button class="button" [disabled]="taskForm.invalid">
+      {{ 'BoardPage.newTaskBtn' | transloco }}
+    </button>
+  </form>
+</div>

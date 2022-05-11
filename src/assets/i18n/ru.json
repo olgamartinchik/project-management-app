@@ -25,7 +25,12 @@
   "BoardPage": {
     "addColBtn": "Добавить колонку",
     "button": "Удалить",
-    "search": "Поиск"
+    "search": "Поиск",
+    "createTask": "ответственный",
+    "performers": "исполнители",
+    "newTaskBtn": "создать задачу",
+    "tittleTask": "Задача",
+    "descriptionTask": "Описание"
   },
   "auth": {
     "loginLabel": "Вход",
@@ -73,5 +78,15 @@
   "apiErrors": {
     "forbidden": "Пользователь не найден",
     "conflict": "Данный логин занят"
+  },
+  "titleError": {
+    "required": "Введите название",
+    "minlength": "Cлишком короткое название",
+    "maxlength": "Слишком длинное название"
+  },
+  "description": {
+    "required": "Введите описание",
+    "minlength": "Cлишком короткое описание",
+    "maxlength": "Слишком длинное описание"
   }
 }
