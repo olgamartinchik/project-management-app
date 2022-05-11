@@ -1,10 +1,22 @@
 <nav [class]="{ nav: true, 'nav-open': isNavOpen }">
-  <a class="nav-link" *ngIf="authService.isLoggedIn()" routerLinkActive="active" routerLink="/main" rel="noopener" title="main">{{
-    'nav.mainPage' | transloco
-  }}</a>
-  <a class="nav-link" *ngIf="!authService.isLoggedIn()" routerLinkActive="active" routerLink="/auth" rel="noopener" title="auth">{{
-    'nav.enter' | transloco
-  }}</a>
+  <a
+    class="nav-link"
+    *ngIf="authService.isLoggedIn()"
+    routerLinkActive="active"
+    routerLink="/main"
+    rel="noopener"
+    title="main"
+    >{{ 'nav.mainPage' | transloco }}</a
+  >
+  <a
+    class="nav-link"
+    *ngIf="!authService.isLoggedIn()"
+    routerLinkActive="active"
+    routerLink="/auth"
+    rel="noopener"
+    title="auth"
+    >{{ 'nav.enter' | transloco }}</a
+  >
   <a
     class="nav-link"
     *ngIf="authService.isLoggedIn()"
