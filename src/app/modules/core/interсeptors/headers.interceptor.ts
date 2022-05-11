@@ -40,5 +40,3 @@ export class HeadersInterceptor implements HttpInterceptor {
       );
   }
 }
-
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhOWYyNDhiZi1iZjljLTQwYzAtYjI0MC1lMTY5MDU4N2I1NTciLCJsb2dpbiI6Im9seWFAbWFpbCIsImlhdCI6MTY1MTI0NDcyOH0.zkfjgaeIPyaXRBSGk2HinmWMW2Oj0X0iP6G_bsToD4o
