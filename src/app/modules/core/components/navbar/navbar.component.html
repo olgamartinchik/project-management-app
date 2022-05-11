@@ -27,6 +27,15 @@
     title="search"
     >{{ 'nav.search' | transloco }}</a
   >
+  <a
+    class="nav-link"
+    *ngIf="authService.isLoggedIn()"
+    routerLinkActive="active"
+    routerLink="/account"
+    rel="noopener"
+    title="redaktor"
+    >{{ 'nav.account' | transloco }}</a
+  >
   <a class="nav-link" *ngIf="authService.isLoggedIn()" (click)="logout()">{{
     'nav.logout' | transloco
   }}</a>

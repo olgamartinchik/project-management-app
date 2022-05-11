@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 
-import { LoginFormComponent } from '../login-form/login-form.component';
-import { SignupFormComponent } from '../signup-form/signup-form.component';
+// components
+import { LoginFormComponent } from '../../components/login-form/login-form.component';
+import { SignupFormComponent } from '../../components/signup-form/signup-form.component';
 
 @Component({
   selector: 'app-auth-page',
@@ -21,7 +22,7 @@ export class AuthPageComponent {
   }
 
   public resetForms(): void {
-    this.loginForm.reset();
-    this.signupForm.reset();
+    this.loginForm.resetForm();
+    this.signupForm.resetForm();
   }
 }

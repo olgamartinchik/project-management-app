@@ -7,16 +7,21 @@ import { WelcomeGuard } from './modules/core/guards/welcome.guard';
 
 const routes: Routes = [
   {
+    path: 'auth',
+    loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
     path: 'main',
     canActivate: [AuthGuard],
     canLoad: [AuthGuard],
-    canDeactivate: [AuthGuard],
     loadChildren: () =>
       import('./modules/management/management.module').then((m) => m.ManagementModule),
   },
   {
-    path: 'auth',
-    loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
+    path: 'account',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./modules/account/account.module').then((m) => m.AccountModule),
   },
   {
     path: 'welcome',

@@ -5,16 +5,26 @@ import { Router } from '@angular/router';
 export class AuthService {
   constructor(private router: Router) {}
 
-  public saveToken(token: string): void {
-    localStorage.setItem('authToken', token);
+  public clearStorage(): void {
+    localStorage.clear();
+    this.router.navigate(['welcome']);
   }
 
-  public getToken(): string | null {
-    return localStorage.getItem('authToken');
+  public getItem(key: string): string | null {
+    return localStorage.getItem(key);
+  }
+
+  public saveUser(token: string): void {
+    localStorage.setItem('authToken', token);
+    localStorage.setItem('userId', this.decodeIdFromToken(token));
+  }
+
+  private decodeIdFromToken(token: string): string {
+    return JSON.parse(atob(token.split('.')[1])).userId;
   }
 
   public isLoggedIn(): boolean {
-    return this.getToken() !== null;
+    return this.getItem('userId') !== null;
   }
 
   public logOut(): void {

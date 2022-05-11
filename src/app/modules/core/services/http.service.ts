@@ -6,6 +6,7 @@ import { IBoard } from '../../management/model/IBoard.model';
 import { environment } from 'src/environments/environment';
 @Injectable()
 export class HttpService {
+  [x: string]: any;
   private url = environment.apiUrl;
 
   constructor(private http: HttpClient) {}

@@ -6,6 +6,7 @@
     "enter": "sign in/login",
     "search": "Search",
     "createBoard": "Create board",
+    "account": "Personal account",
     "logout": "Logout"
   },
   "welcomePage": {
@@ -49,6 +50,16 @@
     "confirmPasswordPlaceholder": "Confirm password",
     "loginButton": "Login",
     "signupButton": "Sign up"
+  },
+  "account": {
+    "title": "Welcome",
+    "subtitle": "Edit profile",
+    "namePlaceholder": "Name",
+    "loginPlaceholder": "Login",
+    "passwordPlaceholder": "Password",
+    "confirmPasswordPlaceholder": "Confirm password",
+    "editButton": "Edit",
+    "deleteButton": "Delete account"
   },
   "nameErrors": {
     "required": "Please enter a name",
