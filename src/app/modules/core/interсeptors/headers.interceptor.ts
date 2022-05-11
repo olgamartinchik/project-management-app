@@ -18,14 +18,14 @@ export class HeadersInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    const token = this.authService.getToken() as string;
+    const token = this.authService.getItem('authToken');
 
     return next
       .handle(
         request.clone({
           headers: new HttpHeaders({
             Accept: 'application/json',
-            Authorization: `Bearer ${token as string}` || '',
+            Authorization: `Bearer ${token}`,
           }),
         }),
       )

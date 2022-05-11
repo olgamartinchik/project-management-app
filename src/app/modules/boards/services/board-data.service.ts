@@ -17,7 +17,7 @@ export class BoardDataService {
       .pipe(take(1))
       .subscribe((columns) => {
         this.allColumn$.next(columns);
-        console.log('columns', columns);
+        // console.log('columns', columns);
       });
   }
 }

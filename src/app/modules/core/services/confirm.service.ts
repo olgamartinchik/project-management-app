@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { INITIAL_VALUE } from '../constants/confirm.service.constants';
 import { ConfirmSubject } from '../models/confirm.service.models';
 import { ToggleScrollService } from './toggle-scroll.service';
 
-@Injectable()
-export class ConfirmService {
-  public confirmSubject$ = new BehaviorSubject<ConfirmSubject>(INITIAL_VALUE);
+import { CONFIRM_SERVICE_INITIAL_VALUE } from '../constants/confirm.service.constants';
 
-  // public isConfirmPopup$ = new BehaviorSubject(false);
+@Injectable({ providedIn: 'root' })
+export class ConfirmService {
+  public confirmSubject$ = new BehaviorSubject<ConfirmSubject>(CONFIRM_SERVICE_INITIAL_VALUE);
+
   constructor(private toggleScrollService: ToggleScrollService) {}
 
   public close(): void {
