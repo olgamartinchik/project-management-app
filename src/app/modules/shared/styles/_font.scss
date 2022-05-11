@@ -18,3 +18,25 @@ $text-font-family: Forum, Arial, sans-serif;
   font: normal normal #{$font-size}/#{$line-height} $text-font-family;
   color: colors.$text-color;
 }
+
+@mixin text-welcome($font-size: 36px, $line-height: 38px) {
+  font: normal normal #{$font-size}/#{$line-height} $text-font-family;
+  text-align: center;
+  color: colors.$text-color;
+}
+
+@mixin text-list($font-size: 36px, $line-height: 38px) {
+  font: normal normal #{$font-size}/#{$line-height} $text-font-family;
+  color: colors.$text-color;
+}
+
+@mixin text-role($font-size: 26px, $line-height: 26px) {
+  font: normal normal #{$font-size}/#{$line-height} $text-font-family;
+  color: colors.$text-color;
+}
+
+@mixin text-member($font-size: 20px, $line-height: 20px) {
+  font: normal normal #{$font-size}/#{$line-height} $heading-font-family;
+  color: colors.$text-color;
+  text-align: center;
+}

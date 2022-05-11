@@ -1,0 +1,135 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+@use '../../../shared/styles/forms';
+
+:host {
+  background-color: colors.$main-color;
+  min-height: calc(100vh - 120px);
+  padding: 20px;
+  display: flex;
+  box-sizing: border-box;
+}
+.main {
+  width: 100%;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.title {
+  @include font.text-welcome;
+}
+
+.list-info {
+  @include font.text-list;
+}
+
+.box-info {
+  width: 100%;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 60px 0;
+  justify-content: center;
+}
+
+.auth__button {
+  @include forms.submit-button;
+}
+
+.box-info-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 650px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.box-info-member {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 525px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.box-info-member,
+.box-info-title {
+  position: relative;
+  flex-direction: column;
+  background-color: colors.$board-color;
+  padding: 10px;
+  box-shadow: 0px 0px 4px 0px #777;
+
+  &:hover {
+    color: colors.$text-hover;
+    box-shadow: 0px 0px 7px 0px #777;
+    .box-info-title {
+      color: colors.$text-hover;
+    }
+  }
+}
+
+.info-name {
+  text-align: center;
+}
+
+.name-title {
+  @include font.subtitle;
+}
+
+.role-title {
+  @include font.text-role;
+}
+
+.info-member {
+  @include font.text-member;
+}
+
+a {
+  text-decoration: none;
+  cursor: default;
+}
+
+img {
+  width: 250px;
+  height: 250px;
+}
+
+.welcome-paral {
+  width: 100%;
+  height: 250px;
+  padding: 0;
+  background-size: cover;
+  background-attachment: fixed;
+  background-image: url('../../../../../assets/png/paral.png');
+}
+
+ol {
+  list-style: none;
+  counter-reset: my-counter;
+}
+li {
+  counter-increment: my-counter;
+  margin: 0.25rem;
+}
+li::before {
+  content: counter(my-counter);
+  background: #3772c5;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: inline-block;
+  line-height: 2rem;
+  color: white;
+  text-align: center;
+  margin-right: 0.5rem;
+}

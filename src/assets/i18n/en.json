@@ -7,6 +7,23 @@
     "search": "Search",
     "createBoard": "Create board"
   },
+  "welcomePage": {
+    "h2": "The project was made by:",
+    "nameTeamLead": "Andrey Burlakov",
+    "nameFirstDeveloper": "Olga Martinchik",
+    "nameSecondDeveloper":"Viktoria Tsimakhovich",
+    "button": "Try...",
+    "titleFirstBox": "Online course «Development on Angular». Free course from The Rolling Scopes community. In this course, we studied the Angular framework. We have developed a project management system by our team, which is similar to such applications as Trello, Jira, Redmine and others.",
+    "titleSecondBox": "Systems for planning, setting and monitoring tasks are the main tool for working on projects in small startups and large companies. Our free version has the ability to create different workboards for each project.",
+    "titleThirdBox": "",
+    "roleTeamLead": "Team lead",
+    "roleFirstDeveloper": "Developer",
+    "roleSecondDeveloper":"Developer",
+    "infoTeamLead": "Coordinated the team, implemented user authorization and registration, created a personal account page, implemented the task column component, participated in the development of the project design.",
+    "infoFirstDeveloper": "Set up the Backend and all the work with it, implemented the main page, connected the Trensloco library, worked on the project management page, participated in the development of the project design.",
+    "infoSecondDeveloper":"Worked on layout and design, set up routing, created a header and footer with navigation, worked on a welcome page and an error page when clicking on a wrong link."
+
+  },
   "mainPage": {
     "h1": "Your work board",
     "newBoard": "Create board",
