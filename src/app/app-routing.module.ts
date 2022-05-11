@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'board',
-    loadChildren: () => import('./modules/board/board.module').then((m) => m.BoardModule),
+    loadChildren: () => import('./modules/boards/board.module').then((m) => m.BoardModule),
   },
 ];
 
