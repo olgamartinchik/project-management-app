@@ -2,14 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable, Subject, take, takeUntil } from 'rxjs';
-import { BoardService } from '../core/services/board.service';
-import { HttpService } from '../core/services/http.service';
-import { BoardDataService } from './services/board-data.service';
+import { BoardService } from '../../../core/services/board.service';
+import { HttpService } from '../../../core/services/http.service';
+import { BoardDataService } from '../../services/board-data.service';
 import { IAppState } from 'src/app/redux/state.model';
 import { boardByIdSelect } from 'src/app/redux/selectors/board.selectors';
 import { setBoardById } from 'src/app/redux/actions/board.actions';
-import { IBoard } from '../core/models/IBoard.model';
-import { IColumn } from '../core/models/IColumn.model';
+import { IBoard } from '../../../core/models/IBoard.model';
+import { IColumn } from '../../../core/models/IColumn.model';
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',

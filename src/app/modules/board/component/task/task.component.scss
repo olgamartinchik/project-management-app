@@ -1,0 +1,16 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+.task-container {
+  width: inherit;
+  box-sizing: border-box;
+
+  box-shadow: 0 1px 0 #091e4240;
+  border-radius: 4px;
+  background-color: white;
+  margin: 5px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    background-color: colors.$hover-task-color;
+  }
+}

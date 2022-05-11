@@ -9,12 +9,4 @@ export class AuthService {
   public getToken(): string | null {
     return localStorage.getItem('authToken');
   }
-
-  public saveUserId(id: string): void {
-    localStorage.setItem('userId', id);
-  }
-
-  public getUserId(): string | null {
-    return localStorage.getItem('userId');
-  }
 }
