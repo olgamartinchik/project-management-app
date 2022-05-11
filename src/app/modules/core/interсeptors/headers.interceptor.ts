@@ -25,7 +25,7 @@ export class HeadersInterceptor implements HttpInterceptor {
         request.clone({
           headers: new HttpHeaders({
             Accept: 'application/json',
-            Authorization: `Bearer ${token as string}` || '',
+            Authorization: `Bearer ${token}`,
           }),
         }),
       )

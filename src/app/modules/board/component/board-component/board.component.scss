@@ -1,5 +1,5 @@
-@use '../shared/styles/colors';
-@use '../shared/styles/font';
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
 :host {
   background-color: colors.$main-color;
   height: calc(100vh - 120px);
