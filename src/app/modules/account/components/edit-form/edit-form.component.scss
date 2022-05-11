@@ -2,40 +2,51 @@
 @use '../../../shared/styles/forms';
 
 :host {
+  max-width: 500px;
+  padding: 20px;
   @include forms.form-block;
 }
 
-.auth__form {
+.account__form {
   @include forms.form;
 }
 
-.auth__label {
+.account__label {
   @include forms.label;
 }
 
-.auth__input {
+.account__input {
   @include forms.input;
 }
 
-.auth__error-text {
+.confirm-password.ng-dirty {
+  &.invalid {
+    border-bottom: 2px solid colors.$invalid;
+  }
+  &:not(.invalid) {
+    border-bottom: 2px solid colors.$valid;
+  }
+}
+
+.account__error-text {
   @include forms.error-message;
 }
 
-.auth__error-text_place_form {
+.account__error-text_place_form {
   margin: 15px 0 0;
   font-size: 20px;
   line-height: 25px;
 }
 
-.auth__recommend-list {
+.account__recommend-list {
   margin: 0;
   padding: 0 0 0 20px;
 }
 
-.auth__recommend-item {
+.account__recommend-item {
   @include forms.recommend-message;
 }
 
-.auth__button {
+.account__button {
   @include forms.button;
 }

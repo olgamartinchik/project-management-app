@@ -8,7 +8,7 @@ import {
   LoginRequestModel,
   LoginResponseModel,
   SignupRequestModel,
-  SignupResponseModel,
+  UserModel,
 } from '../../models/api.service.models';
 import { BoardModel } from '../../models/board.model';
 
@@ -22,8 +22,8 @@ export class ApiService {
     return this.http.get<BoardModel>(`${this.url}/boards/${id}`);
   }
 
-  public singup(signupData: SignupRequestModel): Observable<SignupResponseModel> {
-    return this.http.post<SignupResponseModel>(`${this.url}/signup`, signupData);
+  public singup(signupData: SignupRequestModel): Observable<UserModel> {
+    return this.http.post<UserModel>(`${this.url}/signup`, signupData);
   }
 
   public login(loginData: LoginRequestModel): Observable<LoginResponseModel> {
@@ -40,5 +40,17 @@ export class ApiService {
 
   public deleteBoard(id: string): Observable<BoardModel> {
     return this.http.delete<BoardModel>(`${this.url}/boards/${id}`);
+  }
+
+  public getUserById(id: string): Observable<UserModel> {
+    return this.http.get<UserModel>(`${this.url}/users/${id}`);
+  }
+
+  public editUser(id: string, userData: SignupRequestModel): Observable<UserModel> {
+    return this.http.put<UserModel>(`${this.url}/users/${id}`, userData);
+  }
+
+  public deleteUser(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.url}/users/${id}`);
   }
 }

@@ -1,12 +1,19 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { BoardModel } from '../../../core/models/board.model';
-import { BoardService } from '../../../core/services/board.service';
-
-import { ConfirmService } from 'src/app/modules/core/services/confirm.service';
-import { ToggleScrollService } from 'src/app/modules/core/services/toggle-scroll.service';
+import { map, take } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { IAppState } from 'src/app/redux/state.model';
+
+// services
+import { BoardService } from '../../../core/services/board.service';
+import { ConfirmService } from '../../../core/services/confirm.service';
+import { ApiService } from '../../../core/services/api/api.service';
+
+// models
+import { BoardModel } from '../../../core/models/board.model';
+import { IAppState } from '../../../../redux/state.model';
+
+// ngrx
 import { getBoardById } from 'src/app/redux/actions/board.actions';
+import { updateAllBoards } from 'src/app/redux/actions/board.actions';
 
 @Component({
   selector: 'app-board-card',
@@ -20,18 +27,30 @@ export class BoardCardComponent {
   constructor(
     public boardService: BoardService,
     private confirmService: ConfirmService,
-    private toggleScrollService: ToggleScrollService,
     private store: Store<IAppState>,
+    private apiService: ApiService,
   ) {}
 
-  public deleteBoard(event: Event): void {
+  public confirmationDeleteBoard(event: Event): void {
     event.preventDefault();
     event.stopPropagation();
-    this.confirmService.isConfirmPopup$.next(true);
-    this.toggleScrollService.hiddenScroll();
+
+    this.confirmService.open(this.deleteBoard);
   }
 
   public selectCard(): void {
     this.store.dispatch(getBoardById({ boardById: this.boardData }));
   }
+
+  private deleteBoard = (): void => {
+    this.apiService
+      .deleteBoard(this.boardData.id!)
+      .pipe(
+        take(1),
+        map(() => {
+          this.store.dispatch(updateAllBoards());
+        }),
+      )
+      .subscribe();
+  };
 }

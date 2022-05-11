@@ -2,11 +2,20 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  public saveToken(token: string): void {
-    localStorage.setItem('authToken', token);
+  public clearStorage(): void {
+    localStorage.clear();
   }
 
-  public getToken(): string | null {
-    return localStorage.getItem('authToken');
+  public getItem(key: string): string | null {
+    return localStorage.getItem(key);
+  }
+
+  public saveUser(token: string): void {
+    localStorage.setItem('authToken', token);
+    localStorage.setItem('userId', this.decodeIdFromToken(token));
+  }
+
+  private decodeIdFromToken(token: string): string {
+    return JSON.parse(atob(token.split('.')[1])).userId;
   }
 }

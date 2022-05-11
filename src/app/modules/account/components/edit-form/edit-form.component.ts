@@ -3,50 +3,56 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
+  Input,
   OnInit,
   Output,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { take } from 'rxjs';
 
-// services
+//services
 import { ApiService } from '../../../core/services/api/api.service';
+import { AuthService } from '../../../core/services/auth/auth.service';
 import { ValidationService } from '../../../core/services/validation/validation.service';
 import { ErrorMessagesService } from '../../../core/services/error-messages/error-messages.service';
 
-//models
+// models
 import { FormMessagesModel } from '../../../core/models/error-messages.services.models';
+import { UserModel } from '../../../core/models/api.service.models';
 
 // constants
 import { CORRECT_CHAR } from '../../../core/constants/validation.service.constants';
 import { FORM_ERROR_MESSAGES } from '../../../core/constants/error-messages.constants';
 
 @Component({
-  selector: 'app-signup-form',
-  templateUrl: './signup-form.component.html',
-  styleUrls: ['./signup-form.component.scss'],
+  selector: 'app-edit-form',
+  templateUrl: './edit-form.component.html',
+  styleUrls: ['./edit-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignupFormComponent implements OnInit {
+export class EditFormComponent implements OnInit {
+  @Input() public currentUser!: UserModel;
+
   @Output() public submitForm = new EventEmitter<void>();
 
-  public signupForm!: FormGroup;
+  public editUserForm!: FormGroup;
 
   public messages: FormMessagesModel = FORM_ERROR_MESSAGES;
 
   constructor(
     private fb: FormBuilder,
-    private apiService: ApiService,
     private validationService: ValidationService,
+    private apiService: ApiService,
+    private authService: AuthService,
     private cdr: ChangeDetectorRef,
     public errorMessagesService: ErrorMessagesService,
   ) {}
 
   public ngOnInit(): void {
-    this.signupForm = this.fb.group(
+    this.editUserForm = this.fb.group(
       {
         name: [
-          '',
+          this.currentUser.name,
           [
             Validators.required,
             Validators.pattern(CORRECT_CHAR),
@@ -55,7 +61,7 @@ export class SignupFormComponent implements OnInit {
           ],
         ],
         login: [
-          '',
+          this.currentUser.login,
           [
             Validators.required,
             Validators.pattern(CORRECT_CHAR),
@@ -77,25 +83,20 @@ export class SignupFormComponent implements OnInit {
     );
   }
 
-  public resetForm(): void {
-    this.signupForm.reset();
-    this.cdr.markForCheck();
-  }
-
   public submit(): void {
     const userData = {
-      name: this.signupForm.controls['name'].value,
-      login: this.signupForm.controls['login'].value,
-      password: this.signupForm.controls['password'].value,
+      name: this.editUserForm.controls['name'].value,
+      login: this.editUserForm.controls['login'].value,
+      password: this.editUserForm.controls['password'].value,
     };
 
     this.apiService
-      .singup(userData)
+      .editUser(this.authService.getItem('userId')!, userData)
       .pipe(take(1))
       .subscribe({
         next: () => {
-          this.submitForm.emit();
           this.resetForm();
+          this.submitForm.emit();
         },
         error: (err: string) => {
           this.handleApiError(err);
@@ -104,7 +105,13 @@ export class SignupFormComponent implements OnInit {
   }
 
   private handleApiError(errText: string): void {
-    this.errorMessagesService.setFormError(this.signupForm, errText, this.messages['api']);
+    this.errorMessagesService.setFormError(this.editUserForm, errText, this.messages['api']);
     this.cdr.markForCheck();
+  }
+
+  private resetForm(): void {
+    this.editUserForm.get('password')?.reset();
+    this.editUserForm.get('confirmPassword')?.reset();
+    this.editUserForm.markAsPristine();
   }
 }

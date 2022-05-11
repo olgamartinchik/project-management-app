@@ -1,11 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { BoardService } from '../../services/board.service';
-import { ApiService } from '../../services/api/api.service';
+
 import { ConfirmService } from '../../services/confirm.service';
-import { ToggleScrollService } from '../../services/toggle-scroll.service';
-import { Store } from '@ngrx/store';
-import { IAppState } from 'src/app/redux/state.model';
-import { boardByIdSelect } from 'src/app/redux/selectors/board.selectors';
 
 @Component({
   selector: 'app-confirm-popup',
@@ -14,26 +9,18 @@ import { boardByIdSelect } from 'src/app/redux/selectors/board.selectors';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConfirmPopupComponent {
-  private board$ = this.store.select(boardByIdSelect);
-
-  constructor(
-    public boardService: BoardService,
-    public confirmService: ConfirmService,
-    private apiService: ApiService,
-    private toggleScrollService: ToggleScrollService,
-    private store: Store<IAppState>,
-  ) {}
+  constructor(public confirmService: ConfirmService) {}
 
   public closeConfirmPopup(): void {
-    this.confirmService.isConfirmPopup$.next(false);
-    this.toggleScrollService.showScroll();
+    this.confirmService.close();
+  }
+
+  public confirm(): void {
+    this.confirmService.confirmDelete();
+    this.closeConfirmPopup();
   }
 
   public stopPropagation(event: Event): void {
     event.stopPropagation();
-  }
-
-  public deleteItem(): void {
-    console.log('delete');
   }
 }

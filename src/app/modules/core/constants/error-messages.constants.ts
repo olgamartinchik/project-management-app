@@ -1,4 +1,4 @@
-import { FormMessagesModel } from '../../core/models/error-messages.services.models';
+import { FormMessagesModel } from '../models/error-messages.services.models';
 
 export const FORM_ERROR_MESSAGES: FormMessagesModel = {
   name: {

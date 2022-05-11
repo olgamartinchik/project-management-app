@@ -3,15 +3,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
 
-import { ValidationService } from '../../../core/services/validation/validation.service';
-import { CORRECT_CHAR } from '../../../core/constants/validation.service.constants';
-import { ErrorMessagesService } from '../../../core/services/error-messages/error-messages.service';
-
-import { FormMessagesModel } from 'src/app/modules/core/models/error-messages.services.models';
-import { FORM_ERROR_MESSAGES } from '../../constants/error-messages.constants';
-
+// services
 import { ApiService } from '../../../core/services/api/api.service';
 import { AuthService } from '../../../core/services/auth/auth.service';
+import { ValidationService } from '../../../core/services/validation/validation.service';
+import { ErrorMessagesService } from '../../../core/services/error-messages/error-messages.service';
+
+// models
+import { FormMessagesModel } from '../../../core/models/error-messages.services.models';
+
+// constants
+import { CORRECT_CHAR } from '../../../core/constants/validation.service.constants';
+import { FORM_ERROR_MESSAGES } from '../../../core/constants/error-messages.constants';
 
 @Component({
   selector: 'app-login-form',
@@ -56,7 +59,7 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
-  public reset(): void {
+  public resetForm(): void {
     this.loginForm.reset();
     this.cdr.markForCheck();
   }
@@ -67,7 +70,7 @@ export class LoginFormComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         next: (res) => {
-          this.authService.saveToken(res.token);
+          this.authService.saveUser(res.token);
           this.router.navigate(['/main'], { replaceUrl: true });
         },
         error: (err: string) => {
