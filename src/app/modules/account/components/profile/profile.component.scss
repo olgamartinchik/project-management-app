@@ -1,0 +1,19 @@
+@use '../../../shared/styles/font';
+
+:host {
+  width: 100%;
+  margin: 0 0 10px;
+}
+
+.profile__title {
+  margin: 0 0 20px;
+  @include font.title;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.profile__subtitle {
+  margin: 0;
+  @include font.subtitle;
+  text-align: center;
+}

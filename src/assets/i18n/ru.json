@@ -5,6 +5,7 @@
     "workingBoard": "Рабочая доска",
     "enter": "Вход/Регистрация",
     "search": "Поиск",
+    "account": "Личный кабинет",
     "createBoard": "Новая доска"
   },
   "mainPage": {
@@ -31,6 +32,16 @@
     "confirmPasswordPlaceholder": "Подтвердите пароль",
     "loginButton": "Войти",
     "signupButton": "Зарегистрироваться"
+  },
+  "account": {
+    "title": "Приветствуем",
+    "subtitle": "Редактировать профиль",
+    "namePlaceholder": "Имя",
+    "loginPlaceholder": "Логин",
+    "passwordPlaceholder": "Пароль",
+    "confirmPasswordPlaceholder": "Подтвердите пароль",
+    "editButton": "Редактировать",
+    "deleteButton": "Удалить аккаунт"
   },
   "nameErrors": {
     "required": "Пожалуйста введите имя",
