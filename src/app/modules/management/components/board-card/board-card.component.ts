@@ -1,12 +1,19 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { IBoard } from '../../../core/models/IBoard.model';
-
-import { ConfirmService } from 'src/app/modules/core/services/confirm.service';
-import { Store } from '@ngrx/store';
-import { IAppState } from 'src/app/redux/state.model';
-import { getBoardById, updateAllBoards } from 'src/app/redux/actions/board.actions';
 import { map, take } from 'rxjs';
-import { HttpService } from 'src/app/modules/core/services/http.service';
+import { Store } from '@ngrx/store';
+
+// services
+import { ConfirmService } from '../../../core/services/confirm.service';
+import { HttpService } from '../../../core/services/http.service';
+
+// models
+
+import { IAppState } from '../../../../redux/state.model';
+
+// ngrx
+import { getBoardById } from 'src/app/redux/actions/board.actions';
+import { updateAllBoards } from 'src/app/redux/actions/board.actions';
+import { IBoard } from 'src/app/modules/core/models/IBoard.model';
 
 @Component({
   selector: 'app-board-card',

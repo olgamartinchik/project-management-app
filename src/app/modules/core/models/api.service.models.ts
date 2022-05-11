@@ -1,13 +1,13 @@
+export interface UserModel {
+  id: string;
+  name: string;
+  login: string;
+}
+
 export interface SignupRequestModel {
   name: string;
   login: string;
   password: string;
-}
-
-export interface SignupResponseModel {
-  id: string;
-  name: string;
-  login: string;
 }
 
 export interface LoginRequestModel {
@@ -17,4 +17,11 @@ export interface LoginRequestModel {
 
 export interface LoginResponseModel {
   token: string;
+}
+
+export interface EditUserResponseModel {
+  id: string;
+  name: string;
+  login: string;
+  password: string;
 }

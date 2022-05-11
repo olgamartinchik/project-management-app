@@ -1,6 +1,5 @@
 <div
   *ngIf="confirmService.confirmSubject$ | async as confirmSubject"
-  class="overlay"
   [class]="{ overlay: true, visible: confirmSubject.isOpen }"
   (click)="closeConfirmPopup()"
 >

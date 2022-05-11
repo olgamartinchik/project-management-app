@@ -18,7 +18,7 @@ export class HeadersInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    const token = this.authService.getToken() as string;
+    const token = this.authService.getItem('authToken');
 
     return next
       .handle(

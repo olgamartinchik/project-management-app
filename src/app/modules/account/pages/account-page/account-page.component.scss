@@ -1,0 +1,31 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+
+:host {
+  min-height: calc(100vh - 130px);
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.account__button {
+  margin: 50px 0 0;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  background-color: colors.$danger;
+  border: none;
+
+  @include font.text(20px, 20px);
+  color: white;
+  outline: none;
+  cursor: pointer;
+  transition: 0.6s ease;
+
+  &:hover,
+  &:focus-visible {
+    box-shadow: 3px 3px 10px colors.$danger;
+  }
+}

@@ -7,7 +7,7 @@ export class AuthGuard implements CanActivate, CanLoad {
   constructor(private authService: AuthService) {}
 
   public canActivate(): boolean {
-    if (this.authService.getToken()) {
+    if (this.authService.getItem('authToken')) {
       return true;
     }
 
@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate, CanLoad {
   }
 
   public canLoad(): boolean {
-    if (this.authService.getToken()) {
+    if (this.authService.getItem('authToken')) {
       return true;
     }
 

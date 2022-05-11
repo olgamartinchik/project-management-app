@@ -15,12 +15,12 @@ export class ConfirmPopupComponent {
     this.confirmService.close();
   }
 
-  public stopPropagation(event: Event): void {
-    event.stopPropagation();
-  }
-
   public confirm(): void {
     this.confirmService.confirmDelete();
     this.closeConfirmPopup();
+  }
+
+  public stopPropagation(event: Event): void {
+    event.stopPropagation();
   }
 }
