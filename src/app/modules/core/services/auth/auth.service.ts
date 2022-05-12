@@ -26,8 +26,4 @@ export class AuthService {
   public isLoggedIn(): boolean {
     return this.getItem('userId') !== null;
   }
-
-  public logOut(): void {
-    this.router.navigate(['welcome']);
-  }
 }

@@ -14,8 +14,6 @@ import { AuthService } from '../../services/auth/auth.service';
 export class HeaderComponent {
   public lang: LangModel = 'ru';
 
-  public loginIn: boolean = true;
-
   constructor(
     private translocoService: TranslocoService,
     private boardService: BoardService,
@@ -29,9 +27,5 @@ export class HeaderComponent {
   public openPopupCreateBoard(): void {
     this.boardService.isBoardPopup$.next(true);
     this.translocoService.setActiveLang(this.lang);
-  }
-
-  public logout(): void {
-    this.authService.logOut();
   }
 }

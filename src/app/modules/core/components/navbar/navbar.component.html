@@ -1,46 +1,45 @@
 <nav [class]="{ nav: true, 'nav-open': isNavOpen }">
-  <a
+  <ng-container *ngIf="authService.isLoggedIn()">
+    <a
     class="nav-link"
-    *ngIf="authService.isLoggedIn()"
     routerLinkActive="active"
     routerLink="/main"
     rel="noopener"
     title="main"
     >{{ 'nav.mainPage' | transloco }}</a
-  >
-  <a
+    >
+    <a
+      class="nav-link"
+      [class.disabled]="disabled"
+      routerLinkActive="active"
+      routerLink="/search"
+      rel="noopener"
+      title="search"
+      >{{ 'nav.search' | transloco }}</a
+    >
+    <a
+      class="nav-link"
+      routerLinkActive="active"
+      routerLink="/account"
+      rel="noopener"
+      title="account"
+      >{{ 'nav.account' | transloco }}</a
+    >
+    <a class="nav-link" (click)="logout()">{{
+      'nav.logout' | transloco
+    }}</a>
+  </ng-container>
+  <ng-container *ngIf="!authService.isLoggedIn()">
+     <a
     class="nav-link"
-    *ngIf="!authService.isLoggedIn()"
     routerLinkActive="active"
     routerLink="/auth"
     rel="noopener"
     title="auth"
     >{{ 'nav.enter' | transloco }}</a
-  >
-  <a
-    class="nav-link"
-    *ngIf="authService.isLoggedIn()"
-    [class.disabled]="disabled"
-    routerLinkActive="active"
-    routerLink="/search"
-    rel="noopener"
-    title="search"
-    >{{ 'nav.search' | transloco }}</a
-  >
-  <a
-    class="nav-link"
-    *ngIf="authService.isLoggedIn()"
-    routerLinkActive="active"
-    routerLink="/account"
-    rel="noopener"
-    title="redaktor"
-    >{{ 'nav.account' | transloco }}</a
-  >
-  <a class="nav-link" *ngIf="authService.isLoggedIn()" (click)="logout()">{{
-    'nav.logout' | transloco
-  }}</a>
+    >
+  </ng-container>
 </nav>
-
 <button
   [class]="{ 'nav-burger-button': true, active: isNavOpen }"
   (click)="isNavOpen = !isNavOpen"
