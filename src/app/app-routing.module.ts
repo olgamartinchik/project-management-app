@@ -39,8 +39,12 @@ const routes: Routes = [
     loadChildren: () => import('./modules/boards/board.module').then((m) => m.BoardModule),
   },
   {
-    path: '**',
+    path: 'error',
     component: ErrorPageComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '/error',
   },
 ];
 
