@@ -1,4 +1,4 @@
-<a class="board" [routerLink]="['/board', boardData.id]" [id]="boardData.id" (click)="selectCard()">
+<a class="board" [routerLink]="['/board', boardData.id]" (click)="selectCard()">
   <button class="board__delete-button" type="button" (click)="confirmationDeleteBoard($event)">
     {{ 'mainPage.deleteBtn' | transloco }}
   </button>

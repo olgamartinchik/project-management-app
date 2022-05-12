@@ -10,6 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { TranslocoRootModule } from '../transloco/transloco-root.module';
 
 //services
+import { LoaderService } from './services/loader.service';
 import { ToggleScrollService } from './services/toggle-scroll.service';
 import { ErrorMessagesService } from './services/error-messages/error-messages.service';
 import { INTERCEPTOR_PROVIDERS } from './interсeptors/providers';
@@ -20,8 +21,16 @@ import { BoardPopupComponent } from './components/board-popup/board-popup.compon
 import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.component';
 import { FooterComponent } from './components/footer/footer.component';
 
+import { LoaderComponent } from './components/loader/loader.component';
+
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, BoardPopupComponent, ConfirmPopupComponent],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    BoardPopupComponent,
+    ConfirmPopupComponent,
+    LoaderComponent,
+  ],
   exports: [HeaderComponent, FooterComponent],
 
   imports: [
@@ -34,6 +43,6 @@ import { FooterComponent } from './components/footer/footer.component';
     BrowserAnimationsModule,
     SharedModule,
   ],
-  providers: [INTERCEPTOR_PROVIDERS, ToggleScrollService, ErrorMessagesService],
+  providers: [INTERCEPTOR_PROVIDERS, LoaderService, ErrorMessagesService, ToggleScrollService],
 })
 export class CoreModule {}

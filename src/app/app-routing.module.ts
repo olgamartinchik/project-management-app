@@ -14,6 +14,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/management/management.module').then((m) => m.ManagementModule),
   },
+
   {
     path: 'account',
     canActivate: [AuthGuard],
@@ -22,7 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'board',
-    loadChildren: () => import('./modules/board/board.module').then((m) => m.BoardModule),
+    loadChildren: () => import('./modules/boards/board.module').then((m) => m.BoardModule),
   },
 ];
 

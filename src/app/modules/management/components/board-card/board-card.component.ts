@@ -3,7 +3,6 @@ import { map, take } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 // services
-import { BoardPopupService } from '../../../core/services/board-popup.service';
 import { ConfirmService } from '../../../core/services/confirm.service';
 import { ApiService } from '../../../core/services/api/api.service';
 
@@ -25,7 +24,6 @@ export class BoardCardComponent {
   @Input() public boardData!: BoardModel;
 
   constructor(
-    public boardPopupService: BoardPopupService,
     private confirmService: ConfirmService,
     private store: Store<IAppState>,
     private apiService: ApiService,
@@ -36,10 +34,6 @@ export class BoardCardComponent {
     event.stopPropagation();
 
     this.confirmService.open(this.deleteBoard);
-  }
-
-  public selectCard(): void {
-    this.store.dispatch(getBoardById({ boardById: this.boardData }));
   }
 
   private deleteBoard = (): void => {
@@ -53,4 +47,8 @@ export class BoardCardComponent {
       )
       .subscribe();
   };
+
+  public selectCard(): void {
+    this.store.dispatch(getBoardById({ boardById: this.boardData }));
+  }
 }

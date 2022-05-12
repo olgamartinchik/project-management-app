@@ -1,0 +1,11 @@
+<div class="board__heading" *ngIf="board$ | async as board">
+  <h3 class="board__title">{{ board.title }}</h3>
+
+  <p class="board__description">{{ board.description }}</p>
+</div>
+
+<div class="columns-container">
+  <div>
+    <button class="button" (click)="addColumn()">+ {{ 'BoardPage.addColBtn' | transloco }}</button>
+  </div>
+</div>

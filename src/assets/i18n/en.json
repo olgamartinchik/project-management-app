@@ -27,7 +27,10 @@
     "descriptionPlaceholder": "Description"
   },
   "BoardPage": {
-    "addColBtn": "Add column"
+    "addColBtn": "Add column",
+    "button": "Delete",
+    "enter": "Signup/login",
+    "search": "Search"
   },
   "auth": {
     "loginLabel": "Login",
