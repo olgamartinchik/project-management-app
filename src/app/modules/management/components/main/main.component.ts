@@ -9,7 +9,7 @@ import { setBoards } from 'src/app/redux/actions/board.actions';
 import { HttpService } from 'src/app/modules/core/services/http.service';
 import { boardsSelect } from 'src/app/redux/selectors/board.selectors';
 import { Observable, Subject, takeUntil } from 'rxjs';
-import { IBoard } from '../../model/IBoard.model';
+import { IBoard } from '../../../core/models/IBoard.model';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',

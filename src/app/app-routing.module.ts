@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ErrorPageComponent } from './modules/management/page/error-page/error-page.component';
 import { AuthGuard } from './modules/core/guards/auth.guard';
 import { WelcomePageComponent } from './modules/management/page/welcome-page/welcome-page.component';
 import { WelcomeGuard } from './modules/core/guards/welcome.guard';
+import { ErrorPageComponent } from './modules/management/page/error-page/error-page.component';
 
 const routes: Routes = [
   {
@@ -17,6 +17,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/management/management.module').then((m) => m.ManagementModule),
   },
+
   {
     path: 'account',
     canActivate: [AuthGuard],
@@ -32,6 +33,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '/welcome',
     pathMatch: 'full',
+  },
+  {
+    path: 'board',
+    loadChildren: () => import('./modules/boards/board.module').then((m) => m.BoardModule),
   },
   {
     path: '**',

@@ -7,3 +7,5 @@ export const selectState = createFeatureSelector<IBoardState>('boardState');
 export const boardsSelect = createSelector(selectState, (state: IBoardState) => state.boards);
 
 export const boardByIdSelect = createSelector(selectState, (state: IBoardState) => state.boardById);
+
+export const idBoard = createSelector(selectState, (state: IBoardState) => state.idBoard);

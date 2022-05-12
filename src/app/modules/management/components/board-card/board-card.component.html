@@ -1,8 +1,8 @@
-<a routerLink="" (click)="selectCard()">
-  <div class="board" [id]="boardData.id">
+<a [routerLink]="['/board', boardData!.id!]" (click)="selectCard()">
+  <div class="board" [id]="boardData?.id">
     <span class="delete-btn" (click)="confirmationDeleteBoard($event)">{{
       'mainPage.deleteBtn' | transloco
     }}</span>
-    <h4 class="board-title">{{ boardData.title }}</h4>
+    <h4 class="board-title">{{ boardData?.title }}</h4>
   </div>
 </a>

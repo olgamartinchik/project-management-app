@@ -37,6 +37,10 @@
   },
   "ConfirmPopup": {
     "title": "Вы уверенны?",
+    "button": "Удалить"
+  },
+  "BoardPage": {
+    "addColBtn": "Добавить колонку",
     "button": "Удалить",
     "search": "Поиск"
   },

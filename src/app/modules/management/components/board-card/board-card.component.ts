@@ -3,17 +3,17 @@ import { map, take } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 // services
-import { BoardService } from '../../../core/services/board.service';
 import { ConfirmService } from '../../../core/services/confirm.service';
 import { HttpService } from '../../../core/services/http.service';
 
 // models
-import { IBoard } from '../../model/IBoard.model';
+
 import { IAppState } from '../../../../redux/state.model';
 
 // ngrx
 import { getBoardById } from 'src/app/redux/actions/board.actions';
 import { updateAllBoards } from 'src/app/redux/actions/board.actions';
+import { IBoard } from 'src/app/modules/core/models/IBoard.model';
 
 @Component({
   selector: 'app-board-card',
@@ -25,7 +25,6 @@ export class BoardCardComponent {
   @Input() public boardData!: IBoard;
 
   constructor(
-    public boardService: BoardService,
     private confirmService: ConfirmService,
     private store: Store<IAppState>,
     private httpService: HttpService,
@@ -36,10 +35,6 @@ export class BoardCardComponent {
     event.stopPropagation();
 
     this.confirmService.open(this.deleteBoard);
-  }
-
-  public selectCard(): void {
-    this.store.dispatch(getBoardById({ boardById: this.boardData }));
   }
 
   private deleteBoard = (): void => {
@@ -53,4 +48,8 @@ export class BoardCardComponent {
       )
       .subscribe();
   };
+
+  public selectCard(): void {
+    this.store.dispatch(getBoardById({ boardById: this.boardData }));
+  }
 }

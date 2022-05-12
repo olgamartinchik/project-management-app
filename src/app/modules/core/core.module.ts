@@ -10,9 +10,11 @@ import { SharedModule } from '../shared/shared.module';
 import { TranslocoRootModule } from '../transloco/transloco-root.module';
 
 //services
+import { LoaderService } from './services/loader.service';
 import { HttpService } from './services/http.service';
 import { ToggleScrollService } from './services/toggle-scroll.service';
 import { INTERCEPTOR_PROVIDERS } from './interсeptors/providers';
+import { ConfirmService } from './services/confirm.service';
 
 //components
 import { HeaderComponent } from './components/header/header.component';
@@ -21,6 +23,8 @@ import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
+import { LoaderComponent } from './components/loader/loader.component';
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -28,6 +32,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     BoardPopupComponent,
     ConfirmPopupComponent,
     NavbarComponent,
+    LoaderComponent,
   ],
   exports: [HeaderComponent, FooterComponent],
 
@@ -41,6 +46,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     BrowserAnimationsModule,
     SharedModule,
   ],
-  providers: [INTERCEPTOR_PROVIDERS, HttpService, ToggleScrollService],
+  providers: [
+    INTERCEPTOR_PROVIDERS,
+    HttpService,
+    LoaderService,
+    ConfirmService,
+    ToggleScrollService,
+  ],
 })
 export class CoreModule {}
