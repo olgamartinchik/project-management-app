@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-
-import { ToggleScrollService } from './toggle-scroll.service';
-
 import { ConfirmSubject } from '../models/confirm.service.models';
+import { ToggleScrollService } from './toggle-scroll.service';
 
 import { CONFIRM_SERVICE_INITIAL_VALUE } from '../constants/confirm.service.constants';
 

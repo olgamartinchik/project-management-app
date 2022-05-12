@@ -14,11 +14,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/management/management.module').then((m) => m.ManagementModule),
   },
+
   {
     path: 'account',
     canActivate: [AuthGuard],
     canLoad: [AuthGuard],
     loadChildren: () => import('./modules/account/account.module').then((m) => m.AccountModule),
+  },
+  {
+    path: 'board',
+    loadChildren: () => import('./modules/boards/board.module').then((m) => m.BoardModule),
   },
 ];
 

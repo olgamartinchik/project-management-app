@@ -5,8 +5,9 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpHeaders,
+  HttpStatusCode,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
 
 @Injectable()
@@ -19,13 +20,19 @@ export class HeadersInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     const token = this.authService.getItem('authToken');
 
-    return next.handle(
-      request.clone({
-        headers: new HttpHeaders({
-          Accept: 'application/json',
-          Authorization: `Bearer ${token}`,
+    return next
+      .handle(
+        request.clone({
+          headers: new HttpHeaders({
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`,
+          }),
         }),
-      }),
-    );
+      )
+      .pipe(
+        catchError((error: HttpStatusCode.Unauthorized) => {
+          return throwError(error);
+        }),
+      );
   }
 }
