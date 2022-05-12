@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable, take } from 'rxjs';
+import { Observable, take, switchMap, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 //  services
@@ -30,9 +30,18 @@ export class MainComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.apiService
-      .getBoards()
-      .pipe(take(1))
+    this.store
+      .select(boardsSelect)
+      .pipe(
+        switchMap((value) => {
+          if (value.length === 0) {
+            return this.getBoardsFromServer();
+          }
+
+          return of(value);
+        }),
+        take(1),
+      )
       .subscribe((boards) => {
         this.store.dispatch(setBoards({ boards }));
       });
@@ -40,5 +49,9 @@ export class MainComponent implements OnInit {
 
   public openBoardPopup(): void {
     this.boardPopupService.open();
+  }
+
+  private getBoardsFromServer(): Observable<BoardModel[]> {
+    return this.apiService.getBoards();
   }
 }

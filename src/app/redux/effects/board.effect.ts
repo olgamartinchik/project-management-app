@@ -42,7 +42,7 @@ export class BoardEffect {
       ofType(setBoardById),
       withLatestFrom(this.store.select(idBoard)),
       switchMap(([, id]) =>
-        this.apiService.getBoard(id).pipe(
+        this.apiService.getBoardById(id).pipe(
           map((boardById) => {
             return getBoardById({ boardById });
           }),

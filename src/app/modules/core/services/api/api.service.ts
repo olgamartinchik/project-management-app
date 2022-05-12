@@ -18,8 +18,12 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  public getBoard(id: string): Observable<BoardModel> {
+  public getBoardById(id: string): Observable<BoardModel> {
     return this.http.get<BoardModel>(`${this.url}/boards/${id}`);
+  }
+
+  public updateBoard(id: string, boardData: BoardModel): Observable<BoardModel> {
+    return this.http.put<BoardModel>(`${this.url}/boards/${id}`, boardData);
   }
 
   public singup(signupData: SignupRequestModel): Observable<UserModel> {
@@ -42,6 +46,7 @@ export class ApiService {
     return this.http.delete<BoardModel>(`${this.url}/boards/${id}`);
   }
 
+  // user
   public getUserById(id: string): Observable<UserModel> {
     return this.http.get<UserModel>(`${this.url}/users/${id}`);
   }

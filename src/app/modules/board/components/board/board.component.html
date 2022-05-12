@@ -1,13 +1,20 @@
-<main class="main">
-  <div class="wrapper">
-    <input type="text" class="title" (keydown.enter)="looseFocus($event)" />
+<form class="board__heading" [formGroup]="boardHeading">
+  <input
+    class="board__title"
+    formControlName="title"
+    type="text"
+    (keydown.enter)="looseFocus($event)"
+  />
+  <textarea
+    class="board__description"
+    formControlName="description"
+    type="text"
+    (keydown.enter)="looseFocus($event)"
+  ></textarea>
+</form>
 
-    <div class="columns-container">
-      <div>
-        <button class="button" (click)="addColumn()">
-          + {{ 'BoardPage.addColBtn' | transloco }}
-        </button>
-      </div>
-    </div>
+<div class="columns-container">
+  <div>
+    <button class="button" (click)="addColumn()">+ {{ 'BoardPage.addColBtn' | transloco }}</button>
   </div>
-</main>
+</div>

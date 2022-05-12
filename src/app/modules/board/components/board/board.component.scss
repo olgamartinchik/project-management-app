@@ -7,19 +7,27 @@
   padding: 20px;
   background-color: colors.$main-color;
   display: flex;
+  flex-direction: column;
   box-sizing: border-box;
 }
-.main {
-  width: 100%;
-}
-.title {
-  @include font.title;
-  margin: 10px auto;
+
+.board__heading {
+  margin: 0 0 20px;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.board__title {
+  margin: 10px auto;
+  padding: 0;
+  @include font.title;
+
   border: 2px solid transparent;
   background-color: transparent;
   cursor: pointer;
   outline: none;
+
   &:focus {
     border: 2px solid colors.$text-hover;
     border-radius: 4px;

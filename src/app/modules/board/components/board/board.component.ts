@@ -1,47 +1,84 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  Subscription,
+  take,
+  switchMap,
+  Observable,
+  of,
+} from 'rxjs';
 import { Store } from '@ngrx/store';
-import { Observable, Subject, takeUntil } from 'rxjs';
+
 import { BoardPopupService } from '../../../core/services/board-popup.service';
 import { ApiService } from '../../../core/services/api/api.service';
+
+import { selectBoardById } from 'src/app/redux/selectors/board.selectors';
+import { selectRouteParams } from 'src/app/redux/selectors/route.selectors';
+
 import { IAppState } from 'src/app/redux/state.model';
-import { boardByIdSelect } from 'src/app/redux/selectors/board.selectors';
-import { setBoardById } from 'src/app/redux/actions/board.actions';
 import { BoardModel } from '../../../core/models/board.model';
-import { IColumn } from '../../../core/models/IColumn.model';
+import { updateAllBoards } from 'src/app/redux/actions/board.actions';
+
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit, OnDestroy {
-  public idBoard = '';
+  public board!: BoardModel;
 
-  //временный count для создания контейнера
-  private count = 0;
+  public boardHeading!: FormGroup;
 
-  public columns?: IColumn[];
+  private boardId: string = '';
 
-  public board$: Observable<BoardModel> = this.store.select(boardByIdSelect);
-
-  public titleBoard = '';
-
-  private unsubscribe$: Subject<void> = new Subject<void>();
+  private subscription: Subscription = new Subscription();
 
   constructor(
-    private route: ActivatedRoute,
     public boardPopupService: BoardPopupService,
+    private fb: FormBuilder,
     private apiService: ApiService,
     private store: Store<IAppState>,
   ) {}
 
   public ngOnInit(): void {
-    this.idBoard = this.route.snapshot.params['id'];
-    this.store.dispatch(setBoardById({ idBoard: this.idBoard }));
-    this.board$.pipe(takeUntil(this.unsubscribe$)).subscribe((board) => {
-      this.titleBoard = board.title;
-      // console.log('updateBoard', board.columns)
-    });
+    this.createForm();
+
+    this.subscription.add(this.subscribeFormChange('title'));
+    this.subscription.add(this.subscribeFormChange('description'));
+
+    this.store
+      .select(selectRouteParams)
+      .pipe(take(1))
+      .subscribe(({ id }) => {
+        this.boardId = id;
+      });
+
+    this.store
+      .select(selectBoardById)
+      .pipe(
+        switchMap((data: any): Observable<any> => {
+          if (!data) {
+            return this.apiService.getBoardById(this.boardId);
+          }
+
+          return of(data);
+        }),
+        take(1),
+      )
+      .subscribe((data) => {
+        this.board = data;
+        this.boardHeading.setValue(
+          { title: data.title, description: data.description },
+          { emitEvent: false },
+        );
+      });
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   public addColumn(): void {
@@ -60,19 +97,31 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.store.dispatch(setBoardById({ idBoard: this.idBoard })); */
   }
 
-  public changeTitleBoard(): void {
-    /* this.httpService
-      .updateBoard(this.idBoard, { title: this.titleBoard })
-      .pipe(take(1))
-      .subscribe(); */
-  }
-
   public looseFocus(event: Event): void {
     (event!.target as HTMLInputElement)!.blur();
   }
 
-  public ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+  private changeBoardHeading(): void {
+    this.apiService.updateBoard(this.boardId, this.boardHeading.value).pipe(take(1)).subscribe();
+  }
+
+  private createForm(): void {
+    this.boardHeading = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
+    });
+  }
+
+  private subscribeFormChange(formControlName: string): Subscription {
+    return this.boardHeading.controls[formControlName].valueChanges
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        filter(() => this.boardHeading.controls[formControlName].valid),
+      )
+      .subscribe((): void => {
+        this.changeBoardHeading();
+        this.store.dispatch(updateAllBoards());
+      });
   }
 }
