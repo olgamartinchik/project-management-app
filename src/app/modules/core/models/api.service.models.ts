@@ -1,9 +1,3 @@
-export interface UserModel {
-  id: string;
-  name: string;
-  login: string;
-}
-
 export interface SignupRequestModel {
   name: string;
   login: string;

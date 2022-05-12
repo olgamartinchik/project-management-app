@@ -18,7 +18,7 @@ import { ErrorMessagesService } from '../../../core/services/error-messages/erro
 
 // models
 import { FormMessagesModel } from '../../../core/models/error-messages.services.models';
-import { UserModel } from '../../../core/models/api.service.models';
+import { UserModel } from '../../../core/models/user.model';
 
 // constants
 import { CORRECT_CHAR } from '../../../core/constants/validation.service.constants';

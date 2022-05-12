@@ -8,8 +8,8 @@ import {
   LoginRequestModel,
   LoginResponseModel,
   SignupRequestModel,
-  UserModel,
 } from '../../models/api.service.models';
+import { UserModel } from '../../models/user.model';
 import { BoardModel } from '../../models/board.model';
 
 @Injectable({ providedIn: 'root' })
@@ -18,14 +18,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  public getBoardById(id: string): Observable<BoardModel> {
-    return this.http.get<BoardModel>(`${this.url}/boards/${id}`);
-  }
-
-  public updateBoard(id: string, boardData: BoardModel): Observable<BoardModel> {
-    return this.http.put<BoardModel>(`${this.url}/boards/${id}`, boardData);
-  }
-
+  // signup and signin
   public singup(signupData: SignupRequestModel): Observable<UserModel> {
     return this.http.post<UserModel>(`${this.url}/signup`, signupData);
   }
@@ -34,19 +27,7 @@ export class ApiService {
     return this.http.post<LoginResponseModel>(`${this.url}/signin`, loginData);
   }
 
-  public postBoard(boardData: BoardModel): Observable<BoardModel> {
-    return this.http.post<BoardModel>(`${this.url}/boards`, boardData);
-  }
-
-  public getBoards(): Observable<BoardModel[]> {
-    return this.http.get<BoardModel[]>(`${this.url}/boards`);
-  }
-
-  public deleteBoard(id: string): Observable<BoardModel> {
-    return this.http.delete<BoardModel>(`${this.url}/boards/${id}`);
-  }
-
-  // user
+  // users
   public getUserById(id: string): Observable<UserModel> {
     return this.http.get<UserModel>(`${this.url}/users/${id}`);
   }
@@ -57,5 +38,26 @@ export class ApiService {
 
   public deleteUser(id: string): Observable<void> {
     return this.http.delete<void>(`${this.url}/users/${id}`);
+  }
+
+  // boards
+  public getBoards(): Observable<BoardModel[]> {
+    return this.http.get<BoardModel[]>(`${this.url}/boards`);
+  }
+
+  public getBoardById(id: string): Observable<BoardModel> {
+    return this.http.get<BoardModel>(`${this.url}/boards/${id}`);
+  }
+
+  public postBoard(boardData: BoardModel): Observable<BoardModel> {
+    return this.http.post<BoardModel>(`${this.url}/boards`, boardData);
+  }
+
+  public updateBoard(id: string, boardData: BoardModel): Observable<BoardModel> {
+    return this.http.put<BoardModel>(`${this.url}/boards/${id}`, boardData);
+  }
+
+  public deleteBoard(id: string): Observable<BoardModel> {
+    return this.http.delete<BoardModel>(`${this.url}/boards/${id}`);
   }
 }

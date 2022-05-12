@@ -15,12 +15,12 @@ import { BoardModel } from '../../../core/models/board.model';
 import { IAppState } from '../../../../redux/state.model';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
+  selector: 'app-main-page',
+  templateUrl: './main-page.component.html',
+  styleUrls: ['./main-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainComponent implements OnInit {
+export class MainPageComponent implements OnInit {
   public allBoards$: Observable<BoardModel[]> = this.store.select(boardsSelect);
 
   constructor(

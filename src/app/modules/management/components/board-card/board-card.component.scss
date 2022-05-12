@@ -33,9 +33,14 @@
 }
 
 .board__title {
-  margin: 0 0 20px;
+  min-height: 26px;
+  margin: 0 0 10px;
   text-align: center;
   @include font.subtitle;
+
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 .board__description {

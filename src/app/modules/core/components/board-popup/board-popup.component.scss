@@ -1,6 +1,7 @@
 @use '../../../shared/styles/colors';
 @use '../../../shared/styles/font';
 @use '../../../shared/styles/forms';
+@use '../../../shared/styles/components';
 
 .overlay {
   width: 100%;
@@ -45,6 +46,8 @@
   max-height: 180px;
   min-height: 60px;
   resize: vertical;
+
+  @include components.scrollbar(colors.$disabled-bg, colors.$text-disabled);
 }
 
 .board-popup__error-text {

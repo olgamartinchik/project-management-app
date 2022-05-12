@@ -8,7 +8,7 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 import { ConfirmService } from '../../../core/services/confirm.service';
 
 // models
-import { UserModel } from '../../../core/models/api.service.models';
+import { UserModel } from '../../../core/models/user.model';
 
 @Component({
   selector: 'app-account-page',
