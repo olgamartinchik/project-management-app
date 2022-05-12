@@ -11,6 +11,7 @@ import {
 } from '../../models/api.service.models';
 import { UserModel } from '../../models/user.model';
 import { BoardModel } from '../../models/board.model';
+import { ColumnModel } from '../../models/column.model';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
@@ -59,5 +60,14 @@ export class ApiService {
 
   public deleteBoard(id: string): Observable<BoardModel> {
     return this.http.delete<BoardModel>(`${this.url}/boards/${id}`);
+  }
+
+  // columns
+  public getColumns(id: string): Observable<ColumnModel[]> {
+    return this.http.get<ColumnModel[]>(`${this.url}/boards/${id}/columns`);
+  }
+
+  public createColumn(id: string, columnData: ColumnModel): Observable<ColumnModel> {
+    return this.http.post<ColumnModel>(`${this.url}/boards/${id}/columns`, columnData);
   }
 }

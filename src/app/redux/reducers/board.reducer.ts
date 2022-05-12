@@ -4,23 +4,24 @@ import { initialBoardState } from '../state.model';
 
 export const boardReducer = createReducer(
   initialBoardState,
-  //all boards
+
   on(BoardActions.setBoards, (state, { boards }) => {
     return { ...state, boards };
   }),
+
   on(BoardActions.updateAllBoards, (state) => {
     return { ...state };
   }),
-  on(BoardActions.getBoardsFailed, (state, { error }) => {
-    return { ...state, error };
+
+  on(BoardActions.setBoardColumns, (state, { board }) => {
+    const boards = state.boards.map((el) => (el.id === board.id ? board : el));
+
+    return { ...state, boards };
   }),
 
-  //board by id
-  on(BoardActions.getBoardById, (state, { boardById }) => {
-    return { ...state, boardById };
-  }),
+  on(BoardActions.addNewColumn, (state, { column }) => {
+    console.log(state, column);
 
-  on(BoardActions.getBoardByIdFailed, (state, { error }) => {
-    return { ...state, error };
+    return { ...state };
   }),
 );

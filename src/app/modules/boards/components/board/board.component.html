@@ -1,11 +1,21 @@
-<div class="board__heading" *ngIf="board$ | async as board">
-  <h3 class="board__title">{{ board.title }}</h3>
+<ng-container *ngIf="board$ | async as board">
+  <div class="board__heading">
+    <h3 class="board__title">{{ board.title }}</h3>
 
-  <p class="board__description">{{ board.description }}</p>
-</div>
-
-<div class="columns-container">
-  <div>
-    <button class="button" (click)="addColumn()">+ {{ 'BoardPage.addColBtn' | transloco }}</button>
+    <p class="board__description">{{ board.description }}</p>
   </div>
-</div>
+
+  <div class="board__columns-container">
+    <app-column *ngFor="let column of board.columns" [columnData]="column"></app-column>
+
+    <button class="button" (click)="toggleColumnPopup()">
+      + {{ 'BoardPage.addColBtn' | transloco }}
+    </button>
+  </div>
+
+  <app-column-popup
+    [isOpen]="isColumnPopupOpen"
+    [board]="board"
+    (closingPopup)="toggleColumnPopup()"
+  ></app-column-popup>
+</ng-container>

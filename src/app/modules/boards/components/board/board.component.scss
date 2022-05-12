@@ -5,7 +5,7 @@
 :host {
   height: components.$page-height;
   padding: 20px;
-  background-color: colors.$main-color;
+  background-color: white;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -29,15 +29,29 @@
   @include font.text(20px, 20px);
 }
 
-.columns-container {
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-  height: calc(100vh - 214px);
-
+.board__columns-container {
+  height: 100%;
+  padding: 0 0 10px;
+  display: grid;
+  grid-template: 100% / repeat(auto-fit, 280px);
+  grid-auto-flow: column;
+  grid-auto-columns: 280px;
   gap: 20px;
+  overflow-y: hidden;
   overflow-x: auto;
+
+  @include components.scrollbar(colors.$disabled-bg, colors.$text-disabled);
+
+  &::-webkit-scrollbar {
+    width: 20px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    border: 5px solid transparent;
+  }
 }
+
 .button {
   width: 160px;
   height: 40px;
@@ -52,36 +66,8 @@
   }
 }
 
-::-webkit-scrollbar {
-  width: 20px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: colors.$disabled-bg;
-  border-radius: 100px;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 100px;
-  border: 5px solid transparent;
-  background-clip: content-box;
-  background-color: colors.$text-disabled;
-}
-
-@media screen and (max-width: 320px) {
-  :host {
-    padding: 10px;
-  }
-}
 @media screen and (max-width: 768px) {
-  :host {
-    padding: 15px;
-    height: calc(100vh - 224px);
-  }
-  .columns-container {
-    height: calc(100vh - 307px);
-  }
-  .title {
+  .board__title {
     font-size: 20px;
   }
 }

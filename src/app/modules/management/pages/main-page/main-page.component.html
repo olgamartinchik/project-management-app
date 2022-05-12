@@ -1,13 +1,11 @@
 <main class="main">
-  <div class="wrapper">
-    <h1 class="title">{{ 'mainPage.h1' | transloco }}</h1>
+  <h1 class="main__title">{{ 'mainPage.h1' | transloco }}</h1>
 
-    <div class="boards">
-      <app-board-card *ngFor="let board of allBoards$ | async" [boardData]="board"></app-board-card>
+  <div class="main__boards">
+    <app-board-card *ngFor="let board of allBoards$ | async" [boardData]="board"></app-board-card>
 
-      <button class="board new-board" (click)="openBoardPopup()">
-        {{ 'mainPage.newBoard' | transloco }}
-      </button>
-    </div>
+    <button class="main__new-button" (click)="openBoardPopup()">
+      {{ 'mainPage.newBoard' | transloco }}
+    </button>
   </div>
 </main>

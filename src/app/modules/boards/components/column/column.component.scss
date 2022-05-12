@@ -1,12 +1,14 @@
 @use '../../../shared/styles/colors';
 @use '../../../shared/styles/font';
+@use '../../../shared/styles/components';
 
 :host {
-  width: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   background-color: colors.$main-color;
   position: relative;
-  overflow-y: auto;
 }
 
 .column__title {
@@ -29,15 +31,13 @@
 }
 
 .column__content {
-  border-top: 2px solid colors.$text-color;
+  height: 100%;
   padding: 10px;
-}
+  display: flex;
+  flex-direction: column;
+  border-top: 2px solid colors.$text-color;
+  box-sizing: border-box;
+  overflow-y: auto;
 
-.task {
-  margin: 0 0 15px;
-  @include font.text;
-
-  &:last-of-type {
-    margin: 0;
-  }
+  @include components.scrollbar(colors.$main-color, colors.$secondary-color);
 }

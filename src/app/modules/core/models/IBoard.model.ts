@@ -1,4 +1,4 @@
-import { IColumn } from './IColumn.model';
+import { IColumn } from './column.model';
 
 export interface IBoard {
   id?: string;

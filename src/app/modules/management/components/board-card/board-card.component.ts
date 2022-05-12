@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { map, take } from 'rxjs';
+import { take } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 // services
-import { ConfirmService } from '../../../core/services/confirm.service';
 import { ApiService } from '../../../core/services/api/api.service';
+import { ConfirmService } from '../../../core/services/confirm.service';
 
 // ngrx
-import { getBoardById } from '../../../../redux/actions/board.actions';
 import { updateAllBoards } from '../../../../redux/actions/board.actions';
 
 // models
@@ -25,8 +24,8 @@ export class BoardCardComponent {
 
   constructor(
     private confirmService: ConfirmService,
-    private store: Store<IAppState>,
     private apiService: ApiService,
+    private store: Store<IAppState>,
   ) {}
 
   public confirmationDeleteBoard(event: Event): void {
@@ -39,16 +38,7 @@ export class BoardCardComponent {
   private deleteBoard = (): void => {
     this.apiService
       .deleteBoard(this.boardData.id!)
-      .pipe(
-        take(1),
-        map(() => {
-          this.store.dispatch(updateAllBoards());
-        }),
-      )
-      .subscribe();
+      .pipe(take(1))
+      .subscribe(() => this.store.dispatch(updateAllBoards()));
   };
-
-  public selectCard(): void {
-    this.store.dispatch(getBoardById({ boardById: this.boardData }));
-  }
 }
