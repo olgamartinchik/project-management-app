@@ -6,6 +6,7 @@ import { IColumn } from 'src/app/modules/core/models/IColumn.model';
 import { HttpService } from 'src/app/modules/core/services/http.service';
 import { setBoardById } from 'src/app/redux/actions/board.actions';
 import { IAppState } from 'src/app/redux/state.model';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-column-container',
@@ -23,10 +24,15 @@ export class ColumnContainerComponent implements OnInit {
     private route: ActivatedRoute,
     private httpService: HttpService,
     private store: Store<IAppState>,
+    public taskService: TaskService,
   ) {}
 
   public ngOnInit(): void {
     this.idBoard = this.route.snapshot.params['id'];
+  }
+
+  public addNewTask(): void {
+    this.taskService.isNewTaskPopup$.next(true);
   }
 
   public deleteColumn(): void {

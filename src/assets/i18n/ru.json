@@ -79,12 +79,12 @@
     "forbidden": "Пользователь не найден",
     "conflict": "Данный логин занят"
   },
-  "titleError": {
+  "titleErrors": {
     "required": "Введите название",
     "minlength": "Cлишком короткое название",
     "maxlength": "Слишком длинное название"
   },
-  "description": {
+  "descriptionErrors": {
     "required": "Введите описание",
     "minlength": "Cлишком короткое описание",
     "maxlength": "Слишком длинное описание"

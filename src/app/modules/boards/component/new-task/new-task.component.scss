@@ -3,14 +3,21 @@
 .overlay {
   position: fixed;
   right: 0;
-  left: 0;
+  left: -300%;
   top: 0;
   bottom: 0;
   z-index: 1001;
-  background-color: rgba(0, 0, 0, 0.47);
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+.overlay.visible {
+  left: 0;
 }
 .form {
   display: flex;
@@ -59,7 +66,12 @@
     color: colors.$main-color;
     box-shadow: 0 0 40px 40px colors.$text-hover inset;
   }
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
 }
 .validate {
   color: colors.$accent-color;
+  min-height: 20px;
 }

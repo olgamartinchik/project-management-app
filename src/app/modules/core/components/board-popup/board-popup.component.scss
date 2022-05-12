@@ -68,6 +68,10 @@
     color: colors.$main-color;
     box-shadow: 0 0 40px 40px colors.$text-hover inset;
   }
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
 }
 .validate {
   color: colors.$accent-color;

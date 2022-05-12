@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskComponent } from './component/task/task.component';
 import { NewTaskComponent } from './component/new-task/new-task.component';
 import { ErrorMessagesService } from '../core/services/error-messages/error-messages.service';
+import { TaskService } from './services/task.service';
 
 @NgModule({
   declarations: [BoardComponent, ColumnContainerComponent, TaskComponent, NewTaskComponent],
@@ -22,6 +23,6 @@ import { ErrorMessagesService } from '../core/services/error-messages/error-mess
     SharedModule,
     TranslocoRootModule,
   ],
-  providers: [ErrorMessagesService],
+  providers: [ErrorMessagesService, TaskService],
 })
 export class BoardModule {}

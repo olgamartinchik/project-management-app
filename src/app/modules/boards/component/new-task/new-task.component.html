@@ -1,8 +1,22 @@
-<div class="overlay">
-  <form action="#" class="form" [formGroup]="taskForm" (ngSubmit)="createTask()">
+<div
+  class="overlay"
+  [class]="{ visible: (taskService.isNewTaskPopup$ | async) }"
+  (click)="closePopup()"
+>
+  <form
+    action="#"
+    class="form"
+    [formGroup]="taskForm"
+    (ngSubmit)="createTask()"
+    (click)="stopPropagation($event)"
+  >
     <div class="title-container">
       <label for="title-task" class="title">{{ 'BoardPage.tittleTask' | transloco }}</label>
       <input type="text" class="input" id="title-task" formControlName="title" />
+      <div class="validate">
+        {{ errorMessagesService.showMessages(taskForm, 'title', messages['title']) | transloco }}
+      </div>
+
       <label for="description-task" class="title">{{
         'BoardPage.descriptionTask' | transloco
       }}</label>

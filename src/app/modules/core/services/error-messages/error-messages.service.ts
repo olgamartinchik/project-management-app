@@ -8,7 +8,9 @@ export class ErrorMessagesService {
   public showMessages(form: FormGroup, name: string, messages: MessageModel): string {
     const control = form.controls[name];
     // если в input вводили данные и есть ошибка, то получаем название этой ошибки
-    const error = control.dirty && control.errors && Object.keys(control.errors)[0];
+
+    const error =
+      (control.touched || control.dirty) && control.errors && Object.keys(control.errors)[0];
     let message = '';
 
     // если есть ошибка, то ищем совпадение в messages и возвращаем нужное сообщение

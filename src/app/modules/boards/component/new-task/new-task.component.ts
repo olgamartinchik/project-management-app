@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FORM_ERROR_MESSAGES } from 'src/app/modules/core/constants/error-messages.constants';
 import { FormMessagesModel } from 'src/app/modules/core/models/error-messages.services.models';
 import { ErrorMessagesService } from 'src/app/modules/core/services/error-messages/error-messages.service';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-new-task',
@@ -15,7 +16,11 @@ export class NewTaskComponent implements OnInit {
 
   public messages: FormMessagesModel = FORM_ERROR_MESSAGES;
 
-  constructor(private fb: FormBuilder, public errorMessagesService: ErrorMessagesService) {}
+  constructor(
+    private fb: FormBuilder,
+    public errorMessagesService: ErrorMessagesService,
+    public taskService: TaskService,
+  ) {}
 
   public ngOnInit(): void {
     this._createForm();
@@ -23,20 +28,22 @@ export class NewTaskComponent implements OnInit {
 
   private _createForm(): void {
     this.taskForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      description: ['', [Validators.required, Validators.maxLength(225)]],
+      title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(225)]],
     });
   }
 
-  public get _title(): AbstractControl | null {
-    return this.taskForm?.get('title');
+  public closePopup(): void {
+    this.taskService.isNewTaskPopup$.next(false);
   }
 
-  public get _description(): AbstractControl | null {
-    return this.taskForm?.get('description');
+  public stopPropagation(event: Event): void {
+    event.stopPropagation();
   }
 
   public createTask(): void {
-    console.log('this.taskForm', { ...this.taskForm.value });
+    console.log('new task', { ...this.taskForm.value });
+    this.taskService.isNewTaskPopup$.next(false);
+    this.taskForm.reset();
   }
 }

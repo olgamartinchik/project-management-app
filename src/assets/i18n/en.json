@@ -79,5 +79,15 @@
   "apiErrors": {
     "forbidden": "User not found",
     "conflict": "This login already exists"
+  },
+  "titleErrors": {
+    "required": "Please enter title",
+    "minlength": "The title is too short",
+    "maxlength": "The title is too long"
+  },
+  "descriptionErrors": {
+    "required": "Please enter description",
+    "minlength": "The description is too short",
+    "maxlength": "The description is too long"
   }
 }
