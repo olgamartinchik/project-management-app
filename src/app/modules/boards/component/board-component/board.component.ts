@@ -29,6 +29,8 @@ export class BoardComponent implements OnInit {
 
   public board$: Observable<IBoard> = this.store.select(boardByIdSelect);
 
+  private board!: IBoard;
+
   constructor(
     public boardDataService: BoardDataService,
     private route: ActivatedRoute,
@@ -61,8 +63,14 @@ export class BoardComponent implements OnInit {
   }
 
   public changeTitleBoard(): void {
+    this.board$.pipe(take(1)).subscribe((boardById) => {
+      this.board = boardById;
+    });
     this.httpService
-      .updateBoard(this.idBoard, { title: this.boardTitle.nativeElement.value })
+      .updateBoard(this.idBoard, {
+        title: this.boardTitle.nativeElement.value,
+        description: this.board.description,
+      })
       .pipe(take(1), debounceTime(500), distinctUntilChanged())
       .subscribe();
   }

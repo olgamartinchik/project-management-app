@@ -13,10 +13,8 @@
     "newBoard": "Создать доску",
     "deleteBtn": "удалить",
     "titleNewBoard": "Заголовок",
-    "createBtn": "Создать",
-    "errorRequired": "Пожалуйста, введите заголовок",
-    "errorMinLength": "Заголовок слишком короткий",
-    "errorMaxLength": "Заголовок слишком длинный"
+    "descriptionBoard": "Описание",
+    "createBtn": "Создать доску"
   },
   "ConfirmPopup": {
     "title": "Вы уверенны?",
@@ -29,7 +27,7 @@
     "createTask": "ответственный",
     "performers": "исполнители",
     "newTaskBtn": "создать задачу",
-    "tittleTask": "Задача",
+    "tittleTask": "Заглавие",
     "descriptionTask": "Описание"
   },
   "auth": {

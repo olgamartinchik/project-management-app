@@ -23,10 +23,10 @@ export class NewTaskComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this._createForm();
+    this.createForm();
   }
 
-  private _createForm(): void {
+  private createForm(): void {
     this.taskForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(225)]],
@@ -35,6 +35,7 @@ export class NewTaskComponent implements OnInit {
 
   public closePopup(): void {
     this.taskService.isNewTaskPopup$.next(false);
+    this.taskForm.reset();
   }
 
   public stopPropagation(event: Event): void {

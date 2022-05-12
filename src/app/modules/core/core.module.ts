@@ -23,6 +23,7 @@ import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.
 import { FooterComponent } from './components/footer/footer.component';
 
 import { LoaderComponent } from './components/loader/loader.component';
+import { ErrorMessagesService } from './services/error-messages/error-messages.service';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     LoaderService,
     ConfirmService,
     ToggleScrollService,
+    ErrorMessagesService,
   ],
 })
 export class CoreModule {}
