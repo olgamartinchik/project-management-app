@@ -3,7 +3,7 @@ import { take } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 // services
-import { ApiService } from '../../../core/services/api/api.service';
+import { ApiService } from '../../../core/services/api.service';
 import { ConfirmService } from '../../../core/services/confirm.service';
 
 // ngrx

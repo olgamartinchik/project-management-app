@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 // sevices
-import { ApiService } from '../../../core/services/api/api.service';
+import { ApiService } from '../../../core/services/api.service';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { ConfirmService } from '../../../core/services/confirm.service';
 

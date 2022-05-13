@@ -7,19 +7,16 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { take } from 'rxjs';
-import { Store } from '@ngrx/store';
 
-import { ApiService } from '../../../core/services/api/api.service';
+// services
 import { ErrorMessagesService } from 'src/app/modules/core/services/error-messages/error-messages.service';
+import { ColumnService } from '../../services/column.service';
 
-import { addNewColumn } from '../../../../redux/actions/board.actions';
-
-import { IAppState } from 'src/app/redux/state.model';
+// models
 import { FormMessagesModel } from 'src/app/modules/core/models/error-messages.services.models';
 import { BoardModel } from '../../../core/models/board.model';
-import { ColumnModel } from 'src/app/modules/core/models/column.model';
 
+// constants
 import { FORM_ERROR_MESSAGES } from 'src/app/modules/core/constants/error-messages.constants';
 
 @Component({
@@ -42,8 +39,7 @@ export class ColumnPopupComponent implements OnInit {
   constructor(
     public errorMessagesService: ErrorMessagesService,
     private fb: FormBuilder,
-    private apiService: ApiService,
-    private store: Store<IAppState>,
+    private columnService: ColumnService,
   ) {}
 
   public ngOnInit(): void {
@@ -53,24 +49,10 @@ export class ColumnPopupComponent implements OnInit {
   public closePopup(): void {
     this.addColumnForm.reset();
     this.closingPopup.emit();
-
-    console.log(this.board);
   }
 
   public createColumn(): void {
-    const columnData: ColumnModel = {
-      title: this.addColumnForm.controls['title'].value,
-      order:
-        this.board.columns.length > 0
-          ? this.board.columns[this.board.columns.length - 1].order + 1
-          : 0,
-    };
-
-    this.apiService
-      .createColumn(this.board.id!, columnData)
-      .pipe(take(1))
-      .subscribe((column) => this.store.dispatch(addNewColumn({ column })));
-
+    this.columnService.createColumn(this.addColumnForm.controls['title'].value, this.board.columns);
     this.closePopup();
   }
 

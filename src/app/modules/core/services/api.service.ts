@@ -8,10 +8,10 @@ import {
   LoginRequestModel,
   LoginResponseModel,
   SignupRequestModel,
-} from '../../models/api.service.models';
-import { UserModel } from '../../models/user.model';
-import { BoardModel } from '../../models/board.model';
-import { ColumnModel } from '../../models/column.model';
+} from '../models/api.service.models';
+import { UserModel } from '../models/user.model';
+import { BoardModel } from '../models/board.model';
+import { ColumnModel } from '../models/column.model';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
@@ -69,5 +69,20 @@ export class ApiService {
 
   public createColumn(id: string, columnData: ColumnModel): Observable<ColumnModel> {
     return this.http.post<ColumnModel>(`${this.url}/boards/${id}/columns`, columnData);
+  }
+
+  public updateColumn(
+    boardId: string,
+    columnId: string,
+    columnData: ColumnModel,
+  ): Observable<ColumnModel> {
+    return this.http.put<ColumnModel>(
+      `${this.url}/boards/${boardId}/columns/${columnId}`,
+      columnData,
+    );
+  }
+
+  public deleteColumn(boardId: string, columnId: string): Observable<ColumnModel> {
+    return this.http.delete<ColumnModel>(`${this.url}/boards/${boardId}/columns/${columnId}`);
   }
 }

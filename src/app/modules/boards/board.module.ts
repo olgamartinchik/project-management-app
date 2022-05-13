@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
+// modules
 import { BoardRoutingModule } from './board-routing.module';
 import { TranslocoRootModule } from '../transloco/transloco-root.module';
+import { SharedModule } from '../shared/shared.module';
 
 // components
 import { BoardComponent } from '../boards/components/board/board.component';
@@ -12,10 +14,18 @@ import { ColumnPopupComponent } from './components/column-popup/column-popup.com
 
 // services
 import { BoardService } from './services/board.service';
+import { ColumnService } from './services/column.service';
+import { ErrorMessagesService } from '../core/services/error-messages/error-messages.service';
 
 @NgModule({
   declarations: [BoardComponent, ColumnComponent, ColumnPopupComponent],
-  imports: [CommonModule, BoardRoutingModule, TranslocoRootModule, ReactiveFormsModule],
-  providers: [BoardService],
+  imports: [
+    CommonModule,
+    BoardRoutingModule,
+    TranslocoRootModule,
+    ReactiveFormsModule,
+    SharedModule,
+  ],
+  providers: [BoardService, ColumnService, ErrorMessagesService],
 })
 export class BoardModule {}

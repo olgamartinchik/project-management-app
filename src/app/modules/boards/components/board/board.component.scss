@@ -16,6 +16,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .board__title {
@@ -27,6 +28,17 @@
   max-width: 80%;
   margin: 0;
   @include font.text(20px, 20px);
+}
+
+.board__edit {
+  @include components.button-icon;
+  position: absolute;
+  top: calc(50% - 25px);
+  right: 20px;
+
+  & > mat-icon {
+    @include components.mat-icon(50px, colors.$text-color);
+  }
 }
 
 .board__columns-container {
@@ -52,14 +64,15 @@
   }
 }
 
-.button {
+.board__add-column {
   width: 160px;
   height: 40px;
   border-radius: 5px;
   border: 3px solid colors.$text-hover;
   @include font.text;
-  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  transition: 0.3s ease-in-out;
   cursor: pointer;
+
   &:hover {
     color: colors.$main-color;
     box-shadow: 0 0 40px 40px colors.$text-hover inset;
@@ -69,5 +82,11 @@
 @media screen and (max-width: 768px) {
   .board__title {
     font-size: 20px;
+  }
+
+  .board__edit {
+    position: relative;
+    top: 0;
+    right: 0;
   }
 }

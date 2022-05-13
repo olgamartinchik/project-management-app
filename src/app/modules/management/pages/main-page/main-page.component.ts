@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable, take, switchMap, of } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 //  services
-import { ApiService } from '../../../core/services/api/api.service';
+import { ApiService } from '../../../core/services/api.service';
 import { BoardPopupService } from '../../../core/services/board-popup.service';
 
 // ngrx
@@ -30,28 +30,15 @@ export class MainPageComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.store
-      .select(boardsSelect)
-      .pipe(
-        switchMap((value) => {
-          if (value.length === 0) {
-            return this.getBoardsFromServer();
-          }
-
-          return of(value);
-        }),
-        take(1),
-      )
+    this.apiService
+      .getBoards()
+      .pipe(take(1))
       .subscribe((boards) => {
         this.store.dispatch(setBoards({ boards }));
       });
   }
 
   public openBoardPopup(): void {
-    this.boardPopupService.open();
-  }
-
-  private getBoardsFromServer(): Observable<BoardModel[]> {
-    return this.apiService.getBoards();
+    this.boardPopupService.open('create');
   }
 }

@@ -13,15 +13,15 @@ export const boardReducer = createReducer(
     return { ...state };
   }),
 
-  on(BoardActions.setBoardColumns, (state, { board }) => {
-    const boards = state.boards.map((el) => (el.id === board.id ? board : el));
+  on(BoardActions.updateBoard, (state, { board }) => {
+    let boards = [...state.boards];
+
+    if (state.boards.length === 0) {
+      boards.push(board);
+    } else {
+      boards = state.boards.map((el) => (el.id === board.id ? board : el));
+    }
 
     return { ...state, boards };
-  }),
-
-  on(BoardActions.addNewColumn, (state, { column }) => {
-    console.log(state, column);
-
-    return { ...state };
   }),
 );

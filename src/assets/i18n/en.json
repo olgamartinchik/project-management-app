@@ -2,23 +2,18 @@
   "nav": {
     "mainPage": "Main page",
     "startPage": "Start page",
-    "workingBoard": "Working board",
-    "enter": "sign in/login",
+    "enter": "Signin/login",
     "search": "Search",
     "account": "Personal account",
     "createBoard": "Create board"
   },
   "mainPage": {
-    "h1": "Your work board",
+    "title": "Your work board",
     "newBoard": "Create board",
-    "deleteBtn": "delete",
-    "titleNewBoard": "Title",
-    "createBtn": "Create",
-    "errorRequired": "Please enter a title",
-    "errorMinLength": "The title is too short",
-    "errorMaxLength": "The title is too long"
+    "deleteBtn": "Delete board",
+    "createBtn": "Create"
   },
-  "ConfirmPopup": {
+  "confirmPopup": {
     "title": "Are you sure?",
     "button": "Delete"
   },
@@ -26,11 +21,10 @@
     "titlePlaceholder": "Title",
     "descriptionPlaceholder": "Description"
   },
-  "BoardPage": {
+  "boardPage": {
     "addColBtn": "Add column",
-    "button": "Delete",
-    "enter": "Signup/login",
-    "search": "Search"
+    "deleteBtn": "Delete column",
+    "editBtn": "Edit"
   },
   "auth": {
     "loginLabel": "Login",

@@ -1,8 +1,9 @@
 <div
-  [class]="{ overlay: true, visible: (boardPopupService.isBoardPopupOpen$ | async) }"
+  *ngIf="boardPopupService.isBoardPopupOpen$ | async as boardPopup"
+  [class]="{ overlay: true, visible: boardPopup.isOpen }"
   (click)="closePopup()"
 >
-  <form class="form" (click)="stopPropagation($event)" [formGroup]="newBoardForm">
+  <form class="form" (click)="stopPropagation($event)" [formGroup]="boardForm">
     <label class="board-popup__label">
       <input
         class="board-popup__input"
@@ -11,9 +12,7 @@
         [placeholder]="'boardPopup.titlePlaceholder' | transloco"
       />
       <p class="board-popup__error-text">
-        {{
-          errorMessagesService.showMessages(newBoardForm, 'title', messages['title']) | transloco
-        }}
+        {{ errorMessagesService.showMessages(boardForm, 'title', messages['title']) | transloco }}
       </p>
     </label>
 
@@ -27,14 +26,17 @@
       </textarea>
       <p class="board-popup__error-text">
         {{
-          errorMessagesService.showMessages(newBoardForm, 'description', messages['description'])
+          errorMessagesService.showMessages(boardForm, 'description', messages['description'])
             | transloco
         }}
       </p>
     </label>
 
-    <button type="submit" class="button" [disabled]="newBoardForm.invalid" (click)="createBoard()">
-      {{ 'mainPage.createBtn' | transloco }}
+    <button type="submit" class="button" [disabled]="boardForm.invalid" (click)="submit()">
+      {{
+        (boardPopup.popupFunction === 'create' ? 'mainPage.createBtn' : 'boardPage.editBtn')
+          | transloco
+      }}
     </button>
   </form>
 </div>

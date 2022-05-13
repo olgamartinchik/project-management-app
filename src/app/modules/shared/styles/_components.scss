@@ -1,7 +1,33 @@
+@use './colors';
+
 $header-height: 70px;
 $footer-height: 60px;
 
 $page-height: calc(100vh - $header-height - $footer-height);
+
+@mixin mat-icon($size: 30px, $color: colors.$danger) {
+  font-size: $size;
+  line-height: $size;
+  color: $color;
+  width: auto;
+  height: auto;
+}
+
+@mixin button-icon() {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  display: flex;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    color: colors.$accent-color;
+    text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+    opacity: 1;
+  }
+}
 
 @mixin scrollbar($track-color, $thumb-color) {
   /* стилизация скрола для Firefox */

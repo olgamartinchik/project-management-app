@@ -25,6 +25,6 @@ export class HeaderComponent {
   }
 
   public openBoardPopup(): void {
-    this.boardPopupService.open();
+    this.boardPopupService.open('create');
   }
 }

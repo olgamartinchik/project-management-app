@@ -2,23 +2,18 @@
   "nav": {
     "mainPage": "Главная страница",
     "startPage": "Стартовая",
-    "workingBoard": "Рабочая доска",
     "enter": "Вход/Регистрация",
     "search": "Поиск",
     "account": "Личный кабинет",
     "createBoard": "Новая доска"
   },
   "mainPage": {
-    "h1": "Ваши рабочие доски",
+    "title": "Ваши рабочие доски",
     "newBoard": "Создать доску",
-    "deleteBtn": "удалить",
-    "titleNewBoard": "Заголовок",
-    "createBtn": "Создать",
-    "errorRequired": "Пожалуйста, введите заголовок",
-    "errorMinLength": "Заголовок слишком короткий",
-    "errorMaxLength": "Заголовок слишком длинный"
+    "deleteBtn": "Удалить доску",
+    "createBtn": "Создать"
   },
-  "ConfirmPopup": {
+  "confirmPopup": {
     "title": "Вы уверенны?",
     "button": "Удалить"
   },
@@ -26,17 +21,17 @@
     "titlePlaceholder": "Название",
     "descriptionPlaceholder": "Описание"
   },
-  "BoardPage": {
+  "boardPage": {
     "addColBtn": "Добавить колонку",
-    "button": "Удалить",
-    "search": "Поиск"
+    "deleteBtn": "Удалить колонку",
+    "editBtn": "Редактировать"
   },
   "auth": {
     "loginLabel": "Вход",
     "signupLabel": "Регистрация",
+    "namePlaceholder": "Имя",
     "loginPlaceholder": "Логин",
     "passwordPlaceholder": "Пароль",
-    "namePlaceholder": "Имя",
     "confirmPasswordPlaceholder": "Подтвердите пароль",
     "loginButton": "Войти",
     "signupButton": "Зарегистрироваться"

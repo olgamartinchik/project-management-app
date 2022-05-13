@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of, switchMap } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { getBoardsFailed, setBoards, updateAllBoards } from '../actions/board.actions';
+import { setBoards, updateAllBoards } from '../actions/board.actions';
 
-import { ApiService } from '../../modules/core/services/api/api.service';
+import { ApiService } from '../../modules/core/services/api.service';
 
 @Injectable({ providedIn: 'any' })
 export class BoardEffect {
@@ -19,7 +19,6 @@ export class BoardEffect {
           map((boards) => {
             return setBoards({ boards });
           }),
-          catchError((error) => of(getBoardsFailed(error))),
         ),
       ),
     );

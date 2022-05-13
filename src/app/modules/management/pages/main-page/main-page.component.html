@@ -1,5 +1,5 @@
 <main class="main">
-  <h1 class="main__title">{{ 'mainPage.h1' | transloco }}</h1>
+  <h1 class="main__title">{{ 'mainPage.title' | transloco }}</h1>
 
   <div class="main__boards">
     <app-board-card *ngFor="let board of allBoards$ | async" [boardData]="board"></app-board-card>

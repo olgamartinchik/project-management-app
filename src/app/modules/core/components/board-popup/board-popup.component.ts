@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { take, tap } from 'rxjs';
+import { take, switchMap, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 // services
+import { ApiService } from '../../services/api.service';
 import { BoardPopupService } from '../../services/board-popup.service';
-import { ApiService } from '../../services/api/api.service';
 import { ErrorMessagesService } from '../../services/error-messages/error-messages.service';
 
 // ngrx
-import { updateAllBoards } from '../../../../redux/actions/board.actions';
+import { updateAllBoards, updateBoard } from '../../../../redux/actions/board.actions';
+import { selectBoardById } from '../../../../redux/selectors/board.selectors';
 
 // models
 import { IAppState } from '../../../../redux/state.model';
@@ -22,11 +23,14 @@ import { FORM_ERROR_MESSAGES } from '../../constants/error-messages.constants';
   selector: 'app-board-popup',
   templateUrl: './board-popup.component.html',
   styleUrls: ['./board-popup.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BoardPopupComponent implements OnInit {
-  public newBoardForm!: FormGroup;
+export class BoardPopupComponent implements OnInit, OnDestroy {
+  public boardForm!: FormGroup;
 
   public messages: FormMessagesModel = FORM_ERROR_MESSAGES;
+
+  private subscription: Subscription = new Subscription();
 
   constructor(
     public boardPopupService: BoardPopupService,
@@ -38,35 +42,69 @@ export class BoardPopupComponent implements OnInit {
 
   public ngOnInit(): void {
     this.createForm();
+
+    this.subscription.add(
+      this.boardPopupService.isBoardPopupOpen$.subscribe((value) => {
+        if (value.popupFunction === 'edit') {
+          this.store
+            .select(selectBoardById)
+            .pipe(take(1))
+            .subscribe((board) =>
+              this.boardForm.setValue({ title: board!.title, description: board!.description }),
+            );
+        }
+      }),
+    );
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   public closePopup(): void {
     this.boardPopupService.close();
-    this.newBoardForm.reset();
-  }
-
-  public createBoard(): void {
-    this.apiService
-      .postBoard(this.newBoardForm.value)
-      .pipe(
-        take(1),
-        tap(() => {
-          this.store.dispatch(updateAllBoards());
-        }),
-      )
-      .subscribe();
-
-    this.closePopup();
+    this.boardForm.reset();
   }
 
   public stopPropagation(event: Event): void {
     event.stopPropagation();
   }
 
+  public submit(): void {
+    if (this.boardPopupService.isBoardPopupOpen$.value.popupFunction === 'create') {
+      this.createBoard();
+    } else {
+      this.editBoard();
+    }
+
+    this.closePopup();
+  }
+
   private createForm(): void {
-    this.newBoardForm = this.fb.group({
+    this.boardForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
       description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
     });
+  }
+
+  private createBoard(): void {
+    this.apiService
+      .postBoard(this.boardForm.value)
+      .pipe(take(1))
+      .subscribe(() => this.store.dispatch(updateAllBoards()));
+  }
+
+  private editBoard(): void {
+    this.store
+      .select(selectBoardById)
+      .pipe(
+        switchMap((board) => {
+          return this.apiService.updateBoard(board!.id!, this.boardForm.value);
+        }),
+        take(1),
+      )
+      .subscribe((updatedBoard) => {
+        this.store.dispatch(updateBoard({ board: updatedBoard }));
+      });
   }
 }
