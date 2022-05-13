@@ -9,8 +9,12 @@
   top: -30px;
   background-color: colors.$header-color;
   z-index: 1000;
+  justify-content: center;
 }
 
+app-navbar {
+  width:70%;
+}
 .header {
   max-width: 1440px;
   width: 100%;
@@ -30,7 +34,6 @@
 .settings-language {
   display: flex;
   align-items: center;
-  position: relative;
 }
 
 .change-language {

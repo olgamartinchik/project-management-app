@@ -7,8 +7,6 @@ import { environment } from 'src/environments/environment';
 import { IColumn } from '../models/IColumn.model';
 @Injectable()
 export class HttpService {
-  [x: string]: any;
-
   private url = environment.apiUrl;
 
   constructor(private http: HttpClient) {}

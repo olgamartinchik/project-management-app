@@ -24,6 +24,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 import { LoaderComponent } from './components/loader/loader.component';
+import { OutputPopupComponent } from './components/output-popup/output-popup.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     ConfirmPopupComponent,
     NavbarComponent,
     LoaderComponent,
+    OutputPopupComponent,
   ],
   exports: [HeaderComponent, FooterComponent],
 

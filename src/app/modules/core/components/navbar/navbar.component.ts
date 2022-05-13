@@ -11,9 +11,11 @@ export class NavbarComponent {
 
   public disabled = true;
 
+  public isPopupOpen = false;
+
   constructor(public authService: AuthService) {}
 
-  public logout(): void {
-    this.authService.clearStorage();
+  public confirmationDelete(): void {
+    this.isPopupOpen = !this.isPopupOpen;
   }
 }

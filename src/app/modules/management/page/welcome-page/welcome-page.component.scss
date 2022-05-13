@@ -6,25 +6,22 @@
   background-color: colors.$main-color;
   min-height: calc(100vh - 120px);
   padding: 20px;
+  width: 100%;
   display: flex;
   box-sizing: border-box;
-}
-.main {
-  width: 100%;
-}
-.wrapper {
-  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
+.info-text,
 .title {
-  @include font.text-welcome;
+  @include font.text(36px, 38px);
+  text-align: center;
 }
 
-.list-info {
-  @include font.text-list;
+.info-text-list {
+  @include font.text(36px, 38px);
 }
 
 .box-info {
@@ -40,12 +37,12 @@
   @include forms.button;
 }
 
-.box-info-title {
+.box-info-text {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 500px;
-  height: 650px;
+  width: calc(100vh - 500px);
+  height: auto;
   border-radius: 4px;
   box-sizing: border-box;
 }
@@ -54,7 +51,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 300px;
+  width: calc(100vh - 600px);
   height: 100%;
   border-radius: 4px;
   box-sizing: border-box;
@@ -62,17 +59,17 @@
 }
 
 .box-info-member,
-.box-info-title {
+.box-info-text {
   position: relative;
   flex-direction: column;
   background-color: colors.$board-color;
-  padding: 10px;
+  padding: 40px;
   box-shadow: 0px 0px 4px 0px #777;
 
   &:hover {
     color: colors.$text-hover;
     box-shadow: 0px 0px 7px 0px #777;
-    .box-info-title {
+    .box-info-text {
       color: colors.$text-hover;
     }
   }
@@ -82,20 +79,21 @@
   text-align: center;
 }
 
-.name-title {
+.name-text {
   @include font.subtitle;
 }
 
-.role-title {
-  @include font.text-role;
+.role-text {
+  @include font.text(26px, 26px);
 }
 
 .info-member {
-  @include font.text-member;
+  @include font.text(20px, 20px);
+  text-align: center;
 }
 
-.name-title,
-.role-title,
+.name-text,
+.role-text,
 .info-member {
   margin: 0px 0px 10px 0px;
 }
@@ -116,7 +114,7 @@ img {
   padding: 0;
   background-size: cover;
   background-attachment: fixed;
-  background-image: url('../../../../../assets/png/paral.png');
+  background-image: url('../../../../../assets/png/parallax.png');
 }
 
 ol {
@@ -138,4 +136,11 @@ li::before {
   color: white;
   text-align: center;
   margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .info-text,
+  .info-text-list {
+    font-size: 1.5em;
+  }
 }

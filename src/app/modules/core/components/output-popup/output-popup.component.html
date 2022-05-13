@@ -1,0 +1,16 @@
+<div
+  [class]="{ overlay: true, visible: isOpen }"
+>
+  <div class="confirm-container">
+    <h4 class="title">{{ 'OutputPopup.title' | transloco }}</h4>
+    <div class="buttons">
+      <button class="button" (click)="logout()">
+        {{ 'OutputPopup.exit' | transloco }}
+      </button>
+      <button class="button cancel" (click)="cancel()">
+        {{ 'OutputPopup.cancel' | transloco }}
+      </button>
+    </div>
+  </div>
+</div>
+
