@@ -27,6 +27,15 @@
             | transloco
         }}
       </div>
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'BoardPage.performers' | transloco }}</mat-label>
+        <mat-select formControlName="userId">
+          <mat-option *ngFor="let user of allUsers" [value]="user.id">{{ user.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="validate">
+        {{ errorMessagesService.showMessages(taskForm, 'userId', messages['userId']) | transloco }}
+      </div>
     </div>
     <button class="button" [disabled]="taskForm.invalid">
       {{ 'BoardPage.newTaskBtn' | transloco }}

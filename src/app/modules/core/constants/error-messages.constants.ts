@@ -33,4 +33,7 @@ export const FORM_ERROR_MESSAGES: FormMessagesModel = {
     minlength: 'descriptionErrors.minlength',
     maxlength: 'descriptionErrors.maxlength',
   },
+  userId: {
+    required: 'userIdErrors.required',
+  },
 };

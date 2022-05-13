@@ -51,7 +51,6 @@ export class BoardPopupComponent {
   }
 
   public createBoard(): void {
-    console.log('form', this.boardForm?.value);
     this.boardService.isBoardPopup$.next(false);
     this.httpService
       .postBoard({ ...this.boardForm?.value })

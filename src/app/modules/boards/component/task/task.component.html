@@ -1,6 +1,10 @@
-<div class="task-container">
+<div class="task-container" (click)="openPopupEditTask()">
+  <div class="btn-container">
+    <span class="delete-btn"></span>
+  </div>
+
   <h4 class="title">Title</h4>
   <p class="subtitle">description</p>
-  <p class="subtitle">{{ 'BoardPage.createTask' | transloco }}:</p>
   <p class="subtitle">{{ 'BoardPage.performers' | transloco }}:</p>
 </div>
+<app-edit-task-popup></app-edit-task-popup>

@@ -9,12 +9,20 @@ import { ColumnContainerComponent } from './component/column-container/column-co
 import { TranslocoRootModule } from '../transloco/transloco-root.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskComponent } from './component/task/task.component';
-import { NewTaskComponent } from './component/new-task/new-task.component';
+
 import { ErrorMessagesService } from '../core/services/error-messages/error-messages.service';
 import { TaskService } from './services/task.service';
+import { EditTaskPopupComponent } from './component/edit-task-popup/edit-task-popup.component';
+import { NewTaskPopupComponent } from './component/new-task/new-task-popup.component';
 
 @NgModule({
-  declarations: [BoardComponent, ColumnContainerComponent, TaskComponent, NewTaskComponent],
+  declarations: [
+    BoardComponent,
+    ColumnContainerComponent,
+    TaskComponent,
+    NewTaskPopupComponent,
+    EditTaskPopupComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,

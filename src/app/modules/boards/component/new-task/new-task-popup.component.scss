@@ -1,0 +1,77 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+.overlay {
+  position: fixed;
+  right: 0;
+  left: -300%;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+.overlay.visible {
+  left: 0;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 400px;
+  width: 100%;
+  min-height: 200px;
+  padding: 40px 20px;
+  margin: 10px;
+  background-color: colors.$popup-color;
+  border-radius: 4px;
+  gap: 20px;
+  cursor: default;
+}
+.title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 90%;
+}
+.title {
+  @include font.subtitle;
+}
+.input {
+  border: none;
+  width: 100%;
+  height: 34px;
+  padding-left: 10px;
+  @include font.text;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+}
+.button {
+  width: 125px;
+  height: 40px;
+  border-radius: 5px;
+  border: 3px solid colors.$text-hover;
+  @include font.text;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+
+  cursor: pointer;
+  &:hover {
+    color: colors.$main-color;
+    box-shadow: 0 0 40px 40px colors.$text-hover inset;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+.validate {
+  color: colors.$accent-color;
+  min-height: 20px;
+}

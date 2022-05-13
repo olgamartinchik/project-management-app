@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-task',
@@ -7,8 +8,10 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskComponent implements OnInit {
-  public ngOnInit(): void {
-    console.log('start');
+export class TaskComponent {
+  constructor(public taskService: TaskService) {}
+
+  public openPopupEditTask(): void {
+    this.taskService.isEditTaskPopup$.next(true);
   }
 }

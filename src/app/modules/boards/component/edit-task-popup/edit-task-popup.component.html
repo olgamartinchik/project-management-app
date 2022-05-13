@@ -1,0 +1,56 @@
+<div
+  class="overlay"
+  [class]="{ visible: (taskService.isEditTaskPopup$ | async) }"
+  (click)="closePopup()"
+>
+  <form
+    action="#"
+    class="form"
+    [formGroup]="editTaskForm"
+    (ngSubmit)="updateTask()"
+    (click)="stopPropagation($event)"
+  >
+    <div class="title-container">
+      <label for="fix-title" class="title">{{ 'editTask.tittleTask' | transloco }}:</label>
+      <input type="text" class="input" id="fix-title" value="some title" formControlName="title" />
+      <div class="validate">
+        {{
+          errorMessagesService.showMessages(editTaskForm, 'title', messages['title']) | transloco
+        }}
+      </div>
+      <label for="fix-description" class="title"
+        >{{ 'editTask.descriptionTask' | transloco }}:</label
+      >
+      <input
+        type="text"
+        id="fix-description"
+        class="input"
+        value="some description"
+        formControlName="description"
+      />
+      <div class="validate">
+        {{
+          errorMessagesService.showMessages(editTaskForm, 'description', messages['description'])
+            | transloco
+        }}
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'BoardPage.performers' | transloco }}</mat-label>
+        <mat-select formControlName="userId">
+          <mat-option *ngFor="let user of allUsers" [value]="user.id">{{ user.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="validate">
+        {{
+          errorMessagesService.showMessages(editTaskForm, 'userId', messages['userId']) | transloco
+        }}
+      </div>
+      <mat-checkbox class="example-margin title" formControlName="done">{{
+        'editTask.done' | transloco
+      }}</mat-checkbox>
+    </div>
+    <button class="button" [disabled]="editTaskForm.invalid">
+      {{ 'editTask.editTaskBtn' | transloco }}
+    </button>
+  </form>
+</div>

@@ -26,11 +26,16 @@
     "button": "Delete",
     "enter": "Signup/login",
     "search": "Search",
-    "createTask": "responsible",
-    "performers": "performers",
+    "performers": "performer",
     "newTaskBtn": "create task",
     "tittleTask": "Title",
     "descriptionTask": "Description"
+  },
+  "editTask": {
+    "tittleTask": "Edit title",
+    "descriptionTask": "Edit Description",
+    "editTaskBtn": "edit task",
+    "done": "done"
   },
   "auth": {
     "loginLabel": "Login",
@@ -88,5 +93,8 @@
     "required": "Please enter description",
     "minlength": "The description is too short",
     "maxlength": "The description is too long"
+  },
+  "userIdErrors": {
+    "required": "Please select user"
   }
 }

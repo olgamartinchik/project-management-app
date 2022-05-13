@@ -6,6 +6,7 @@ import { IBoard } from '../models/IBoard.model';
 
 import { environment } from 'src/environments/environment';
 import { IColumn } from '../models/IColumn.model';
+import { UserModel } from '../models/api.service.models';
 @Injectable()
 export class HttpService {
   private url = environment.apiUrl;
@@ -74,5 +75,9 @@ export class HttpService {
       `${this.url}/boards/${boardId}/columns/${columnId}/tasks/${taskId}`,
       value,
     );
+  }
+
+  public getAllUsers(): Observable<UserModel[]> {
+    return this.http.get<UserModel[]>(`${this.url}/users`);
   }
 }
