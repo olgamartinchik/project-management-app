@@ -1,8 +1,14 @@
 <nav [class]="{ nav: true, 'nav-open': isNavOpen }">
   <ng-container *ngIf="authService.isLoggedIn()">
-    <a class="nav-link" routerLinkActive="active" routerLink="/main" rel="noopener" title="main" (click)="isNavOpen = !isNavOpen">{{
-      'nav.mainPage' | transloco
-    }}</a>
+    <a
+      class="nav-link"
+      routerLinkActive="active"
+      routerLink="/main"
+      rel="noopener"
+      title="main"
+      (click)="isNavOpen = !isNavOpen"
+      >{{ 'nav.mainPage' | transloco }}</a
+    >
     <a
       class="nav-link"
       [class.disabled]="disabled"
@@ -22,12 +28,20 @@
       (click)="isNavOpen = !isNavOpen"
       >{{ 'nav.account' | transloco }}</a
     >
-    <a class="nav-link" (click)="isNavOpen = !isNavOpen" (click)="confirmationDelete()">{{ 'nav.logout' | transloco }}</a>
-  </ng-container>
-  <ng-container *ngIf="!authService.isLoggedIn()" >
-    <a class="nav-link link-auth" routerLinkActive="active" routerLink="/auth" rel="noopener" title="auth"  (click)="isNavOpen = !isNavOpen" >{{
-      'nav.enter' | transloco
+    <a class="nav-link" (click)="isNavOpen = !isNavOpen" (click)="openPopupOutput()">{{
+      'nav.logout' | transloco
     }}</a>
+  </ng-container>
+  <ng-container *ngIf="!authService.isLoggedIn()">
+    <a
+      class="nav-link link-auth"
+      routerLinkActive="active"
+      routerLink="/auth"
+      rel="noopener"
+      title="auth"
+      (click)="isNavOpen = !isNavOpen"
+      >{{ 'nav.enter' | transloco }}</a
+    >
   </ng-container>
 </nav>
 <app-output-popup *ngIf="isPopupOpen"></app-output-popup>

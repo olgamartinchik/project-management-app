@@ -15,7 +15,7 @@ export class NavbarComponent {
 
   constructor(public authService: AuthService) {}
 
-  public confirmationDelete(): void {
+  public openPopupOutput(): void {
     this.isPopupOpen = !this.isPopupOpen;
   }
 }
