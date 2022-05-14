@@ -22,7 +22,6 @@ export const FORM_ERROR_MESSAGES: FormMessagesModel = {
     forbidden: 'apiErrors.forbidden',
     conflict: 'apiErrors.conflict',
   },
-
   title: {
     required: 'titleErrors.required',
     minlength: 'titleErrors.minlength',
@@ -32,8 +31,5 @@ export const FORM_ERROR_MESSAGES: FormMessagesModel = {
     required: 'descriptionErrors.required',
     minlength: 'descriptionErrors.minlength',
     maxlength: 'descriptionErrors.maxlength',
-  },
-  userId: {
-    required: 'userIdErrors.required',
   },
 };

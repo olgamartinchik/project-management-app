@@ -1,0 +1,64 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+@use '../../../shared/styles/components';
+
+:host {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  background-color: colors.$main-color;
+}
+
+.column__header {
+  width: 100%;
+  padding: 10px 40px 10px 10px;
+  position: relative;
+  border-bottom: 2px solid colors.$text-color;
+  box-sizing: border-box;
+}
+
+.column__title {
+  width: 100%;
+  margin: 0;
+  padding: 5px 0 0 5px;
+
+  background: transparent;
+  border: 2px solid transparent;
+  outline: none;
+  box-sizing: border-box;
+
+  @include font.subtitle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: 0.2s ease;
+  cursor: pointer;
+
+  &:focus,
+  &:focus-visible {
+    border: 2px solid colors.$text-hover;
+    cursor: text;
+  }
+}
+
+.column__delete-button {
+  @include components.button-icon;
+  position: absolute;
+  top: calc(50% - 15px);
+  right: 5px;
+
+  & > mat-icon {
+    @include components.mat-icon;
+  }
+}
+
+.column__content {
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow-y: auto;
+
+  @include components.scrollbar(colors.$main-color, colors.$secondary-color);
+}

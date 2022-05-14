@@ -1,54 +1,68 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { Subject, take, takeUntil, tap } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { take, switchMap, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { BoardService } from '../../services/board.service';
-import { ToggleScrollService } from '../../services/toggle-scroll.service';
-import { HttpService } from '../../services/http.service';
-import { IAppState } from 'src/app/redux/state.model';
-import { updateAllBoards } from 'src/app/redux/actions/board.actions';
+
+// services
+import { ApiService } from '../../services/api.service';
+import { BoardPopupService } from '../../services/board-popup.service';
 import { ErrorMessagesService } from '../../services/error-messages/error-messages.service';
+
+// ngrx
+import { updateAllBoards, updateBoard } from '../../../../redux/actions/board.actions';
+import { selectBoardById } from '../../../../redux/selectors/board.selectors';
+
+// models
+import { IAppState } from '../../../../redux/state.model';
 import { FormMessagesModel } from '../../models/error-messages.services.models';
+
+// constants
 import { FORM_ERROR_MESSAGES } from '../../constants/error-messages.constants';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-board-popup',
   templateUrl: './board-popup.component.html',
   styleUrls: ['./board-popup.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BoardPopupComponent implements OnDestroy {
-  // public title!: FormControl;
-  public messages: FormMessagesModel = FORM_ERROR_MESSAGES;
-
+export class BoardPopupComponent implements OnInit, OnDestroy {
   public boardForm!: FormGroup;
 
-  private newBoard: any;
+  public messages: FormMessagesModel = FORM_ERROR_MESSAGES;
 
-  private unsubscribe$: Subject<void> = new Subject<void>();
+  private subscription: Subscription = new Subscription();
 
   constructor(
-    public boardService: BoardService,
-    private httpService: HttpService,
-    private toggleScrollService: ToggleScrollService,
-    private store: Store<IAppState>,
+    public boardPopupService: BoardPopupService,
     public errorMessagesService: ErrorMessagesService,
     private fb: FormBuilder,
-    private router: Router,
-  ) {
+    private apiService: ApiService,
+    private store: Store<IAppState>,
+  ) {}
+
+  public ngOnInit(): void {
     this.createForm();
+
+    this.subscription.add(
+      this.boardPopupService.isBoardPopupOpen$.subscribe((value) => {
+        if (value.popupFunction === 'edit') {
+          this.store
+            .select(selectBoardById)
+            .pipe(take(1))
+            .subscribe((board) =>
+              this.boardForm.setValue({ title: board!.title, description: board!.description }),
+            );
+        }
+      }),
+    );
   }
 
-  private createForm(): void {
-    this.boardForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
-    });
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   public closePopup(): void {
-    this.boardService.isBoardPopup$.next(false);
-    this.toggleScrollService.showScroll();
+    this.boardPopupService.close();
     this.boardForm.reset();
   }
 
@@ -56,34 +70,41 @@ export class BoardPopupComponent implements OnDestroy {
     event.stopPropagation();
   }
 
-  public createBoard(): void {
-    this.boardService.isBoardPopup$.next(false);
-    this.httpService
-      .postBoard({ ...this.boardForm?.value })
-      .pipe(
-        take(1),
-        tap(() => {
-          this.store.dispatch(updateAllBoards());
-        }),
-      )
-      .subscribe((board) => {
-        console.log('new board', board);
-        // this.newBoard=board
+  public submit(): void {
+    if (this.boardPopupService.isBoardPopupOpen$.value.popupFunction === 'create') {
+      this.createBoard();
+    } else {
+      this.editBoard();
+    }
 
-        this.router.events.pipe(takeUntil(this.unsubscribe$)).subscribe((event) => {
-          console.log('rout', event);
-          // if ((event as NavigationStart).url !== '/main') {
-          //   this.router.navigate([`/board/${board.id}`]);
-          // }
-        });
-      });
-
-    this.toggleScrollService.showScroll();
-    this.boardForm?.reset();
+    this.closePopup();
   }
 
-  public ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+  private createForm(): void {
+    this.boardForm = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
+    });
+  }
+
+  private createBoard(): void {
+    this.apiService
+      .postBoard(this.boardForm.value)
+      .pipe(take(1))
+      .subscribe(() => this.store.dispatch(updateAllBoards()));
+  }
+
+  private editBoard(): void {
+    this.store
+      .select(selectBoardById)
+      .pipe(
+        switchMap((board) => {
+          return this.apiService.updateBoard(board!.id!, this.boardForm.value);
+        }),
+        take(1),
+      )
+      .subscribe((updatedBoard) => {
+        this.store.dispatch(updateBoard({ board: updatedBoard }));
+      });
   }
 }

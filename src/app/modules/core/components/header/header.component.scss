@@ -1,11 +1,12 @@
 @use '../../../shared/styles/colors';
 @use '../../../shared/styles/font';
+@use '../../../shared/styles/components';
 
 :host {
   display: flex;
   align-items: center;
   position: sticky;
-  height: 70px;
+  height: components.$header-height;
   top: -30px;
   background-color: colors.$header-color;
   z-index: 1000;

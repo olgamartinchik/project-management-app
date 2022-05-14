@@ -1,11 +1,16 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { IBoardState } from '../state.model';
+import { selectRouteParams } from './route.selectors';
 
-export const selectState = createFeatureSelector<IBoardState>('boardState');
+import { BoardModelState } from '../state.model';
+import { BoardModel } from 'src/app/modules/core/models/board.model';
 
-export const boardsSelect = createSelector(selectState, (state: IBoardState) => state.boards);
+export const selectState = createFeatureSelector<BoardModelState>('boardState');
 
-export const boardByIdSelect = createSelector(selectState, (state: IBoardState) => state.boardById);
+export const boardsSelect = createSelector(selectState, (state: BoardModelState) => state.boards);
 
-export const idBoard = createSelector(selectState, (state: IBoardState) => state.idBoard);
+export const selectBoardById = createSelector(
+  boardsSelect,
+  selectRouteParams,
+  (boards: BoardModel[], { id }) => boards.find((el) => el.id === id),
+);

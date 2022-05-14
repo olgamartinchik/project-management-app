@@ -1,9 +1,14 @@
-<a [routerLink]="['/board', boardData!.id!]" (click)="selectCard()">
-  <div class="board" [id]="boardData?.id">
-    <span class="delete-btn" (click)="confirmationDeleteBoard($event)">{{
-      'mainPage.deleteBtn' | transloco
-    }}</span>
-    <h4 class="board-title">{{ boardData?.title }}</h4>
-    <p class="board-description">{{ boardData?.description }}</p>
-  </div>
+<a class="board" [routerLink]="['/board', boardData.id]">
+  <button
+    class="board__delete-button"
+    type="button"
+    (click)="confirmationDeleteBoard($event)"
+    [title]="'mainPage.deleteBtn' | transloco"
+  >
+    <mat-icon aria-hidden="false" aria-label="Delete icon">delete_outline</mat-icon>
+  </button>
+
+  <h3 class="board__title">{{ boardData.title }}</h3>
+
+  <p class="board__description">{{ boardData.description }}</p>
 </a>

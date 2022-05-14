@@ -1,8 +1,9 @@
 @use '../../../shared/styles/colors';
 @use '../../../shared/styles/font';
+@use '../../../shared/styles/components';
 
 :host {
-  height: 60px;
+  height: components.$footer-height;
   display: flex;
   justify-content: center;
   background-color: colors.$header-color;

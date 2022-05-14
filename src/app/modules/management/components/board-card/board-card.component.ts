@@ -1,19 +1,17 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { map, take } from 'rxjs';
+import { take } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 // services
+import { ApiService } from '../../../core/services/api.service';
 import { ConfirmService } from '../../../core/services/confirm.service';
-import { HttpService } from '../../../core/services/http.service';
-
-// models
-
-import { IAppState } from '../../../../redux/state.model';
 
 // ngrx
-import { getBoardById } from 'src/app/redux/actions/board.actions';
-import { updateAllBoards } from 'src/app/redux/actions/board.actions';
-import { IBoard } from 'src/app/modules/core/models/IBoard.model';
+import { updateAllBoards } from '../../../../redux/actions/board.actions';
+
+// models
+import { BoardModel } from '../../../core/models/board.model';
+import { IAppState } from '../../../../redux/state.model';
 
 @Component({
   selector: 'app-board-card',
@@ -22,12 +20,12 @@ import { IBoard } from 'src/app/modules/core/models/IBoard.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoardCardComponent {
-  @Input() public boardData!: IBoard;
+  @Input() public boardData!: BoardModel;
 
   constructor(
     private confirmService: ConfirmService,
+    private apiService: ApiService,
     private store: Store<IAppState>,
-    private httpService: HttpService,
   ) {}
 
   public confirmationDeleteBoard(event: Event): void {
@@ -38,18 +36,9 @@ export class BoardCardComponent {
   }
 
   private deleteBoard = (): void => {
-    this.httpService
+    this.apiService
       .deleteBoard(this.boardData.id!)
-      .pipe(
-        take(1),
-        map(() => {
-          this.store.dispatch(updateAllBoards());
-        }),
-      )
-      .subscribe();
+      .pipe(take(1))
+      .subscribe(() => this.store.dispatch(updateAllBoards()));
   };
-
-  public selectCard(): void {
-    this.store.dispatch(getBoardById({ boardById: this.boardData }));
-  }
 }

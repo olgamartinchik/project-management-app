@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { BoardPopupService } from './board-popup.service';
 
-import { BoardDataService } from './board-data.service';
-
-describe('BoardDataService', () => {
-  let service: BoardDataService;
+describe('BoardPopupService', () => {
+  let service: BoardPopupService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BoardDataService);
+    service = TestBed.inject(BoardPopupService);
   });
 
   it('should be created', () => {

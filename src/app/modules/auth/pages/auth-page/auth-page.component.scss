@@ -1,11 +1,12 @@
 @use '../../../shared/styles/colors';
 @use '../../../shared/styles/font';
+@use '../../../shared/styles/components';
 
 $login-text-width: 60px;
 $registration-text-width: 125px;
 
 :host {
-  min-height: calc(100vh - 130px);
+  min-height: components.$page-height;
   display: flex;
   justify-content: center;
   align-items: center;

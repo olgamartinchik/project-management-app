@@ -1,0 +1,29 @@
+<ng-container *ngIf="board">
+  <div class="board__heading">
+    <h3 class="board__title">{{ board.title }}</h3>
+
+    <p class="board__description">{{ board.description }}</p>
+
+    <button class="board__edit" (click)="openEditBoardPopup()">
+      <mat-icon aria-hidden="false" aria-label="Edit board icon">edit_note</mat-icon>
+    </button>
+  </div>
+
+  <div class="board__columns-container">
+    <app-column
+      *ngFor="let column of board.columns"
+      [columnData]="column"
+      [boardId]="board.id!"
+    ></app-column>
+
+    <button class="board__add-column" (click)="toggleColumnPopup()">
+      + {{ 'boardPage.addColBtn' | transloco }}
+    </button>
+  </div>
+
+  <app-column-popup
+    [isOpen]="isColumnPopupOpen"
+    [board]="board"
+    (closingPopup)="toggleColumnPopup()"
+  ></app-column-popup>
+</ng-container>

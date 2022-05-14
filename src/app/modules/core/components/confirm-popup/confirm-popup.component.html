@@ -4,9 +4,10 @@
   (click)="closeConfirmPopup()"
 >
   <div class="confirm-container" (click)="stopPropagation($event)">
-    <h4 class="title">{{ 'ConfirmPopup.title' | transloco }}</h4>
+    <h4 class="title">{{ 'confirmPopup.title' | transloco }}</h4>
+
     <button class="button" (click)="confirm()">
-      {{ 'ConfirmPopup.button' | transloco }}
+      {{ 'confirmPopup.button' | transloco }}
     </button>
   </div>
 </div>

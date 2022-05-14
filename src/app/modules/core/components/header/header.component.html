@@ -6,47 +6,43 @@
   />
 
   <nav [class]="{ nav: true, 'nav-open': isNavOpen }">
-    <a class="nav-link" routerLinkActive="active" routerLink="/main" rel="noopener" title="main">{{
-      'nav.mainPage' | transloco
-    }}</a>
+    <a class="nav-link" routerLinkActive="active" routerLink="/main" rel="noopener" title="main">
+      {{ 'nav.mainPage' | transloco }}
+    </a>
+
     <a
-      class="nav-link"
-      [class.disabled]="disabled ? true : null"
+      class="nav-link disabled"
       routerLinkActive="active"
       routerLink=""
       rel="noopener"
       title="start"
-      >{{ 'nav.startPage' | transloco }}</a
     >
+      {{ 'nav.startPage' | transloco }}
+    </a>
+
+    <a class="nav-link" routerLinkActive="active" routerLink="/auth" rel="noopener" title="auth">
+      {{ 'nav.enter' | transloco }}
+    </a>
+
     <a
-      class="nav-link"
-      [class.disabled]="disabled"
-      routerLinkActive="active"
-      routerLink="/board"
-      rel="noopener"
-      title="board"
-      >{{ 'nav.workingBoard' | transloco }}</a
-    >
-    <a class="nav-link" routerLinkActive="active" routerLink="/auth" rel="noopener" title="auth">{{
-      'nav.enter' | transloco
-    }}</a>
-    <a
-      class="nav-link"
-      [class.disabled]="disabled"
+      class="nav-link disabled"
       routerLinkActive="active"
       routerLink="/search"
       rel="noopener"
       title="search"
-      >{{ 'nav.search' | transloco }}</a
     >
+      {{ 'nav.search' | transloco }}
+    </a>
+
     <a
       class="nav-link"
       routerLinkActive="active"
       routerLink="/account"
       rel="noopener"
       title="account"
-      >{{ 'nav.account' | transloco }}</a
     >
+      {{ 'nav.account' | transloco }}
+    </a>
   </nav>
 
   <button
@@ -54,7 +50,9 @@
     (click)="isNavOpen = !isNavOpen"
     type="button"
   ></button>
-  <div class="new-board" (click)="openPopupCreateBoard()">{{ 'nav.createBoard' | transloco }}</div>
+
+  <div class="new-board" (click)="openBoardPopup()">{{ 'nav.createBoard' | transloco }}</div>
+
   <div class="settings-language">
     <input
       class="radio-language"
@@ -79,6 +77,7 @@
     />
     <label class="change-language" for="en">EN</label>
   </div>
+
   <app-board-popup></app-board-popup>
   <app-confirm-popup></app-confirm-popup>
   <app-loader></app-loader>

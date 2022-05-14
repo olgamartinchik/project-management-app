@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,13 +13,15 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BoardEffect } from './redux/effects/board.effect';
 import { appState } from './redux/app.state';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-
+    BrowserAnimationsModule,
     StoreModule.forRoot(appState, {
       runtimeChecks: {
         strictStateImmutability: true,
@@ -34,6 +37,7 @@ import { appState } from './redux/app.state';
       maxAge: 25,
     }),
     EffectsModule.forRoot([BoardEffect]),
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

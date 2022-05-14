@@ -1,6 +1,6 @@
 import { ITask } from './ITask.model';
 
-export interface IColumn {
+export interface ColumnModel {
   id?: string;
   title: string;
   order: number;

@@ -2,26 +2,26 @@
   "nav": {
     "mainPage": "Main page",
     "startPage": "Start page",
-    "workingBoard": "Working board",
-    "enter": "sign in/login",
+    "enter": "Signin/login",
     "search": "Search",
     "account": "Personal account",
     "createBoard": "Create board"
   },
   "mainPage": {
-    "h1": "Your work board",
+    "title": "Your work board",
     "newBoard": "Create board",
-    "deleteBtn": "delete",
-    "titleNewBoard": "Title",
-    "descriptionBoard": "Description",
-    "createBtn": "Create board"
+    "deleteBtn": "Delete board",
+    "createBtn": "Create"
   },
-
-  "ConfirmPopup": {
+  "confirmPopup": {
     "title": "Are you sure?",
     "button": "Delete"
   },
-  "BoardPage": {
+  "boardPopup": {
+    "titlePlaceholder": "Title",
+    "descriptionPlaceholder": "Description"
+  },
+  "boardPage": {
     "addColBtn": "Add column",
     "button": "Delete",
     "enter": "Signup/login",
@@ -35,7 +35,9 @@
     "tittleTask": "Edit title",
     "descriptionTask": "Edit Description",
     "editTaskBtn": "edit task",
-    "done": "done"
+    "done": "done",
+    "deleteBtn": "Delete column",
+    "editBtn": "Edit"
   },
   "auth": {
     "loginLabel": "Login",
@@ -76,6 +78,16 @@
     "number": "a mixture of letters and numbers",
     "specialChar": "inclusion of at least one special character, e.g., !@#?]"
   },
+  "titleErrors": {
+    "required": "Please enter a title",
+    "minlength": "The title is too short",
+    "maxlength": "The title is too long"
+  },
+  "descriptionErrors": {
+    "required": "Please enter a description",
+    "minlength": "The description is too short",
+    "maxlength": "The description is too long"
+  },
   "commonErrors": {
     "pattern": "Use only latin letters, numbers and special characters",
     "unknown": "Unknown error"
@@ -84,16 +96,7 @@
     "forbidden": "User not found",
     "conflict": "This login already exists"
   },
-  "titleErrors": {
-    "required": "Please enter title",
-    "minlength": "The title is too short",
-    "maxlength": "The title is too long"
-  },
-  "descriptionErrors": {
-    "required": "Please enter description",
-    "minlength": "The description is too short",
-    "maxlength": "The description is too long"
-  },
+
   "userIdErrors": {
     "required": "Please select user"
   }
