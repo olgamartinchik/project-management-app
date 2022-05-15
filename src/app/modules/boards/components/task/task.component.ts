@@ -33,6 +33,7 @@ export class TaskComponent {
 
   public openPopupEditTask(): void {
     this.taskService.isEditTaskPopup$.next(true);
+    this.taskService.editTask$.next(this.task);
   }
 
   public confirmDeleteTask(event: Event): void {

@@ -44,24 +44,26 @@ export class EditTaskPopupComponent implements OnInit, OnDestroy {
       .getAllUsers()
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((users) => {
-        // console.log('users', users);
         this.allUsers = users;
       });
+    this.taskService.editTask$.pipe(takeUntil(this.unsubscribe$)).subscribe((taskData) => {
+      this.editTaskForm.setValue({
+        title: taskData.title,
+        description: taskData.description,
+        done: taskData.done,
+        userId: taskData.userId,
+      });
+    });
+    //
   }
 
   private createForm(): void {
     this.editTaskForm = this.fb.group({
-      title: [
-        `${this.task.title}`,
-        [Validators.required, Validators.minLength(2), Validators.maxLength(50)],
-      ],
-      description: [
-        `${this.task.description}`,
-        [Validators.required, Validators.minLength(2), Validators.maxLength(225)],
-      ],
-      done: [this.task.done],
+      title: [``, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      description: [``, [Validators.required, Validators.minLength(2), Validators.maxLength(225)]],
+      done: [false],
 
-      userId: [`${this.task.userId}`, Validators.required],
+      userId: [``, Validators.required],
     });
   }
 

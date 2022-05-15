@@ -22,13 +22,13 @@
         {{ errorMessagesService.showMessages(taskForm, 'title', messages['title']) | transloco }}
       </div>
 
-      <input
+      <textarea
         type="text"
-        class="input"
+        class="textarea"
         id="description-task"
         formControlName="description"
         placeholder="{{ 'boardPage.descriptionTask' | transloco }}"
-      />
+      ></textarea>
       <div class="validate">
         {{
           errorMessagesService.showMessages(taskForm, 'description', messages['description'])

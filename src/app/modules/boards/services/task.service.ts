@@ -1,4 +1,4 @@
-import { BehaviorSubject, take, tap } from 'rxjs';
+import { BehaviorSubject, Subject, take, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ITask } from '../../core/models/ITask.model';
 import { ApiService } from '../../core/services/api.service';
@@ -7,6 +7,8 @@ import { BoardService } from './board.service';
 
 @Injectable()
 export class TaskService {
+  public editTask$ = new Subject<ITask>();
+
   public isNewTaskPopup$ = new BehaviorSubject(false);
 
   public isEditTaskPopup$ = new BehaviorSubject(false);

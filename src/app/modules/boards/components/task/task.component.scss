@@ -50,10 +50,21 @@
 
 .title {
   @include font.subtitle;
+  font-size: 18px;
   margin: 2px;
+  word-wrap: break-word;
   width: calc(100% - 31px);
 }
 .subtitle {
   @include font.text;
+  font-size: 14px;
+  font-style: italic;
   margin: 2px;
+  max-height: 80px;
+  overflow: auto;
+  word-wrap: break-word;
+  @include components.scrollbar(colors.$disabled-bg, colors.$text-disabled);
+}
+.subtitle-user {
+  font-style: normal;
 }

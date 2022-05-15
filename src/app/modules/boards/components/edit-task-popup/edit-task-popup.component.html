@@ -15,7 +15,6 @@
         type="text"
         class="input"
         id="fix-title"
-        value="some title"
         formControlName="title"
         placeholder="{{ 'editTask.tittleTask' | transloco }}"
       />
@@ -25,14 +24,13 @@
         }}
       </div>
 
-      <input
+      <textarea
         type="text"
         id="fix-description"
-        class="input"
-        value="some description"
+        class="textarea"
         formControlName="description"
         placeholder="{{ 'editTask.descriptionTask' | transloco }}"
-      />
+      ></textarea>
       <div class="validate">
         {{
           errorMessagesService.showMessages(editTaskForm, 'description', messages['description'])
