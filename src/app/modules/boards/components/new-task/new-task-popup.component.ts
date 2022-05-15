@@ -1,5 +1,5 @@
 import { takeUntil, Subject } from 'rxjs';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FORM_ERROR_MESSAGES } from 'src/app/modules/core/constants/error-messages.constants';
 
@@ -9,6 +9,8 @@ import { ErrorMessagesService } from 'src/app/modules/core/services/error-messag
 import { TaskService } from '../../services/task.service';
 import { UserModel } from 'src/app/modules/core/models/user.model';
 import { ApiService } from 'src/app/modules/core/services/api.service';
+import { ColumnModel } from 'src/app/modules/core/models/column.model';
+import { ColumnService } from '../../services/column.service';
 
 @Component({
   selector: 'app-new-task',
@@ -17,6 +19,11 @@ import { ApiService } from 'src/app/modules/core/services/api.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewTaskPopupComponent implements OnInit, OnDestroy {
+  @Input() public boardId!: string;
+
+  @Input() public columnData!: ColumnModel;
+  // public user!:UserModel
+
   public taskForm!: FormGroup;
 
   public messages: FormMessagesModel = FORM_ERROR_MESSAGES;
@@ -30,6 +37,7 @@ export class NewTaskPopupComponent implements OnInit, OnDestroy {
     public errorMessagesService: ErrorMessagesService,
     public taskService: TaskService,
     public apiService: ApiService,
+    private columnService: ColumnService,
   ) {}
 
   public ngOnInit(): void {
@@ -38,7 +46,6 @@ export class NewTaskPopupComponent implements OnInit, OnDestroy {
       .getAllUsers()
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((users) => {
-        // console.log('users', users);
         this.allUsers = users;
       });
   }
@@ -61,8 +68,15 @@ export class NewTaskPopupComponent implements OnInit, OnDestroy {
   }
 
   public createTask(): void {
-    console.log('new task', { ...this.taskForm.value });
     this.taskService.isNewTaskPopup$.next(false);
+
+    this.taskService.createTask(
+      this.boardId,
+      this.columnService.columnId,
+      { ...this.taskForm.value },
+      this.columnData.tasks!,
+    );
+
     this.taskForm.reset();
   }
 

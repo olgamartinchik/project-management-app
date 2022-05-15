@@ -12,6 +12,7 @@ import {
 import { UserModel } from '../models/user.model';
 import { BoardModel } from '../models/board.model';
 import { ColumnModel } from '../models/column.model';
+import { ITask } from '../models/ITask.model';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
@@ -88,5 +89,38 @@ export class ApiService {
 
   public deleteColumn(boardId: string, columnId: string): Observable<ColumnModel> {
     return this.http.delete<ColumnModel>(`${this.url}/boards/${boardId}/columns/${columnId}`);
+  }
+
+  //task
+  public postTask(boardId: string, columnId: string, value: ITask): Observable<ITask> {
+    return this.http.post<ITask>(`${this.url}/boards/${boardId}/columns/${columnId}/tasks`, value);
+  }
+
+  public getTasks(boardId: string, columnId: string): Observable<ITask[]> {
+    return this.http.get<ITask[]>(`${this.url}/boards/${boardId}/columns/${columnId}/tasks`);
+  }
+
+  public getTask(boardId: string, columnId: string, taskId: string): Observable<ITask> {
+    return this.http.get<ITask>(
+      `${this.url}/boards/${boardId}/columns/${columnId}/tasks/${taskId}`,
+    );
+  }
+
+  public deleteTask(boardId: string, columnId: string, taskId: string): Observable<ITask> {
+    return this.http.delete<ITask>(
+      `${this.url}/boards/${boardId}/columns/${columnId}/tasks/${taskId}`,
+    );
+  }
+
+  public putTask(
+    boardId: string,
+    columnId: string,
+    taskId: string,
+    value: ITask,
+  ): Observable<ITask> {
+    return this.http.put<ITask>(
+      `${this.url}/boards/${boardId}/columns/${columnId}/tasks/${taskId}`,
+      value,
+    );
   }
 }

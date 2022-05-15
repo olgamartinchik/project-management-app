@@ -11,22 +11,27 @@
     (click)="stopPropagation($event)"
   >
     <div class="title-container">
-      <label for="fix-title" class="title">{{ 'editTask.tittleTask' | transloco }}:</label>
-      <input type="text" class="input" id="fix-title" value="some title" formControlName="title" />
+      <input
+        type="text"
+        class="input"
+        id="fix-title"
+        value="some title"
+        formControlName="title"
+        placeholder="{{ 'editTask.tittleTask' | transloco }}"
+      />
       <div class="validate">
         {{
           errorMessagesService.showMessages(editTaskForm, 'title', messages['title']) | transloco
         }}
       </div>
-      <label for="fix-description" class="title"
-        >{{ 'editTask.descriptionTask' | transloco }}:</label
-      >
+
       <input
         type="text"
         id="fix-description"
         class="input"
         value="some description"
         formControlName="description"
+        placeholder="{{ 'editTask.descriptionTask' | transloco }}"
       />
       <div class="validate">
         {{
@@ -35,7 +40,7 @@
         }}
       </div>
       <mat-form-field appearance="fill">
-        <mat-label>{{ 'BoardPage.performers' | transloco }}</mat-label>
+        <mat-label>{{ 'boardPage.performers' | transloco }}</mat-label>
         <mat-select formControlName="userId">
           <mat-option *ngFor="let user of allUsers" [value]="user.id">{{ user.name }}</mat-option>
         </mat-select>

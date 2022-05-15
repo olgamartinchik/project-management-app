@@ -19,6 +19,7 @@ import { ErrorMessagesService } from '../core/services/error-messages/error-mess
 import { NewTaskPopupComponent } from './components/new-task/new-task-popup.component';
 import { TaskComponent } from './components/task/task.component';
 import { EditTaskPopupComponent } from './components/edit-task-popup/edit-task-popup.component';
+import { TaskService } from './services/task.service';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,6 @@ import { EditTaskPopupComponent } from './components/edit-task-popup/edit-task-p
     ReactiveFormsModule,
     SharedModule,
   ],
-  providers: [BoardService, ColumnService, ErrorMessagesService],
+  providers: [BoardService, ColumnService, ErrorMessagesService, TaskService],
 })
 export class BoardModule {}

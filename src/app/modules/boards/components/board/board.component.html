@@ -14,6 +14,7 @@
       *ngFor="let column of board.columns"
       [columnData]="column"
       [boardId]="board.id!"
+      [board]="board"
     ></app-column>
 
     <button class="board__add-column" (click)="toggleColumnPopup()">

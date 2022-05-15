@@ -11,16 +11,24 @@
     (click)="stopPropagation($event)"
   >
     <div class="title-container">
-      <label for="title-task" class="title">{{ 'BoardPage.tittleTask' | transloco }}</label>
-      <input type="text" class="input" id="title-task" formControlName="title" />
+      <input
+        type="text"
+        class="input"
+        id="title-task"
+        formControlName="title"
+        placeholder="{{ 'boardPage.tittleTask' | transloco }}"
+      />
       <div class="validate">
         {{ errorMessagesService.showMessages(taskForm, 'title', messages['title']) | transloco }}
       </div>
 
-      <label for="description-task" class="title">{{
-        'BoardPage.descriptionTask' | transloco
-      }}</label>
-      <input type="text" class="input" id="description-task" formControlName="description" />
+      <input
+        type="text"
+        class="input"
+        id="description-task"
+        formControlName="description"
+        placeholder="{{ 'boardPage.descriptionTask' | transloco }}"
+      />
       <div class="validate">
         {{
           errorMessagesService.showMessages(taskForm, 'description', messages['description'])
@@ -28,7 +36,7 @@
         }}
       </div>
       <mat-form-field appearance="fill">
-        <mat-label>{{ 'BoardPage.performers' | transloco }}</mat-label>
+        <mat-label>{{ 'boardPage.performers' | transloco }}</mat-label>
         <mat-select formControlName="userId">
           <mat-option *ngFor="let user of allUsers" [value]="user.id">{{ user.name }}</mat-option>
         </mat-select>
@@ -38,7 +46,7 @@
       </div>
     </div>
     <button class="button" [disabled]="taskForm.invalid">
-      {{ 'BoardPage.newTaskBtn' | transloco }}
+      {{ 'boardPage.newTaskBtn' | transloco }}
     </button>
   </form>
 </div>

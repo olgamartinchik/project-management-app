@@ -4,6 +4,7 @@
   position: fixed;
   right: 0;
   left: -300%;
+
   top: 0;
   bottom: 0;
   z-index: 1000;
@@ -49,7 +50,7 @@
   height: 34px;
   padding-left: 10px;
   @include font.text;
-  border-radius: 4px;
+  background-color: antiquewhite;
   box-sizing: border-box;
   outline: none;
 }
