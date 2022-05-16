@@ -21,8 +21,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { BoardPopupComponent } from './components/board-popup/board-popup.component';
 import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 import { LoaderComponent } from './components/loader/loader.component';
+import { OutputPopupComponent } from './components/output-popup/output-popup.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { LoaderComponent } from './components/loader/loader.component';
     FooterComponent,
     BoardPopupComponent,
     ConfirmPopupComponent,
+    NavbarComponent,
     LoaderComponent,
+    OutputPopupComponent,
   ],
   exports: [HeaderComponent, FooterComponent],
 
