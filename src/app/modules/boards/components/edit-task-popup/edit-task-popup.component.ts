@@ -1,12 +1,16 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable, Subject, take } from 'rxjs';
 import { FORM_ERROR_MESSAGES } from 'src/app/modules/core/constants/error-messages.constants';
 import { FormMessagesModel } from 'src/app/modules/core/models/error-messages.services.models';
 import { ITask } from 'src/app/modules/core/models/ITask.model';
 import { UserModel } from 'src/app/modules/core/models/user.model';
 import { ApiService } from 'src/app/modules/core/services/api.service';
 import { ErrorMessagesService } from 'src/app/modules/core/services/error-messages/error-messages.service';
+import { usersSelect } from 'src/app/redux/selectors/users.selector';
+import { IAppState } from 'src/app/redux/state.model';
+import { BoardService } from '../../services/board.service';
 import { TaskService } from '../../services/task.service';
 
 @Component({
@@ -24,37 +28,39 @@ export class EditTaskPopupComponent implements OnInit, OnDestroy {
 
   public editTaskForm!: FormGroup;
 
-  public allUsers!: UserModel[];
+  // public allUsers!: UserModel[];
 
   public messages: FormMessagesModel = FORM_ERROR_MESSAGES;
 
   private unsubscribe$: Subject<void> = new Subject<void>();
+
+  public users: Observable<UserModel[]> = this.store.select(usersSelect);
 
   constructor(
     public apiService: ApiService,
     private fb: FormBuilder,
     public errorMessagesService: ErrorMessagesService,
     public taskService: TaskService,
+    private boardService: BoardService,
+    private store: Store<IAppState>,
   ) {}
 
   public ngOnInit(): void {
-    // console.log('inputTask',this.task)
     this.createForm();
-    this.apiService
-      .getAllUsers()
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((users) => {
-        this.allUsers = users;
+
+    this.taskService.editTask$
+      .pipe
+      // takeUntil(this.unsubscribe$)
+      ()
+      .subscribe((taskData) => {
+        console.log('11111', taskData);
+        this.editTaskForm.setValue({
+          title: taskData.title,
+          description: taskData.description,
+          done: taskData.done,
+          userId: taskData.userId,
+        });
       });
-    this.taskService.editTask$.pipe(takeUntil(this.unsubscribe$)).subscribe((taskData) => {
-      this.editTaskForm.setValue({
-        title: taskData.title,
-        description: taskData.description,
-        done: taskData.done,
-        userId: taskData.userId,
-      });
-    });
-    //
   }
 
   private createForm(): void {
@@ -77,14 +83,32 @@ export class EditTaskPopupComponent implements OnInit, OnDestroy {
   }
 
   public updateTask(): void {
-    // console.log('edit form', this.editTaskForm.value);
     this.taskService.updateTask(
       this.boardId,
       this.columnId,
-      this.task.id!,
+      // this.task.id!,
       { ...this.editTaskForm.value },
-      this.task.order!,
+      // this.task.order!,
     );
+    this.taskService.editTask$.pipe(take(1)).subscribe((task) => {
+      console.log('task1111111', task);
+
+      // const taskDate: ITask = {
+      //   ...this.editTaskForm.value,
+      //  order: task.order,
+      //   boardId:this.boardId,
+      //   columnId:this.columnId,
+      // };
+      // this.apiService
+      //     .putTask(this.boardId, this.columnId, task.id!, taskDate)
+      //     .pipe(
+      //       take(1),
+      //       tap(() => {
+      //         this.boardService.updateBoard();
+      //       }),
+      //     ).subscribe(()=>this.boardService.updateBoard())
+    });
+
     this.taskService.isEditTaskPopup$.next(false);
     this.editTaskForm.reset();
   }

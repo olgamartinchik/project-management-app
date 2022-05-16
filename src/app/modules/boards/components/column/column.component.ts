@@ -59,5 +59,6 @@ export class ColumnComponent implements OnInit {
     console.log('columnData', this.columnData);
     this.taskService.isNewTaskPopup$.next(true);
     this.columnService.columnId = this.columnData.id!;
+    // this.taskService.getAllUsers()
   }
 }

@@ -1,13 +1,16 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { take } from 'rxjs';
+import { Observable, take, map } from 'rxjs';
 import { ITask } from 'src/app/modules/core/models/ITask.model';
+import { UserModel } from 'src/app/modules/core/models/user.model';
 import { ApiService } from 'src/app/modules/core/services/api.service';
 import { ConfirmService } from 'src/app/modules/core/services/confirm.service';
 import { updateAllBoards } from 'src/app/redux/actions/board.actions';
+import { usersSelect } from 'src/app/redux/selectors/users.selector';
 import { IAppState } from 'src/app/redux/state.model';
 
 import { TaskService } from '../../services/task.service';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-task',
@@ -23,15 +26,34 @@ export class TaskComponent {
 
   @Input() public columnId!: string;
 
-  // public name:string='vasya'
+  private users: Observable<UserModel[]> = this.store.select(usersSelect);
+
+  public userName!: string;
+
   constructor(
     public taskService: TaskService,
     public apiService: ApiService,
     private store: Store<IAppState>,
     private confirmService: ConfirmService,
+    public usersService: UsersService,
   ) {}
 
+  public getUser(userId: string): string {
+    this.users
+      .pipe(
+        take(1),
+        map((users) => {
+          return users.find((user) => user.id === userId);
+        }),
+      )
+      .subscribe((user) => {
+        this.userName = user?.name!;
+      });
+    return this.userName;
+  }
+
   public openPopupEditTask(): void {
+    console.log(' this.task', this.task, this.columnId, this.boardId);
     this.taskService.isEditTaskPopup$.next(true);
     this.taskService.editTask$.next(this.task);
   }

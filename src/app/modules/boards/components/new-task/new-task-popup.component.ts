@@ -1,4 +1,4 @@
-import { takeUntil, Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FORM_ERROR_MESSAGES } from 'src/app/modules/core/constants/error-messages.constants';
@@ -12,6 +12,10 @@ import { ApiService } from 'src/app/modules/core/services/api.service';
 import { ColumnModel } from 'src/app/modules/core/models/column.model';
 import { ColumnService } from '../../services/column.service';
 
+import { IAppState } from 'src/app/redux/state.model';
+import { Store } from '@ngrx/store';
+import { usersSelect } from 'src/app/redux/selectors/users.selector';
+
 @Component({
   selector: 'app-new-task',
   templateUrl: './new-task-popup.component.html',
@@ -22,13 +26,12 @@ export class NewTaskPopupComponent implements OnInit, OnDestroy {
   @Input() public boardId!: string;
 
   @Input() public columnData!: ColumnModel;
-  // public user!:UserModel
+
+  public users: Observable<UserModel[]> = this.store.select(usersSelect);
 
   public taskForm!: FormGroup;
 
   public messages: FormMessagesModel = FORM_ERROR_MESSAGES;
-
-  public allUsers!: UserModel[];
 
   private unsubscribe$: Subject<void> = new Subject<void>();
 
@@ -38,16 +41,11 @@ export class NewTaskPopupComponent implements OnInit, OnDestroy {
     public taskService: TaskService,
     public apiService: ApiService,
     private columnService: ColumnService,
+    private store: Store<IAppState>,
   ) {}
 
   public ngOnInit(): void {
     this.createForm();
-    this.apiService
-      .getAllUsers()
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((users) => {
-        this.allUsers = users;
-      });
   }
 
   private createForm(): void {

@@ -38,7 +38,9 @@
       <mat-form-field appearance="fill">
         <mat-label>{{ 'boardPage.performers' | transloco }}</mat-label>
         <mat-select formControlName="userId">
-          <mat-option *ngFor="let user of allUsers" [value]="user.id">{{ user.name }}</mat-option>
+          <mat-option *ngFor="let user of users | async" [value]="user.id">{{
+            user.name
+          }}</mat-option>
         </mat-select>
       </mat-form-field>
       <div class="validate">
