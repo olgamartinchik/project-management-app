@@ -23,7 +23,7 @@
   }
 }
 
-.confirm-container {
+.confirm {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,8 +46,8 @@
     border: 3px solid colors.$accent-color;
     @include font.text;
     transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
-
     cursor: pointer;
+
     &:hover {
       color: colors.$main-color;
       box-shadow: 0 0 40px 40px colors.$accent-color inset;

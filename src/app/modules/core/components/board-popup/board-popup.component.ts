@@ -83,7 +83,7 @@ export class BoardPopupComponent implements OnInit, OnDestroy {
   private createForm(): void {
     this.boardForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-      description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
+      description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(300)]],
     });
   }
 
