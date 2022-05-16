@@ -18,7 +18,6 @@ export class UsersService {
       .getAllUsers()
       .pipe()
       .subscribe((users) => {
-        console.log('users', users);
         this.store.dispatch(getUsers({ users }));
       });
   }
