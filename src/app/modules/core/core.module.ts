@@ -18,11 +18,13 @@ import { INTERCEPTOR_PROVIDERS } from './interсeptors/providers';
 
 // components
 import { HeaderComponent } from './components/header/header.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { BoardPopupComponent } from './components/board-popup/board-popup.component';
 import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { PopupContainerComponent } from './components/popup-container/popup-container.component';
+import { OutputPopupComponent } from './components/output-popup/output-popup.component';
 
 // directive
 import { PopupHostDirective } from './directives/popup-host.directive';
@@ -33,9 +35,11 @@ import { PopupHostDirective } from './directives/popup-host.directive';
     FooterComponent,
     BoardPopupComponent,
     ConfirmPopupComponent,
+    NavbarComponent,
     LoaderComponent,
     PopupHostDirective,
     PopupContainerComponent,
+    OutputPopupComponent,
   ],
   exports: [HeaderComponent, FooterComponent, BoardPopupComponent],
   imports: [

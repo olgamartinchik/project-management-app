@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
+
 import { BoardPopupService } from 'src/app/modules/core/services/board-popup.service';
 
 import { LangModel } from '../../models/lang.model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +18,7 @@ export class HeaderComponent {
   public lang: LangModel = 'ru';
 
   constructor(
+    public authService: AuthService,
     private translocoService: TranslocoService,
     private boardPopupService: BoardPopupService,
   ) {}
