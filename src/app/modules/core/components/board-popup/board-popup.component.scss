@@ -3,34 +3,19 @@
 @use '../../../shared/styles/forms';
 @use '../../../shared/styles/components';
 
-.overlay {
+:host {
+  max-width: 400px;
   width: 100%;
-  height: 100%;
-  position: fixed;
-  z-index: 2;
-  left: -300%;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent;
-  transition: 0.5s ease-in-out;
-  cursor: pointer;
-
-  &.visible {
-    left: 0;
-  }
 }
 
 .board-popup {
   &__form {
-    max-width: 400px;
     width: 100%;
     padding: 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 4px;
+    border-radius: 5px;
     background-color: colors.$popup-color;
     cursor: default;
   }

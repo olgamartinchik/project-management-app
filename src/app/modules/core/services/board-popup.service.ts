@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { ToggleScrollService } from './toggle-scroll.service';
 import { PopupFunction } from '../models/board-popup.service.model';
 import { BOARD_POPUP_SERVICE_INITIAL_VALUE } from '../constants/board-popup.service.constants';
 
@@ -9,17 +8,13 @@ import { BOARD_POPUP_SERVICE_INITIAL_VALUE } from '../constants/board-popup.serv
   providedIn: 'root',
 })
 export class BoardPopupService {
-  public boardPopupSubject$ = new BehaviorSubject(BOARD_POPUP_SERVICE_INITIAL_VALUE);
-
-  constructor(private toggleScrollService: ToggleScrollService) {}
+  public subject$ = new BehaviorSubject(BOARD_POPUP_SERVICE_INITIAL_VALUE);
 
   public open(popupFunction: PopupFunction): void {
-    this.boardPopupSubject$.next({ isOpen: true, popupFunction });
-    this.toggleScrollService.hiddenScroll();
+    this.subject$.next({ isOpen: true, popupFunction });
   }
 
   public close(): void {
-    this.boardPopupSubject$.next({ isOpen: false, popupFunction: 'create' });
-    this.toggleScrollService.showScroll();
+    this.subject$.next({ isOpen: false, popupFunction: 'create' });
   }
 }

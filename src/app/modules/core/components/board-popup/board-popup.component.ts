@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { take, switchMap, Subscription } from 'rxjs';
+import { take, switchMap, Subscription, withLatestFrom, map } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 // services
@@ -43,27 +43,20 @@ export class BoardPopupComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.createForm();
 
-    this.subscription.add(
-      this.boardPopupService.boardPopupSubject$.subscribe((value) => {
-        if (value.popupFunction === 'edit') {
-          this.store
-            .select(selectBoardById)
-            .pipe(take(1))
-            .subscribe((board) =>
-              this.boardForm.setValue({ title: board!.title, description: board!.description }),
-            );
-        }
-      }),
-    );
+    this.subscription = this.boardPopupService.subject$
+      .pipe(
+        withLatestFrom(this.store.select(selectBoardById)),
+        map(([{ popupFunction }, board]) => {
+          if (popupFunction === 'edit') {
+            this.boardForm.setValue({ title: board!.title, description: board!.description });
+          }
+        }),
+      )
+      .subscribe();
   }
 
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
-  }
-
-  public closePopup(): void {
-    this.boardPopupService.close();
-    this.boardForm.reset();
   }
 
   public stopPropagation(event: Event): void {
@@ -71,13 +64,13 @@ export class BoardPopupComponent implements OnInit, OnDestroy {
   }
 
   public submit(): void {
-    if (this.boardPopupService.boardPopupSubject$.value.popupFunction === 'create') {
+    if (this.boardPopupService.subject$.value.popupFunction === 'create') {
       this.createBoard();
     } else {
       this.editBoard();
     }
 
-    this.closePopup();
+    this.boardPopupService.close();
   }
 
   private createForm(): void {
