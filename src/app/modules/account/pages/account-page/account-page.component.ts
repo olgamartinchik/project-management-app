@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 // sevices
 import { ApiService } from '../../../core/services/api.service';
-import { AuthService } from '../../../core/services/auth/auth.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { ConfirmService } from '../../../core/services/confirm.service';
 
 // models

@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 // services
 import { ApiService } from '../../services/api.service';
 import { BoardPopupService } from '../../services/board-popup.service';
-import { ErrorMessagesService } from '../../services/error-messages/error-messages.service';
+import { ErrorMessagesService } from '../../services/error-messages.service';
 
 // ngrx
 import { updateAllBoards, updateBoard } from '../../../../redux/actions/board.actions';
@@ -44,7 +44,7 @@ export class BoardPopupComponent implements OnInit, OnDestroy {
     this.createForm();
 
     this.subscription.add(
-      this.boardPopupService.isBoardPopupOpen$.subscribe((value) => {
+      this.boardPopupService.boardPopupSubject$.subscribe((value) => {
         if (value.popupFunction === 'edit') {
           this.store
             .select(selectBoardById)
@@ -71,7 +71,7 @@ export class BoardPopupComponent implements OnInit, OnDestroy {
   }
 
   public submit(): void {
-    if (this.boardPopupService.isBoardPopupOpen$.value.popupFunction === 'create') {
+    if (this.boardPopupService.boardPopupSubject$.value.popupFunction === 'create') {
       this.createBoard();
     } else {
       this.editBoard();

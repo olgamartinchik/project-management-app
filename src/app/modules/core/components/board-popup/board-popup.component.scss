@@ -22,50 +22,52 @@
   }
 }
 
-.form {
-  max-width: 400px;
-  width: 100%;
-  padding: 40px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 4px;
-  background-color: colors.$popup-color;
-  cursor: default;
-}
+.board-popup {
+  &__form {
+    max-width: 400px;
+    width: 100%;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px;
+    background-color: colors.$popup-color;
+    cursor: default;
+  }
 
-.board-popup__label {
-  @include forms.label;
-}
+  &__label {
+    @include forms.label;
+  }
 
-.board-popup__input {
-  @include forms.input;
-}
+  &__input {
+    @include forms.input;
+  }
 
-.board-popup__textarea {
-  max-height: 180px;
-  min-height: 60px;
-  resize: vertical;
+  &__textarea {
+    max-height: 180px;
+    min-height: 60px;
+    resize: vertical;
 
-  @include components.scrollbar(colors.$disabled-bg, colors.$text-disabled);
-}
+    @include components.scrollbar(colors.$disabled-bg, colors.$disabled-text);
+  }
 
-.board-popup__error-text {
-  @include forms.error-message;
-}
+  &__error-text {
+    @include forms.error-message;
+  }
 
-.button {
-  margin: 40px 0 0;
-  width: 110px;
-  height: 40px;
-  border-radius: 5px;
-  border: 3px solid colors.$text-hover;
-  @include font.text;
-  transition: 0.3s ease-in-out;
+  &__button {
+    margin: 40px 0 0;
+    width: 110px;
+    height: 40px;
+    border-radius: 5px;
+    border: 3px solid colors.$text-hover;
+    @include font.text;
+    transition: 0.3s ease-in-out;
 
-  &:not(:disabled):hover {
-    cursor: pointer;
-    color: colors.$main-color;
-    box-shadow: 0 0 40px 40px colors.$text-hover inset;
+    &:not(:disabled):hover {
+      cursor: pointer;
+      color: colors.$main-color;
+      box-shadow: 0 0 40px 40px colors.$text-hover inset;
+    }
   }
 }

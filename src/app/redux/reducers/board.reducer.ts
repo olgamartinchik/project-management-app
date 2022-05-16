@@ -1,5 +1,5 @@
-import * as BoardActions from '../actions/board.actions';
 import { createReducer, on } from '@ngrx/store';
+import * as BoardActions from '../actions/board.actions';
 import { initialBoardState } from '../state.model';
 
 export const boardReducer = createReducer(

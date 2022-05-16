@@ -13,7 +13,7 @@ import { BoardModel } from '../../core/models/board.model';
 
 @Injectable()
 export class BoardService {
-  public boardId: string = '';
+  public boardId = '';
 
   constructor(private apiService: ApiService, private store: Store<IAppState>) {}
 

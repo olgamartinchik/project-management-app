@@ -15,7 +15,7 @@ import { ColumnPopupComponent } from './components/column-popup/column-popup.com
 // services
 import { BoardService } from './services/board.service';
 import { ColumnService } from './services/column.service';
-import { ErrorMessagesService } from '../core/services/error-messages/error-messages.service';
+import { ErrorMessagesService } from '../core/services/error-messages.service';
 
 @NgModule({
   declarations: [BoardComponent, ColumnComponent, ColumnPopupComponent],

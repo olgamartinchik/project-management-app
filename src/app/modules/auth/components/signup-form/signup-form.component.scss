@@ -9,46 +9,48 @@
   top: 0;
 }
 
-.auth__form {
-  @include forms.form;
-}
-
-.auth__label {
-  @include forms.label;
-}
-
-.auth__input {
-  @include forms.input;
-}
-
-.confirm-password.ng-dirty {
-  &.invalid {
-    border-bottom: 2px solid colors.$invalid;
+.auth {
+  &__form {
+    @include forms.form;
   }
-  &:not(.invalid) {
-    border-bottom: 2px solid colors.$valid;
+
+  &__label {
+    @include forms.label;
   }
-}
 
-.auth__error-text {
-  @include forms.error-message;
-}
+  &__input {
+    @include forms.input;
+  }
 
-.auth__error-text_place_form {
-  margin: 15px 0 0;
-  font-size: 20px;
-  line-height: 25px;
-}
+  &__input_type_pass-confirm.ng-dirty {
+    &.invalid {
+      border-bottom: 2px solid colors.$invalid;
+    }
+    &:not(.invalid) {
+      border-bottom: 2px solid colors.$valid;
+    }
+  }
 
-.auth__recommend-list {
-  margin: 0;
-  padding: 0 0 0 20px;
-}
+  &__error-text {
+    @include forms.error-message;
+  }
 
-.auth__recommend-item {
-  @include forms.recommend-message;
-}
+  &__error-text_place_form {
+    margin: 15px 0 0;
+    font-size: 20px;
+    line-height: 25px;
+  }
 
-.auth__button {
-  @include forms.button;
+  &__recommend-list {
+    margin: 0;
+    padding: 0 0 0 20px;
+  }
+
+  &__recommend-item {
+    @include forms.recommend-message;
+  }
+
+  &__button {
+    @include forms.button;
+  }
 }

@@ -8,11 +8,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //modules
 import { SharedModule } from '../shared/shared.module';
 import { TranslocoRootModule } from '../transloco/transloco-root.module';
+import { ReduxModule } from '../../redux/redux.module';
 
 //services
 import { LoaderService } from './services/loader.service';
 import { ToggleScrollService } from './services/toggle-scroll.service';
-import { ErrorMessagesService } from './services/error-messages/error-messages.service';
+import { ErrorMessagesService } from './services/error-messages.service';
 import { INTERCEPTOR_PROVIDERS } from './interсeptors/providers';
 
 //components
@@ -31,17 +32,17 @@ import { LoaderComponent } from './components/loader/loader.component';
     ConfirmPopupComponent,
     LoaderComponent,
   ],
-  exports: [HeaderComponent, FooterComponent],
-
+  exports: [HeaderComponent, FooterComponent, BoardPopupComponent],
   imports: [
     CommonModule,
     HttpClientModule,
     RouterModule,
-    TranslocoRootModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     SharedModule,
+    TranslocoRootModule,
+    ReduxModule,
   ],
   providers: [INTERCEPTOR_PROVIDERS, LoaderService, ErrorMessagesService, ToggleScrollService],
 })

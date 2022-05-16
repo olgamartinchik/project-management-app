@@ -1,4 +1,4 @@
-<ng-container *ngIf="board">
+<ng-container *ngIf="board$ | async as board">
   <div class="board__heading">
     <h3 class="board__title">{{ board.title }}</h3>
 

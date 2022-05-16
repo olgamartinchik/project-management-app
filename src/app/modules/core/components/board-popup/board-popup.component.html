@@ -1,9 +1,9 @@
 <div
-  *ngIf="boardPopupService.isBoardPopupOpen$ | async as boardPopup"
+  *ngIf="boardPopupService.boardPopupSubject$ | async as boardPopup"
   [class]="{ overlay: true, visible: boardPopup.isOpen }"
   (click)="closePopup()"
 >
-  <form class="form" (click)="stopPropagation($event)" [formGroup]="boardForm">
+  <form class="board-popup__form" (click)="stopPropagation($event)" [formGroup]="boardForm">
     <label class="board-popup__label">
       <input
         class="board-popup__input"
@@ -32,7 +32,12 @@
       </p>
     </label>
 
-    <button type="submit" class="button" [disabled]="boardForm.invalid" (click)="submit()">
+    <button
+      type="submit"
+      class="board-popup__button"
+      [disabled]="boardForm.invalid"
+      (click)="submit()"
+    >
       {{
         (boardPopup.popupFunction === 'create' ? 'mainPage.createBtn' : 'boardPage.editBtn')
           | transloco

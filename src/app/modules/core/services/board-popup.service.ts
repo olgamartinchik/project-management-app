@@ -9,17 +9,17 @@ import { BOARD_POPUP_SERVICE_INITIAL_VALUE } from '../constants/board-popup.serv
   providedIn: 'root',
 })
 export class BoardPopupService {
-  public isBoardPopupOpen$ = new BehaviorSubject(BOARD_POPUP_SERVICE_INITIAL_VALUE);
+  public boardPopupSubject$ = new BehaviorSubject(BOARD_POPUP_SERVICE_INITIAL_VALUE);
 
   constructor(private toggleScrollService: ToggleScrollService) {}
 
   public open(popupFunction: PopupFunction): void {
-    this.isBoardPopupOpen$.next({ isOpen: true, popupFunction });
+    this.boardPopupSubject$.next({ isOpen: true, popupFunction });
     this.toggleScrollService.hiddenScroll();
   }
 
   public close(): void {
-    this.isBoardPopupOpen$.next({ isOpen: false, popupFunction: 'create' });
+    this.boardPopupSubject$.next({ isOpen: false, popupFunction: 'create' });
     this.toggleScrollService.showScroll();
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
-import { PASSWORD_REGEXP } from '../../constants/validation.service.constants';
+import { PASSWORD_REGEXP } from '../constants/validation.service.constants';
 
 @Injectable()
 export class ValidationService {

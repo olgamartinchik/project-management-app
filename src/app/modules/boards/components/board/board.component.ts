@@ -1,11 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit,
-  ChangeDetectorRef,
-} from '@angular/core';
-import { Subscription } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { BoardService } from '../../services/board.service';
 import { BoardPopupService } from 'src/app/modules/core/services/board-popup.service';
@@ -18,30 +12,15 @@ import { BoardModel } from '../../../core/models/board.model';
   styleUrls: ['./board.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BoardComponent implements OnInit, OnDestroy {
-  public board!: BoardModel;
+export class BoardComponent implements OnInit {
+  public board$!: Observable<BoardModel>;
 
   public isColumnPopupOpen = false;
 
-  private subscription: Subscription = new Subscription();
-
-  constructor(
-    private boardService: BoardService,
-    private boardPopupService: BoardPopupService,
-    private cdr: ChangeDetectorRef,
-  ) {}
+  constructor(private boardService: BoardService, private boardPopupService: BoardPopupService) {}
 
   public ngOnInit(): void {
-    this.subscription.add(
-      this.boardService.getBoardData().subscribe((board) => {
-        this.board = board;
-        this.cdr.markForCheck();
-      }),
-    );
-  }
-
-  public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.board$ = this.boardService.getBoardData();
   }
 
   public toggleColumnPopup(): void {
