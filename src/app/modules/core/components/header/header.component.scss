@@ -197,3 +197,12 @@
     color: colors.$text-hover;
   }
 }
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .search-btn {
+    cursor: pointer;
+  }
+}

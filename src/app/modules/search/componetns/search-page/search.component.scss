@@ -1,0 +1,21 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+@use '../../../shared/styles/components';
+:host {
+  height: components.$page-height;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.task-container {
+}
+.title {
+  text-align: center;
+  @include font.title;
+}
+.empty-result {
+  @include font.subtitle;
+  text-align: center;
+}

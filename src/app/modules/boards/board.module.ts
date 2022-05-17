@@ -1,3 +1,4 @@
+import { CoreModule } from './../core/core.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -36,6 +37,7 @@ import { TaskService } from './services/task.service';
     TranslocoRootModule,
     ReactiveFormsModule,
     SharedModule,
+    CoreModule,
   ],
   providers: [BoardService, ColumnService, ErrorMessagesService, TaskService],
 })

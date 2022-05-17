@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@a
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, take, takeUntil } from 'rxjs';
+import { TaskService } from 'src/app/modules/boards/services/task.service';
 import { FORM_ERROR_MESSAGES } from 'src/app/modules/core/constants/error-messages.constants';
 import { FormMessagesModel } from 'src/app/modules/core/models/error-messages.services.models';
 import { ITask } from 'src/app/modules/core/models/ITask.model';
@@ -11,7 +12,7 @@ import { ErrorMessagesService } from 'src/app/modules/core/services/error-messag
 import { taskSelect } from 'src/app/redux/selectors/tasks.selectors';
 import { usersSelect } from 'src/app/redux/selectors/users.selector';
 import { IAppState } from 'src/app/redux/state.model';
-import { TaskService } from '../../services/task.service';
+// import { TaskService } from '../../../boards/services/task.service';
 
 @Component({
   selector: 'app-edit-task-popup',

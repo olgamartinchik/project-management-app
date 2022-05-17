@@ -44,6 +44,13 @@
       {{ 'nav.account' | transloco }}
     </a>
   </nav>
+  <div class="search-container">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Search task</mat-label>
+      <input type="search" matInput placeholder="Enter task" [(ngModel)]="result" />
+    </mat-form-field>
+    <button class="search-btn" (click)="getSearchResult()">search</button>
+  </div>
 
   <button
     [class]="{ 'nav-burger-button': true, active: isNavOpen }"
