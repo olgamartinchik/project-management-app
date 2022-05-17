@@ -9,7 +9,7 @@ import {
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 // services
-import { ErrorMessagesService } from 'src/app/modules/core/services/error-messages/error-messages.service';
+import { ErrorMessagesService } from 'src/app/modules/core/services/error-messages.service';
 import { ColumnService } from '../../services/column.service';
 
 // models

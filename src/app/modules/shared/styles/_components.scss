@@ -16,7 +16,7 @@ $page-height: calc(100vh - $header-height - $footer-height);
 @mixin button-icon() {
   margin: 0;
   padding: 0;
-  background: transparent;
+  background-color: transparent;
   border: none;
   display: flex;
   cursor: pointer;

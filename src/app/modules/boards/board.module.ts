@@ -15,11 +15,13 @@ import { ColumnPopupComponent } from './components/column-popup/column-popup.com
 // services
 import { BoardService } from './services/board.service';
 import { ColumnService } from './services/column.service';
-import { ErrorMessagesService } from '../core/services/error-messages/error-messages.service';
+
 import { NewTaskPopupComponent } from './components/new-task/new-task-popup.component';
 import { TaskComponent } from './components/task/task.component';
 import { EditTaskPopupComponent } from './components/edit-task-popup/edit-task-popup.component';
 import { TaskService } from './services/task.service';
+
+import { ErrorMessagesService } from '../core/services/error-messages.service';
 
 @NgModule({
   declarations: [

@@ -7,7 +7,7 @@ import { FormMessagesModel } from 'src/app/modules/core/models/error-messages.se
 import { ITask } from 'src/app/modules/core/models/ITask.model';
 import { UserModel } from 'src/app/modules/core/models/user.model';
 import { ApiService } from 'src/app/modules/core/services/api.service';
-import { ErrorMessagesService } from 'src/app/modules/core/services/error-messages/error-messages.service';
+import { ErrorMessagesService } from 'src/app/modules/core/services/error-messages.service';
 import { taskSelect } from 'src/app/redux/selectors/tasks.selectors';
 import { usersSelect } from 'src/app/redux/selectors/users.selector';
 import { IAppState } from 'src/app/redux/state.model';

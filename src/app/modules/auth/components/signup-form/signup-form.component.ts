@@ -11,8 +11,8 @@ import { take } from 'rxjs';
 
 // services
 import { ApiService } from '../../../core/services/api.service';
-import { ValidationService } from '../../../core/services/validation/validation.service';
-import { ErrorMessagesService } from '../../../core/services/error-messages/error-messages.service';
+import { ValidationService } from '../../../core/services/validation.service';
+import { ErrorMessagesService } from '../../../core/services/error-messages.service';
 
 //models
 import { FormMessagesModel } from '../../../core/models/error-messages.services.models';

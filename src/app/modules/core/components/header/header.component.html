@@ -1,61 +1,21 @@
 <header class="header">
   <img
-    class="header-logo"
+    class="header__logo"
     alt="Angular Logo"
     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
   />
 
-  <nav [class]="{ nav: true, 'nav-open': isNavOpen }">
-    <a class="nav-link" routerLinkActive="active" routerLink="/main" rel="noopener" title="main">
-      {{ 'nav.mainPage' | transloco }}
-    </a>
+  <app-navbar></app-navbar>
 
-    <a
-      class="nav-link disabled"
-      routerLinkActive="active"
-      routerLink=""
-      rel="noopener"
-      title="start"
-    >
-      {{ 'nav.startPage' | transloco }}
-    </a>
+  <ng-container *ngIf="authService.isLoggedIn()">
+    <div class="header__new-board" (click)="openBoardPopup()">
+      {{ 'nav.createBoard' | transloco }}
+    </div>
+  </ng-container>
 
-    <a class="nav-link" routerLinkActive="active" routerLink="/auth" rel="noopener" title="auth">
-      {{ 'nav.enter' | transloco }}
-    </a>
-
-    <a
-      class="nav-link disabled"
-      routerLinkActive="active"
-      routerLink="/search"
-      rel="noopener"
-      title="search"
-    >
-      {{ 'nav.search' | transloco }}
-    </a>
-
-    <a
-      class="nav-link"
-      routerLinkActive="active"
-      routerLink="/account"
-      rel="noopener"
-      title="account"
-    >
-      {{ 'nav.account' | transloco }}
-    </a>
-  </nav>
-
-  <button
-    [class]="{ 'nav-burger-button': true, active: isNavOpen }"
-    (click)="isNavOpen = !isNavOpen"
-    type="button"
-  ></button>
-
-  <div class="new-board" (click)="openBoardPopup()">{{ 'nav.createBoard' | transloco }}</div>
-
-  <div class="settings-language">
+  <div class="header__settings-language">
     <input
-      class="radio-language"
+      class="header__radio-language"
       type="radio"
       name="language"
       id="ru"
@@ -64,10 +24,10 @@
       checked
       (change)="switchLang()"
     />
-    <label class="change-language" for="ru">RU</label>
+    <label class="header__change-language" for="ru">RU</label>
 
     <input
-      class="radio-language"
+      class="header__radio-language"
       type="radio"
       name="language"
       id="en"
@@ -75,10 +35,9 @@
       [(ngModel)]="lang"
       (change)="switchLang()"
     />
-    <label class="change-language" for="en">EN</label>
+    <label class="header__change-language" for="en">EN</label>
   </div>
-
-  <app-board-popup></app-board-popup>
-  <app-confirm-popup></app-confirm-popup>
-  <app-loader></app-loader>
 </header>
+
+<app-popup-container></app-popup-container>
+<app-loader></app-loader>

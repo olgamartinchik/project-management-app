@@ -1,35 +1,24 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { ToggleScrollService } from './toggle-scroll.service';
 import { ConfirmSubject } from '../models/confirm.service.model';
 import { CONFIRM_SERVICE_INITIAL_VALUE } from '../constants/confirm.service.constants';
 
 @Injectable({ providedIn: 'root' })
 export class ConfirmService {
-  public confirmSubject$ = new BehaviorSubject<ConfirmSubject>(CONFIRM_SERVICE_INITIAL_VALUE);
-
-  constructor(private toggleScrollService: ToggleScrollService) {}
+  public subject$ = new BehaviorSubject<ConfirmSubject>(CONFIRM_SERVICE_INITIAL_VALUE);
 
   public close(): void {
-    this.toggleScrollService.showScroll();
-    this.confirmSubject$.next({
-      deleteFunction: null,
-      isOpen: false,
-    });
+    this.subject$.next({ deleteFunction: null, isOpen: false });
   }
 
   public confirmDelete(): void {
-    if (typeof this.confirmSubject$.value.deleteFunction === 'function') {
-      this.confirmSubject$.value.deleteFunction();
+    if (typeof this.subject$.value.deleteFunction === 'function') {
+      this.subject$.value.deleteFunction();
     }
   }
 
   public open(deleteFunction: Function): void {
-    this.toggleScrollService.hiddenScroll();
-    this.confirmSubject$.next({
-      deleteFunction,
-      isOpen: true,
-    });
+    this.subject$.next({ deleteFunction, isOpen: true });
   }
 }

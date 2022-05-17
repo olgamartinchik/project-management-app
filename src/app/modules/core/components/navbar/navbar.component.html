@@ -1,0 +1,51 @@
+<nav [class]="{ nav: true, nav_open: isNavOpen }">
+  <ng-container *ngIf="authService.isLoggedIn()">
+    <a
+      class="nav__link"
+      routerLinkActive="active"
+      routerLink="/main"
+      rel="noopener"
+      title="main"
+      (click)="isNavOpen = false"
+      >{{ 'nav.mainPage' | transloco }}</a
+    >
+    <a
+      class="nav__link disabled"
+      routerLinkActive="active"
+      routerLink="/search"
+      rel="noopener"
+      title="search"
+      (click)="isNavOpen = false"
+      >{{ 'nav.search' | transloco }}</a
+    >
+    <a
+      class="nav__link"
+      routerLinkActive="active"
+      routerLink="/account"
+      rel="noopener"
+      title="account"
+      (click)="isNavOpen = false"
+      >{{ 'nav.account' | transloco }}</a
+    >
+    <a class="nav__link" (click)="isNavOpen = false" (click)="openPopupOutput()">{{
+      'nav.logout' | transloco
+    }}</a>
+  </ng-container>
+  <ng-container *ngIf="!authService.isLoggedIn()">
+    <a
+      class="nav__link nav__link_type_auth"
+      routerLinkActive="active"
+      routerLink="/auth"
+      rel="noopener"
+      title="auth"
+      (click)="isNavOpen = false"
+      >{{ 'nav.enter' | transloco }}</a
+    >
+  </ng-container>
+</nav>
+<app-output-popup *ngIf="isPopupOpen"></app-output-popup>
+<button
+  [class]="{ 'nav__burger-button': true, active: isNavOpen }"
+  (click)="isNavOpen = !isNavOpen"
+  type="button"
+></button>
