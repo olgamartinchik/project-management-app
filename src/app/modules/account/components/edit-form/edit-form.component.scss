@@ -7,46 +7,48 @@
   @include forms.form-block;
 }
 
-.account__form {
-  @include forms.form;
-}
-
-.account__label {
-  @include forms.label;
-}
-
-.account__input {
-  @include forms.input;
-}
-
-.confirm-password.ng-dirty {
-  &.invalid {
-    border-bottom: 2px solid colors.$invalid;
+.account {
+  &__form {
+    @include forms.form;
   }
-  &:not(.invalid) {
-    border-bottom: 2px solid colors.$valid;
+
+  &__label {
+    @include forms.label;
   }
-}
 
-.account__error-text {
-  @include forms.error-message;
-}
+  &__input {
+    @include forms.input;
+  }
 
-.account__error-text_place_form {
-  margin: 15px 0 0;
-  font-size: 20px;
-  line-height: 25px;
-}
+  &__input_type_pass-confirm.ng-dirty {
+    &.invalid {
+      border-bottom: 2px solid colors.$invalid;
+    }
+    &:not(.invalid) {
+      border-bottom: 2px solid colors.$valid;
+    }
+  }
 
-.account__recommend-list {
-  margin: 0;
-  padding: 0 0 0 20px;
-}
+  &__error-text {
+    @include forms.error-message;
+  }
 
-.account__recommend-item {
-  @include forms.recommend-message;
-}
+  &__error-text_place_form {
+    margin: 15px 0 0;
+    font-size: 20px;
+    line-height: 25px;
+  }
 
-.account__button {
-  @include forms.button;
+  &__recommend-list {
+    margin: 0;
+    padding: 0 0 0 20px;
+  }
+
+  &__recommend-item {
+    @include forms.recommend-message;
+  }
+
+  &__button {
+    @include forms.button;
+  }
 }

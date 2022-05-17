@@ -1,12 +1,10 @@
 {
   "nav": {
     "mainPage": "Главная страница",
-    "startPage": "Стартовая",
-    "workingBoard": "Рабочая доска",
     "enter": "Вход/Регистрация",
     "search": "Поиск",
-    "createBoard": "Новая доска",
     "account": "Личный кабинет",
+    "createBoard": "Новая доска",
     "logout": "Выход"
   },
   "welcomePage": {
@@ -30,14 +28,10 @@
     "infoSecondDeveloper": "Работала над версткой и дизайном, настроила роутинг,создала header и footer с навигацией, работала над приветственной страницей и страницей ошибки при переходе по неправильной ссылке."
   },
   "mainPage": {
-    "h1": "Ваши рабочие доски",
+    "title": "Ваши рабочие доски",
     "newBoard": "Создать доску",
-    "deleteBtn": "удалить",
-    "titleNewBoard": "Заголовок",
-    "createBtn": "Создать",
-    "errorRequired": "Пожалуйста, введите заголовок",
-    "errorMinLength": "Заголовок слишком короткий",
-    "errorMaxLength": "Заголовок слишком длинный"
+    "deleteBtn": "Удалить доску",
+    "createBtn": "Создать"
   },
   "errorPage": {
     "text": "Извините, страница не найдена!"
@@ -47,21 +41,25 @@
     "exit": "Выход",
     "cancel": "Отмена"
   },
-  "ConfirmPopup": {
-    "title": "Вы уверенны?",
+  "confirmPopup": {
+    "title": "Вы уверены?",
     "button": "Удалить"
   },
-  "BoardPage": {
+  "boardPopup": {
+    "titlePlaceholder": "Название",
+    "descriptionPlaceholder": "Описание"
+  },
+  "boardPage": {
     "addColBtn": "Добавить колонку",
-    "button": "Удалить",
-    "search": "Поиск"
+    "deleteBtn": "Удалить колонку",
+    "editBtn": "Редактировать"
   },
   "auth": {
     "loginLabel": "Вход",
     "signupLabel": "Регистрация",
+    "namePlaceholder": "Имя",
     "loginPlaceholder": "Логин",
     "passwordPlaceholder": "Пароль",
-    "namePlaceholder": "Имя",
     "confirmPasswordPlaceholder": "Подтвердите пароль",
     "loginButton": "Войти",
     "signupButton": "Зарегистрироваться"
@@ -94,6 +92,16 @@
     "bothCase": "сочетание прописных и строчных букв",
     "number": "сочетание цифр и букв",
     "specialChar": "включение по крайней мере одного специального символа, например, !@#?]"
+  },
+  "titleErrors": {
+    "required": "Пожалуйста введите название",
+    "minlength": "Название слишком короткое",
+    "maxlength": "Название слишком длинное"
+  },
+  "descriptionErrors": {
+    "required": "Пожалуйста введите описание",
+    "minlength": "Описание слишком короткое",
+    "maxlength": "Описание слишком длинное"
   },
   "commonErrors": {
     "pattern": "Используйте латинский алфавит, цифры и специальные символы",

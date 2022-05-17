@@ -1,0 +1,64 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+@use '../../../shared/styles/forms';
+@use '../../../shared/styles/components';
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 2;
+  left: -300%;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+
+  &.visible {
+    left: 0;
+  }
+}
+
+.popup {
+  max-width: 400px;
+  width: 100%;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  background-color: colors.$popup-color;
+  cursor: default;
+
+  &__label {
+    @include forms.label;
+  }
+
+  &__input {
+    @include forms.input;
+  }
+
+  &__error-text {
+    @include forms.error-message;
+  }
+
+  &__button {
+    margin: 40px 0 0;
+    width: 110px;
+    height: 40px;
+    border-radius: 5px;
+    border: 3px solid colors.$text-hover;
+    @include font.text;
+    transition: 0.3s ease-in-out;
+
+    &:not(:disabled):hover {
+      cursor: pointer;
+      color: colors.$main-color;
+      box-shadow: 0 0 40px 40px colors.$text-hover inset;
+    }
+  }
+}

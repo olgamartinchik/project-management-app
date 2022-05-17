@@ -22,4 +22,14 @@ export const FORM_ERROR_MESSAGES: FormMessagesModel = {
     forbidden: 'apiErrors.forbidden',
     conflict: 'apiErrors.conflict',
   },
+  title: {
+    required: 'titleErrors.required',
+    minlength: 'titleErrors.minlength',
+    maxlength: 'titleErrors.maxlength',
+  },
+  description: {
+    required: 'descriptionErrors.required',
+    minlength: 'descriptionErrors.minlength',
+    maxlength: 'descriptionErrors.maxlength',
+  },
 };

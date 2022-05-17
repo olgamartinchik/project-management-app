@@ -1,29 +1,27 @@
-import * as BoardActions from '../actions/board.actions';
 import { createReducer, on } from '@ngrx/store';
+import * as BoardActions from '../actions/board.actions';
 import { initialBoardState } from '../state.model';
 
 export const boardReducer = createReducer(
   initialBoardState,
-  //all boards
+
   on(BoardActions.setBoards, (state, { boards }) => {
     return { ...state, boards };
   }),
+
   on(BoardActions.updateAllBoards, (state) => {
     return { ...state };
   }),
-  on(BoardActions.getBoardsFailed, (state, { error }) => {
-    return { ...state, error };
-  }),
 
-  //board by id
-  on(BoardActions.getBoardById, (state, { boardById }) => {
-    return { ...state, boardById };
-  }),
+  on(BoardActions.updateBoard, (state, { board }) => {
+    let boards = [...state.boards];
 
-  on(BoardActions.setBoardById, (state, { idBoard }) => {
-    return { ...state, idBoard };
-  }),
-  on(BoardActions.getBoardByIdFailed, (state, { error }) => {
-    return { ...state, error };
+    if (state.boards.length === 0) {
+      boards.push(board);
+    } else {
+      boards = state.boards.map((el) => (el.id === board.id ? board : el));
+    }
+
+    return { ...state, boards };
   }),
 );

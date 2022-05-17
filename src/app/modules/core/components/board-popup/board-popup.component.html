@@ -1,36 +1,43 @@
-<div
-  class="overlay"
-  (click)="closePopup()"
-  [class]="{ visible: (boardService.isBoardPopup$ | async) }"
+<form
+  class="board-popup__form"
+  (click)="stopPropagation($event)"
+  [formGroup]="boardForm"
+  (ngSubmit)="submit()"
 >
-  <form class="form" (click)="stopPropagation($event)">
-    <div class="title-container">
-      <label for="title-board" class="title">{{ 'mainPage.titleNewBoard' | transloco }}</label>
-      <input type="text" class="input" id="title-board" [formControl]="title" required />
+  <label class="board-popup__label">
+    <input
+      class="board-popup__input"
+      formControlName="title"
+      type="text"
+      [placeholder]="'boardPopup.titlePlaceholder' | transloco"
+    />
+    <p class="board-popup__error-text">
+      {{ errorMessagesService.showMessages(boardForm, 'title', messages['title']) | transloco }}
+    </p>
+  </label>
 
-      <div
-        class="validate"
-        *ngIf="
-          title?.invalid &&
-          (title?.touched || title?.dirty) &&
-          (boardService.isBoardPopup$ | async) === true
-        "
-      >
-        <small *ngIf="title?.errors?.['required']">{{
-          'mainPage.errorRequired' | transloco
-        }}</small>
+  <label class="board-popup__label">
+    <textarea
+      class="board-popup__input board-popup__textarea"
+      formControlName="description"
+      type="text"
+      [placeholder]="'boardPopup.descriptionPlaceholder' | transloco"
+    >
+    </textarea>
+    <p class="board-popup__error-text">
+      {{
+        errorMessagesService.showMessages(boardForm, 'description', messages['description'])
+          | transloco
+      }}
+    </p>
+  </label>
 
-        <small *ngIf="title?.errors?.['minlength']">{{
-          'mainPage.errorMinLength' | transloco
-        }}</small>
-
-        <small *ngIf="title?.errors?.['maxlength']">{{
-          'mainPage.errorMaxLength' | transloco
-        }}</small>
-      </div>
-    </div>
-    <button type="submit" class="button" [disabled]="title!.invalid" (click)="createBoard()">
-      {{ 'mainPage.createBtn' | transloco }}
-    </button>
-  </form>
-</div>
+  <button type="submit" class="board-popup__button" [disabled]="boardForm.invalid">
+    {{
+      ((boardPopupService.subject$ | async)!.popupFunction === 'create'
+        ? 'mainPage.createBtn'
+        : 'boardPage.editBtn'
+      ) | transloco
+    }}
+  </button>
+</form>

@@ -1,22 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+// imports
 import { ManagementRoutingModule } from './management-routing.module';
-import { MainComponent } from './components/main/main.component';
-import { MainPageComponent } from './page/main-page/main-page.component';
 import { TranslocoRootModule } from '../transloco/transloco-root.module';
+import { SharedModule } from '../shared/shared.module';
+
+// components
+import { MainPageComponent } from './pages/main-page/main-page.component';
 import { BoardCardComponent } from './components/board-card/board-card.component';
-import { WelcomePageComponent } from './page/welcome-page/welcome-page.component';
-import { ErrorPageComponent } from './page/error-page/error-page.component';
+import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
+import { ErrorPageComponent } from './pages/error-page/error-page.component';
 
 @NgModule({
-  declarations: [
-    MainComponent,
-    MainPageComponent,
-    BoardCardComponent,
-    WelcomePageComponent,
-    ErrorPageComponent,
-  ],
-  exports: [MainComponent],
-  imports: [CommonModule, ManagementRoutingModule, TranslocoRootModule],
+  declarations: [MainPageComponent, BoardCardComponent, WelcomePageComponent, ErrorPageComponent],
+  imports: [CommonModule, ManagementRoutingModule, TranslocoRootModule, SharedModule],
 })
 export class ManagementModule {}

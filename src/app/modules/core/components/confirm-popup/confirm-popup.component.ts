@@ -11,13 +11,9 @@ import { ConfirmService } from '../../services/confirm.service';
 export class ConfirmPopupComponent {
   constructor(public confirmService: ConfirmService) {}
 
-  public closeConfirmPopup(): void {
-    this.confirmService.close();
-  }
-
   public confirm(): void {
     this.confirmService.confirmDelete();
-    this.closeConfirmPopup();
+    this.confirmService.close();
   }
 
   public stopPropagation(event: Event): void {

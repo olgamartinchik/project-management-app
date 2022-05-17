@@ -1,16 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
+// modules
 import { BoardRoutingModule } from './board-routing.module';
-
-import { SharedModule } from '../shared/shared.module';
-import { ColumnContainerComponent } from './component/column-container/column-container.component';
 import { TranslocoRootModule } from '../transloco/transloco-root.module';
-import { FormsModule } from '@angular/forms';
-import { BoardComponent } from './component/board-component/board.component';
+import { SharedModule } from '../shared/shared.module';
+
+// components
+import { BoardComponent } from '../boards/components/board/board.component';
+import { ColumnComponent } from '../boards/components/column/column.component';
+import { ColumnPopupComponent } from './components/column-popup/column-popup.component';
+
+// services
+import { BoardService } from './services/board.service';
+import { ColumnService } from './services/column.service';
+import { ErrorMessagesService } from '../core/services/error-messages.service';
 
 @NgModule({
-  declarations: [BoardComponent, ColumnContainerComponent],
-  imports: [CommonModule, FormsModule, BoardRoutingModule, SharedModule, TranslocoRootModule],
+  declarations: [BoardComponent, ColumnComponent, ColumnPopupComponent],
+  imports: [
+    CommonModule,
+    BoardRoutingModule,
+    TranslocoRootModule,
+    ReactiveFormsModule,
+    SharedModule,
+  ],
+  providers: [BoardService, ColumnService, ErrorMessagesService],
 })
 export class BoardModule {}

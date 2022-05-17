@@ -1,61 +1,103 @@
-import { Component } from '@angular/core';
-import { Validators, FormControl } from '@angular/forms';
-import { map, take } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { take, switchMap, Subscription, withLatestFrom, map } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { BoardService } from '../../services/board.service';
-import { ToggleScrollService } from '../../services/toggle-scroll.service';
-import { HttpService } from '../../services/http.service';
-import { IAppState } from 'src/app/redux/state.model';
-import { updateAllBoards } from 'src/app/redux/actions/board.actions';
+
+// services
+import { ApiService } from '../../services/api.service';
+import { BoardPopupService } from '../../services/board-popup.service';
+import { ErrorMessagesService } from '../../services/error-messages.service';
+
+// ngrx
+import { updateAllBoards, updateBoard } from '../../../../redux/actions/board.actions';
+import { selectBoardById } from '../../../../redux/selectors/board.selectors';
+
+// models
+import { IAppState } from '../../../../redux/state.model';
+import { FormMessagesModel } from '../../models/error-messages.services.models';
+
+// constants
+import { FORM_ERROR_MESSAGES } from '../../constants/error-messages.constants';
 
 @Component({
   selector: 'app-board-popup',
   templateUrl: './board-popup.component.html',
   styleUrls: ['./board-popup.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BoardPopupComponent {
-  public title!: FormControl;
+export class BoardPopupComponent implements OnInit, OnDestroy {
+  public boardForm!: FormGroup;
+
+  public messages: FormMessagesModel = FORM_ERROR_MESSAGES;
+
+  private subscription: Subscription = new Subscription();
 
   constructor(
-    public boardService: BoardService,
-    private httpService: HttpService,
-    private toggleScrollService: ToggleScrollService,
+    public boardPopupService: BoardPopupService,
+    public errorMessagesService: ErrorMessagesService,
+    private fb: FormBuilder,
+    private apiService: ApiService,
     private store: Store<IAppState>,
-  ) {
+  ) {}
+
+  public ngOnInit(): void {
     this.createForm();
+
+    this.subscription = this.boardPopupService.subject$
+      .pipe(
+        withLatestFrom(this.store.select(selectBoardById)),
+        map(([{ popupFunction }, board]) => {
+          if (popupFunction === 'edit') {
+            this.boardForm.setValue({ title: board!.title, description: board!.description });
+          }
+        }),
+      )
+      .subscribe();
   }
 
-  private createForm(): void {
-    this.title = new FormControl('', [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(100),
-    ]);
-  }
-
-  public closePopup(): void {
-    this.boardService.isBoardPopup$.next(false);
-    this.toggleScrollService.showScroll();
-    this.title?.reset();
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   public stopPropagation(event: Event): void {
     event.stopPropagation();
   }
 
-  public createBoard(): void {
-    this.boardService.isBoardPopup$.next(false);
-    this.httpService
-      .postBoard({ title: this.title?.value })
-      .pipe(
-        take(1),
-        map(() => {
-          this.store.dispatch(updateAllBoards());
-        }),
-      )
-      .subscribe();
+  public submit(): void {
+    if (this.boardPopupService.subject$.value.popupFunction === 'create') {
+      this.createBoard();
+    } else {
+      this.editBoard();
+    }
 
-    this.toggleScrollService.showScroll();
-    this.title?.reset();
+    this.boardPopupService.close();
+  }
+
+  private createForm(): void {
+    this.boardForm = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(300)]],
+    });
+  }
+
+  private createBoard(): void {
+    this.apiService
+      .postBoard(this.boardForm.value)
+      .pipe(take(1))
+      .subscribe(() => this.store.dispatch(updateAllBoards()));
+  }
+
+  private editBoard(): void {
+    this.store
+      .select(selectBoardById)
+      .pipe(
+        switchMap((board) => {
+          return this.apiService.updateBoard(board!.id!, this.boardForm.value);
+        }),
+        take(1),
+      )
+      .subscribe((updatedBoard) => {
+        this.store.dispatch(updateBoard({ board: updatedBoard }));
+      });
   }
 }

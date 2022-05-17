@@ -1,0 +1,96 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+@use '../../../shared/styles/components';
+
+:host {
+  height: components.$page-height;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.board {
+  &__heading {
+    margin: 0 0 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  &__title {
+    margin: 0 0 10px;
+    @include font.title;
+  }
+
+  &__description {
+    max-width: 80%;
+    margin: 0;
+    @include font.text(20px, 22px);
+  }
+
+  &__edit {
+    @include components.button-icon;
+    position: absolute;
+    top: calc(50% - 25px);
+    right: 20px;
+
+    & > mat-icon {
+      @include components.mat-icon(50px, colors.$text-color);
+    }
+  }
+
+  &__columns-container {
+    height: 100%;
+    padding: 0 0 10px;
+    display: grid;
+    grid-template: 100% / repeat(auto-fit, 280px);
+    grid-auto-flow: column;
+    grid-auto-columns: 280px;
+    gap: 20px;
+    overflow-y: hidden;
+    overflow-x: auto;
+
+    @include components.scrollbar(colors.$disabled-bg, colors.$disabled-text);
+
+    &::-webkit-scrollbar {
+      width: 20px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 100px;
+      border: 5px solid transparent;
+    }
+  }
+
+  &__add-column {
+    width: 160px;
+    height: 40px;
+    border-radius: 5px;
+    border: 3px solid colors.$text-hover;
+    @include font.text;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      color: colors.$main-color;
+      box-shadow: 0 0 40px 40px colors.$text-hover inset;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .board {
+    &__title {
+      font-size: 20px;
+    }
+
+    &__edit {
+      position: relative;
+      top: 0;
+      right: 0;
+    }
+  }
+}

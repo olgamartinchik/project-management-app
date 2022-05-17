@@ -1,12 +1,10 @@
 {
   "nav": {
     "mainPage": "Main page",
-    "startPage": "Start page",
-    "workingBoard": "Working board",
-    "enter": "sign in/login",
+    "enter": "Signin/login",
     "search": "Search",
-    "createBoard": "Create board",
     "account": "Personal account",
+    "createBoard": "Create board",
     "logout": "Logout"
   },
   "welcomePage": {
@@ -29,33 +27,32 @@
     "infoFirstDeveloper": "Set up the Backend and all the work with it, implemented the main page, connected the Trensloco library, worked on the project management page, participated in the development of the project design.",
     "infoSecondDeveloper": "Worked on layout and design, set up routing, created a header and footer with navigation, worked on a welcome page and an error page when clicking on a wrong link."
   },
+  "mainPage": {
+    "title": "Your work board",
+    "newBoard": "Create board",
+    "deleteBtn": "Delete board",
+    "createBtn": "Create"
+  },
   "errorPage": {
     "text": "Sorry, page not found!"
-  },
-  "mainPage": {
-    "h1": "Your work board",
-    "newBoard": "Create board",
-    "deleteBtn": "delete",
-    "titleNewBoard": "Title",
-    "createBtn": "Create",
-    "errorRequired": "Please enter a title",
-    "errorMinLength": "The title is too short",
-    "errorMaxLength": "The title is too long"
   },
   "OutputPopup": {
     "title": "Are you sure you want to exit?",
     "exit": "Exit",
     "cancel": "Cancel"
   },
-  "ConfirmPopup": {
+  "confirmPopup": {
     "title": "Are you sure?",
     "button": "Delete"
   },
-  "BoardPage": {
+  "boardPopup": {
+    "titlePlaceholder": "Title",
+    "descriptionPlaceholder": "Description"
+  },
+  "boardPage": {
     "addColBtn": "Add column",
-    "button": "Delete",
-    "enter": "Signup/login",
-    "search": "Search"
+    "deleteBtn": "Delete column",
+    "editBtn": "Edit"
   },
   "auth": {
     "loginLabel": "Login",
@@ -95,6 +92,16 @@
     "bothCase": "a mixture of both uppercase and lowercase letters",
     "number": "a mixture of letters and numbers",
     "specialChar": "inclusion of at least one special character, e.g., !@#?]"
+  },
+  "titleErrors": {
+    "required": "Please enter a title",
+    "minlength": "The title is too short",
+    "maxlength": "The title is too long"
+  },
+  "descriptionErrors": {
+    "required": "Please enter a description",
+    "minlength": "The description is too short",
+    "maxlength": "The description is too long"
   },
   "commonErrors": {
     "pattern": "Use only latin letters, numbers and special characters",

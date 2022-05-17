@@ -8,7 +8,7 @@ import {
   HttpStatusCode,
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class HeadersInterceptor implements HttpInterceptor {

@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AuthGuard } from './modules/core/guards/auth.guard';
-import { WelcomePageComponent } from './modules/management/page/welcome-page/welcome-page.component';
 import { WelcomeGuard } from './modules/core/guards/welcome.guard';
-import { ErrorPageComponent } from './modules/management/page/error-page/error-page.component';
+
+import { WelcomePageComponent } from './modules/management/pages/welcome-page/welcome-page.component';
+import { ErrorPageComponent } from './modules/management/pages/error-page/error-page.component';
 
 const routes: Routes = [
   {

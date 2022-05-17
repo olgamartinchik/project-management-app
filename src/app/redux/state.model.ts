@@ -1,21 +1,15 @@
-import { IBoard } from '../modules/core/models/IBoard.model';
+import { BoardModel } from '../modules/core/models/board.model';
 
-export interface IBoardState {
-  boards: IBoard[];
-  boardById: IBoard;
-  idBoard: string;
-  error: Error | null;
+export interface BoardModelState {
+  boards: BoardModel[];
 }
 
-export const initialBoardState: IBoardState = {
+export const initialBoardState: BoardModelState = {
   boards: [],
-  boardById: {} as IBoard,
-  idBoard: '',
-  error: null,
 };
 
 export interface IAppState {
-  boardState: IBoardState;
+  boardState: BoardModelState;
 }
 export const initialAppState: IAppState = {
   boardState: initialBoardState,

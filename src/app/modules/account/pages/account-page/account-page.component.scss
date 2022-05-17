@@ -1,8 +1,9 @@
 @use '../../../shared/styles/colors';
 @use '../../../shared/styles/font';
+@use '../../../shared/styles/components';
 
 :host {
-  min-height: calc(100vh - 130px);
+  min-height: components.$page-height;
   padding: 40px 20px;
   display: flex;
   flex-direction: column;

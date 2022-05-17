@@ -1,11 +1,12 @@
 @use '../../../shared/styles/colors';
 @use '../../../shared/styles/font';
+@use '../../../shared/styles/components';
 
 :host {
   display: flex;
   align-items: center;
   position: sticky;
-  height: 70px;
+  height: components.$header-height;
   top: -30px;
   background-color: colors.$header-color;
   z-index: 1000;
@@ -15,6 +16,7 @@
 app-navbar {
   width: 70%;
 }
+
 .header {
   max-width: 1440px;
   width: 100%;
@@ -25,57 +27,94 @@ app-navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
 
-.header-logo {
-  width: 40px;
-}
-
-.settings-language {
-  display: flex;
-  align-items: center;
-}
-
-.change-language {
-  background: #56565666;
-  border-radius: 5px;
-  padding: 5px;
-  margin: 0 10px 0 0;
-  cursor: pointer;
-  @include font.subtitle;
-
-  &:hover {
-    color: colors.$text-hover;
+  &__logo {
+    width: 40px;
   }
 
-  &:last-of-type {
-    margin: 0;
+  &__settings-language {
+    display: flex;
+    align-items: center;
+    position: relative;
   }
-}
 
-.radio-language {
-  height: 0;
-  width: 0;
-  visibility: hidden;
-  position: absolute;
-  top: 0;
-  color: colors.$accent-color;
+  &__change-language {
+    background: #56565666;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 0 10px 0 0;
+    cursor: pointer;
+    @include font.subtitle;
 
-  &:checked + .change-language {
+    &:hover {
+      color: colors.$text-hover;
+    }
+
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+
+  &__radio-language {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
     color: colors.$accent-color;
+
+    &:checked + .header__change-language {
+      color: colors.$accent-color;
+    }
+  }
+
+  &__new-board {
+    @include font.text;
+    color: colors.$text-link;
+    transition: 0.4s ease-in-out;
+    cursor: pointer;
+    user-select: none;
+    margin: 0 10px;
+    text-align: center;
+    &:hover {
+      text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+      color: colors.$text-hover;
+    }
   }
 }
 
-.new-board {
-  @include font.text;
-  color: colors.$text-link;
-  transition: 0.4s ease-in-out;
-  cursor: pointer;
-  user-select: none;
-  margin: 0 10px;
-  text-align: center;
-  &:hover {
-    text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
-    color: colors.$text-hover;
+@media screen and (max-width: 1024px) {
+  .nav__link {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+@media screen and (max-width: 870px) {
+  .nav {
+    width: 100%;
+    padding: 10px 0;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: -100vh;
+    left: 0;
+    background-color: colors.$header-color;
+    transition: 0.6s ease-in-out;
+    opacity: 0;
+
+    &.nav_open {
+      top: 60px;
+      opacity: 1;
+    }
+
+    &__link {
+      margin: 0 0 10px;
+      @include font.subtitle;
+    }
+
+    &__burger-button {
+      display: block;
+    }
   }
 }

@@ -3,12 +3,12 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 // sevices
-import { ApiService } from '../../../core/services/api/api.service';
-import { AuthService } from '../../../core/services/auth/auth.service';
+import { ApiService } from '../../../core/services/api.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { ConfirmService } from '../../../core/services/confirm.service';
 
 // models
-import { UserModel } from '../../../core/models/api.service.models';
+import { UserModel } from '../../../core/models/user.model';
 
 @Component({
   selector: 'app-account-page',
