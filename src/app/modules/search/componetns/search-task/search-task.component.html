@@ -1,6 +1,16 @@
-<div class="search-task">
-  <h3>Title:</h3>
-  <p>Description:</p>
-  <p>Order:</p>
-  <p>User:</p>
-</div>
+<a class="search-task" routerLink="/board/{{ task.boardId }}">
+  <h3 class="subtitle">
+    {{ 'searchPage.title' | transloco }}: <span class="search-text">{{ task.title }}</span>
+  </h3>
+  <p class="subtitle">
+    {{ 'searchPage.description' | transloco }}:
+    <span class="search-text">{{ task.description }}</span>
+  </p>
+  <p class="subtitle">
+    {{ 'searchPage.order' | transloco }}: <span class="search-text">{{ task.order }}</span>
+  </p>
+  <p class="subtitle">
+    {{ 'searchPage.user' | transloco }}:
+    <span class="search-text">{{ usersService.getUser(task.userId) }}</span>
+  </p>
+</a>

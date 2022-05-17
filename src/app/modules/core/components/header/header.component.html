@@ -46,10 +46,15 @@
   </nav>
   <div class="search-container">
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Search task</mat-label>
-      <input type="search" matInput placeholder="Enter task" [(ngModel)]="result" />
+      <mat-label>{{ 'nav.searchTask' | transloco }}</mat-label>
+      <input
+        type="search"
+        matInput
+        placeholder="{{ 'nav.placeholder' | transloco }}"
+        [(ngModel)]="inputValue"
+      />
     </mat-form-field>
-    <button class="search-btn" (click)="getSearchResult()">search</button>
+    <button class="search-btn" (click)="getSearchResult()">{{ 'nav.search' | transloco }}</button>
   </div>
 
   <button

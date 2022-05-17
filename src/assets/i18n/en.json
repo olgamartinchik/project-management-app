@@ -5,7 +5,9 @@
     "enter": "Signin/login",
     "search": "Search",
     "account": "Personal account",
-    "createBoard": "Create board"
+    "createBoard": "Create board",
+    "searchTask": "Search task",
+    "placeholder": "task description order name"
   },
   "mainPage": {
     "title": "Your work board",
@@ -102,5 +104,13 @@
 
   "userIdErrors": {
     "required": "Please select user"
+  },
+  "searchPage": {
+    "result": "Search result",
+    "emptySearch": "Sorry, no matches",
+    "title": "Title",
+    "description": "Description",
+    "order": "Order",
+    "user": "user"
   }
 }

@@ -5,7 +5,8 @@ import { BoardPopupService } from 'src/app/modules/core/services/board-popup.ser
 
 import { LangModel } from '../../models/lang.model';
 import { SearchService } from '../../services/search.service';
-import { take } from 'rxjs';
+
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-header',
@@ -18,13 +19,14 @@ export class HeaderComponent {
 
   public lang: LangModel = 'ru';
 
-  public result = '';
+  public inputValue = '';
 
   constructor(
     private translocoService: TranslocoService,
     private boardPopupService: BoardPopupService,
     private router: Router,
     private searchService: SearchService,
+    private usersService: UsersService,
   ) {}
 
   public switchLang(): void {
@@ -36,14 +38,14 @@ export class HeaderComponent {
   }
 
   public getSearchResult(): void {
-    console.log('result', this.result);
-    if (this.result.trim() !== '') {
-      // this.searchService.getSearchTask(this.result.toLocaleLowerCase().trim());
+    if (this.inputValue.trim() !== '') {
+      // this.searchService.getSearchTask(this.inputValue.toLocaleLowerCase().trim());
       this.router.navigate(['/search']);
-      this.result = '';
-      this.searchService.tasks$.pipe(take(1)).subscribe((data) => {
-        console.log('data', data);
-      });
+      this.inputValue = '';
+
+      this.usersService.getAllUsers();
+
+      this.searchService.getData(this.inputValue.toLocaleLowerCase().trim());
     }
   }
 }

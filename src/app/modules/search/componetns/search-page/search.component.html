@@ -1,9 +1,12 @@
 <div class="task-container">
-  <h3 class="title">Результат поиска</h3>
-  <div class="task-container">
-    <p class="empty-result">Извините, нет совпадений</p>
-  </div>
-  <div>
-    <app-search-task></app-search-task>
+  <h3 class="title">{{ 'searchPage.result' | transloco }}</h3>
+  <div class="task-content">
+    <app-search-task
+      *ngFor="let task of searchService.tasks$ | async"
+      [task]="task"
+    ></app-search-task>
+    <ng-container *ngIf="(searchService.tasks$ | async)!.length === 0">
+      <p class="empty-result">{{ 'searchPage.emptySearch' | transloco }} :(</p>
+    </ng-container>
   </div>
 </div>

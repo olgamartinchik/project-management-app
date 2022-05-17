@@ -1,14 +1,48 @@
 @use '../../../shared/styles/colors';
 @use '../../../shared/styles/font';
 @use '../../../shared/styles/components';
+:host {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .search-task {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  padding: 10px;
+  margin: 15px 5px;
+  max-width: 500px;
   width: 100%;
   background-color: colors.$main-color;
   min-height: 40px;
   box-shadow: 0 1px 0 #091e4240;
+  text-decoration: none;
+  opacity: 0.8;
   cursor: pointer;
-  transition: 0.4s ease-in-out;
+  transition: 0.3s ease-in-out;
   &:hover {
-    box-shadow: 1px 1px 1px #091e4240;
+    opacity: 1;
+    box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.3), 0 1px 0px rgba(0, 0, 0, 0.1);
+    .subtitle {
+      color: colors.$text-hover;
+    }
+    .search-text {
+      color: colors.$text-color;
+    }
+  }
+  .subtitle {
+    @include font.subtitle;
+    font-size: 18px;
+    margin: 5px 0;
+    transition: 0.3s ease-in-out;
+    .search-text {
+      font-weight: normal;
+      font-style: italic;
+    }
   }
 }
