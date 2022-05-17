@@ -1,0 +1,14 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+@use '../../../shared/styles/components';
+.search-task {
+  width: 100%;
+  background-color: colors.$main-color;
+  min-height: 40px;
+  box-shadow: 0 1px 0 #091e4240;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+  &:hover {
+    box-shadow: 1px 1px 1px #091e4240;
+  }
+}

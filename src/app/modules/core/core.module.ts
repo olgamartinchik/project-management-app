@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //modules
 import { SharedModule } from '../shared/shared.module';
@@ -40,7 +40,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     TranslocoRootModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
+    // BrowserAnimationsModule,
     SharedModule,
   ],
   providers: [INTERCEPTOR_PROVIDERS, LoaderService, ErrorMessagesService, ToggleScrollService],
