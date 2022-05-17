@@ -46,7 +46,8 @@
       @include components.mat-icon(50px, colors.$text-hover);
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       & > mat-icon {
         color: colors.$accent-color;
       }

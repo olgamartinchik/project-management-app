@@ -21,8 +21,10 @@ $page-height: calc(100vh - $header-height - $footer-height);
   display: flex;
   cursor: pointer;
   transition: 0.4s ease-in-out;
+  outline: none;
 
-  &:hover {
+  &:hover,
+  &:focus {
     text-shadow: 5px 5px 3px rgb(0, 0, 0, 0.5);
   }
 }
