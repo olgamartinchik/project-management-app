@@ -27,18 +27,29 @@
 
   &__description {
     max-width: 80%;
-    margin: 0;
+    margin: 0 0 10px;
     @include font.text(20px, 22px);
   }
 
-  &__edit {
+  &__button-row {
+    display: flex;
+  }
+
+  &__button {
     @include components.button-icon;
-    position: absolute;
-    top: calc(50% - 25px);
-    right: 20px;
+
+    &:first-of-type {
+      margin: 0 20px 0 0;
+    }
 
     & > mat-icon {
-      @include components.mat-icon(50px, colors.$text-color);
+      @include components.mat-icon(50px, colors.$text-hover);
+    }
+
+    &:hover {
+      & > mat-icon {
+        color: colors.$accent-color;
+      }
     }
   }
 
@@ -64,33 +75,22 @@
       border: 5px solid transparent;
     }
   }
-
-  &__add-column {
-    width: 160px;
-    height: 40px;
-    border-radius: 5px;
-    border: 3px solid colors.$text-hover;
-    @include font.text;
-    transition: 0.3s ease-in-out;
-    cursor: pointer;
-
-    &:hover {
-      color: colors.$main-color;
-      box-shadow: 0 0 40px 40px colors.$text-hover inset;
-    }
-  }
 }
 
+@include components.dran-and-drop('.board__columns-container', 'app-column');
+
 @media screen and (max-width: 768px) {
+  :host {
+    height: calc(100vh - 70px - 142px);
+  }
+
   .board {
     &__title {
       font-size: 20px;
     }
 
-    &__edit {
-      position: relative;
-      top: 0;
-      right: 0;
+    &__description {
+      max-width: 100%;
     }
   }
 }

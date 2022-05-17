@@ -16,6 +16,7 @@ import { ColumnPopupComponent } from './components/column-popup/column-popup.com
 import { BoardService } from './services/board.service';
 import { ColumnService } from './services/column.service';
 import { ErrorMessagesService } from '../core/services/error-messages.service';
+import { DragDropService } from './services/drag-drop.service';
 
 @NgModule({
   declarations: [BoardComponent, ColumnComponent, ColumnPopupComponent],
@@ -26,6 +27,6 @@ import { ErrorMessagesService } from '../core/services/error-messages.service';
     ReactiveFormsModule,
     SharedModule,
   ],
-  providers: [BoardService, ColumnService, ErrorMessagesService],
+  providers: [BoardService, ColumnService, ErrorMessagesService, DragDropService],
 })
 export class BoardModule {}
