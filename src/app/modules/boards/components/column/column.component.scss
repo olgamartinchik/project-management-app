@@ -66,17 +66,17 @@
   position: sticky;
   top: 5px;
   padding: 5px;
-  background-color: colors.$disabled-bg;
+  background-color: colors.$task-btn;
   @include font.text;
   font-size: 20px;
   width: 100%;
   text-align: end;
-  z-index: 999;
+  z-index: 1;
   text-align: center;
   cursor: pointer;
   transition: 0.4s ease-in-out;
   &:hover {
-    background-color: colors.$hover-btn;
+    background-color: colors.$popup-color;
     color: colors.$main-color;
   }
 }
