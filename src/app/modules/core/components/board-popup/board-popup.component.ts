@@ -18,6 +18,7 @@ import { FormMessagesModel } from '../../models/error-messages.services.models';
 
 // constants
 import { FORM_ERROR_MESSAGES } from '../../constants/error-messages.constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-board-popup',
@@ -38,6 +39,7 @@ export class BoardPopupComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private apiService: ApiService,
     private store: Store<IAppState>,
+    private router: Router,
   ) {}
 
   public ngOnInit(): void {
@@ -85,6 +87,7 @@ export class BoardPopupComponent implements OnInit, OnDestroy {
       .postBoard(this.boardForm.value)
       .pipe(take(1))
       .subscribe(() => this.store.dispatch(updateAllBoards()));
+    this.router.navigate(['main']);
   }
 
   private editBoard(): void {

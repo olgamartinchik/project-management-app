@@ -1,6 +1,7 @@
 @use '../../../shared/styles/colors';
 @use '../../../shared/styles/font';
 @use '../../../shared/styles/components';
+@use '../../../shared/styles/forms';
 
 :host {
   min-height: components.$page-height;
@@ -15,6 +16,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  &__sorts {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
 
   &__title {
     margin: 0;
@@ -46,6 +54,10 @@
       color: colors.$text-hover;
     }
   }
+}
+
+.auth__button {
+  @include forms.button;
 }
 
 @media screen and (max-width: 320px) {

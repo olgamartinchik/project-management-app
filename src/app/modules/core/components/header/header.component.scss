@@ -7,7 +7,7 @@
   align-items: center;
   position: sticky;
   height: components.$header-height;
-  top: -30px;
+  top: -9px;
   background-color: colors.$header-color;
   z-index: 1000;
   justify-content: center;
@@ -30,6 +30,7 @@ app-navbar {
 
   &__logo {
     width: 40px;
+    padding-right: 10px;
   }
 
   &__settings-language {

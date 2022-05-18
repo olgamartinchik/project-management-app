@@ -23,6 +23,10 @@ import { IAppState } from '../../../../redux/state.model';
 export class MainPageComponent implements OnInit {
   public allBoards$: Observable<BoardModel[]> = this.store.select(boardsSelect);
 
+  public isUpBtn = false;
+
+  public isDownBtn = false;
+
   constructor(
     public boardPopupService: BoardPopupService,
     private apiService: ApiService,
@@ -40,5 +44,21 @@ export class MainPageComponent implements OnInit {
 
   public openBoardPopup(): void {
     this.boardPopupService.open('create');
+  }
+
+  public changeBtnUp(): void {
+    this.isUpBtn = !this.isUpBtn;
+  }
+
+  public changeBtnDown(): void {
+    this.isDownBtn = !this.isDownBtn;
+  }
+
+  public get textToFilter(): boolean {
+    return this.isUpBtn;
+  }
+
+  public get textToFiltert(): boolean {
+    return this.isDownBtn;
   }
 }
