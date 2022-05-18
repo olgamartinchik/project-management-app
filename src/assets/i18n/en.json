@@ -31,7 +31,10 @@
     "title": "Your work board",
     "newBoard": "Create board",
     "deleteBtn": "Delete board",
-    "createBtn": "Create"
+    "createBtn": "Create",
+    "titleSort": "Sorting:",
+    "sortUp": "alphabetically from A to Z",
+    "sortDown": "alphabetically from Z to A"
   },
   "errorPage": {
     "text": "Sorry, page not found!"

@@ -18,10 +18,12 @@
   align-items: center;
 
   &__sorts {
-    width: 50%;
+    width: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
     flex-direction: row;
+    margin-top: 20px;
   }
 
   &__title-sort {
@@ -32,9 +34,8 @@
 
   &__button {
     @include forms.button;
-    margin: 0;
+    margin: 0 0 0 10px;
   }
-
 
   &__title {
     margin: 0;
