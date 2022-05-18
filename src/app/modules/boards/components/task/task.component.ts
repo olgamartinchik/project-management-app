@@ -27,7 +27,7 @@ export class TaskComponent {
 
   @Input() public columnId!: string;
 
-  private users: Observable<UserModel[]> = this.store.select(usersSelect);
+  private users$: Observable<UserModel[]> = this.store.select(usersSelect);
 
   public userName!: string;
 
@@ -40,7 +40,7 @@ export class TaskComponent {
   ) {}
 
   public getUser(userId: string): string {
-    this.users
+    this.users$
       .pipe(
         take(1),
         map((users) => users.find((user) => user.id === userId)),
@@ -52,7 +52,8 @@ export class TaskComponent {
   }
 
   public openPopupEditTask(): void {
-    this.taskService.isEditTaskPopup$.next(true);
+    this.taskService.newTask$.next(false);
+    this.taskService.isTaskPopup$.next(true);
     this.taskService.columnId = this.columnId;
     this.store.dispatch(setTask({ task: this.task }));
   }

@@ -1,6 +1,6 @@
 <div
   class="overlay"
-  [class]="{ visible: (taskService.isNewTaskPopup$ | async) }"
+  [class]="{ visible: (taskService.isTaskPopup$ | async) }"
   (click)="closePopup()"
 >
   <form
@@ -18,9 +18,9 @@
         formControlName="title"
         placeholder="{{ 'boardPage.tittleTask' | transloco }}"
       />
-      <div class="validate">
+      <p class="validate">
         {{ errorMessagesService.showMessages(taskForm, 'title', messages['title']) | transloco }}
-      </div>
+      </p>
 
       <textarea
         type="text"
@@ -29,12 +29,12 @@
         formControlName="description"
         placeholder="{{ 'boardPage.descriptionTask' | transloco }}"
       ></textarea>
-      <div class="validate">
+      <p class="validate">
         {{
           errorMessagesService.showMessages(taskForm, 'description', messages['description'])
             | transloco
         }}
-      </div>
+      </p>
       <mat-form-field appearance="fill">
         <mat-label>{{ 'boardPage.performers' | transloco }}</mat-label>
         <mat-select formControlName="userId">
@@ -43,10 +43,14 @@
           }}</mat-option>
         </mat-select>
       </mat-form-field>
-      <div class="validate">
+      <p class="validate">
         {{ errorMessagesService.showMessages(taskForm, 'userId', messages['userId']) | transloco }}
-      </div>
+      </p>
+      <mat-checkbox *ngIf="!isNewTask" class="example-margin title" formControlName="done">{{
+        'editTask.done' | transloco
+      }}</mat-checkbox>
     </div>
+
     <button class="button" [disabled]="taskForm.invalid">
       {{ 'boardPage.newTaskBtn' | transloco }}
     </button>

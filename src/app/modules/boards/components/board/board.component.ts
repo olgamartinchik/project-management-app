@@ -44,7 +44,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       this.board = board;
       this.cdr.markForCheck();
     });
-    this.usersService.getAllUsers();
+    this.usersService.initAllUsers();
   }
 
   public ngOnDestroy(): void {

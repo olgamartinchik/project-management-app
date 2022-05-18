@@ -13,7 +13,7 @@ import { ApiService } from '../../core/services/api.service';
 export class UsersService {
   constructor(private store: Store<IAppState>, private apiService: ApiService) {}
 
-  public getAllUsers(): void {
+  public initAllUsers(): void {
     this.apiService
       .getAllUsers()
       .pipe()

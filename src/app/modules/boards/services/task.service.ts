@@ -7,9 +7,9 @@ import { BoardService } from './board.service';
 
 @Injectable()
 export class TaskService {
-  public isNewTaskPopup$ = new BehaviorSubject(false);
+  public newTask$ = new BehaviorSubject(true);
 
-  public isEditTaskPopup$ = new BehaviorSubject(false);
+  public isTaskPopup$ = new BehaviorSubject(false);
 
   public columnId!: string;
 
@@ -35,14 +35,16 @@ export class TaskService {
   }
 
   public updateTask(boardId: string, taskId: string, value: ITask, order: number): void {
-    const taskDate: ITask = {
+    console.log(value);
+
+    const taskData: ITask = {
       ...value,
       order,
       boardId,
       columnId: this.columnId,
     };
     this.apiService
-      .putTask(boardId, this.columnId, taskId, taskDate)
+      .putTask(boardId, this.columnId, taskId, taskData)
       .pipe(
         take(1),
         tap(() => {

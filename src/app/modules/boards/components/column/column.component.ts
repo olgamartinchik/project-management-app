@@ -68,7 +68,8 @@ export class ColumnComponent implements OnInit {
   }
 
   public addNewTask(): void {
-    this.taskService.isNewTaskPopup$.next(true);
+    this.taskService.newTask$.next(true);
+    this.taskService.isTaskPopup$.next(true);
     this.columnService.columnId = this.columnData.id!;
   }
 

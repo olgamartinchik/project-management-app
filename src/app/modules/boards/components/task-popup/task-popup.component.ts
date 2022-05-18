@@ -1,4 +1,4 @@
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, take, takeUntil } from 'rxjs';
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FORM_ERROR_MESSAGES } from 'src/app/modules/core/constants/error-messages.constants';
@@ -14,14 +14,16 @@ import { ColumnService } from '../../services/column.service';
 import { IAppState } from 'src/app/redux/state.model';
 import { Store } from '@ngrx/store';
 import { usersSelect } from 'src/app/redux/selectors/users.selector';
+import { ITask } from 'src/app/modules/core/models/ITask.model';
+import { taskSelect } from 'src/app/redux/selectors/tasks.selectors';
 
 @Component({
-  selector: 'app-new-task',
-  templateUrl: './new-task-popup.component.html',
-  styleUrls: ['./new-task-popup.component.scss'],
+  selector: 'app-task-popup',
+  templateUrl: './task-popup.component.html',
+  styleUrls: ['./task-popup.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewTaskPopupComponent implements OnInit, OnDestroy {
+export class TaskPopupComponent implements OnInit, OnDestroy {
   @Input() public boardId!: string;
 
   @Input() public columnData!: ColumnModel;
@@ -34,6 +36,10 @@ export class NewTaskPopupComponent implements OnInit, OnDestroy {
 
   private unsubscribe$: Subject<void> = new Subject<void>();
 
+  public editTask$: Observable<ITask> = this.store.select(taskSelect);
+
+  public isNewTask!: boolean;
+
   constructor(
     private fb: FormBuilder,
     public errorMessagesService: ErrorMessagesService,
@@ -45,18 +51,35 @@ export class NewTaskPopupComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.createForm();
+    this.taskService.newTask$.pipe(takeUntil(this.unsubscribe$)).subscribe((flag) => {
+      this.isNewTask = flag;
+      if (!flag) {
+        this.editTask$
+          .pipe(takeUntil(this.unsubscribe$))
+          .subscribe(({ title, description, done, userId }) => {
+            this.taskForm.setValue({
+              title,
+              description,
+              done,
+              userId,
+            });
+          });
+      }
+    });
   }
 
   private createForm(): void {
     this.taskForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(225)]],
+      done: [false],
       userId: ['', Validators.required],
     });
   }
 
   public closePopup(): void {
-    this.taskService.isNewTaskPopup$.next(false);
+    this.taskService.newTask$.next(true);
+    this.taskService.isTaskPopup$.next(false);
     this.taskForm.reset();
   }
 
@@ -65,15 +88,26 @@ export class NewTaskPopupComponent implements OnInit, OnDestroy {
   }
 
   public createTask(): void {
-    this.taskService.isNewTaskPopup$.next(false);
+    this.taskService.isTaskPopup$.next(false);
+    if (this.isNewTask) {
+      this.taskService.createTask(
+        this.boardId,
+        this.columnService.columnId,
+        { ...this.taskForm.value },
+        this.columnData.tasks!,
+      );
+    } else {
+      this.editTask$.pipe(take(1)).subscribe((selectTask) => {
+        this.taskService.updateTask(
+          this.boardId,
+          selectTask.id!,
+          { ...this.taskForm.value },
+          selectTask.order!,
+        );
+      });
+    }
 
-    this.taskService.createTask(
-      this.boardId,
-      this.columnService.columnId,
-      this.taskForm.value,
-      this.columnData.tasks!,
-    );
-
+    this.taskService.newTask$.next(true);
     this.taskForm.reset();
   }
 
