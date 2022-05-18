@@ -24,6 +24,18 @@
     flex-direction: row;
   }
 
+  &__title-sort {
+    max-width: 80%;
+    margin: 0;
+    @include font.text(24px, 26px);
+  }
+
+  &__button {
+    @include forms.button;
+    margin: 0;
+  }
+
+
   &__title {
     margin: 0;
     @include font.title;
@@ -54,10 +66,6 @@
       color: colors.$text-hover;
     }
   }
-}
-
-.auth__button {
-  @include forms.button;
 }
 
 @media screen and (max-width: 320px) {

@@ -54,11 +54,11 @@ export class MainPageComponent implements OnInit {
     this.isDownBtn = !this.isDownBtn;
   }
 
-  public get textToFilter(): boolean {
+  public get titleToSortUp(): boolean {
     return this.isUpBtn;
   }
 
-  public get textToFiltert(): boolean {
+  public get titleToSortDown(): boolean {
     return this.isDownBtn;
   }
 }

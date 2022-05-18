@@ -1,13 +1,16 @@
 <main class="main">
   <h1 class="main__title">{{ 'mainPage.title' | transloco }}</h1>
   <div class="main__sorts">
-    <h2>Сортировка по:</h2>
-    <button class="auth__button" (click)="changeBtnUp()">алфавиту от А до Я</button>
-    <button class="auth__button" (click)="changeBtnDown()">алфавиту от Я до А</button>
+    <h3 class="main__title-sort">Сортировка:</h3>
+    <button class="main__button" (click)="changeBtnUp()">по алфавиту от А до Я</button>
+    <button class="main__button" (click)="changeBtnDown()">по алфавиту от Я до А</button>
   </div>
 
   <div class="main__boards">
-    <app-board-card *ngFor="let board of(allBoards$ | async)! | sort: textToFilter:textToFiltert" [boardData]="board"></app-board-card>
+    <app-board-card
+      *ngFor="let board of (allBoards$ | async)! | sort: titleToSortUp:titleToSortDown"
+      [boardData]="board"
+    ></app-board-card>
 
     <button class="main__new-button" (click)="openBoardPopup()">
       {{ 'mainPage.newBoard' | transloco }}
