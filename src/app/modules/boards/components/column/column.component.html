@@ -11,4 +11,15 @@
   </button>
 </div>
 
-<div class="column__content"></div>
+<div class="column__content">
+  <div class="new-task-btn" (click)="addNewTask()">+ {{ 'boardPage.addTask' | transloco }}</div>
+
+  <app-task
+    *ngFor="let task of columnData.tasks"
+    [task]="task"
+    [boardId]="boardId"
+    [columnId]="columnData.id!"
+  ></app-task>
+
+  <app-new-task [boardId]="boardId" [columnData]="columnData"></app-new-task>
+</div>

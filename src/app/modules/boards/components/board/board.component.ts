@@ -9,6 +9,8 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Subscription } from 'rxjs';
 
 import { BoardService } from '../../services/board.service';
+import { TaskService } from '../../services/task.service';
+import { UsersService } from '../../services/users.service';
 import { BoardPopupService } from 'src/app/modules/core/services/board-popup.service';
 import { DragDropService } from '../../services/drag-drop.service';
 
@@ -28,6 +30,8 @@ export class BoardComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
 
   constructor(
+    public taskService: TaskService,
+    public usersService: UsersService,
     private boardService: BoardService,
     private boardPopupService: BoardPopupService,
     private dragDropService: DragDropService,
@@ -39,6 +43,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       this.board = board;
       this.cdr.markForCheck();
     });
+    this.usersService.getAllUsers();
   }
 
   public ngOnDestroy(): void {

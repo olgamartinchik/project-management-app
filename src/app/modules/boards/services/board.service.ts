@@ -31,6 +31,7 @@ export class BoardService {
       .pipe(take(1))
       .subscribe((board) => {
         board.columns = board.columns.sort((a, b) => a.order - b.order);
+        board.columns.forEach((column) => column.tasks!.sort((a, b) => a.order! - b.order!));
         this.store.dispatch(updateBoard({ board }));
       });
   }

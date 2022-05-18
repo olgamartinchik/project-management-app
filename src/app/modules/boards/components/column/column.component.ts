@@ -5,6 +5,8 @@ import { ColumnService } from '../../services/column.service';
 import { ConfirmService } from 'src/app/modules/core/services/confirm.service';
 
 import { ColumnModel } from 'src/app/modules/core/models/column.model';
+import { TaskService } from '../../services/task.service';
+import { BoardModel } from 'src/app/modules/core/models/board.model';
 
 @Component({
   selector: 'app-column',
@@ -17,6 +19,8 @@ export class ColumnComponent implements OnInit {
 
   @Input() public boardId!: string;
 
+  @Input() public board!: BoardModel;
+
   public isInputFocus = false;
 
   public titleInput = new FormControl('', [
@@ -25,7 +29,11 @@ export class ColumnComponent implements OnInit {
     Validators.maxLength(30),
   ]);
 
-  constructor(private columnService: ColumnService, private confirmService: ConfirmService) {}
+  constructor(
+    public taskService: TaskService,
+    private columnService: ColumnService,
+    private confirmService: ConfirmService,
+  ) {}
 
   public ngOnInit(): void {
     this.titleInput.setValue(this.columnData.title, { emitEvent: false });
@@ -46,4 +54,9 @@ export class ColumnComponent implements OnInit {
   private deleteColumn = (): void => {
     this.columnService.deleteColumn(this.columnData.id!);
   };
+
+  public addNewTask(): void {
+    this.taskService.isNewTaskPopup$.next(true);
+    this.columnService.columnId = this.columnData.id!;
+  }
 }

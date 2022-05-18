@@ -1,0 +1,54 @@
+<div
+  class="overlay"
+  [class]="{ visible: (taskService.isNewTaskPopup$ | async) }"
+  (click)="closePopup()"
+>
+  <form
+    action="#"
+    class="form"
+    [formGroup]="taskForm"
+    (ngSubmit)="createTask()"
+    (click)="stopPropagation($event)"
+  >
+    <div class="title-container">
+      <input
+        type="text"
+        class="input"
+        id="title-task"
+        formControlName="title"
+        placeholder="{{ 'boardPage.tittleTask' | transloco }}"
+      />
+      <div class="validate">
+        {{ errorMessagesService.showMessages(taskForm, 'title', messages['title']) | transloco }}
+      </div>
+
+      <textarea
+        type="text"
+        class="textarea"
+        id="description-task"
+        formControlName="description"
+        placeholder="{{ 'boardPage.descriptionTask' | transloco }}"
+      ></textarea>
+      <div class="validate">
+        {{
+          errorMessagesService.showMessages(taskForm, 'description', messages['description'])
+            | transloco
+        }}
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'boardPage.performers' | transloco }}</mat-label>
+        <mat-select formControlName="userId">
+          <mat-option *ngFor="let user of users | async" [value]="user.id">{{
+            user.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="validate">
+        {{ errorMessagesService.showMessages(taskForm, 'userId', messages['userId']) | transloco }}
+      </div>
+    </div>
+    <button class="button" [disabled]="taskForm.invalid">
+      {{ 'boardPage.newTaskBtn' | transloco }}
+    </button>
+  </form>
+</div>

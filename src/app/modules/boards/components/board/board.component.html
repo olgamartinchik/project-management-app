@@ -32,7 +32,7 @@
     <app-column
       *ngFor="let column of board.columns"
       [columnData]="column"
-      [boardId]="board.id!"
+      [board]="board"
       cdkDrag
       cdkDragLockAxis="x"
       cdkDragBoundary=".board__columns-container"
