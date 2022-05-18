@@ -32,7 +32,6 @@ export class SearchService {
                   .getTasks(board.id!, column.id!)
                   .pipe(take(1))
                   .subscribe((tasks) => {
-                    // console.log("tasks",tasks)
                     tasks.forEach((task) => {
                       if (
                         task.title.toLowerCase().trim().includes(inputValue) ||
@@ -41,8 +40,6 @@ export class SearchService {
                       ) {
                         this.allTasks.push(task);
                         this.tasks$.next(this.allTasks);
-                        // this.allTasks.length===0?this.tasks$.next(null):this.tasks$.next(this.allTasks)
-                        // console.log(' this.allTasks', this.allTasks);
                       }
                       this.apiService
                         .getAllUsers()
@@ -54,7 +51,6 @@ export class SearchService {
                               user.name.toLowerCase().trim().includes(inputValue)
                             ) {
                               this.allTasks.push(task);
-                              // console.log(' this.allTasks', this.allTasks);
                               this.tasks$.next(this.allTasks);
                             }
                           });
