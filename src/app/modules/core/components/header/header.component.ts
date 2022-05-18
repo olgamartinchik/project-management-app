@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 
 import { BoardPopupService } from 'src/app/modules/core/services/board-popup.service';
@@ -16,7 +16,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   public isNavOpen = false;
 
   public lang: LangModel = 'ru';
@@ -32,6 +32,10 @@ export class HeaderComponent {
     private usersService: UsersService,
   ) {}
 
+  public ngOnInit(): void {
+    this.usersService.initAllUsers();
+  }
+
   public switchLang(): void {
     this.translocoService.setActiveLang(this.lang);
   }
@@ -41,14 +45,15 @@ export class HeaderComponent {
   }
 
   public getSearchResult(): void {
+    // ||this.authService.getSearchResult()!==null
     if (this.inputValue.trim() !== '') {
-      // this.searchService.getSearchTask(this.inputValue.toLocaleLowerCase().trim());
       this.router.navigate(['/search']);
+      this.authService.saveSearchResult(this.inputValue);
+
+      this.searchService.getSearchTask(this.inputValue.toLocaleLowerCase().trim());
+      // this.searchService.getSearchTask(this.inputValue.toLocaleLowerCase().trim());
+
       this.inputValue = '';
-
-      this.usersService.initAllUsers();
-
-      this.searchService.getData(this.inputValue.toLocaleLowerCase().trim());
     }
   }
 }

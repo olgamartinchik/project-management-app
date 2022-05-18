@@ -5,7 +5,7 @@
       *ngFor="let task of searchService.tasks$ | async"
       [task]="task"
     ></app-search-task>
-    <ng-container *ngIf="(searchService.tasks$ | async)!.length === 0">
+    <ng-container *ngIf="searchService.isSearchResult$ | async">
       <p class="empty-result">{{ 'searchPage.emptySearch' | transloco }} :(</p>
     </ng-container>
   </div>

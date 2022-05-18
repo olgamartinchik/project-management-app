@@ -1,19 +1,21 @@
 import { ITask } from './../models/ITask.model';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, take } from 'rxjs';
+import { BehaviorSubject, Subject, take } from 'rxjs';
 import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchService {
-  public tasks$ = new BehaviorSubject<ITask[]>([]);
+  public tasks$ = new BehaviorSubject<ITask[] | null>([]);
 
-  public allTasks: ITask[] = [];
+  public isSearchResult$ = new Subject();
+
+  private allTasks: ITask[] = [];
 
   constructor(private apiService: ApiService) {}
 
-  public getData(inputValue: string): void {
+  public getSearchTask(inputValue: string): void {
     this.allTasks = [];
     this.tasks$.next([]);
     this.apiService
@@ -39,7 +41,8 @@ export class SearchService {
                       ) {
                         this.allTasks.push(task);
                         this.tasks$.next(this.allTasks);
-                        console.log(' this.allTasks', this.allTasks);
+                        // this.allTasks.length===0?this.tasks$.next(null):this.tasks$.next(this.allTasks)
+                        // console.log(' this.allTasks', this.allTasks);
                       }
                       this.apiService
                         .getAllUsers()
@@ -51,10 +54,15 @@ export class SearchService {
                               user.name.toLowerCase().trim().includes(inputValue)
                             ) {
                               this.allTasks.push(task);
-                              console.log(' this.allTasks', this.allTasks);
+                              // console.log(' this.allTasks', this.allTasks);
                               this.tasks$.next(this.allTasks);
                             }
                           });
+                          if (this.allTasks.length === 0) {
+                            this.isSearchResult$.next(true);
+                          } else {
+                            this.isSearchResult$.next(false);
+                          }
                         });
                     });
                   });
@@ -63,58 +71,4 @@ export class SearchService {
         });
       });
   }
-
-  // public getSearchTask(inputValue: string): void {
-  //   this.allTasks = [];
-  //   this.tasks$.next([]);
-  //   this.apiService
-  //     .getBoards()
-  //     .pipe(take(1))
-  //     .subscribe((boards) => {
-  //       for (let i = 0; i < boards.length; i++) {
-  //         // console.log('boards', boards[i].id)
-  //         this.apiService
-  //           .getColumns(boards[i].id!)
-  //           .pipe(take(1))
-  //           .subscribe((columns) => {
-  //             for (let j = 0; j < columns.length; j++) {
-  //               // console.log('columns',columns)
-  //               this.apiService
-  //                 .getTasks(boards[i].id!, columns[j].id!)
-  //                 .pipe(take(1))
-  //                 .subscribe((tasks) => {
-  //                   // console.log('111111111',tasks)
-  //                   for (let s = 0; s < tasks.length; s++) {
-  //                     if (
-  //                       tasks[s].title.toLowerCase().trim().includes(inputValue) ||
-  //                       tasks[s].description.toLowerCase().trim().includes(inputValue) ||
-  //                       tasks[s].order!.toString().trim().includes(inputValue)
-  //                     ) {
-  //                       // console.log('tasks', tasks[s]);
-  //                       // this.allTasks.push(tasks[s]);
-  //                       // console.log('this.allTasks', this.allTasks);
-  //                       // this.tasks$.next(this.allTasks);
-  //                     }
-  //                     this.apiService
-  //                       .getAllUsers()
-  //                       .pipe(take(1))
-  //                       .subscribe((users) => {
-  //                         for (let u = 0; u < users.length; u++) {
-  //                           if (
-  //                             tasks[s].userId === users[u].id &&
-  //                             users[u].name.toLowerCase().trim().includes(inputValue)
-  //                           ) {
-  //                             // this.allTasks.push(tasks[s]);
-  //                             // console.log('this.allTasks', this.allTasks);
-  //                             // this.tasks$.next(this.allTasks);
-  //                           }
-  //                         }
-  //                       });
-  //                   }
-  //                 });
-  //             }
-  //           });
-  //       }
-  //     });
-  // }
 }
