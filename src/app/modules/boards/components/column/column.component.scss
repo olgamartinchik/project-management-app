@@ -85,3 +85,5 @@
     opacity: 1;
   }
 }
+
+@include components.dran-and-drop('.column__content', 'app-task');

@@ -70,7 +70,7 @@ export class NewTaskPopupComponent implements OnInit, OnDestroy {
     this.taskService.createTask(
       this.boardId,
       this.columnService.columnId,
-      { ...this.taskForm.value },
+      this.taskForm.value,
       this.columnData.tasks!,
     );
 

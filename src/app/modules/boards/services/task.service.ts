@@ -29,16 +29,12 @@ export class TaskService {
           this.boardService.updateBoard();
         }),
       )
-      .subscribe();
+      .subscribe((taskData) => {
+        console.log(taskData.order);
+      });
   }
 
-  public updateTask(
-    boardId: string,
-
-    taskId: string,
-    value: ITask,
-    order: number,
-  ): void {
+  public updateTask(boardId: string, taskId: string, value: ITask, order: number): void {
     const taskDate: ITask = {
       ...value,
       order,

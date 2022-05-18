@@ -58,7 +58,6 @@ $page-height: calc(100vh - $header-height - $footer-height);
     border-radius: 10px;
     box-shadow: 0 5px 10px 3px rgba(colors.$accent-color, 0.2);
     border: 2px solid colors.$accent-color;
-    transform: rotateZ('angle');
   }
 
   .cdk-drag-placeholder {

@@ -11,10 +11,11 @@ import { Subscription } from 'rxjs';
 import { BoardService } from '../../services/board.service';
 import { TaskService } from '../../services/task.service';
 import { UsersService } from '../../services/users.service';
-import { BoardPopupService } from 'src/app/modules/core/services/board-popup.service';
+import { BoardPopupService } from '../../../core/services/board-popup.service';
 import { DragDropService } from '../../services/drag-drop.service';
 
 import { BoardModel } from '../../../core/models/board.model';
+import { ColumnModel } from '../../../core/models/column.model';
 
 @Component({
   selector: 'app-board',
@@ -50,11 +51,10 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  public moveColumn(event: CdkDragDrop<string[]>): void {
+  public changeColumnOrder(event: CdkDragDrop<string[]>): void {
     if (event.currentIndex !== event.previousIndex) {
-      const movingColumns = [...this.board.columns];
-      moveItemInArray(movingColumns, event.previousIndex, event.currentIndex);
-      this.board = { ...this.board, columns: movingColumns };
+      // присваиваем board изменененный список колонок для смены представления
+      this.board = { ...this.board, columns: this.moveColumnInBoard(event) };
 
       this.dragDropService.moveColumn(this.board.id!, this.board.columns, event);
     }
@@ -66,5 +66,12 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   public openEditBoardPopup(): void {
     this.boardPopupService.open('edit');
+  }
+
+  private moveColumnInBoard({ previousIndex, currentIndex }: CdkDragDrop<string[]>): ColumnModel[] {
+    const movingColumns = [...this.board.columns];
+    moveItemInArray(movingColumns, previousIndex, currentIndex);
+
+    return movingColumns;
   }
 }

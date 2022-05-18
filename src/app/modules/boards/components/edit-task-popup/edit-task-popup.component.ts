@@ -79,7 +79,6 @@ export class EditTaskPopupComponent implements OnInit, OnDestroy {
     this.editTask$.pipe(take(1)).subscribe((selectTask) => {
       this.taskService.updateTask(
         this.boardId,
-
         selectTask.id!,
         { ...this.editTaskForm.value },
         selectTask.order!,
