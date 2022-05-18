@@ -11,8 +11,8 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
 
 // services
-import { ValidationService } from '../core/services/validation/validation.service';
-import { ErrorMessagesService } from '../core/services/error-messages/error-messages.service';
+import { ValidationService } from '../core/services/validation.service';
+import { ErrorMessagesService } from '../core/services/error-messages.service';
 
 @NgModule({
   declarations: [AuthPageComponent, LoginFormComponent, SignupFormComponent],

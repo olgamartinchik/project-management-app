@@ -6,7 +6,6 @@ import { ConfirmService } from 'src/app/modules/core/services/confirm.service';
 
 import { ColumnModel } from 'src/app/modules/core/models/column.model';
 import { TaskService } from '../../services/task.service';
-import { BoardModel } from 'src/app/modules/core/models/board.model';
 
 @Component({
   selector: 'app-column',
@@ -18,8 +17,6 @@ export class ColumnComponent implements OnInit {
   @Input() public columnData!: ColumnModel;
 
   @Input() public boardId!: string;
-
-  @Input() public board!: BoardModel;
 
   public isInputFocus = false;
 
@@ -56,7 +53,8 @@ export class ColumnComponent implements OnInit {
   };
 
   public addNewTask(): void {
-    this.taskService.isNewTaskPopup$.next(true);
+    this.taskService.newTask$.next(true);
+    this.taskService.isTaskPopup$.next(true);
     this.columnService.columnId = this.columnData.id!;
   }
 }

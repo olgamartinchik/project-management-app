@@ -3,25 +3,31 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-//modules
+// modules
 import { SharedModule } from '../shared/shared.module';
 import { TranslocoRootModule } from '../transloco/transloco-root.module';
+import { ReduxModule } from '../../redux/redux.module';
 
-//services
+// services
 import { LoaderService } from './services/loader.service';
 import { ToggleScrollService } from './services/toggle-scroll.service';
-import { ErrorMessagesService } from './services/error-messages/error-messages.service';
+import { ErrorMessagesService } from './services/error-messages.service';
 import { INTERCEPTOR_PROVIDERS } from './interсeptors/providers';
 
-//components
+// components
 import { HeaderComponent } from './components/header/header.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { BoardPopupComponent } from './components/board-popup/board-popup.component';
 import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.component';
 import { FooterComponent } from './components/footer/footer.component';
-
 import { LoaderComponent } from './components/loader/loader.component';
+import { PopupContainerComponent } from './components/popup-container/popup-container.component';
+import { OutputPopupComponent } from './components/output-popup/output-popup.component';
+
+// directive
+import { PopupHostDirective } from './directives/popup-host.directive';
 
 @NgModule({
   declarations: [
@@ -29,19 +35,23 @@ import { LoaderComponent } from './components/loader/loader.component';
     FooterComponent,
     BoardPopupComponent,
     ConfirmPopupComponent,
+    NavbarComponent,
     LoaderComponent,
+    PopupHostDirective,
+    PopupContainerComponent,
+    OutputPopupComponent,
   ],
-  exports: [HeaderComponent, FooterComponent],
-
+  exports: [HeaderComponent, FooterComponent, BoardPopupComponent],
   imports: [
     CommonModule,
     HttpClientModule,
     RouterModule,
-    TranslocoRootModule,
     FormsModule,
     ReactiveFormsModule,
-    // BrowserAnimationsModule,
+    BrowserAnimationsModule,
     SharedModule,
+    TranslocoRootModule,
+    ReduxModule,
   ],
   providers: [INTERCEPTOR_PROVIDERS, LoaderService, ErrorMessagesService, ToggleScrollService],
 })

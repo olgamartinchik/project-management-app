@@ -5,37 +5,39 @@
   @include forms.form-block;
 }
 
-.auth__form {
-  @include forms.form;
-}
+.auth {
+  &__form {
+    @include forms.form;
+  }
 
-.auth__label {
-  @include forms.label;
-}
+  &__label {
+    @include forms.label;
+  }
 
-.auth__input {
-  @include forms.input;
-}
+  &__input {
+    @include forms.input;
+  }
 
-.auth__error-text {
-  @include forms.error-message;
-}
+  &__error-text {
+    @include forms.error-message;
+  }
 
-.auth__error-text_place_form {
-  margin: 15px 0 0;
-  font-size: 20px;
-  line-height: 25px;
-}
+  &__error-text_place_form {
+    margin: 15px 0 0;
+    font-size: 20px;
+    line-height: 25px;
+  }
 
-.auth__recommend-list {
-  margin: 0;
-  padding: 0 0 0 20px;
-}
+  &__recommend-list {
+    margin: 0;
+    padding: 0 0 0 20px;
+  }
 
-.auth__recommend-item {
-  @include forms.recommend-message;
-}
+  &__recommend-item {
+    @include forms.recommend-message;
+  }
 
-.auth__button {
-  @include forms.button;
+  &__button {
+    @include forms.button;
+  }
 }

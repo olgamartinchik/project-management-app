@@ -1,4 +1,4 @@
-<ng-container *ngIf="board">
+<ng-container *ngIf="board$ | async as board">
   <div class="board__heading">
     <h3 class="board__title">{{ board.title }}</h3>
 
@@ -14,7 +14,6 @@
       *ngFor="let column of board.columns"
       [columnData]="column"
       [boardId]="board.id!"
-      [board]="board"
     ></app-column>
 
     <button class="board__add-column" (click)="toggleColumnPopup()">

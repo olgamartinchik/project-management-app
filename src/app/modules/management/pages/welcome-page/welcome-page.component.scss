@@ -1,0 +1,138 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+@use '../../../shared/styles/forms';
+@use '../../../shared/styles/components';
+
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  width: 100%;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: colors.$main-color;
+  box-sizing: border-box;
+}
+
+.welcome {
+  &__section {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  &__box {
+    max-width: 450px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: colors.$board-color;
+    padding: 20px;
+    box-shadow: 0px 0px 4px 0px #777;
+
+    &:hover {
+      color: colors.$text-hover;
+      box-shadow: 0px 0px 7px 0px #777;
+      .welcome__box-text {
+        color: colors.$text-hover;
+      }
+    }
+
+    &.welcome__box_type_link {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
+  &__text {
+    margin: 0;
+    @include font.text(36px, 38px);
+    text-align: center;
+  }
+
+  &__button {
+    @include forms.button;
+  }
+
+  &__list {
+    margin: 15px 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: my-counter;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__list-item {
+    margin: 0;
+    @include font.text(36px, 38px);
+    counter-increment: my-counter;
+
+    &:before {
+      content: counter(my-counter);
+      background: #3772c5;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: inline-block;
+      line-height: 2rem;
+      color: white;
+      text-align: center;
+      margin-right: 0.5rem;
+    }
+  }
+
+  &__paral {
+    width: 100%;
+    height: 250px;
+    margin: 40px 0;
+    padding: 0;
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: url('../../../../../assets/png/parallax.png');
+  }
+
+  &__title {
+    margin: 0 0 20px;
+    @include font.title;
+  }
+
+  &__img {
+    width: 100%;
+    margin: 0 0 20px;
+    object-fit: contain;
+  }
+
+  &__name {
+    margin: 0 0 10px;
+    @include font.subtitle;
+  }
+
+  &__role {
+    margin: 0 0 10px;
+    @include font.text(20px, 20px);
+  }
+
+  &__info {
+    margin: 0;
+    @include font.text(20px, 20px);
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .welcome__text,
+  .welcome__list-item {
+    font-size: 1.5em;
+  }
+}

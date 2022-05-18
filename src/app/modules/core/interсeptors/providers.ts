@@ -1,5 +1,6 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Provider } from '@angular/core';
+
 import { CatchErrorInterceptor } from './catch-error.interceptor';
 import { HeadersInterceptor } from './headers.interceptor';
 import { LoadingInterceptor } from './loading.interceptor';

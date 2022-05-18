@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditTaskPopupComponent } from './edit-task-popup.component';
+import { WelcomePageComponent } from './welcome-page.component';
 
-describe('EditTaskPopupComponent', () => {
-  let component: EditTaskPopupComponent;
-  let fixture: ComponentFixture<EditTaskPopupComponent>;
+describe('WelcomePageComponent', () => {
+  let component: WelcomePageComponent;
+  let fixture: ComponentFixture<WelcomePageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [EditTaskPopupComponent],
+      declarations: [WelcomePageComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditTaskPopupComponent);
+    fixture = TestBed.createComponent(WelcomePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,12 +1,14 @@
 import { Router } from '@angular/router';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
+
 import { BoardPopupService } from 'src/app/modules/core/services/board-popup.service';
 
 import { LangModel } from '../../models/lang.model';
 import { SearchService } from '../../services/search.service';
 
 import { UsersService } from '../../services/users.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -22,6 +24,7 @@ export class HeaderComponent {
   public inputValue = '';
 
   constructor(
+    public authService: AuthService,
     private translocoService: TranslocoService,
     private boardPopupService: BoardPopupService,
     private router: Router,
@@ -43,7 +46,7 @@ export class HeaderComponent {
       this.router.navigate(['/search']);
       this.inputValue = '';
 
-      this.usersService.getAllUsers();
+      this.usersService.initAllUsers();
 
       this.searchService.getData(this.inputValue.toLocaleLowerCase().trim());
     }

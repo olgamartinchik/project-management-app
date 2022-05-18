@@ -18,75 +18,73 @@ $registration-text-width: 125px;
   align-items: center;
   transform-style: preserve-3d;
   padding: 45px 0 60px;
-}
 
-.auth__3d-wrapper {
-  width: 500px;
-  height: 520px;
-  display: flex;
-  justify-content: center;
-  transform-style: preserve-3d;
-  transition: transform 1.2s cubic-bezier(0.1, 0.25, 0.4, 1.6);
-  position: relative;
+  &__3d-wrapper {
+    width: 500px;
+    height: 520px;
+    display: flex;
+    justify-content: center;
+    transform-style: preserve-3d;
+    transition: transform 1.2s cubic-bezier(0.1, 0.25, 0.4, 1.6);
+    position: relative;
 
-  &.active {
-    transform: rotateY(180deg);
-  }
-}
-
-.auth__checkbox {
-  position: absolute;
-  visibility: hidden;
-
-  &:checked + .auth__label::after {
-    width: $registration-text-width + 20px;
-    transform: translateX(90px);
+    &.active {
+      transform: rotateY(180deg);
+    }
   }
 
-  &:checked ~ .auth__3d-wrapper {
-    transform: rotateY(180deg);
-  }
-}
-
-.auth__label {
-  width: 250px;
-  height: 50px;
-  margin: 0 0 25px;
-  padding: 0 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  box-sizing: border-box;
-  background-color: colors.$secondary-color;
-  border-radius: 25px;
-  cursor: pointer;
-
-  &::after {
-    content: '';
-    width: $login-text-width + 15px;
-    height: 40px;
-    background: transparent;
-    border: 2px solid colors.$accent-color;
-    border-radius: 25px;
+  &__checkbox {
     position: absolute;
-    left: 7px;
-    transition: 0.5s ease-in-out;
-    box-sizing: border-box;
-  }
-}
+    visibility: hidden;
 
-.auth__text-label {
-  margin: 0;
-  @include font.text(25px, 25px);
-  text-align: center;
+    &:checked + .auth__label::after {
+      width: $registration-text-width + 20px;
+      transform: translateX(90px);
+    }
 
-  &:first-of-type {
-    width: $login-text-width;
+    &:checked ~ .auth__3d-wrapper {
+      transform: rotateY(180deg);
+    }
   }
 
-  &:last-of-type {
-    width: $registration-text-width;
+  &__label {
+    width: 250px;
+    height: 50px;
+    margin: 0 0 25px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    background-color: colors.$secondary-color;
+    border-radius: 25px;
+    cursor: pointer;
+
+    &::after {
+      content: '';
+      width: $login-text-width + 15px;
+      height: 40px;
+      background: transparent;
+      border: 2px solid colors.$accent-color;
+      border-radius: 25px;
+      position: absolute;
+      left: 7px;
+      transition: 0.5s ease-in-out;
+    }
+  }
+
+  &__text-label {
+    margin: 0;
+    @include font.text(25px, 25px);
+    text-align: center;
+
+    &:first-of-type {
+      width: $login-text-width;
+    }
+
+    &:last-of-type {
+      width: $registration-text-width;
+    }
   }
 }
 

@@ -10,76 +10,73 @@
   background-color: colors.$main-color;
 }
 
-.column__header {
-  width: 100%;
-  padding: 10px 40px 10px 10px;
-  position: relative;
-  border-bottom: 2px solid colors.$text-color;
-  box-sizing: border-box;
-}
-
-.column__title {
-  width: 100%;
-  margin: 0;
-  padding: 5px 0 0 5px;
-
-  background: transparent;
-  border: 2px solid transparent;
-  outline: none;
-  box-sizing: border-box;
-
-  @include font.subtitle;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: 0.2s ease;
-  cursor: pointer;
-
-  &:focus,
-  &:focus-visible {
-    border: 2px solid colors.$text-hover;
-    cursor: text;
+.column {
+  &__header {
+    width: 100%;
+    padding: 10px 40px 10px 10px;
+    position: relative;
+    border-bottom: 2px solid colors.$text-color;
   }
-}
 
-.column__delete-button {
-  @include components.button-icon;
-  position: absolute;
-  top: calc(50% - 15px);
-  right: 5px;
+  &__title {
+    width: 100%;
+    margin: 0;
+    padding: 5px 0 0 5px;
 
-  & > mat-icon {
-    @include components.mat-icon;
+    background: transparent;
+    border: 2px solid transparent;
+    outline: none;
+
+    @include font.subtitle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: 0.2s ease;
+    cursor: pointer;
+
+    &:focus,
+    &:focus-visible {
+      border: 2px solid colors.$text-hover;
+      cursor: text;
+    }
   }
-}
 
-.column__content {
-  position: relative;
-  height: 100%;
-  padding: 35px 10px 10px 10px;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  overflow-y: auto;
-  gap: 15px;
+  &__delete-button {
+    @include components.button-icon;
+    position: absolute;
+    top: calc(50% - 15px);
+    right: 5px;
 
-  @include components.scrollbar(colors.$main-color, colors.$secondary-color);
+    & > mat-icon {
+      @include components.mat-icon;
+    }
+  }
+
+  &__content {
+    position: relative;
+    height: 100%;
+    padding: 0 10px 10px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    gap: 15px;
+    @include components.scrollbar(colors.$main-color, colors.$secondary-color);
+  }
 }
 .new-task-btn {
-  position: absolute;
+  position: sticky;
   top: 5px;
-  right: 5px;
-  box-sizing: border-box;
-  border-radius: 4px;
-  padding: 2px 5px;
+  padding: 5px;
+  background-color: colors.$task-btn;
   @include font.text;
-  font-size: 18px;
+  font-size: 20px;
   width: 100%;
   text-align: end;
-
-  opacity: 0.5;
+  z-index: 1;
+  text-align: center;
   cursor: pointer;
   transition: 0.4s ease-in-out;
   &:hover {
-    opacity: 1;
+    background-color: colors.$popup-color;
+    color: colors.$main-color;
   }
 }
