@@ -1,13 +1,15 @@
 @use '../../../shared/styles/colors';
 @use '../../../shared/styles/font';
 @use '../../../shared/styles/components';
+@use '../../../shared/styles/forms';
 .overlay {
   position: fixed;
   right: 0;
   left: -300%;
+
   top: 0;
   bottom: 0;
-  z-index: 1000;
+  z-index: 999;
   width: 100%;
   height: 100%;
   background-color: transparent;
@@ -28,7 +30,7 @@
   max-width: 400px;
   width: 100%;
   min-height: 200px;
-  padding: 40px;
+  padding: 40px 20px;
   margin: 10px;
   background-color: colors.$popup-color;
   border-radius: 4px;
@@ -38,7 +40,6 @@
 .title-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
   width: 90%;
 }
 .title {
@@ -50,12 +51,11 @@
   height: 34px;
   padding-left: 10px;
   @include font.text;
-  box-sizing: border-box;
   outline: none;
-  cursor: pointer;
-  transition: 0.4s ease-in-out;
+  @include forms.input;
 }
 .textarea {
+  @include forms.input;
   width: 100%;
   min-height: 60px;
   resize: vertical;
@@ -84,8 +84,4 @@
 .validate {
   color: colors.$accent-color;
   min-height: 20px;
-}
-.example-additional-selection {
-  opacity: 1;
-  font-size: 0.75em;
 }

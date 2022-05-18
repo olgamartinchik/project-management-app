@@ -28,7 +28,7 @@ export class BoardComponent implements OnInit {
 
   public ngOnInit(): void {
     this.board$ = this.boardService.getBoardData();
-    this.usersService.getAllUsers();
+    this.usersService.initAllUsers();
   }
 
   public toggleColumnPopup(): void {
