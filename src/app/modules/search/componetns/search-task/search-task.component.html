@@ -1,4 +1,4 @@
-<a class="search-task" routerLink="/board/{{ task.boardId }}">
+<a class="search-task" routerLink="/board/{{ task.boardId }}" [class]="{ done: task.done }">
   <h3 class="subtitle">
     {{ 'searchPage.title' | transloco }}: <span class="search-text">{{ task.title }}</span>
   </h3>
@@ -13,8 +13,7 @@
     {{ 'searchPage.user' | transloco }}:
     <span class="search-text">{{ usersService.getUser(task.userId) }}</span>
   </p>
+  <p class="done-task" *ngIf="task.done">
+    {{ 'searchPage.done' | transloco }}
+  </p>
 </a>
-
-<!-- <ng-container *ngIf="searchService.isSearchResult$ | async">
-  <p class="empty-result">{{ 'searchPage.emptySearch' | transloco }} :(</p>
-</ng-container> -->

@@ -46,3 +46,14 @@
     }
   }
 }
+.done{
+  opacity: .6;
+  background-color: colors.$disabled-bg;
+}
+.done-task{
+  @include font.subtitle;
+  font-size: 18px;
+  font-size: 18px;
+  margin: 5px 0;
+color: colors.$accent-color;
+}

@@ -139,6 +139,7 @@
     "title": "Title",
     "description": "Description",
     "order": "Order",
-    "user": "user"
+    "user": "User",
+    "done":"Done"
   }
 }
