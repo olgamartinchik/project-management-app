@@ -55,6 +55,22 @@
   "boardPage": {
     "addColBtn": "Add column",
     "deleteBtn": "Delete column",
+    "editBtn": "Edit",
+    "button": "Delete",
+    "enter": "Signup/login",
+    "search": "Search",
+    "performers": "performer",
+    "newTaskBtn": "create task",
+    "tittleTask": "Title",
+    "descriptionTask": "Description",
+    "addTask": "add"
+  },
+  "editTask": {
+    "tittleTask": "Edit title",
+    "descriptionTask": "Edit Description",
+    "editTaskBtn": "edit task",
+    "done": "done",
+    "deleteBtn": "Delete column",
     "editBtn": "Edit"
   },
   "auth": {
@@ -113,5 +129,9 @@
   "apiErrors": {
     "forbidden": "User not found",
     "conflict": "This login already exists"
+  },
+
+  "userIdErrors": {
+    "required": "Please select user"
   }
 }

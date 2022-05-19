@@ -55,6 +55,21 @@
   "boardPage": {
     "addColBtn": "Добавить колонку",
     "deleteBtn": "Удалить колонку",
+    "editBtn": "Редактировать",
+    "button": "Удалить",
+    "search": "Поиск",
+    "performers": "исполнитель",
+    "newTaskBtn": "создать задачу",
+    "tittleTask": "Заглавие",
+    "descriptionTask": "Описание",
+    "addTask": "добавить"
+  },
+  "editTask": {
+    "tittleTask": "Изменить заглавие",
+    "descriptionTask": "Изменить описание",
+    "editTaskBtn": "редактировать",
+    "done": "выполнено",
+    "deleteBtn": "Удалить колонку",
     "editBtn": "Редактировать"
   },
   "auth": {
@@ -113,5 +128,9 @@
   "apiErrors": {
     "forbidden": "Пользователь не найден",
     "conflict": "Данный логин занят"
+  },
+
+  "userIdErrors": {
+    "required": "Пожалуйста выберите исполнителя"
   }
 }

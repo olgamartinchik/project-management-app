@@ -16,7 +16,6 @@
     padding: 10px 40px 10px 10px;
     position: relative;
     border-bottom: 2px solid colors.$text-color;
-    box-sizing: border-box;
   }
 
   &__title {
@@ -27,7 +26,6 @@
     background: transparent;
     border: 2px solid transparent;
     outline: none;
-    box-sizing: border-box;
 
     @include font.subtitle;
     overflow: hidden;
@@ -54,17 +52,34 @@
   }
 
   &__content {
+    position: relative;
     height: 100%;
-    padding: 10px;
+    padding: 0 10px 10px;
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
     overflow-y: auto;
-
+    gap: 15px;
     @include components.scrollbar(colors.$main-color, colors.$secondary-color);
   }
 }
-
+.new-task-btn {
+  position: sticky;
+  top: 5px;
+  padding: 5px;
+  background-color: colors.$task-btn;
+  @include font.text;
+  font-size: 20px;
+  width: 100%;
+  text-align: end;
+  z-index: 1;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+  &:hover {
+    background-color: colors.$popup-color;
+    color: colors.$main-color;
+  }
+}
 @media (prefers-color-scheme: dark) {
   :host {
     background-color: colors.$board-dark;

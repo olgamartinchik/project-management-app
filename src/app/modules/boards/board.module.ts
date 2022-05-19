@@ -15,10 +15,21 @@ import { ColumnPopupComponent } from './components/column-popup/column-popup.com
 // services
 import { BoardService } from './services/board.service';
 import { ColumnService } from './services/column.service';
+
+import { TaskPopupComponent } from './components/task-popup/task-popup.component';
+import { TaskComponent } from './components/task/task.component';
+import { TaskService } from './services/task.service';
+
 import { ErrorMessagesService } from '../core/services/error-messages.service';
 
 @NgModule({
-  declarations: [BoardComponent, ColumnComponent, ColumnPopupComponent],
+  declarations: [
+    BoardComponent,
+    ColumnComponent,
+    ColumnPopupComponent,
+    TaskPopupComponent,
+    TaskComponent,
+  ],
   imports: [
     CommonModule,
     BoardRoutingModule,
@@ -26,6 +37,6 @@ import { ErrorMessagesService } from '../core/services/error-messages.service';
     ReactiveFormsModule,
     SharedModule,
   ],
-  providers: [BoardService, ColumnService, ErrorMessagesService],
+  providers: [BoardService, ColumnService, ErrorMessagesService, TaskService],
 })
 export class BoardModule {}

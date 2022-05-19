@@ -55,6 +55,10 @@
       box-shadow: 0 0 40px 40px colors.$text-hover inset;
     }
   }
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
