@@ -1,6 +1,7 @@
 @use '../../../shared/styles/colors';
 @use '../../../shared/styles/font';
 @use '../../../shared/styles/components';
+@use '../../../shared/styles/forms';
 
 :host {
   min-height: components.$page-height;
@@ -14,6 +15,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  &__sorts {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 20px;
+  }
+
+  &__title-sort {
+    max-width: 80%;
+    margin: 0;
+    @include font.text(24px, 26px);
+  }
+
+  &__button {
+    @include forms.button;
+    background-color: colors.$board-color;
+    margin: 0 0 0 10px;
+  }
 
   &__title {
     margin: 0;
@@ -48,7 +70,48 @@
 }
 
 @media screen and (max-width: 320px) {
-  .main__boards {
-    grid-template: auto/100%;
+  .main {
+    &__boards {
+      grid-template: auto/100%;
+    }
+
+    &__sorts {
+      margin-top: 10px;
+    }
+
+    &__title-sort {
+      @include font.text(18px, 20px);
+    }
+
+    &__button {
+      padding: 7px 12px;
+      @include font.text(14px, 16px);
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    background-color: colors.$main-color-dark;
+  }
+  .main {
+    &__title-sort {
+      color: colors.$text-dark-team;
+    }
+
+    &__button {
+      background-color: colors.$btn-color-dark;
+      border: 2px solid colors.$btn-border-dark;
+      color: colors.$text-link-dark;
+    }
+
+    &__title {
+      color: colors.$text-form-dark;
+    }
+
+    &__new-button {
+      background-color: colors.$new-board-dark;
+      color: colors.$text-new-dark;
+    }
   }
 }

@@ -84,6 +84,7 @@ export class BoardPopupComponent implements OnInit {
       .postBoard(this.boardForm.value)
       .pipe(take(1))
       .subscribe(() => this.store.dispatch(updateAllBoards()));
+    this.router.navigate(['main']);
   }
 
   private editBoard(): void {

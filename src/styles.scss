@@ -6,6 +6,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 * {
   box-sizing: border-box;
 }
@@ -18,4 +19,10 @@ body {
   left: 0;
   background-color: transparent;
   cursor: move;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #2c1919;
+  }
 }

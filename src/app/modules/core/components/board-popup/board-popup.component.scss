@@ -60,3 +60,27 @@
     cursor: default;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  .board-popup {
+    &__input {
+      background-color: colors.$input-color-dark;
+      color: colors.$text-form-dark;
+
+      &::placeholder {
+        color: colors.$placeholder-text-dark;
+      }
+    }
+    &__error-text {
+      color: colors.$invalid-dark;
+    }
+
+    &__recommend-item {
+      color: colors.$invalid-dark;
+
+      &::before {
+        background-color: colors.$invalid-dark;
+      }
+    }
+  }
+}

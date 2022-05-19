@@ -36,9 +36,9 @@
   }
 
   &__burger-button {
-    $line-height: 5px;
+    $line-height: 4px;
 
-    width: 50px;
+    width: 40px;
     height: $line-height;
     margin: 0 auto;
     padding: 0;
@@ -54,7 +54,7 @@
     &::before,
     &::after {
       content: '';
-      width: 50px;
+      width: 40px;
       height: $line-height;
       position: absolute;
       left: 0;

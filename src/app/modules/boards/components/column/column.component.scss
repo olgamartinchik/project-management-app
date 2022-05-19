@@ -82,5 +82,25 @@
     color: colors.$main-color;
   }
 }
+@media (prefers-color-scheme: dark) {
+  :host {
+    background-color: colors.$board-dark;
+  }
+  .column {
+    &__header {
+      border-bottom: 2px solid colors.$btn-border-dark;
+    }
+
+    &__title {
+      color: colors.$text-form-dark;
+    }
+
+    &__delete-button {
+      & > mat-icon {
+        color: colors.$invalid-dark;
+      }
+    }
+  }
+}
 
 @include components.dran-and-drop('.column__content', 'app-task');

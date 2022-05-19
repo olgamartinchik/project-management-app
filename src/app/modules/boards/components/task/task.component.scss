@@ -75,3 +75,25 @@
 .subtitle-user {
   font-style: normal;
 }
+
+@media (prefers-color-scheme: dark) {
+  .task-container {
+    background-color: rgb(160, 153, 153);
+    &:hover {
+      background-color: colors.$hover-task-color-dark;
+    }
+  }
+
+  .btn-container {
+    & > mat-icon {
+      color: colors.$invalid-dark;
+    }
+  }
+
+  .title {
+    color: colors.$text-color;
+  }
+  .subtitle {
+    color: #fff;
+  }
+}

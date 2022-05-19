@@ -63,3 +63,25 @@
     }
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  .board {
+    background-color: colors.$board-dark;
+
+    &__title {
+      color: #cfbbbb;
+    }
+
+    &__description {
+      color: colors.$column-color;
+
+      @include components.scrollbar(colors.$disabled-bg, colors.$disabled-text);
+    }
+
+    &__delete-button {
+      & > mat-icon {
+        color: colors.$invalid-dark;
+      }
+    }
+  }
+}

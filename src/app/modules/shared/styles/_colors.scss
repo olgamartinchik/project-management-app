@@ -1,9 +1,14 @@
 $main-color: #d2f0ff;
+$main-color-dark: rgb(44, 25, 25);
 $secondary-color: #f0c8aa;
 $accent-color: #ff3214;
+$new-board-dark: rgb(116, 97, 108);
+$board-dark: #2d7773;
 
 $header-color: #f5d4bc;
 $board-color: #faece3;
+$header-color-dark: rgb(20, 24, 24);
+$input-color-dark: #6c767a;
 
 $text-color: #333;
 $text-link: #734c56;
@@ -14,17 +19,28 @@ $task-btn: #d6b7c0;
 $column-color: #e7e0e2;
 $text-disabled: #6c6063;
 
+$text-dark-team: #6c5f5f;
+$btn-color-dark: rgb(66, 42, 46);
+$btn-border-dark: #342525;
+$text-link-dark: rgb(49, 106, 110);
+$text-new-dark: rgb(14, 247, 247);
+$text-form-dark: #e3cece;
+
 $disabled-text: #666;
 $disabled-bg: #ccc;
+$disabled-bg-dark: #575454;
 $hover-btn: rgb(183, 183, 183);
 $hover-task-color: rgb(245, 239, 239);
+$hover-task-color-dark: rgb(109, 102, 102);
 
 $valid: #4cbb17;
 $invalid: #eb2323;
+$invalid-dark: #7e0a0a;
 
 $danger: #ee0000;
 
 $placeholder-text: #777;
+$placeholder-text-dark: #74adad;
 
 $logo-filter: invert(57%) sepia(100%) saturate(329%) hue-rotate(141deg) brightness(89%)
   contrast(90%);

@@ -94,3 +94,21 @@ $registration-text-width: 125px;
     height: 550px;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    background-color: colors.$main-color-dark;
+  }
+  .auth {
+    &__label {
+      background-color: colors.$board-dark;
+      &::after {
+        border: 2px solid colors.$invalid-dark;
+      }
+    }
+
+    &__text-label {
+      color: colors.$text-form-dark;
+    }
+  }
+}
