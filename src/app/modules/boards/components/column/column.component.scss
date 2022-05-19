@@ -6,7 +6,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-
   background-color: colors.$main-color;
 }
 
@@ -42,9 +41,11 @@
 
   &__delete-button {
     @include components.button-icon;
+
+    padding: 13px 3px 0 0;
     position: absolute;
-    top: calc(50% - 15px);
-    right: 5px;
+    top: 0;
+    right: 0;
 
     & > mat-icon {
       @include components.mat-icon;

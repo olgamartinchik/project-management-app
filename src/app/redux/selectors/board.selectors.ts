@@ -12,5 +12,5 @@ export const boardsSelect = createSelector(selectState, (state: BoardModelState)
 export const selectBoardById = createSelector(
   boardsSelect,
   selectRouteParams,
-  (boards: BoardModel[], { id }) => boards.find((el) => el.id === id),
+  (boards: BoardModel[], { id }) => boards.find((el) => el.id === id)!,
 );

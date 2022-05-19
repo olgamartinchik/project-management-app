@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { take, switchMap, Subscription, withLatestFrom, map } from 'rxjs';
+import { take, switchMap, withLatestFrom, map } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 // services
@@ -18,6 +18,7 @@ import { FormMessagesModel } from '../../models/error-messages.services.models';
 
 // constants
 import { FORM_ERROR_MESSAGES } from '../../constants/error-messages.constants';
+import { selectRouteParams } from 'src/app/redux/selectors/route.selectors';
 
 @Component({
   selector: 'app-board-popup',
@@ -25,12 +26,10 @@ import { FORM_ERROR_MESSAGES } from '../../constants/error-messages.constants';
   styleUrls: ['./board-popup.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BoardPopupComponent implements OnInit, OnDestroy {
+export class BoardPopupComponent implements OnInit {
   public boardForm!: FormGroup;
 
   public messages: FormMessagesModel = FORM_ERROR_MESSAGES;
-
-  private subscription: Subscription = new Subscription();
 
   constructor(
     public boardPopupService: BoardPopupService,
@@ -43,7 +42,7 @@ export class BoardPopupComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.createForm();
 
-    this.subscription = this.boardPopupService.subject$
+    this.boardPopupService.subject$
       .pipe(
         withLatestFrom(this.store.select(selectBoardById)),
         map(([{ popupFunction }, board]) => {
@@ -51,12 +50,9 @@ export class BoardPopupComponent implements OnInit, OnDestroy {
             this.boardForm.setValue({ title: board!.title, description: board!.description });
           }
         }),
+        take(1),
       )
       .subscribe();
-  }
-
-  public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 
   public stopPropagation(event: Event): void {
@@ -89,15 +85,14 @@ export class BoardPopupComponent implements OnInit, OnDestroy {
 
   private editBoard(): void {
     this.store
-      .select(selectBoardById)
+      .select(selectRouteParams)
       .pipe(
-        switchMap((board) => {
-          return this.apiService.updateBoard(board!.id!, this.boardForm.value);
-        }),
+        switchMap(({ id }) => this.apiService.updateBoard(id, this.boardForm.value)),
+        switchMap((updatedBoard) => this.apiService.getBoardById(updatedBoard.id!)),
         take(1),
       )
-      .subscribe((updatedBoard) => {
-        this.store.dispatch(updateBoard({ board: updatedBoard }));
+      .subscribe((board) => {
+        this.store.dispatch(updateBoard({ board }));
       });
   }
 }
