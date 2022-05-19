@@ -6,23 +6,7 @@
   />
 
   <app-navbar></app-navbar>
-  <ng-container *ngIf="authService.isLoggedIn()">
-    <div class="search-container">
-      <div>
-        <!-- <mat-form-field class="example-full-width" appearance="fill"> -->
-        <!-- <mat-label>{{ 'nav.searchTask' | transloco }}</mat-label> -->
-        <input
-          class="input"
-          type="search"
-          matInput
-          placeholder="{{ 'nav.placeholder' | transloco }}"
-          [(ngModel)]="inputValue"
-        />
-        <!-- </mat-form-field> -->
-      </div>
-      <button class="search-btn" (click)="getSearchResult()">{{ 'nav.search' | transloco }}</button>
-    </div>
-  </ng-container>
+
   <ng-container *ngIf="authService.isLoggedIn()">
     <div class="header__new-board" (click)="openBoardPopup()">
       {{ 'nav.createBoard' | transloco }}

@@ -1,18 +1,22 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map, Observable, take } from 'rxjs';
-import { ITask } from 'src/app/modules/core/models/ITask.model';
-import { UserModel } from 'src/app/modules/core/models/user.model';
+import { Observable, take, map } from 'rxjs';
 
-import { ApiService } from 'src/app/modules/core/services/api.service';
-import { ConfirmService } from 'src/app/modules/core/services/confirm.service';
-import { UsersService } from 'src/app/modules/core/services/users.service';
-import { updateAllBoards } from 'src/app/redux/actions/board.actions';
-import { setTask } from 'src/app/redux/actions/tasks.actions';
-import { usersSelect } from 'src/app/redux/selectors/users.selector';
-
-import { IAppState } from 'src/app/redux/state.model';
+// services
+import { ApiService } from '../../../core/services/api.service';
+import { ConfirmService } from '../../../core/services/confirm.service';
+import { BoardService } from '../../services/board.service';
 import { TaskService } from '../../services/task.service';
+import { UsersService } from 'src/app/modules/core/services/users.service';
+
+// ngrx
+import { usersSelect } from '../../../../redux/selectors/users.selector';
+
+// models
+import { ColumnModel } from '../../../core/models/column.model';
+import { ITask } from '../../../core/models/ITask.model';
+import { IAppState } from '../../../../redux/state.model';
+import { UserModel } from '../../../core/models/user.model';
 
 @Component({
   selector: 'app-task',
@@ -26,7 +30,7 @@ export class TaskComponent {
 
   @Input() public boardId!: string;
 
-  @Input() public columnId!: string;
+  @Input() public column!: ColumnModel;
 
   private users$: Observable<UserModel[]> = this.store.select(usersSelect);
 
@@ -35,9 +39,10 @@ export class TaskComponent {
   constructor(
     public taskService: TaskService,
     public apiService: ApiService,
+    public usersService: UsersService,
     private store: Store<IAppState>,
     private confirmService: ConfirmService,
-    public usersService: UsersService,
+    private boardService: BoardService,
   ) {}
 
   public getUser(userId: string): string {
@@ -52,11 +57,8 @@ export class TaskComponent {
     return this.userName;
   }
 
-  public openPopupEditTask(): void {
-    this.taskService.newTask$.next(false);
-    this.taskService.isTaskPopup$.next(true);
-    this.taskService.columnId = this.columnId;
-    this.store.dispatch(setTask({ task: this.task }));
+  public openEditTaskPopup(): void {
+    this.taskService.openPopup('edit', this.column, this.task);
   }
 
   public confirmDeleteTask(event: Event): void {
@@ -66,10 +68,8 @@ export class TaskComponent {
 
   private deleteTask = (): void => {
     this.apiService
-      .deleteTask(this.boardId, this.columnId, this.task.id!)
+      .deleteTask(this.boardId, this.column.id!, this.task.id!)
       .pipe(take(1))
-      .subscribe(() => {
-        this.store.dispatch(updateAllBoards());
-      });
+      .subscribe(() => this.boardService.updateBoard());
   };
 }

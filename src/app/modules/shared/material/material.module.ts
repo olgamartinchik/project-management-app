@@ -9,13 +9,13 @@ import { MatInputModule } from '@angular/material/input';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 const MATERIAL_MODULES = [
+  MatSelectModule,
+  MatCheckboxModule,
   MatSnackBarModule,
   MatProgressSpinnerModule,
   MatIconModule,
   MatInputModule,
   DragDropModule,
-  MatCheckboxModule,
-  MatSelectModule,
 ];
 
 @NgModule({

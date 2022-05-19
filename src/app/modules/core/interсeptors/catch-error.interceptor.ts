@@ -13,7 +13,6 @@ export class CatchErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error) => {
-        console.log('error', error.message);
         this.notificationService.showNotifications(error.statusText);
 
         return throwError(() => error.statusText);

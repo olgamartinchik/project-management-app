@@ -129,7 +129,6 @@
     "forbidden": "User not found",
     "conflict": "This login already exists"
   },
-
   "userIdErrors": {
     "required": "Please select user"
   },

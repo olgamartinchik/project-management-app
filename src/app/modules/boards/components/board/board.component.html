@@ -27,16 +27,18 @@
     class="board__columns-container"
     cdkDropList
     cdkDropListOrientation="horizontal"
-    (cdkDropListDropped)="moveColumn($event)"
+    (cdkDropListDropped)="changeColumnOrder($event)"
   >
     <app-column
       *ngFor="let column of board.columns"
       [columnData]="column"
-      [boardId]="board.id!"
+      [board]="board!"
       cdkDrag
       cdkDragLockAxis="x"
       cdkDragBoundary=".board__columns-container"
-    ></app-column>
+    >
+      <div cdkDragHandle></div>
+    </app-column>
   </div>
 
   <app-column-popup
@@ -44,4 +46,5 @@
     [board]="board"
     (closingPopup)="toggleColumnPopup()"
   ></app-column-popup>
+  <app-task-popup [boardId]="board.id!"></app-task-popup>
 </ng-container>
