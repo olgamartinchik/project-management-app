@@ -41,6 +41,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/boards/board.module').then((m) => m.BoardModule),
   },
   {
+    path: 'search',
+    loadChildren: () => import('./modules/search/search.module').then((m) => m.SearchModule),
+  },
+  {
     path: 'error',
     component: ErrorPageComponent,
   },

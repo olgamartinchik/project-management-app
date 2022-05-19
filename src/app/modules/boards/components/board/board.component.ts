@@ -14,7 +14,7 @@ import { DragDropService } from '../../services/drag-drop.service';
 
 import { BoardModel } from '../../../core/models/board.model';
 import { TaskService } from '../../services/task.service';
-import { UsersService } from '../../services/users.service';
+import { UsersService } from '../../../core/services/users.service';
 
 @Component({
   selector: 'app-board',

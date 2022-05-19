@@ -1,17 +1,18 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, take, map } from 'rxjs';
+import { map, Observable, take } from 'rxjs';
 import { ITask } from 'src/app/modules/core/models/ITask.model';
 import { UserModel } from 'src/app/modules/core/models/user.model';
+
 import { ApiService } from 'src/app/modules/core/services/api.service';
 import { ConfirmService } from 'src/app/modules/core/services/confirm.service';
+import { UsersService } from 'src/app/modules/core/services/users.service';
 import { updateAllBoards } from 'src/app/redux/actions/board.actions';
 import { setTask } from 'src/app/redux/actions/tasks.actions';
 import { usersSelect } from 'src/app/redux/selectors/users.selector';
-import { IAppState } from 'src/app/redux/state.model';
 
+import { IAppState } from 'src/app/redux/state.model';
 import { TaskService } from '../../services/task.service';
-import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-task',

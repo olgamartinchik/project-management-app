@@ -26,4 +26,8 @@ export class AuthService {
   public isLoggedIn(): boolean {
     return this.getItem('userId') !== null;
   }
+
+  public saveSearchResult(searchResult: string): void {
+    localStorage.setItem('searchResult', searchResult);
+  }
 }
