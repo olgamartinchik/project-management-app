@@ -9,6 +9,7 @@ import { DragDropService } from '../../services/drag-drop.service';
 
 import { ColumnModel } from 'src/app/modules/core/models/column.model';
 
+import { BoardModel } from '../../../core/models/board.model';
 import { ITask } from 'src/app/modules/core/models/ITask.model';
 
 @Component({
@@ -20,9 +21,9 @@ import { ITask } from 'src/app/modules/core/models/ITask.model';
 export class ColumnComponent implements OnInit {
   @Input() public columnData!: ColumnModel;
 
-  @Input() public boardId!: string;
+  @Input() public board!: BoardModel;
 
-  public isInputFocus = false;
+  public columnIds: string[] = [];
 
   public titleInput = new FormControl('', [
     Validators.required,
@@ -39,23 +40,30 @@ export class ColumnComponent implements OnInit {
 
   public ngOnInit(): void {
     this.titleInput.setValue(this.columnData.title, { emitEvent: false });
+
+    // сохраняем массив id колонок для реализации перемещения таски между колонками
+    this.columnIds = this.board.columns.map((el) => el.id!);
   }
 
   public confirmationDeleteColumn(): void {
     this.confirmService.open(this.deleteColumn);
   }
 
-  public changeTaskOrder(event: CdkDragDrop<string[]>): void {
-    if (event.currentIndex !== event.previousIndex) {
-      // присваиваем column изменененный список тасок для смены представления
-      this.columnData = { ...this.columnData, tasks: this.moveTaskInColumn(event) };
+  public changeTaskOrder(event: CdkDragDrop<ITask[]>): void {
+    if (event.previousContainer === event.container) {
+      if (event.currentIndex !== event.previousIndex) {
+        // присваиваем column изменененный список тасок для смены представления
+        this.columnData = { ...this.columnData, tasks: this.moveTaskInColumn(event) };
 
-      this.dragDropService.moveTask(
-        this.boardId,
-        this.columnData.id!,
-        this.columnData.tasks!,
-        event,
-      );
+        this.dragDropService.moveTask(
+          this.board.id!,
+          this.columnData.id!,
+          this.columnData.tasks!,
+          event,
+        );
+      }
+    } else {
+      this.dragDropService.moveTaskBetweenColumn(this.board, this.columnData.tasks!, event);
     }
   }
 
@@ -67,17 +75,15 @@ export class ColumnComponent implements OnInit {
     }
   }
 
-  public addNewTask(): void {
-    this.taskService.newTask$.next(true);
-    this.taskService.isTaskPopup$.next(true);
-    this.columnService.columnId = this.columnData.id!;
+  public openAddTaskPopup(): void {
+    this.taskService.openPopup('add', this.columnData);
   }
 
   private deleteColumn = (): void => {
     this.columnService.deleteColumn(this.columnData.id!);
   };
 
-  private moveTaskInColumn({ previousIndex, currentIndex }: CdkDragDrop<string[]>): ITask[] {
+  private moveTaskInColumn({ previousIndex, currentIndex }: CdkDragDrop<ITask[]>): ITask[] {
     const movingTasks = [...this.columnData.tasks!];
     moveItemInArray(movingTasks, previousIndex, currentIndex);
 

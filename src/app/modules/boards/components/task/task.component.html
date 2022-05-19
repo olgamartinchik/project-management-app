@@ -1,4 +1,4 @@
-<div (click)="openPopupEditTask()" [class]="{ 'task-container': true, done: task.done }">
+<div (click)="openEditTaskPopup()" [class]="{ 'task-container': true, done: task.done }">
   <button class="btn-container" (click)="confirmDeleteTask($event)">
     <mat-icon aria-hidden="false" aria-label="Delete icon">delete_outline</mat-icon>
   </button>

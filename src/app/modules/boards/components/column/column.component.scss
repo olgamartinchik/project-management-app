@@ -28,6 +28,7 @@
 
     @include font.subtitle;
     overflow: hidden;
+    position: relative;
     text-overflow: ellipsis;
     transition: 0.2s ease;
     cursor: pointer;

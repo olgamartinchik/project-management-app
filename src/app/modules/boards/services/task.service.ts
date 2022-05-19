@@ -1,56 +1,66 @@
-import { BehaviorSubject, take, tap } from 'rxjs';
+import { BehaviorSubject, take } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { ITask } from '../../core/models/ITask.model';
-import { ApiService } from '../../core/services/api.service';
 
+import { ApiService } from '../../core/services/api.service';
 import { BoardService } from './board.service';
+
+import { ColumnModel } from '../../core/models/column.model';
+import { ITask } from '../../core/models/ITask.model';
+
+interface TaskSubjectModel {
+  isOpen: boolean;
+  popupFunction: FunctionModel;
+  column: ColumnModel | null;
+}
+
+type FunctionModel = 'edit' | 'add';
 
 @Injectable()
 export class TaskService {
-  public newTask$ = new BehaviorSubject(true);
+  public taskSubject$ = new BehaviorSubject<TaskSubjectModel>({
+    isOpen: false,
+    popupFunction: 'add',
+    column: null,
+  });
 
-  public isTaskPopup$ = new BehaviorSubject(false);
-
-  public columnId!: string;
+  public task: ITask | null = null;
 
   constructor(private apiService: ApiService, private boardService: BoardService) {}
 
-  public createTask(boardId: string, columnId: string, value: ITask, tasks: ITask[]): void {
-    const dataTask: ITask = {
+  public openPopup(popupFunction: FunctionModel, column: ColumnModel, task?: ITask): void {
+    this.task = task || null;
+    this.taskSubject$.next({ isOpen: true, popupFunction, column });
+  }
+
+  public closePopup(): void {
+    this.taskSubject$.next({ isOpen: false, popupFunction: 'add', column: null });
+  }
+
+  public createTask(boardId: string, value: ITask): void {
+    const tasks = this.taskSubject$.value.column!.tasks!;
+    const taskData: ITask = {
       ...value,
       order: tasks.length === 0 ? 0 : tasks[tasks.length - 1].order! + 1,
       done: false,
     };
+
     this.apiService
-      .postTask(boardId, columnId, dataTask)
-      .pipe(
-        take(1),
-        tap(() => {
-          this.boardService.updateBoard();
-        }),
-      )
-      .subscribe((taskData) => {
-        console.log(taskData.order);
-      });
+      .postTask(boardId, this.taskSubject$.value.column!.id!, taskData)
+      .pipe(take(1))
+      .subscribe(() => this.boardService.updateBoard());
   }
 
-  public updateTask(boardId: string, taskId: string, value: ITask, order: number): void {
-    console.log(value);
-
+  public updateTask(boardId: string, value: ITask): void {
     const taskData: ITask = {
       ...value,
-      order,
+      order: this.task!.order,
       boardId,
-      columnId: this.columnId,
+      columnId: this.taskSubject$.value.column!.id,
     };
+
     this.apiService
-      .putTask(boardId, this.columnId, taskId, taskData)
-      .pipe(
-        take(1),
-        tap(() => {
-          this.boardService.updateBoard();
-        }),
-      )
-      .subscribe();
+      .putTask(boardId, this.taskSubject$.value.column!.id!, this.task!.id!, taskData)
+      .pipe(take(1))
+      .subscribe(() => this.boardService.updateBoard());
   }
 }

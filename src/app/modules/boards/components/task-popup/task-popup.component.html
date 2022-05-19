@@ -1,15 +1,8 @@
 <div
-  class="overlay"
-  [class]="{ visible: (taskService.isTaskPopup$ | async) }"
+  [class]="{ overlay: true, visible: (taskService.taskSubject$ | async)!.isOpen }"
   (click)="closePopup()"
 >
-  <form
-    action="#"
-    class="form"
-    [formGroup]="taskForm"
-    (ngSubmit)="createTask()"
-    (click)="stopPropagation($event)"
-  >
+  <form class="form" [formGroup]="taskForm" (submit)="submit()" (click)="stopPropagation($event)">
     <div class="title-container">
       <input
         type="text"
@@ -35,6 +28,7 @@
             | transloco
         }}
       </p>
+
       <mat-form-field appearance="fill">
         <mat-label>{{ 'boardPage.performers' | transloco }}</mat-label>
         <mat-select formControlName="userId">
@@ -46,13 +40,27 @@
       <p class="validate">
         {{ errorMessagesService.showMessages(taskForm, 'userId', messages['userId']) | transloco }}
       </p>
-      <mat-checkbox *ngIf="!isNewTask" class="example-margin title" formControlName="done">{{
-        'editTask.done' | transloco
-      }}</mat-checkbox>
+
+      <mat-checkbox
+        *ngIf="(taskService.taskSubject$ | async)!.popupFunction === 'edit'"
+        class="example-margin title"
+        formControlName="done"
+      >
+        {{ 'editTask.done' | transloco }}
+      </mat-checkbox>
     </div>
 
-    <button class="button" [disabled]="taskForm.invalid">
+    <button
+      *ngIf="(taskService.taskSubject$ | async)!.popupFunction === 'add'; else editButton"
+      class="button"
+      [disabled]="taskForm.invalid"
+    >
       {{ 'boardPage.newTaskBtn' | transloco }}
     </button>
+    <ng-template #editButton>
+      <button class="button" [disabled]="taskForm.invalid">
+        {{ 'boardPage.editBtn' | transloco }}
+      </button>
+    </ng-template>
   </form>
 </div>
