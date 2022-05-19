@@ -4,7 +4,11 @@
     <app-sort-task></app-sort-task>
 
     <app-search-task
-      *ngFor="let task of searchService.tasks$ | async"
+      *ngFor="
+        let task of (searchService.tasks$ | async)!
+          | sortDone: sortService.filterStatus.isDone
+          | sortTask: sortService.filterStatus.isUpperOrder!:sortService.filterStatus.isUpperTitle!
+      "
       [task]="task"
     ></app-search-task>
     <ng-container *ngIf="searchService.isSearchResult$ | async">

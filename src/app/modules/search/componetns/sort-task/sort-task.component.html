@@ -1,15 +1,19 @@
 <div class="sort-container" *ngIf="(searchService.isSearchResult$ | async) === false">
   <h5 class="subtitle">{{ 'searchPage.sortBy' | transloco }}:</h5>
   <div class="sort-content">
-    <div class="sort sort-order" (click)="sortByOrder()">
+    <div class="sort" (click)="sortByOrder()">
       <p>{{ 'searchPage.order' | transloco }}</p>
       <mat-icon *ngIf="isUpperOrder">arrow_downward</mat-icon>
       <mat-icon *ngIf="!isUpperOrder"> arrow_upward</mat-icon>
     </div>
-    <div class="sort sort-order" (click)="sortByTitle()">
+    <div class="sort" (click)="sortByTitle()">
       <p>{{ 'searchPage.title' | transloco }}</p>
       <mat-icon *ngIf="isUpperTitle">arrow_downward</mat-icon>
       <mat-icon *ngIf="!isUpperTitle"> arrow_upward</mat-icon>
+    </div>
+    <div class="sort sort-done" (click)="sortByDoneTask()">
+      <p *ngIf="isDone">{{ 'searchPage.allTasks' | transloco }}</p>
+      <p *ngIf="!isDone">{{ 'searchPage.doneTasks' | transloco }}</p>
     </div>
   </div>
 </div>

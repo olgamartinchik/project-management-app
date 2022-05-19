@@ -1,5 +1,12 @@
 @use '../../../shared/styles/colors';
 @use '../../../shared/styles/font';
+:host {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1;
+  width: 100%;
+}
 .sort-container {
   display: flex;
   align-items: center;
@@ -15,11 +22,16 @@
 .sort-content {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
 }
 .sort {
   display: flex;
   align-items: center;
+
   @include font.text;
+  color: colors.$text-link-active;
   font-weight: bold;
   margin: 0 15px;
   cursor: pointer;
@@ -27,4 +39,7 @@
   &:hover {
     color: colors.$text-hover;
   }
+}
+.sort-done {
+  width: 145px;
 }

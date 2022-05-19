@@ -1,4 +1,4 @@
-<a class="search-task" routerLink="/board/{{ task.boardId }}" [class]="{ done: task.done }">
+<a routerLink="/board/{{ task.boardId }}" [class]="{ 'search-task': true, done: task.done }">
   <h3 class="subtitle">
     {{ 'searchPage.title' | transloco }}: <span class="search-text">{{ task.title }}</span>
   </h3>

@@ -141,6 +141,9 @@
     "order": "Order",
     "user": "User",
     "done": "Done",
+
+    "allTasks": "All tasks",
+    "doneTasks": "Done tasks",
     "sortBy": "Sort by"
   }
 }

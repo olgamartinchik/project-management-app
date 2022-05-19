@@ -10,9 +10,11 @@ import { SortService } from '../../services/sort.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SortTaskComponent {
-  public isUpperOrder: boolean = false;
+  public isUpperOrder = false;
 
-  public isUpperTitle: boolean = false;
+  public isUpperTitle = false;
+
+  public isDone = false;
 
   constructor(public searchService: SearchService, private sortService: SortService) {}
 
@@ -34,5 +36,15 @@ export class SortTaskComponent {
     }
     this.isUpperTitle = this.sortService.filterStatus.isUpperTitle;
     this.sortService.changeValue({ sortFlag: FilterMarker.titleFlag });
+  }
+
+  public sortByDoneTask(): void {
+    if (this.sortService.filterStatus.isDone) {
+      this.sortService.changeValue({ isDone: false });
+    } else {
+      this.sortService.changeValue({ isDone: true });
+    }
+    this.isDone = this.sortService.filterStatus.isDone;
+    this.sortService.changeValue({ sortFlag: FilterMarker.doneFlag });
   }
 }

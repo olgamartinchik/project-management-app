@@ -7,6 +7,7 @@ export class SortService {
   public filterStatus: TFilter = {
     isUpperOrder: false,
     isUpperTitle: false,
+    isDone: false,
     sortFlag: '',
   };
 

@@ -8,9 +8,17 @@ import { SortTaskComponent } from './componetns/sort-task/sort-task.component';
 import { SharedModule } from '../shared/shared.module';
 import { SearchRoutingModule } from './search-routing.module';
 import { SortService } from './services/sort.service';
+import { SortTaskPipe } from './pipes/sort-task.pipe';
+import { SortDonePipe } from './pipes/sort-done.pipe';
 
 @NgModule({
-  declarations: [SearchComponent, SearchTaskComponent, SortTaskComponent],
+  declarations: [
+    SearchComponent,
+    SearchTaskComponent,
+    SortTaskComponent,
+    SortTaskPipe,
+    SortDonePipe,
+  ],
   imports: [CommonModule, SearchRoutingModule, TranslocoRootModule, SharedModule],
   providers: [SortService],
 })
