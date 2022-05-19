@@ -1,11 +1,13 @@
 import { IFiles } from './IFiles.model';
 
-export interface ITasks {
-  id: string;
+export interface ITask {
+  id?: string;
   title: string;
-  order: 1;
-  done: false;
+  done?: false;
+  order?: number;
   description: string;
   userId: string;
-  files: IFiles;
+  boardId?: string;
+  columnId?: string;
+  files?: IFiles;
 }

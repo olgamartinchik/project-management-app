@@ -13,6 +13,8 @@ import { BoardPopupService } from 'src/app/modules/core/services/board-popup.ser
 import { DragDropService } from '../../services/drag-drop.service';
 
 import { BoardModel } from '../../../core/models/board.model';
+import { TaskService } from '../../services/task.service';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-board',
@@ -28,6 +30,8 @@ export class BoardComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
 
   constructor(
+    public taskService: TaskService,
+    public usersService: UsersService,
     private boardService: BoardService,
     private boardPopupService: BoardPopupService,
     private dragDropService: DragDropService,
@@ -39,6 +43,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       this.board = board;
       this.cdr.markForCheck();
     });
+    this.usersService.initAllUsers();
   }
 
   public ngOnDestroy(): void {
