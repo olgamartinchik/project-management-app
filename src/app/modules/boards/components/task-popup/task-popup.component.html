@@ -1,0 +1,66 @@
+<div
+  [class]="{ overlay: true, visible: (taskService.taskSubject$ | async)!.isOpen }"
+  (click)="closePopup()"
+>
+  <form class="form" [formGroup]="taskForm" (submit)="submit()" (click)="stopPropagation($event)">
+    <div class="title-container">
+      <input
+        type="text"
+        class="input"
+        id="title-task"
+        formControlName="title"
+        placeholder="{{ 'boardPage.tittleTask' | transloco }}"
+      />
+      <p class="validate">
+        {{ errorMessagesService.showMessages(taskForm, 'title', messages['title']) | transloco }}
+      </p>
+
+      <textarea
+        type="text"
+        class="textarea"
+        id="description-task"
+        formControlName="description"
+        placeholder="{{ 'boardPage.descriptionTask' | transloco }}"
+      ></textarea>
+      <p class="validate">
+        {{
+          errorMessagesService.showMessages(taskForm, 'description', messages['description'])
+            | transloco
+        }}
+      </p>
+
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'boardPage.performers' | transloco }}</mat-label>
+        <mat-select formControlName="userId">
+          <mat-option *ngFor="let user of users | async" [value]="user.id">{{
+            user.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p class="validate">
+        {{ errorMessagesService.showMessages(taskForm, 'userId', messages['userId']) | transloco }}
+      </p>
+
+      <mat-checkbox
+        *ngIf="(taskService.taskSubject$ | async)!.popupFunction === 'edit'"
+        class="example-margin title"
+        formControlName="done"
+      >
+        {{ 'editTask.done' | transloco }}
+      </mat-checkbox>
+    </div>
+
+    <button
+      *ngIf="(taskService.taskSubject$ | async)!.popupFunction === 'add'; else editButton"
+      class="button"
+      [disabled]="taskForm.invalid"
+    >
+      {{ 'boardPage.newTaskBtn' | transloco }}
+    </button>
+    <ng-template #editButton>
+      <button class="button" [disabled]="taskForm.invalid">
+        {{ 'boardPage.editBtn' | transloco }}
+      </button>
+    </ng-template>
+  </form>
+</div>

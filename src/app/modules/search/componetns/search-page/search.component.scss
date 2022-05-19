@@ -1,0 +1,38 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+@use '../../../shared/styles/components';
+:host {
+  height: components.$page-height;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.task-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+}
+.task-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  height: 100%;
+  overflow-y: auto;
+  @include components.scrollbar(colors.$main-color, colors.$secondary-color);
+}
+
+.title {
+  text-align: center;
+  @include font.title;
+}
+.empty-result {
+  @include font.subtitle;
+  text-align: center;
+}

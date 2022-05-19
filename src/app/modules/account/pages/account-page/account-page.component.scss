@@ -1,0 +1,36 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+@use '../../../shared/styles/components';
+
+:host {
+  min-height: components.$page-height;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.account__button {
+  margin: 50px 0 0;
+  padding: 10px 20px;
+  background-color: colors.$danger;
+  border: none;
+
+  @include font.text(20px, 20px);
+  color: white;
+  outline: none;
+  cursor: pointer;
+  transition: 0.6s ease;
+
+  &:hover,
+  &:focus-visible {
+    box-shadow: 3px 3px 10px colors.$danger;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    background-color: colors.$main-color-dark;
+  }
+}

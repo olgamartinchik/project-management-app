@@ -1,0 +1,114 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+@use '../../../shared/styles/components';
+
+$login-text-width: 60px;
+$registration-text-width: 125px;
+
+:host {
+  min-height: components.$page-height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-style: preserve-3d;
+  padding: 45px 0 60px;
+
+  &__3d-wrapper {
+    width: 500px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    transform-style: preserve-3d;
+    transition: transform 1.2s cubic-bezier(0.1, 0.25, 0.4, 1.6);
+    position: relative;
+
+    &.active {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &__checkbox {
+    position: absolute;
+    visibility: hidden;
+
+    &:checked + .auth__label::after {
+      width: $registration-text-width + 20px;
+      transform: translateX(90px);
+    }
+
+    &:checked ~ .auth__3d-wrapper {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &__label {
+    width: 250px;
+    height: 50px;
+    margin: 0 0 25px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    background-color: colors.$secondary-color;
+    border-radius: 25px;
+    cursor: pointer;
+
+    &::after {
+      content: '';
+      width: $login-text-width + 15px;
+      height: 40px;
+      background: transparent;
+      border: 2px solid colors.$accent-color;
+      border-radius: 25px;
+      position: absolute;
+      left: 7px;
+      transition: 0.5s ease-in-out;
+    }
+  }
+
+  &__text-label {
+    margin: 0;
+    @include font.text(25px, 25px);
+    text-align: center;
+
+    &:first-of-type {
+      width: $login-text-width;
+    }
+
+    &:last-of-type {
+      width: $registration-text-width;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .auth__3d-wrapper {
+    width: 90vw;
+    height: 550px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    background-color: colors.$main-color-dark;
+  }
+  .auth {
+    &__label {
+      background-color: colors.$board-dark;
+      &::after {
+        border: 2px solid colors.$invalid-dark;
+      }
+    }
+
+    &__text-label {
+      color: colors.$text-form-dark;
+    }
+  }
+}

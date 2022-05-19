@@ -1,0 +1,50 @@
+<ng-container *ngIf="board">
+  <div class="board__heading">
+    <h3 class="board__title">{{ board.title }}</h3>
+
+    <p class="board__description">{{ board.description }}</p>
+
+    <div class="board__button-row">
+      <button
+        class="board__button"
+        (click)="openEditBoardPopup()"
+        [title]="'boardPage.editBtn' | transloco"
+      >
+        <mat-icon aria-hidden="false" aria-label="Edit board icon">edit_note</mat-icon>
+      </button>
+
+      <button
+        class="board__button"
+        (click)="toggleColumnPopup()"
+        [title]="'boardPage.addColBtn' | transloco"
+      >
+        <mat-icon aria-hidden="false" aria-label="Edit board icon">post_add</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="board__columns-container"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="changeColumnOrder($event)"
+  >
+    <app-column
+      *ngFor="let column of board.columns"
+      [columnData]="column"
+      [board]="board!"
+      cdkDrag
+      cdkDragLockAxis="x"
+      cdkDragBoundary=".board__columns-container"
+    >
+      <div cdkDragHandle></div>
+    </app-column>
+  </div>
+
+  <app-column-popup
+    [isOpen]="isColumnPopupOpen"
+    [board]="board"
+    (closingPopup)="toggleColumnPopup()"
+  ></app-column-popup>
+  <app-task-popup [boardId]="board.id!"></app-task-popup>
+</ng-container>

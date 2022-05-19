@@ -1,0 +1,74 @@
+@use './colors';
+
+$header-height: 70px;
+$footer-height: 60px;
+
+$page-height: calc(100vh - $header-height - $footer-height);
+
+@mixin mat-icon($size: 30px, $color: colors.$danger) {
+  font-size: $size;
+  line-height: $size;
+  color: $color;
+  width: auto;
+  height: auto;
+}
+
+@mixin button-icon() {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    text-shadow: 5px 5px 3px rgb(0, 0, 0, 0.5);
+  }
+}
+
+@mixin scrollbar($track-color, $thumb-color) {
+  /* стилизация скрола для Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: $track-color $thumb-color;
+
+  /* для Chrome/Edge/Safari */
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $track-color;
+    border-radius: 100px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $thumb-color;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+}
+
+@mixin dran-and-drop($parent-component, $child-component) {
+  .cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px 3px rgba(colors.$accent-color, 0.2);
+    border: 2px solid colors.$accent-color;
+  }
+
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+
+  .cdk-drag-animating {
+    transition: 0.3s ease-in-out;
+  }
+
+  #{$parent-component}.cdk-drop-list-dragging #{$child-component}:not(.cdk-drag-placeholder) {
+    transition: 0.3s ease-in-out;
+  }
+}

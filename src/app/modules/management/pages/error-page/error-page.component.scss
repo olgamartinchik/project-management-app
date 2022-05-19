@@ -1,0 +1,36 @@
+@use '../../../shared/styles/font';
+@use '../../../shared/styles/colors';
+
+:host {
+  width: 50%;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 25%;
+
+  img {
+    width: 100%;
+  }
+
+  h2 {
+    @include font.text(36px, 38px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  h2 {
+    font-size: 1em;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    background-color: colors.$main-color-dark;
+
+    h2 {
+      color: colors.$text-form-dark;
+    }
+  }
+}

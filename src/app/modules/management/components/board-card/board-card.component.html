@@ -1,0 +1,14 @@
+<a class="board" [routerLink]="['/board', boardData.id]">
+  <button
+    class="board__delete-button"
+    type="button"
+    (click)="confirmationDeleteBoard($event)"
+    [title]="'mainPage.deleteBtn' | transloco"
+  >
+    <mat-icon aria-hidden="false" aria-label="Delete icon">delete_outline</mat-icon>
+  </button>
+
+  <h3 class="board__title">{{ boardData.title }}</h3>
+
+  <p class="board__description">{{ boardData.description }}</p>
+</a>

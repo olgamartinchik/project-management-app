@@ -1,0 +1,80 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/forms';
+
+:host {
+  @include forms.form-block;
+}
+
+.auth {
+  &__form {
+    @include forms.form;
+  }
+
+  &__label {
+    @include forms.label;
+  }
+
+  &__input {
+    @include forms.input;
+  }
+
+  &__error-text {
+    @include forms.error-message;
+  }
+
+  &__error-text_place_form {
+    margin: 15px 0 0;
+    font-size: 20px;
+    line-height: 25px;
+  }
+
+  &__recommend-list {
+    margin: 0;
+    padding: 0 0 0 20px;
+  }
+
+  &__recommend-item {
+    @include forms.recommend-message;
+  }
+
+  &__button {
+    @include forms.button;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    background-color: colors.$board-dark;
+  }
+  .auth {
+    &__input {
+      background-color: colors.$input-color-dark;
+      color: colors.$text-form-dark;
+
+      &::placeholder {
+        color: colors.$placeholder-text-dark;
+      }
+    }
+
+    &__error-text {
+      color: colors.$invalid-dark;
+    }
+
+    &__recommend-item {
+      color: colors.$invalid-dark;
+
+      &::before {
+        background-color: colors.$invalid-dark;
+      }
+    }
+    &__button {
+      background-color: colors.$btn-color-dark;
+      color: colors.$text-form-dark;
+      border: 2px solid colors.$btn-border-dark;
+      &:disabled {
+        background-color: colors.$text-form-dark;
+        border: none;
+      }
+    }
+  }
+}

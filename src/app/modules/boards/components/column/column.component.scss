@@ -1,0 +1,106 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+@use '../../../shared/styles/components';
+
+:host {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: colors.$main-color;
+}
+
+.column {
+  &__header {
+    width: 100%;
+    padding: 10px 40px 10px 10px;
+    position: relative;
+    border-bottom: 2px solid colors.$text-color;
+  }
+
+  &__title {
+    width: 100%;
+    margin: 0;
+    padding: 5px 0 0 5px;
+
+    background: transparent;
+    border: 2px solid transparent;
+    outline: none;
+
+    @include font.subtitle;
+    overflow: hidden;
+    position: relative;
+    text-overflow: ellipsis;
+    transition: 0.2s ease;
+    cursor: pointer;
+
+    &:focus,
+    &:focus-visible {
+      border: 2px solid colors.$text-hover;
+      cursor: text;
+    }
+  }
+
+  &__delete-button {
+    @include components.button-icon;
+
+    padding: 13px 3px 0 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    & > mat-icon {
+      @include components.mat-icon;
+    }
+  }
+
+  &__content {
+    position: relative;
+    height: 100%;
+    padding: 0 10px 10px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    gap: 15px;
+    @include components.scrollbar(colors.$main-color, colors.$secondary-color);
+  }
+}
+.new-task-btn {
+  position: sticky;
+  top: 5px;
+  padding: 5px;
+  background-color: colors.$task-btn;
+  @include font.text;
+  font-size: 20px;
+  width: 100%;
+  text-align: end;
+  z-index: 1;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+  &:hover {
+    background-color: colors.$popup-color;
+    color: colors.$main-color;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :host {
+    background-color: colors.$board-dark;
+  }
+  .column {
+    &__header {
+      border-bottom: 2px solid colors.$btn-border-dark;
+    }
+
+    &__title {
+      color: colors.$text-form-dark;
+    }
+
+    &__delete-button {
+      & > mat-icon {
+        color: colors.$invalid-dark;
+      }
+    }
+  }
+}
+
+@include components.dran-and-drop('.column__content', 'app-task');

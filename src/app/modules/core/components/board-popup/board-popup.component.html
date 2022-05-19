@@ -1,0 +1,43 @@
+<form
+  class="board-popup__form"
+  (click)="stopPropagation($event)"
+  [formGroup]="boardForm"
+  (ngSubmit)="submit()"
+>
+  <label class="board-popup__label">
+    <input
+      class="board-popup__input"
+      formControlName="title"
+      type="text"
+      [placeholder]="'boardPopup.titlePlaceholder' | transloco"
+    />
+    <p class="board-popup__error-text">
+      {{ errorMessagesService.showMessages(boardForm, 'title', messages['title']) | transloco }}
+    </p>
+  </label>
+
+  <label class="board-popup__label">
+    <textarea
+      class="board-popup__input board-popup__textarea"
+      formControlName="description"
+      type="text"
+      [placeholder]="'boardPopup.descriptionPlaceholder' | transloco"
+    >
+    </textarea>
+    <p class="board-popup__error-text">
+      {{
+        errorMessagesService.showMessages(boardForm, 'description', messages['description'])
+          | transloco
+      }}
+    </p>
+  </label>
+
+  <button type="submit" class="board-popup__button" [disabled]="boardForm.invalid">
+    {{
+      ((boardPopupService.subject$ | async)!.popupFunction === 'create'
+        ? 'mainPage.createBtn'
+        : 'boardPage.editBtn'
+      ) | transloco
+    }}
+  </button>
+</form>

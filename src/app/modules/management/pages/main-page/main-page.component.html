@@ -1,0 +1,25 @@
+<main class="main">
+  <h1 class="main__title">{{ 'mainPage.title' | transloco }}</h1>
+  <div class="main__sorts">
+    <h3 class="main__title-sort">{{ 'mainPage.titleSort' | transloco }}</h3>
+    <div class="main__btn-container">
+      <button class="main__button" (click)="changeBtnUp()">
+        {{ 'mainPage.sortUp' | transloco }}
+      </button>
+      <button class="main__button" (click)="changeBtnDown()">
+        {{ 'mainPage.sortDown' | transloco }}
+      </button>
+    </div>
+  </div>
+
+  <div class="main__boards">
+    <app-board-card
+      *ngFor="let board of (allBoards$ | async)! | sort: titleToSortUp:titleToSortDown"
+      [boardData]="board"
+    ></app-board-card>
+
+    <button class="main__new-button" (click)="openBoardPopup()">
+      {{ 'mainPage.newBoard' | transloco }}
+    </button>
+  </div>
+</main>

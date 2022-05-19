@@ -1,0 +1,33 @@
+<div class="column__header">
+  <ng-content></ng-content>
+  <input class="column__title" [formControl]="titleInput" (blur)="editTitle()" />
+
+  <button
+    class="column__delete-button"
+    type="button"
+    (click)="confirmationDeleteColumn()"
+    [title]="'boardPage.deleteBtn' | transloco"
+  >
+    <mat-icon aria-hidden="false" aria-label="Delete icon">delete_outline</mat-icon>
+  </button>
+</div>
+
+<div
+  class="column__content"
+  cdkDropList
+  [id]="columnData.id!"
+  [cdkDropListConnectedTo]="columnIds"
+  (cdkDropListDropped)="changeTaskOrder($event)"
+>
+  <div class="new-task-btn" (click)="openAddTaskPopup()">
+    + {{ 'boardPage.addTask' | transloco }}
+  </div>
+
+  <app-task
+    *ngFor="let task of columnData.tasks"
+    [task]="task"
+    [boardId]="board.id!"
+    [column]="columnData"
+    cdkDrag
+  ></app-task>
+</div>

@@ -1,0 +1,151 @@
+{
+  "nav": {
+    "mainPage": "Main page",
+    "enter": "Signin/login",
+    "search": "Search",
+    "account": "Personal account",
+    "createBoard": "Create board",
+    "searchTask": "Search task",
+    "placeholder": "task description order name",
+    "logout": "Logout"
+  },
+  "welcomePage": {
+    "h2": "The project was made by:",
+    "nameTeamLead": "Andrey Burlakov",
+    "nameFirstDeveloper": "Olga Martinchik",
+    "nameSecondDeveloper": "Viktoria Tsimakhovich",
+    "button": "Try...",
+    "textFirstBox": "Online course «Development on Angular». Free course from The Rolling Scopes community. In this course, we studied the Angular framework. We have developed a project management system by our team, which is similar to such applications as Trello, Jira, Redmine and others.",
+    "textSecondBox": "Systems for planning, setting and monitoring tasks are the main tool for working on projects in small startups and large companies. Our free version has the ability to create different work boards for each project.",
+    "textThirdBox": "This system has created:",
+    "textLiOne": "welcome page",
+    "textLiTwo": "registration and user login",
+    "textLiThree": "project management main page",
+    "textLiFour": "project management page",
+    "roleTeamLead": "Team lead",
+    "roleFirstDeveloper": "Developer",
+    "roleSecondDeveloper": "Developer",
+    "infoTeamLead": "Coordinated the team, implemented user authorization and registration, created a personal account, implemented task column components, participated in the development of a design project, implemented drag-n-drop.",
+    "infoFirstDeveloper": "Set up the Backend and all the work with it, implemented the main page, connected the Trensloco library, worked on the project management page, participated in the development of the project design, made the search page and worked on the task page.",
+    "infoSecondDeveloper": "Worked on the layout and design, set up routing, created a header and footer with navigation, worked on a welcome page and an error page when clicking on the wrong link, implemented a transition to a dark theme, made sorting on the main page."
+  },
+  "mainPage": {
+    "title": "Your work board",
+    "newBoard": "Create board",
+    "deleteBtn": "Delete board",
+    "createBtn": "Create",
+    "titleSort": "Sorting:",
+    "sortUp": "from A to Z",
+    "sortDown": "from Z to A"
+  },
+  "errorPage": {
+    "text": "Sorry, page not found!"
+  },
+  "OutputPopup": {
+    "title": "Are you sure you want to exit?",
+    "exit": "Exit",
+    "cancel": "Cancel"
+  },
+  "confirmPopup": {
+    "title": "Are you sure?",
+    "button": "Delete"
+  },
+  "boardPopup": {
+    "titlePlaceholder": "Title",
+    "descriptionPlaceholder": "Description"
+  },
+  "boardPage": {
+    "addColBtn": "Add column",
+    "deleteBtn": "Delete column",
+    "editBtn": "Edit",
+    "button": "Delete",
+    "enter": "Signup/login",
+    "search": "Search",
+    "performers": "performer",
+    "newTaskBtn": "create task",
+    "tittleTask": "Title",
+    "descriptionTask": "Description",
+    "addTask": "add"
+  },
+  "editTask": {
+    "tittleTask": "Edit title",
+    "descriptionTask": "Edit Description",
+    "editTaskBtn": "edit task",
+    "done": "done",
+    "deleteBtn": "Delete column",
+    "editBtn": "Edit"
+  },
+  "auth": {
+    "loginLabel": "Login",
+    "signupLabel": "Registration",
+    "loginPlaceholder": "Login",
+    "passwordPlaceholder": "Password",
+    "namePlaceholder": "Name",
+    "confirmPasswordPlaceholder": "Confirm password",
+    "loginButton": "Login",
+    "signupButton": "Sign up"
+  },
+  "account": {
+    "title": "Welcome",
+    "subtitle": "Edit profile",
+    "namePlaceholder": "Name",
+    "loginPlaceholder": "Login",
+    "passwordPlaceholder": "Password",
+    "confirmPasswordPlaceholder": "Confirm password",
+    "editButton": "Edit",
+    "deleteButton": "Delete account"
+  },
+  "nameErrors": {
+    "required": "Please enter a name",
+    "minlength": "The name is too short",
+    "maxlength": "The name is too long"
+  },
+  "loginErrors": {
+    "required": "Please enter a login",
+    "minlength": "The login is too short",
+    "maxlength": "The login is too long"
+  },
+  "passwordErrors": {
+    "required": "Please enter a password",
+    "mismatch": "Passwords don't match",
+    "weak": "Your password isn't strong enough",
+    "length": "at least 8 and maximum 20 characters",
+    "bothCase": "a mixture of both uppercase and lowercase letters",
+    "number": "a mixture of letters and numbers",
+    "specialChar": "inclusion of at least one special character, e.g., !@#?]"
+  },
+  "titleErrors": {
+    "required": "Please enter a title",
+    "minlength": "The title is too short",
+    "maxlength": "The title is too long"
+  },
+  "descriptionErrors": {
+    "required": "Please enter a description",
+    "minlength": "The description is too short",
+    "maxlength": "The description is too long"
+  },
+  "commonErrors": {
+    "pattern": "Use only latin letters, numbers and special characters",
+    "unknown": "Unknown error"
+  },
+  "apiErrors": {
+    "forbidden": "User not found",
+    "conflict": "This login already exists"
+  },
+  "userIdErrors": {
+    "required": "Please select user"
+  },
+  "searchPage": {
+    "result": "Search result",
+    "emptySearch": "Sorry, no matches",
+    "title": "Title",
+    "description": "Description",
+    "order": "Order",
+    "user": "User",
+    "done": "Done",
+
+    "allTasks": "All tasks",
+    "doneTasks": "Done tasks",
+    "sortBy": "Sort by"
+  }
+}

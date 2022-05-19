@@ -1,0 +1,26 @@
+<div [class]="{ overlay: true, visible: isOpen }" (click)="closePopup()">
+  <form class="popup" [formGroup]="addColumnForm" (click)="stopPropagation($event)">
+    <label class="popup__label">
+      <input
+        class="popup__input"
+        formControlName="title"
+        type="text"
+        [placeholder]="'boardPopup.titlePlaceholder' | transloco"
+      />
+      <p class="popup__error-text">
+        {{
+          errorMessagesService.showMessages(addColumnForm, 'title', messages['title']) | transloco
+        }}
+      </p>
+    </label>
+
+    <button
+      class="popup__button"
+      type="submit"
+      [disabled]="addColumnForm.invalid"
+      (click)="createColumn()"
+    >
+      {{ 'mainPage.createBtn' | transloco }}
+    </button>
+  </form>
+</div>

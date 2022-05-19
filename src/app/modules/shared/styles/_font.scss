@@ -1,0 +1,20 @@
+@use 'colors';
+
+$heading-font-family: Old Standard, Georgia, serif;
+$text-font-family: Forum, Arial, sans-serif;
+
+@mixin title {
+  font: normal bold 30px/38px $heading-font-family;
+  text-align: center;
+  color: colors.$text-color;
+}
+
+@mixin subtitle {
+  font: normal bold 20px/26px $heading-font-family;
+  color: colors.$text-color;
+}
+
+@mixin text($font-size: 16px, $line-height: 20px) {
+  font: normal normal #{$font-size}/#{$line-height} $text-font-family;
+  color: colors.$text-color;
+}

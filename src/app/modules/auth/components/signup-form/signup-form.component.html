@@ -1,0 +1,74 @@
+<form class="auth__form" [formGroup]="signupForm" (submit)="submit()">
+  <label class="auth__label">
+    <input
+      class="auth__input"
+      formControlName="name"
+      type="text"
+      [placeholder]="'auth.namePlaceholder' | transloco"
+    />
+    <p class="auth__error-text">
+      {{ errorMessagesService.showMessages(signupForm, 'name', messages['name']) | transloco }}
+    </p>
+  </label>
+
+  <label class="auth__label">
+    <input
+      class="auth__input"
+      formControlName="login"
+      type="text"
+      [placeholder]="'auth.loginPlaceholder' | transloco"
+    />
+    <p class="auth__error-text">
+      {{ errorMessagesService.showMessages(signupForm, 'login', messages['login']) | transloco }}
+    </p>
+  </label>
+
+  <label class="auth__label">
+    <input
+      class="auth__input"
+      formControlName="password"
+      type="password"
+      [placeholder]="'auth.passwordPlaceholder' | transloco"
+    />
+    <ng-container
+      *ngIf="
+        errorMessagesService.showPasswordErrors(
+          signupForm,
+          'password',
+          messages['password']
+        ) as error
+      "
+    >
+      <p class="auth__error-text">{{ error.main | transloco }}</p>
+      <ul class="auth__recommend-list">
+        <li class="auth__recommend-item" *ngFor="let recommend of error.recommendations">
+          {{ recommend | transloco }}
+        </li>
+      </ul>
+    </ng-container>
+  </label>
+
+  <label class="auth__label">
+    <input
+      [class]="{
+        auth__input: true,
+        'auth__input_type_pass-confirm': true,
+        invalid: signupForm.errors && signupForm.errors['passwordMatch']
+      }"
+      formControlName="confirmPassword"
+      type="password"
+      [placeholder]="'auth.confirmPasswordPlaceholder' | transloco"
+    />
+    <p class="auth__error-text">
+      {{ errorMessagesService.showPasswordMatchMessage(signupForm) | transloco }}
+    </p>
+  </label>
+
+  <p class="auth__error-text auth__error-text_place_form">
+    {{ signupForm.errors && signupForm.errors['formError'] | transloco }}
+  </p>
+
+  <button class="auth__button" type="submit" [disabled]="signupForm.invalid">
+    {{ 'auth.signupButton' | transloco }}
+  </button>
+</form>

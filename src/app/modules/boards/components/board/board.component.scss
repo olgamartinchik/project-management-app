@@ -1,0 +1,116 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+@use '../../../shared/styles/components';
+
+:host {
+  height: components.$page-height;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.board {
+  &__heading {
+    margin: 0 0 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  &__title {
+    margin: 0 0 10px;
+    @include font.title;
+  }
+
+  &__description {
+    max-width: 80%;
+    margin: 0 0 10px;
+    @include font.text(20px, 22px);
+  }
+
+  &__button-row {
+    display: flex;
+  }
+
+  &__button {
+    @include components.button-icon;
+
+    &:first-of-type {
+      margin: 0 20px 0 0;
+    }
+
+    & > mat-icon {
+      @include components.mat-icon(50px, colors.$text-hover);
+    }
+
+    &:hover,
+    &:focus {
+      & > mat-icon {
+        color: colors.$accent-color;
+      }
+    }
+  }
+
+  &__columns-container {
+    height: 100%;
+    padding: 0 0 10px;
+    display: grid;
+    grid-template: 100% / repeat(auto-fit, 280px);
+    grid-auto-flow: column;
+    grid-auto-columns: 280px;
+    gap: 20px;
+    overflow-y: hidden;
+    overflow-x: auto;
+
+    @include components.scrollbar(colors.$disabled-bg, colors.$disabled-text);
+
+    &::-webkit-scrollbar {
+      width: 20px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 100px;
+      border: 5px solid transparent;
+    }
+  }
+}
+
+@include components.dran-and-drop('.board__columns-container', 'app-column');
+
+@media screen and (max-width: 768px) {
+  :host {
+    height: calc(100vh - 70px - 142px);
+  }
+
+  .board {
+    &__title {
+      font-size: 20px;
+    }
+
+    &__description {
+      max-width: 100%;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    background-color: colors.$main-color-dark;
+  }
+  .board {
+    &__title {
+      color: colors.$text-form-dark;
+    }
+
+    &__description {
+      color: colors.$text-dark-team;
+    }
+
+    &__add-column {
+      background-color: colors.$board-dark;
+      color: colors.$text-form-dark;
+    }
+  }
+}

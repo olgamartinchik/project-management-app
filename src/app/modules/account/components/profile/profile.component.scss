@@ -1,0 +1,34 @@
+@use '../../../shared/styles/font';
+@use '../../../shared/styles/colors';
+
+:host {
+  width: 100%;
+  margin: 0 0 10px;
+}
+
+.profile {
+  &__title {
+    margin: 0 0 20px;
+    @include font.title;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &__subtitle {
+    margin: 0;
+    @include font.subtitle;
+    text-align: center;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .profile {
+    &__title {
+      color: colors.$text-dark-team;
+    }
+
+    &__subtitle {
+      color: colors.$text-dark-team;
+    }
+  }
+}
