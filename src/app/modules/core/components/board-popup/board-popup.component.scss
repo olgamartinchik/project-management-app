@@ -57,9 +57,8 @@
   }
 }
 
-@media (prefers-color-scheme: dark){
+@media (prefers-color-scheme: dark) {
   .board-popup {
-
     &__input {
       background-color: colors.$input-color-dark;
       color: colors.$text-form-dark;

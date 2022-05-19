@@ -21,7 +21,7 @@
   }
 }
 
-@media (prefers-color-scheme: dark){
+@media (prefers-color-scheme: dark) {
   .profile {
     &__title {
       color: colors.$text-dark-team;

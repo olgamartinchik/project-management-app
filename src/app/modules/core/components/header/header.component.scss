@@ -120,7 +120,7 @@ app-navbar {
   }
 }
 
-@media (prefers-color-scheme: dark){
+@media (prefers-color-scheme: dark) {
   :host {
     background-color: colors.$header-color-dark;
   }
