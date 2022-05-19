@@ -22,9 +22,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    flex-wrap: wrap;
     margin-top: 20px;
   }
-
+&__btn-container{
+  display: flex;
+  align-items: center;
+}
   &__title-sort {
     max-width: 80%;
     margin: 0;
@@ -35,6 +39,8 @@
     @include forms.button;
     background-color: colors.$board-color;
     margin: 0 0 0 10px;
+    font-size: 14px;
+
   }
 
   &__title {

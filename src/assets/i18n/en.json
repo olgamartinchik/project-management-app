@@ -35,8 +35,8 @@
     "deleteBtn": "Delete board",
     "createBtn": "Create",
     "titleSort": "Sorting:",
-    "sortUp": "alphabetically from A to Z",
-    "sortDown": "alphabetically from Z to A"
+    "sortUp": "from A to Z",
+    "sortDown": "from Z to A"
   },
   "errorPage": {
     "text": "Sorry, page not found!"
