@@ -21,6 +21,7 @@ import { TaskComponent } from './components/task/task.component';
 import { TaskService } from './services/task.service';
 
 import { ErrorMessagesService } from '../core/services/error-messages.service';
+import { DragDropService } from './services/drag-drop.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,6 @@ import { ErrorMessagesService } from '../core/services/error-messages.service';
     ReactiveFormsModule,
     SharedModule,
   ],
-  providers: [BoardService, ColumnService, ErrorMessagesService, TaskService],
+  providers: [BoardService, ColumnService, TaskService, ErrorMessagesService, DragDropService],
 })
 export class BoardModule {}
