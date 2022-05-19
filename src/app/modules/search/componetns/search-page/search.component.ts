@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
 
   public ngOnInit(): void {
     if (this.authService.getItem('searchResult') !== null) {
-      this.searchService.getSearchTask(this.authService.getItem('searchResult')!);
+      this.searchService.initSearchTask(this.authService.getItem('searchResult')!);
     }
   }
 }

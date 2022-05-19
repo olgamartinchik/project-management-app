@@ -45,14 +45,10 @@ export class HeaderComponent implements OnInit {
   }
 
   public getSearchResult(): void {
-    // ||this.authService.getSearchResult()!==null
     if (this.inputValue.trim() !== '') {
       this.router.navigate(['/search']);
       this.authService.saveSearchResult(this.inputValue);
-
-      this.searchService.getSearchTask(this.inputValue.toLocaleLowerCase().trim());
-      // this.searchService.getSearchTask(this.inputValue.toLocaleLowerCase().trim());
-
+      this.searchService.initSearchTask(this.inputValue.toLocaleLowerCase().trim());
       this.inputValue = '';
     }
   }

@@ -11,7 +11,7 @@
   </p>
   <p class="subtitle">
     {{ 'searchPage.user' | transloco }}:
-    <span class="search-text">{{ usersService.getUser(task.userId) }}</span>
+    <span class="search-text">{{ usersService.getUserName(task.userId) }}</span>
   </p>
   <p class="done-task" *ngIf="task.done">
     {{ 'searchPage.done' | transloco }}

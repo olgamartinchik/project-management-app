@@ -28,7 +28,7 @@ export class UsersService {
       });
   }
 
-  public getUser(userId: string): string {
+  public getUserName(userId: string): string {
     this.users
       .pipe(
         take(1),

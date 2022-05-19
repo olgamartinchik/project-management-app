@@ -16,34 +16,29 @@ export class SortTaskPipe implements PipeTransform {
     isUpperTitle: boolean,
   ): ITask[] {
     if (taskList.length == 0) return taskList;
+    let newArray = taskList;
     if (this.sortService.filterStatus.sortFlag === FilterMarker.orderFlag) {
-      this.sortByOrderTask(isUpperOrder, taskList);
+      this.sortTask(isUpperOrder, FilterMarker.orderFlag, newArray);
     }
     if (this.sortService.filterStatus.sortFlag === FilterMarker.titleFlag) {
-      this.sortByTitleTask(isUpperTitle, taskList);
+      this.sortTask(isUpperTitle, FilterMarker.titleFlag, newArray);
     }
 
-    return taskList;
+    return newArray;
   }
 
-  private sortByOrderTask(isUpperOrder: boolean, taskList: ITask[]): void {
-    if (!isUpperOrder) {
-      taskList.sort((task, nextTask) => task.order! - nextTask.order!);
-    } else if (isUpperOrder) {
-      taskList.sort((task, nextTask) => nextTask.order! - task.order!);
-    }
-  }
-
-  private sortByTitleTask(isUpperTitle: boolean, taskList: ITask[]): void {
-    if (!isUpperTitle) {
-      taskList.sort(
-        (task, nextTask) =>
-          task.title.toLowerCase().charCodeAt(0) - nextTask.title.toLowerCase().charCodeAt(0),
+  private sortTask(isUpper: boolean, sortFlag: string, taskList: ITask[]): void {
+    if (!isUpper) {
+      taskList.sort((task, nextTask) =>
+        sortFlag === FilterMarker.titleFlag
+          ? task.title.toLowerCase().charCodeAt(0) - nextTask.title.toLowerCase().charCodeAt(0)
+          : task.order! - nextTask.order!,
       );
-    } else if (isUpperTitle) {
-      taskList.sort(
-        (task, nextTask) =>
-          nextTask.title.toLowerCase().charCodeAt(0) - task.title.toLowerCase().charCodeAt(0),
+    } else if (isUpper) {
+      taskList.sort((task, nextTask) =>
+        sortFlag === FilterMarker.titleFlag
+          ? nextTask.title.toLowerCase().charCodeAt(0) - task.title.toLowerCase().charCodeAt(0)
+          : nextTask.order! - task.order!,
       );
     }
   }

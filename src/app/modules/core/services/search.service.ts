@@ -15,7 +15,7 @@ export class SearchService {
 
   constructor(private apiService: ApiService) {}
 
-  public getSearchTask(inputValue: string): void {
+  public initSearchTask(inputValue: string): void {
     this.allTasks = [];
     this.tasks$.next([]);
     this.apiService
