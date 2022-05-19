@@ -85,6 +85,7 @@
       border: 2px solid colors.$btn-border-dark;
       &:disabled {
         background-color: colors.$disabled-bg-dark;
+        color: colors.$text-form-dark;
         border: none;
       }
     }

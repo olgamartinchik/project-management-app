@@ -73,7 +73,7 @@
     }
 
     &__description {
-     color: colors.$column-color;
+      color: colors.$column-color;
 
       @include components.scrollbar(colors.$disabled-bg, colors.$disabled-text);
     }

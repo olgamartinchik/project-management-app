@@ -23,9 +23,9 @@
     "roleTeamLead": "Team lead",
     "roleFirstDeveloper": "Developer",
     "roleSecondDeveloper": "Developer",
-    "infoTeamLead": "Coordinated the team, implemented user authorization and registration, created a personal account page, implemented the task column component, participated in the development of the project design.",
-    "infoFirstDeveloper": "Set up the Backend and all the work with it, implemented the main page, connected the Trensloco library, worked on the project management page, participated in the development of the project design.",
-    "infoSecondDeveloper": "Worked on layout and design, set up routing, created a header and footer with navigation, worked on a welcome page and an error page when clicking on a wrong link."
+    "infoTeamLead": "Coordinated the team, implemented user authorization and registration, created a personal account, implemented task column components, participated in the development of a design project, implemented drag-n-drop.",
+    "infoFirstDeveloper": "Set up the Backend and all the work with it, implemented the main page, connected the Trensloco library, worked on the project management page, participated in the development of the project design, made the search page and worked on the task page.",
+    "infoSecondDeveloper": "Worked on the layout and design, set up routing, created a header and footer with navigation, worked on a welcome page and an error page when clicking on the wrong link, implemented a transition to a dark theme, made sorting on the main page."
   },
   "mainPage": {
     "title": "Your work board",

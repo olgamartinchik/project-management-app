@@ -69,10 +69,10 @@
     }
     &__button {
       background-color: colors.$btn-color-dark;
-      color: colors.$text-dark-team;
+      color: colors.$text-form-dark;
       border: 2px solid colors.$btn-border-dark;
       &:disabled {
-        background-color: colors.$disabled-bg-dark;
+        background-color: colors.$text-form-dark;
         border: none;
       }
     }
