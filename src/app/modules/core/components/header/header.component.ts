@@ -34,6 +34,9 @@ export class HeaderComponent implements OnInit {
 
   public ngOnInit(): void {
     this.usersService.initAllUsers();
+    if (this.authService.getItem('searchResult')) {
+      this.searchService.initSearchTask(this.authService.getItem('searchResult')!);
+    }
   }
 
   public switchLang(): void {
@@ -49,6 +52,7 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/search']);
       this.authService.saveSearchResult(this.inputValue);
       this.searchService.initSearchTask(this.inputValue.toLocaleLowerCase().trim());
+
       this.inputValue = '';
     }
   }

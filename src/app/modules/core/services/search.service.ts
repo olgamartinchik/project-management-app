@@ -39,7 +39,6 @@ export class SearchService {
                         task.order!.toString().trim().includes(inputValue)
                       ) {
                         this.allTasks.push(task);
-                        this.tasks$.next(this.allTasks);
                       }
                       this.apiService
                         .getAllUsers()
@@ -51,7 +50,6 @@ export class SearchService {
                               user.name.toLowerCase().trim().includes(inputValue)
                             ) {
                               this.allTasks.push(task);
-                              this.tasks$.next(this.allTasks);
                             }
                           });
                           if (this.allTasks.length === 0) {
@@ -61,6 +59,7 @@ export class SearchService {
                           }
                         });
                     });
+                    this.tasks$.next(this.allTasks);
                   });
               });
             });

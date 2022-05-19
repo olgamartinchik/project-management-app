@@ -16,15 +16,15 @@ export class SortTaskPipe implements PipeTransform {
     isUpperTitle: boolean,
   ): ITask[] {
     if (taskList.length == 0) return taskList;
-    let newArray = taskList;
+
     if (this.sortService.filterStatus.sortFlag === FilterMarker.orderFlag) {
-      this.sortTask(isUpperOrder, FilterMarker.orderFlag, newArray);
+      this.sortTask(isUpperOrder, FilterMarker.orderFlag, taskList);
     }
     if (this.sortService.filterStatus.sortFlag === FilterMarker.titleFlag) {
-      this.sortTask(isUpperTitle, FilterMarker.titleFlag, newArray);
+      this.sortTask(isUpperTitle, FilterMarker.titleFlag, taskList);
     }
 
-    return newArray;
+    return taskList;
   }
 
   private sortTask(isUpper: boolean, sortFlag: string, taskList: ITask[]): void {
