@@ -5,6 +5,8 @@
     "search": "Search",
     "account": "Personal account",
     "createBoard": "Create board",
+    "searchTask": "Search task",
+    "placeholder": "task description order name",
     "logout": "Logout"
   },
   "welcomePage": {
@@ -129,5 +131,18 @@
   },
   "userIdErrors": {
     "required": "Please select user"
+  },
+  "searchPage": {
+    "result": "Search result",
+    "emptySearch": "Sorry, no matches",
+    "title": "Title",
+    "description": "Description",
+    "order": "Order",
+    "user": "User",
+    "done": "Done",
+
+    "allTasks": "All tasks",
+    "doneTasks": "Done tasks",
+    "sortBy": "Sort by"
   }
 }

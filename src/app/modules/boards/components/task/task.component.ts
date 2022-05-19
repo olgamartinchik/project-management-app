@@ -7,7 +7,7 @@ import { ApiService } from '../../../core/services/api.service';
 import { ConfirmService } from '../../../core/services/confirm.service';
 import { BoardService } from '../../services/board.service';
 import { TaskService } from '../../services/task.service';
-import { UsersService } from '../../services/users.service';
+import { UsersService } from 'src/app/modules/core/services/users.service';
 
 // ngrx
 import { usersSelect } from '../../../../redux/selectors/users.selector';

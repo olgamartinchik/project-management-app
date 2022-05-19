@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 
 import { BoardService } from '../../services/board.service';
 import { TaskService } from '../../services/task.service';
-import { UsersService } from '../../services/users.service';
+import { UsersService } from '../../../core/services/users.service';
 import { BoardPopupService } from '../../../core/services/board-popup.service';
 import { DragDropService } from '../../services/drag-drop.service';
 

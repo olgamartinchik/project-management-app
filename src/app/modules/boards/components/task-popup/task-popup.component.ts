@@ -44,7 +44,6 @@ export class TaskPopupComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.createForm();
-
     this.subscription = this.taskService.taskSubject$.subscribe(({ popupFunction }) => {
       if (popupFunction === 'edit') {
         this.taskForm.setValue({
