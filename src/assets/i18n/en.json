@@ -140,6 +140,7 @@
     "description": "Description",
     "order": "Order",
     "user": "User",
-    "done":"Done"
+    "done": "Done",
+    "sortBy": "Sort by"
   }
 }

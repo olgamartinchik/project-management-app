@@ -1,6 +1,8 @@
 <div class="task-container">
   <h3 class="title">{{ 'searchPage.result' | transloco }}</h3>
   <div class="task-content">
+    <app-sort-task></app-sort-task>
+
     <app-search-task
       *ngFor="let task of searchService.tasks$ | async"
       [task]="task"

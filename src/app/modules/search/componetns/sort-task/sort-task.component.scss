@@ -1,0 +1,30 @@
+@use '../../../shared/styles/colors';
+@use '../../../shared/styles/font';
+.sort-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.subtitle {
+  @include font.subtitle;
+  font-size: 18px;
+  margin: 15px;
+  transition: 0.3s ease-in-out;
+}
+.sort-content {
+  display: flex;
+  align-items: center;
+}
+.sort {
+  display: flex;
+  align-items: center;
+  @include font.text;
+  font-weight: bold;
+  margin: 0 15px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    color: colors.$text-hover;
+  }
+}

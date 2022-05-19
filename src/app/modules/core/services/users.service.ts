@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, Observable, take } from 'rxjs';
-
 import { getUsers } from 'src/app/redux/actions/user.actions';
 import { usersSelect } from 'src/app/redux/selectors/users.selector';
 

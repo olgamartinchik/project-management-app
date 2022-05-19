@@ -12,7 +12,6 @@ import { setTask } from 'src/app/redux/actions/tasks.actions';
 import { usersSelect } from 'src/app/redux/selectors/users.selector';
 
 import { IAppState } from 'src/app/redux/state.model';
-
 import { TaskService } from '../../services/task.service';
 
 @Component({
