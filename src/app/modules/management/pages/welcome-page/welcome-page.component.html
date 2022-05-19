@@ -1,66 +1,67 @@
-<div class="box-info">
-  <div class="box-info-text">
-    <p class="info-text">
+<section class="welcome__section">
+  <div class="welcome__box">
+    <p class="welcome__text">
       {{ 'welcomePage.textFirstBox' | transloco }}
     </p>
   </div>
-  <div class="box-info-text">
-    <p class="info-text">
+
+  <div class="welcome__box">
+    <p class="welcome__text">
       {{ 'welcomePage.textSecondBox' | transloco }}
     </p>
-    <button class="auth__button" routerLink="/auth">
+    <button class="welcome__button" routerLink="/auth">
       {{ 'welcomePage.button' | transloco }}
     </button>
   </div>
-  <div class="box-info-text">
-    <ol class="info-text-list">
-      {{
-        'welcomePage.textThirdBox' | transloco
-      }}
-      <li>{{ 'welcomePage.textLiOne' | transloco }}</li>
-      <li>{{ 'welcomePage.textLiTwo' | transloco }}</li>
-      <li>{{ 'welcomePage.textLiThree' | transloco }}</li>
-      <li>{{ 'welcomePage.textLiFour' | transloco }}</li>
+
+  <div class="welcome__box">
+    <p class="welcome__text">
+      {{ 'welcomePage.textThirdBox' | transloco }}
+    </p>
+    <ol class="welcome__list">
+      <li class="welcome__list-item">{{ 'welcomePage.textLiOne' | transloco }}</li>
+      <li class="welcome__list-item">{{ 'welcomePage.textLiTwo' | transloco }}</li>
+      <li class="welcome__list-item">{{ 'welcomePage.textLiThree' | transloco }}</li>
+      <li class="welcome__list-item">{{ 'welcomePage.textLiFour' | transloco }}</li>
     </ol>
   </div>
-</div>
-<div class="welcome-paral"></div>
-<h2 class="title">{{ 'welcomePage.h2' | transloco }}</h2>
-<div class="box-info">
-  <a href="https://github.com/andrburl2" target="_blank">
-    <div class="box-info-member">
-      <div class="info-name">
-        <img src="assets/png/Andrey.jpg" alt="teamlead" />
-        <h4 class="name-text">{{ 'welcomePage.nameTeamLead' | transloco }}</h4>
-        <h4 class="role-text">{{ 'welcomePage.roleTeamLead' | transloco }}</h4>
-      </div>
-      <div>
-        <p class="info-member">{{ 'welcomePage.infoTeamLead' | transloco }}</p>
-      </div>
-    </div>
+</section>
+
+<div class="welcome__paral"></div>
+
+<h2 class="welcome__title">{{ 'welcomePage.h2' | transloco }}</h2>
+
+<section class="welcome__section">
+  <a
+    class="welcome__box welcome__box_type_link"
+    href="https://github.com/andrburl2"
+    target="_blank"
+  >
+    <img class="welcome__img" src="assets/png/andrey.jpg" alt="teamlead" />
+    <h3 class="welcome__name">{{ 'welcomePage.nameTeamLead' | transloco }}</h3>
+    <p class="welcome__role">{{ 'welcomePage.roleTeamLead' | transloco }}</p>
+    <p class="welcome__info">{{ 'welcomePage.infoTeamLead' | transloco }}</p>
   </a>
-  <a href="https://github.com/olgamartinchik" target="_blank">
-    <div class="box-info-member">
-      <div class="info-name">
-        <img src="assets/png/Olga.jpg" alt="teamlead" />
-        <h4 class="name-text">{{ 'welcomePage.nameFirstDeveloper' | transloco }}</h4>
-        <h4 class="role-text">{{ 'welcomePage.roleFirstDeveloper' | transloco }}</h4>
-      </div>
-      <div>
-        <p class="info-member">{{ 'welcomePage.infoFirstDeveloper' | transloco }}</p>
-      </div>
-    </div>
+
+  <a
+    class="welcome__box welcome__box_type_link"
+    href="https://github.com/olgamartinchik"
+    target="_blank"
+  >
+    <img class="welcome__img" src="assets/png/olga.jpg" alt="teamlead" />
+    <h3 class="welcome__name">{{ 'welcomePage.nameFirstDeveloper' | transloco }}</h3>
+    <p class="welcome__role">{{ 'welcomePage.roleFirstDeveloper' | transloco }}</p>
+    <p class="welcome__info">{{ 'welcomePage.infoFirstDeveloper' | transloco }}</p>
   </a>
-  <a href="https://github.com/vikysan77" target="_blank">
-    <div class="box-info-member">
-      <div class="info-name">
-        <img src="assets/png/Vika.jpg" alt="teamlead" />
-        <h4 class="name-text">{{ 'welcomePage.nameSecondDeveloper' | transloco }}</h4>
-        <h4 class="role-text">{{ 'welcomePage.roleSecondDeveloper' | transloco }}</h4>
-      </div>
-      <div>
-        <p class="info-member">{{ 'welcomePage.infoSecondDeveloper' | transloco }}</p>
-      </div>
-    </div>
+
+  <a
+    class="welcome__box welcome__box_type_link"
+    href="https://github.com/vikysan77"
+    target="_blank"
+  >
+    <img class="welcome__img" src="assets/png/vika.jpg" alt="teamlead" />
+    <h3 class="welcome__name">{{ 'welcomePage.nameSecondDeveloper' | transloco }}</h3>
+    <p class="welcome__role">{{ 'welcomePage.roleSecondDeveloper' | transloco }}</p>
+    <p class="welcome__info">{{ 'welcomePage.infoSecondDeveloper' | transloco }}</p>
   </a>
-</div>
+</section>

@@ -7,6 +7,8 @@ import { BoardService } from './board.service';
 
 @Injectable()
 export class ColumnService {
+  public columnId!: string;
+
   constructor(private apiService: ApiService, private boardService: BoardService) {}
 
   public createColumn(title: string, columns: ColumnModel[]): void {

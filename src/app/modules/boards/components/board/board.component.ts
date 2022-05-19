@@ -5,6 +5,8 @@ import { BoardService } from '../../services/board.service';
 import { BoardPopupService } from 'src/app/modules/core/services/board-popup.service';
 
 import { BoardModel } from '../../../core/models/board.model';
+import { TaskService } from '../../services/task.service';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-board',
@@ -17,10 +19,16 @@ export class BoardComponent implements OnInit {
 
   public isColumnPopupOpen = false;
 
-  constructor(private boardService: BoardService, private boardPopupService: BoardPopupService) {}
+  constructor(
+    private boardService: BoardService,
+    private boardPopupService: BoardPopupService,
+    public taskService: TaskService,
+    public usersService: UsersService,
+  ) {}
 
   public ngOnInit(): void {
     this.board$ = this.boardService.getBoardData();
+    this.usersService.initAllUsers();
   }
 
   public toggleColumnPopup(): void {
