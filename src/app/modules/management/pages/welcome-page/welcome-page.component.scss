@@ -95,7 +95,7 @@
   &__paral {
     width: 100%;
     height: 250px;
-    margin: 40px 0;
+    margin: 99px 0;
     padding: 0;
     background-size: cover;
     background-attachment: fixed;
@@ -142,38 +142,53 @@
     background-color: colors.$main-color-dark;
   }
 
-  .info-text,
-  .title {
-    color: colors.$text-form-dark;
-  }
-
-  .auth__button {
-    background-color: colors.$btn-color-dark;
-    color: colors.$text-dark-team;
-    border: 2px solid colors.$btn-border-dark;
-  }
-
-  .info-text-list {
-    color: colors.$text-form-dark;
-  }
-
-  .box-info-member,
-  .box-info-text {
-    background-color: colors.$board-dark;
-    box-shadow: 0px 2px 10px 9px rgba(249, 249, 249, 0.2);
-
-    &:hover {
-      box-shadow: 0px 0px 15px 0px #777;
+  .welcome {
+    &__paral{
+      background-image: url('../../../../../assets/png/parallax-dark.png');
     }
-  }
-  .name-text,
-  .role-text,
-  .info-member {
-    color: colors.$text-form-dark;
-  }
 
-  .welcome-paral {
-    background-image: url('../../../../../assets/png/parallax-dark.png');
+    &__box {
+      background-color: colors.$board-dark;
+      box-shadow: 0px 2px 10px 9px rgba(249, 249, 249, 0.2);
+
+      &:hover {
+        box-shadow: 0px 0px 15px 0px #777;
+      }
+    }
+
+    &__text {
+      color: colors.$text-form-dark;
+    }
+
+    &__button {
+      background-color: colors.$btn-color-dark;
+      color: colors.$text-dark-team;
+      border: 2px solid colors.$btn-border-dark;
+    }
+
+    &__list-item {
+      color: colors.$text-form-dark;
+
+      &:before {
+        background: #263a57;
+        color: rgb(179, 158, 158);
+      }
+    }
+    &__title {
+      color: colors.$text-form-dark;
+    }
+
+    &__name {
+      color: colors.$text-form-dark;
+    }
+
+    &__role {
+      color: colors.$text-form-dark;
+    }
+
+    &__info {
+      color: colors.$text-form-dark;
+    }
   }
 
   li::before {
