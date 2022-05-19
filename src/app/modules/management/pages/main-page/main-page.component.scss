@@ -11,6 +11,8 @@
   box-sizing: border-box;
 }
 
+
+
 .main {
   width: 100%;
   display: flex;
@@ -34,6 +36,7 @@
 
   &__button {
     @include forms.button;
+    background-color: colors.$board-color;
     margin: 0 0 0 10px;
   }
 
@@ -70,7 +73,51 @@
 }
 
 @media screen and (max-width: 320px) {
-  .main__boards {
-    grid-template: auto/100%;
+  .main {
+    &__boards {
+      grid-template: auto/100%;
+    }
+
+    &__sorts {
+      margin-top: 10px;
+    }
+
+    &__title-sort {
+      @include font.text(18px, 20px);
+    }
+
+    &__button {
+      padding:  7px 12px;
+      @include font.text(14px, 16px);
+
+    }
+
+  }
+
+}
+
+@media (prefers-color-scheme: dark){
+  :host {
+    background-color: colors.$main-color-dark;
+  }
+  .main {
+    &__title-sort {
+     color: colors.$text-dark-team;
+    }
+
+    &__button {
+      background-color: colors.$btn-color-dark;
+      border: 2px solid colors.$btn-border-dark;
+      color: colors.$text-link-dark;
+    }
+
+    &__title {
+      color: colors.$text-form-dark;
+    }
+
+    &__new-button {
+      background-color: colors.$new-board-dark;
+      color: colors.$text-new-dark;
+    }
   }
 }

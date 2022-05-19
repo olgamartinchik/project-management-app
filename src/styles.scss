@@ -6,3 +6,8 @@ body {
   display: flex;
   flex-direction: column;
 }
+@media (prefers-color-scheme: dark){
+  body {
+    background-color: #2c1919;
+  }
+}

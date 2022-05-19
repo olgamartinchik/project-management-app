@@ -54,3 +54,51 @@
     @include forms.button;
   }
 }
+
+@media (prefers-color-scheme: dark){
+  :host {
+    background-color: colors.$board-dark;
+  }
+
+  .auth {
+    &__input {
+      background-color: colors.$input-color-dark;
+      color: colors.$text-form-dark;
+
+      &::placeholder {
+        color: colors.$placeholder-text-dark;
+      }
+    }
+
+    &__input_type_pass-confirm.ng-dirty {
+      &.invalid {
+        border-bottom: 2px solid colors.$invalid;
+      }
+      &:not(.invalid) {
+        border-bottom: 2px solid colors.$invalid;
+      }
+    }
+
+    &__error-text {
+      color: colors.$invalid-dark;
+    }
+
+    &__recommend-item {
+      color: colors.$invalid-dark;
+
+      &::before {
+        background-color: colors.$invalid-dark;
+      }
+    }
+
+    &__button {
+      background-color: colors.$btn-color-dark;
+      color: colors.$text-dark-team;
+      border: 2px solid colors.$btn-border-dark;
+      &:disabled {
+        background-color: colors.$disabled-bg-dark;
+        border: none;
+      }
+    }
+  }
+}

@@ -64,3 +64,15 @@
     }
   }
 }
+
+@media (prefers-color-scheme: dark){
+ .board {
+    background-color: colors.$board-dark;
+
+    &__delete-button {
+      & > mat-icon {
+        color: colors.$invalid-dark;
+      }
+    }
+  }
+}

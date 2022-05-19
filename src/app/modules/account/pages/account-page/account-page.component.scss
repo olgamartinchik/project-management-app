@@ -30,3 +30,9 @@
     box-shadow: 3px 3px 10px colors.$danger;
   }
 }
+
+@media (prefers-color-scheme: dark){
+  :host {
+    background-color: colors.$main-color-dark;
+  }
+}
