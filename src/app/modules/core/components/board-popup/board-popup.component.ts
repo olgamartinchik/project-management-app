@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { take, switchMap, withLatestFrom, map } from 'rxjs';
 import { Store } from '@ngrx/store';
 
@@ -37,6 +38,7 @@ export class BoardPopupComponent implements OnInit {
     private fb: FormBuilder,
     private apiService: ApiService,
     private store: Store<IAppState>,
+    private router: Router,
   ) {}
 
   public ngOnInit(): void {
@@ -62,6 +64,7 @@ export class BoardPopupComponent implements OnInit {
   public submit(): void {
     if (this.boardPopupService.subject$.value.popupFunction === 'create') {
       this.createBoard();
+      this.router.navigateByUrl('/main');
     } else {
       this.editBoard();
     }
