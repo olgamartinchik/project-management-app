@@ -10,15 +10,6 @@
       >{{ 'nav.mainPage' | transloco }}</a
     >
     <a
-      class="nav__link disabled"
-      routerLinkActive="active"
-      routerLink="/search"
-      rel="noopener"
-      title="search"
-      (click)="isNavOpen = false"
-      >{{ 'nav.search' | transloco }}</a
-    >
-    <a
       class="nav__link"
       routerLinkActive="active"
       routerLink="/account"
@@ -30,6 +21,17 @@
     <a class="nav__link" (click)="isNavOpen = false" (click)="openPopupOutput()">{{
       'nav.logout' | transloco
     }}</a>
+
+    <div class="search-container">
+      <input
+        class="input"
+        type="search"
+        matInput
+        placeholder="{{ 'nav.placeholder' | transloco }}"
+        [(ngModel)]="inputValue"
+      />
+      <button class="search-btn" (click)="getSearchResult()">{{ 'nav.search' | transloco }}</button>
+    </div>
   </ng-container>
   <ng-container *ngIf="!authService.isLoggedIn()">
     <a
@@ -43,7 +45,9 @@
     >
   </ng-container>
 </nav>
+
 <app-output-popup *ngIf="isPopupOpen"></app-output-popup>
+
 <button
   [class]="{ 'nav__burger-button': true, active: isNavOpen }"
   (click)="isNavOpen = !isNavOpen"

@@ -1,0 +1,19 @@
+<a routerLink="/board/{{ task.boardId }}" [class]="{ 'search-task': true, done: task.done }">
+  <h3 class="subtitle">
+    {{ 'searchPage.title' | transloco }}: <span class="search-text">{{ task.title }}</span>
+  </h3>
+  <p class="subtitle">
+    {{ 'searchPage.description' | transloco }}:
+    <span class="search-text">{{ task.description }}</span>
+  </p>
+  <p class="subtitle">
+    {{ 'searchPage.order' | transloco }}: <span class="search-text">{{ task.order }}</span>
+  </p>
+  <p class="subtitle">
+    {{ 'searchPage.user' | transloco }}:
+    <span class="search-text">{{ usersService.getUserName(task.userId) }}</span>
+  </p>
+  <p class="done-task" *ngIf="task.done">
+    {{ 'searchPage.done' | transloco }}
+  </p>
+</a>

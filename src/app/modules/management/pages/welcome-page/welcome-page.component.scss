@@ -3,10 +3,6 @@
 @use '../../../shared/styles/forms';
 @use '../../../shared/styles/components';
 
-* {
-  box-sizing: border-box;
-}
-
 :host {
   width: 100%;
   padding: 40px 20px;

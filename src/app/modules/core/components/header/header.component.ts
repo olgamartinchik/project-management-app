@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 
 import { BoardPopupService } from 'src/app/modules/core/services/board-popup.service';
+import { UsersService } from '../../services/users.service';
+import { AuthService } from '../../services/auth.service';
 
 import { LangModel } from '../../models/lang.model';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   public isNavOpen = false;
 
   public lang: LangModel = 'ru';
@@ -21,7 +22,12 @@ export class HeaderComponent {
     public authService: AuthService,
     private translocoService: TranslocoService,
     private boardPopupService: BoardPopupService,
+    private usersService: UsersService,
   ) {}
+
+  public ngOnInit(): void {
+    this.usersService.initAllUsers();
+  }
 
   public switchLang(): void {
     this.translocoService.setActiveLang(this.lang);

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // modules
 import { SharedModule } from '../shared/shared.module';
@@ -48,7 +47,6 @@ import { PopupHostDirective } from './directives/popup-host.directive';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     SharedModule,
     TranslocoRootModule,
     ReduxModule,

@@ -1,21 +1,22 @@
-import { Subject, Observable, take, takeUntil } from 'rxjs';
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FORM_ERROR_MESSAGES } from 'src/app/modules/core/constants/error-messages.constants';
+import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 
-import { FormMessagesModel } from 'src/app/modules/core/models/error-messages.services.models';
+// services
 import { ErrorMessagesService } from 'src/app/modules/core/services/error-messages.service';
 import { TaskService } from '../../services/task.service';
-import { UserModel } from 'src/app/modules/core/models/user.model';
-import { ApiService } from 'src/app/modules/core/services/api.service';
-import { ColumnModel } from 'src/app/modules/core/models/column.model';
-import { ColumnService } from '../../services/column.service';
 
-import { IAppState } from 'src/app/redux/state.model';
-import { Store } from '@ngrx/store';
+// ngrx
 import { usersSelect } from 'src/app/redux/selectors/users.selector';
-import { ITask } from 'src/app/modules/core/models/ITask.model';
-import { taskSelect } from 'src/app/redux/selectors/tasks.selectors';
+
+// models
+import { IAppState } from 'src/app/redux/state.model';
+import { FormMessagesModel } from 'src/app/modules/core/models/error-messages.services.models';
+import { UserModel } from 'src/app/modules/core/models/user.model';
+
+// constants
+import { FORM_ERROR_MESSAGES } from 'src/app/modules/core/constants/error-messages.constants';
 
 @Component({
   selector: 'app-task-popup',
@@ -26,46 +27,56 @@ import { taskSelect } from 'src/app/redux/selectors/tasks.selectors';
 export class TaskPopupComponent implements OnInit, OnDestroy {
   @Input() public boardId!: string;
 
-  @Input() public columnData!: ColumnModel;
-
   public users: Observable<UserModel[]> = this.store.select(usersSelect);
 
   public taskForm!: FormGroup;
 
   public messages: FormMessagesModel = FORM_ERROR_MESSAGES;
 
-  private unsubscribe$: Subject<void> = new Subject<void>();
-
-  public editTask$: Observable<ITask> = this.store.select(taskSelect);
-
-  public isNewTask!: boolean;
+  private subscription: Subscription = new Subscription();
 
   constructor(
-    private fb: FormBuilder,
     public errorMessagesService: ErrorMessagesService,
     public taskService: TaskService,
-    public apiService: ApiService,
-    private columnService: ColumnService,
     private store: Store<IAppState>,
+    private fb: FormBuilder,
   ) {}
 
   public ngOnInit(): void {
     this.createForm();
-    this.taskService.newTask$.pipe(takeUntil(this.unsubscribe$)).subscribe((flag) => {
-      this.isNewTask = flag;
-      if (!flag) {
-        this.editTask$
-          .pipe(takeUntil(this.unsubscribe$))
-          .subscribe(({ title, description, done, userId }) => {
-            this.taskForm.setValue({
-              title,
-              description,
-              done,
-              userId,
-            });
-          });
+    this.subscription = this.taskService.taskSubject$.subscribe(({ popupFunction }) => {
+      if (popupFunction === 'edit') {
+        this.taskForm.setValue({
+          title: this.taskService.task!.title,
+          description: this.taskService.task!.description,
+          done: this.taskService.task!.done,
+          userId: this.taskService.task!.userId,
+        });
       }
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  public closePopup(): void {
+    this.taskService.closePopup();
+    this.taskForm.reset();
+  }
+
+  public stopPropagation(event: Event): void {
+    event.stopPropagation();
+  }
+
+  public submit(): void {
+    if (this.taskService.taskSubject$.value.popupFunction === 'add') {
+      this.taskService.createTask(this.boardId, this.taskForm.value);
+    } else {
+      this.taskService.updateTask(this.boardId, this.taskForm.value);
+    }
+
+    this.closePopup();
   }
 
   private createForm(): void {
@@ -75,44 +86,5 @@ export class TaskPopupComponent implements OnInit, OnDestroy {
       done: [false],
       userId: ['', Validators.required],
     });
-  }
-
-  public closePopup(): void {
-    this.taskService.newTask$.next(true);
-    this.taskService.isTaskPopup$.next(false);
-    this.taskForm.reset();
-  }
-
-  public stopPropagation(event: Event): void {
-    event.stopPropagation();
-  }
-
-  public createTask(): void {
-    this.taskService.isTaskPopup$.next(false);
-    if (this.isNewTask) {
-      this.taskService.createTask(
-        this.boardId,
-        this.columnService.columnId,
-        { ...this.taskForm.value },
-        this.columnData.tasks!,
-      );
-    } else {
-      this.editTask$.pipe(take(1)).subscribe((selectTask) => {
-        this.taskService.updateTask(
-          this.boardId,
-          selectTask.id!,
-          { ...this.taskForm.value },
-          selectTask.order!,
-        );
-      });
-    }
-
-    this.taskService.newTask$.next(true);
-    this.taskForm.reset();
-  }
-
-  public ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 }

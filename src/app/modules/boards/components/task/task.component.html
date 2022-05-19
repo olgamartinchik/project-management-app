@@ -1,4 +1,4 @@
-<div (click)="openPopupEditTask()" [class]="{ 'task-container': true, done: task.done }">
+<div (click)="openEditTaskPopup()" [class]="{ 'task-container': true, done: task.done }">
   <button class="btn-container" (click)="confirmDeleteTask($event)">
     <mat-icon aria-hidden="false" aria-label="Delete icon">delete_outline</mat-icon>
   </button>
@@ -6,6 +6,7 @@
   <h4 class="title">{{ task.title }}</h4>
   <p class="subtitle">{{ task.description }}</p>
   <p class="subtitle subtitle-user">
-    {{ 'boardPage.performers' | transloco }}: <span>{{ getUser(task.userId) }}</span>
+    {{ 'boardPage.performers' | transloco }}:
+    <span>{{ usersService.getUserName(task.userId) }}</span>
   </p>
 </div>

@@ -20,12 +20,12 @@ $page-height: calc(100vh - $header-height - $footer-height);
   border: none;
   display: flex;
   cursor: pointer;
-  transition: 0.3s ease-in-out;
+  transition: 0.4s ease-in-out;
+  outline: none;
 
-  &:hover {
-    color: colors.$accent-color;
-    text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
-    opacity: 1;
+  &:hover,
+  &:focus {
+    text-shadow: 5px 5px 3px rgb(0, 0, 0, 0.5);
   }
 }
 
@@ -49,5 +49,26 @@ $page-height: calc(100vh - $header-height - $footer-height);
     border-radius: 5px;
     border: 2px solid transparent;
     background-clip: content-box;
+  }
+}
+
+@mixin dran-and-drop($parent-component, $child-component) {
+  .cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px 3px rgba(colors.$accent-color, 0.2);
+    border: 2px solid colors.$accent-color;
+  }
+
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+
+  .cdk-drag-animating {
+    transition: 0.3s ease-in-out;
+  }
+
+  #{$parent-component}.cdk-drop-list-dragging #{$child-component}:not(.cdk-drag-placeholder) {
+    transition: 0.3s ease-in-out;
   }
 }

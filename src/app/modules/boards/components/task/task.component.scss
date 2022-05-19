@@ -1,17 +1,24 @@
 @use '../../../shared/styles/colors';
 @use '../../../shared/styles/font';
 @use '../../../shared/styles/components';
-.task-container {
-  position: relative;
+
+:host {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  width: inherit;
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
 
-  box-shadow: 0 1px 0 #091e4240;
-  border-radius: 4px;
-  background-color: white;
-
+.task-container {
   padding: 5px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 1px 0 #091e4240;
+  background-color: white;
+  border-radius: 10px;
+
   cursor: pointer;
   transition: 0.3s ease-in-out;
   &:hover {
